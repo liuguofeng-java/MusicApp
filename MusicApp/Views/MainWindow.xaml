@@ -1,0 +1,83 @@
+﻿<Window x:Class="MusicApp.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MusicApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="690" Width="1043" 
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        Background="{x:Null}">
+    <Window.Resources>
+        <!--给阴影留出边距-->
+        <Style x:Key="WindowBorderStyle" TargetType="Border">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Value="Normal">
+                    <Setter Property="Margin" Value="10" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Value="Minimized">
+                    <Setter Property="Margin" Value="10" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Value="Maximized">
+                    <Setter Property="Margin" Value="6" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <!--系统按钮样式-->
+        <Style x:Key="WinButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border SnapsToDevicePixels="true">
+                            <TextBlock x:Name="border" 
+                                       Cursor="Hand"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Text="{TemplateBinding Content}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       Foreground="#fbd9d9" 
+                                       FontFamily="/Assets/Fonts/#iconfont"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Foreground" TargetName="border" Value="#ffffff"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Border Style="{DynamicResource WindowBorderStyle}" Background="White" MouseLeftButtonDown="WindowMove_MouseLeftButtonDown">
+        <Border.Effect>
+            <DropShadowEffect Color="#1e1e1e" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
+        </Border.Effect>
+        <DockPanel>
+            <Border DockPanel.Dock="Top" Height="60" Background="#ec4141">
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal" Margin="0 0 15 0">
+                    <!--最小化-->
+                    <Button Style="{DynamicResource WinButtonStyle}" x:Name="ZoomOutWindowBut"
+                            Height="30" Width="30" Margin="3 0" FontSize="17" Content="&#xe60e;"/>
+                    <!--最大化\还原-->
+                    <Button Style="{DynamicResource WinButtonStyle}" x:Name="ZoomWindowBut"
+                            Height="30" Width="30" Margin="3 0" FontSize="15" Content="&#xe65d;"/>
+                    <!--关闭-->
+                    <Button Style="{DynamicResource WinButtonStyle}" x:Name="CloseWindowBut"
+                            Height="30" Width="30" Margin="3 0" FontSize="17" Content="&#xe723;"/>
+                </StackPanel>
+            </Border>
+            <Border DockPanel.Dock="Bottom" Height="75" Background="LightSteelBlue">
+                <TextBlock>Status</TextBlock>
+            </Border>
+            <Border DockPanel.Dock="Left" Width="200" Background="Yellow">
+                <TextBlock>Left Side</TextBlock>
+            </Border>
+            
+            <Border Background="HotPink">
+                <TextBlock>Reminning Part</TextBlock>
+            </Border>
+        </DockPanel>
+    </Border>
+</Window>

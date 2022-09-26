@@ -1,5 +1,3 @@
-C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.csproj.AssemblyReference.cache
-C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MainWindow.g.cs
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\App.g.cs
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp_MarkupCompile.cache
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp_MarkupCompile.lref
@@ -9,7 +7,6 @@ C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\bin\Debug\netcoreapp3.1\MusicApp.r
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\bin\Debug\netcoreapp3.1\MusicApp.runtimeconfig.dev.json
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\bin\Debug\netcoreapp3.1\MusicApp.dll
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\bin\Debug\netcoreapp3.1\MusicApp.pdb
-C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MainWindow.baml
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.g.resources
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.AssemblyInfoInputs.cache
@@ -18,3 +15,5 @@ C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.c
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.dll
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.pdb
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.genruntimeconfig.cache
+C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Views\MainWindow.g.cs
+C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Views\MainWindow.baml
