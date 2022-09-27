@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\App.xaml
-1-1644662438
+4-1675431827
 
-5-239001314
+7-1677321607
 192-1533232326
-Views\MainWindow.xaml;
+Control\HeadWindowControl.xaml;Control\SideNavBarWindowControl.xaml;Themes\Common.xaml;Views\MainWindow.xaml;
 
-True
+False
 

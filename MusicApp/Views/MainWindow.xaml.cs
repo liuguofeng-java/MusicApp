@@ -24,21 +24,11 @@ namespace MusicApp.Views
         public MainWindow()
         {
             InitializeComponent();
-            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
-            this.MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
-            //缩小
-            ZoomOutWindowBut.Click += (s, e) =>
-            {
-                WindowState = WindowState.Minimized;
-            };
-            //最大化
-            ZoomWindowBut.Click += (s, e) => ZoomWindow(s, e);
-            //关闭应用
-            CloseWindowBut.Click += (s, e) =>
-            {
-                Application.Current.Shutdown();
-            };
+            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
+            headWindow._parentWindow = this;
         }
+
 
         /// <summary>
         /// 移动\最大化
@@ -74,31 +64,10 @@ namespace MusicApp.Views
                 {
                     timer.Stop();
                     timer.Dispose();
-                    ZoomWindow(sender,e);
+                    headWindow.ZoomWindow(sender, e);
                 }
             }
         }
-
-        /// <summary>
-        /// 最大化\还原
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ZoomWindow(object sender, RoutedEventArgs e)
-        {
-            //判断是否以及最大化，最大化就还原窗口，否则最大化
-            if (WindowState == WindowState.Maximized)
-            {
-                WindowState = WindowState.Normal;
-                ZoomWindowBut.Content = "\xe65d";
-            }
-            else
-            {
-                WindowState = WindowState.Maximized;
-                ZoomWindowBut.Content = "\xe653";
-            }
-        }
-
 
     }
 }

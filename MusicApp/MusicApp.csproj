@@ -9,11 +9,13 @@
   <ItemGroup>
     <None Remove="Assets\Fonts\iconfont.ttf" />
     <None Remove="Assets\Images\format.ico" />
+    <None Remove="Assets\Images\head_portrait.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Assets\Fonts\iconfont.ttf" />
     <Resource Include="Assets\Images\format.ico" />
+    <Resource Include="Assets\Images\head_portrait.png" />
   </ItemGroup>
 
   <ItemGroup>
