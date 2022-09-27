@@ -24,3 +24,5 @@ C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\GeneratedI
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\HeadWindowControl.baml
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\SideNavBarWindowControl.g.cs
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\SideNavBarWindowControl.baml
+C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\BottomPlayerWindowControl.g.cs
+C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\BottomPlayerWindowControl.baml

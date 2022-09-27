@@ -46,6 +46,29 @@
             </Setter>
         </Style>
 
+        <!--导航键-->
+        <Style x:Key="NavButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="#60AA4030" CornerRadius="50" Cursor="Hand">
+                            <TextBlock x:Name="textBlock" 
+                                       VerticalAlignment="Center"
+                                       Foreground="White"
+                                       HorizontalAlignment="Center"
+                                       Text="{TemplateBinding Content}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{DynamicResource Iconfont}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" TargetName="textBlock" Value="#a4b0be88"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <!--vip-->
         <Style x:Key="VipStyle" TargetType="{x:Type Button}">
             <Setter Property="Template">
@@ -68,35 +91,6 @@
                                                    VerticalAlignment="Center"/>
                             </StackPanel>
                         </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <!--导航键-->
-        <Style x:Key="NavButtonStyle" TargetType="{x:Type Button}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" Background="#60AA4030" CornerRadius="50">
-                            <TextBlock x:Name="textBlock" 
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"
-                                       Text="{TemplateBinding Content}"
-                                       FontSize="{TemplateBinding FontSize}"
-                                       FontFamily="{DynamicResource Iconfont}"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="True">
-                                <Setter Property="Foreground" TargetName="textBlock" Value="White"/>
-                                <Setter Property="Cursor" TargetName="border" Value="Hand"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Foreground" TargetName="textBlock" Value="#3e3e42"/>
-                                <Setter Property="Cursor" TargetName="border" Value="Hand"/>
-                            </Trigger>
-
-                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -152,10 +146,11 @@
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="230 0 0 0">
                 <!--返回-->
                 <Button Style="{DynamicResource NavButtonStyle}"  x:Name="Back"
-                            Height="25" Width="25" Margin="3 0" FontSize="10" IsEnabled="False" Content="&#xe600;"/>
+                            Height="25" Width="25" Margin="3 0" FontSize="10" Content="&#xe600;"/>
                 <!--前进-->
                 <Button Style="{DynamicResource NavButtonStyle}" x:Name="Next"
-                            Height="25" Width="25" Margin="3 0" FontSize="10" IsEnabled="True" Content="&#xe601;"/>
+                            Height="25" Width="25" Margin="3 0" FontSize="10" IsEnabled="False" Content="&#xe601;"/>
+
                 <!--搜索框-->
                 <TextBox Style="{DynamicResource SearchTextBoxStyle}" Width="200" Foreground="White"/>
             </StackPanel>

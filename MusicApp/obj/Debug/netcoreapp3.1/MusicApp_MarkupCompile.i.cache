@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\App.xaml
-4-1675431827
+52123089356
 
-7-1677321607
+81864749504
 192-1533232326
-Control\HeadWindowControl.xaml;Control\SideNavBarWindowControl.xaml;Themes\Common.xaml;Views\MainWindow.xaml;
+Control\BottomPlayerWindowControl.xaml;Control\HeadWindowControl.xaml;Control\SideNavBarWindowControl.xaml;Themes\Common.xaml;Views\MainWindow.xaml;
 
 False
 

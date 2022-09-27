@@ -35,9 +35,8 @@
             <!--头部-->
             <Control:HeadWindowControl x:Name="headWindow" DockPanel.Dock="Top"/>
 
-            <Border DockPanel.Dock="Bottom" Height="75" Background="LightSteelBlue">
-                <TextBlock>Status</TextBlock>
-            </Border>
+            <!--底部-->
+            <Control:BottomPlayerWindowControl DockPanel.Dock="Bottom" Height="75"/>
             <Control:SideNavBarWindowControl DockPanel.Dock="Left" Width="200" />
 
             <Border Background="HotPink">
