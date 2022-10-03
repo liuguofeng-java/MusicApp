@@ -14,8 +14,12 @@
 
   <ItemGroup>
     <Resource Include="Assets\Fonts\iconfont.ttf" />
-    <Resource Include="Assets\Images\format.ico" />
-    <Resource Include="Assets\Images\head_portrait.png" />
+    <Resource Include="Assets\Images\format.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\head_portrait.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

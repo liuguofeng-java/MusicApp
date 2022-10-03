@@ -39,7 +39,7 @@
             <Control:BottomPlayerWindowControl DockPanel.Dock="Bottom" Height="75"/>
             <Control:SideNavBarWindowControl DockPanel.Dock="Left" Width="200" />
 
-            <Border Background="HotPink">
+            <Border Background="White">
                 <TextBlock>Reminning Part</TextBlock>
             </Border>
         </DockPanel>

@@ -14,13 +14,13 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border SnapsToDevicePixels="true">
                         <TextBlock x:Name="border" 
-                                       Cursor="Hand"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"
-                                       Text="{TemplateBinding Content}"
-                                       FontSize="{TemplateBinding FontSize}"
-                                       Foreground="#fbd9d9" 
-                                       FontFamily="{DynamicResource Iconfont}"/>
+                                    Cursor="Hand"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Text="{TemplateBinding Content}"
+                                    FontSize="{TemplateBinding FontSize}"
+                                    Foreground="#fbd9d9" 
+                                    FontFamily="{DynamicResource Iconfont}"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
