@@ -5,12 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MusicApp"
         xmlns:Control="clr-namespace:MusicApp.Control"
+        xmlns:Themes="clr-namespace:MusicApp.Themes"
         mc:Ignorable="d"
         Title="MainWindow" Height="690" Width="1043" 
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
-        Background="{x:Null}">
+        Background="{x:Null}"
+        Icon="/Assets/Images/Iocn/m_256.ico">
     <Window.Resources>
         <!--给阴影留出边距-->
         <Style x:Key="WindowBorderStyle" TargetType="Border">
@@ -27,23 +29,33 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Border Style="{DynamicResource WindowBorderStyle}" Background="White">
-        <Border.Effect>
-            <DropShadowEffect Color="#1e1e1e" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
-        </Border.Effect>
-        <DockPanel>
-            <!--头部-->
-            <Control:HeadWindowControl x:Name="headWindow" DockPanel.Dock="Top" MouseLeftButtonDown="WindowMove_MouseLeftButtonDown"/>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0"/>
+        </Grid.ColumnDefinitions>
+        <Border Style="{DynamicResource WindowBorderStyle}" Background="White">
+            <Border.Effect>
+                <DropShadowEffect Color="#1e1e1e" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
+            </Border.Effect>
+            <DockPanel>
+                <!--头部-->
+                <Control:HeadWindowControl x:Name="headWindow" DockPanel.Dock="Top" MouseLeftButtonDown="WindowMove_MouseLeftButtonDown"/>
 
-            <!--底部-->
-            <Control:BottomPlayerWindowControl DockPanel.Dock="Bottom" Height="75"/>
-            
-            <!--侧边-->
-            <Control:SideNavBarWindowControl x:Name="sideNavBarWindow" DockPanel.Dock="Left" Width="200" />
+                <!--底部-->
+                <Control:BottomPlayerWindowControl DockPanel.Dock="Bottom" Height="75"/>
 
-            <Border Background="White">
-                <ContentControl Content="{Binding Page}"/>
-            </Border>
-        </DockPanel>
-    </Border>
+                <!--侧边-->
+                <Control:SideNavBarWindowControl x:Name="sideNavBarWindow" DockPanel.Dock="Left" Width="200" />
+
+                <Border Background="White">
+                    <ContentControl Content="{Binding Page}"/>
+                </Border>
+            </DockPanel>
+        </Border>
+        
+        <!--系统托盘-->
+        <Themes:NotifyIcon x:Name="notifyIcon" Grid.Column="1" />
+    </Grid>
+    
 </Window>

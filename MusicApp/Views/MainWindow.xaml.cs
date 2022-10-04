@@ -34,6 +34,7 @@ namespace MusicApp.Views
             
             headWindow._parentWindow = this;
             sideNavBarWindow._parentWindow = this;
+            notifyIcon._parentWindow = this;
 
             //绑定数据
             model = new MainWindowModel();
@@ -41,6 +42,7 @@ namespace MusicApp.Views
 
             //初始化页面
             SideNavBarWindowControlViewModel.setModle("FoundMusicPage");
+
 
         }
 

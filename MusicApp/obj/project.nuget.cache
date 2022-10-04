@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "yGcWy+7bQXeTDAhysxhtgPJir3p05pGrQ5qjmT8NAdRpduGDUMTc1X8eA+5YEF6DPfBi4Y98pHpb7YtoAFdQww==",
+  "dgSpecHash": "EtOdQQN/5tGD+X4/MtGL4x6oaDelGzlxRDqW5AUjKkYxj5aCsleQddpzu6bdTEUpQT7adusrIDC94vf8HlF3dw==",
   "success": true,
   "projectFilePath": "C:\\Users\\liuguofeng\\Desktop\\MusicApp\\MusicApp\\MusicApp.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\liuguofeng\\.nuget\\packages\\hardcodet.notifyicon.wpf\\1.1.0\\hardcodet.notifyicon.wpf.1.1.0.nupkg.sha512"
+  ],
   "logs": []
 }

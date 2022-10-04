@@ -34,7 +34,7 @@ namespace MusicApp.Control
             //关闭应用
             CloseWindowBut.Click += (s, e) =>
             {
-                Application.Current.Shutdown();
+                _parentWindow.Visibility = Visibility.Collapsed;
             };
         }
 

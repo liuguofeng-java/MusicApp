@@ -45,6 +45,9 @@
     <Compile Update="PageView\VideoPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Themes\NotifyIcon.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Control\BottomPlayerWindowControl.xaml">
@@ -84,6 +87,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Themes\Common.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\NotifyIcon.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainWindow.xaml">

@@ -8,16 +8,23 @@
 
   <ItemGroup>
     <None Remove="Assets\Fonts\iconfont.ttf" />
-    <None Remove="Assets\Images\format.ico" />
     <None Remove="Assets\Images\head_portrait.png" />
+    <None Remove="Assets\Images\Iocn\m_256.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Assets\Fonts\iconfont.ttf" />
-    <Resource Include="Assets\Images\format.ico">
+    <Resource Include="Assets\Images\Iocn\format.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Images\head_portrait.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\Iocn\m_256.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

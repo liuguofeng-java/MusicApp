@@ -17,7 +17,7 @@
                             <Border Background="White" CornerRadius="50" Width="25" Height="25">
                                 <Border Width="15" Height="15" CornerRadius="50">
                                     <Border.Background>
-                                        <ImageBrush ImageSource="/Assets/Images/format.ico"/>
+                                        <ImageBrush ImageSource="/Assets/Images/Iocn/format.ico"/>
                                     </Border.Background>
                                 </Border>
                             </Border>
