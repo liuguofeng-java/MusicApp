@@ -1,6 +1,9 @@
-﻿using System;
+﻿using MusicApp.Models;
+using MusicApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
@@ -21,12 +24,24 @@ namespace MusicApp.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MainWindowModel model { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            //最大化宽度
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
+            
             headWindow._parentWindow = this;
+            sideNavBarWindow._parentWindow = this;
+
+            //绑定数据
+            model = new MainWindowModel();
+            DataContext = model;
+
+            //初始化页面
+            SideNavBarWindowControlViewModel.setModle("FoundMusicPage");
+
         }
 
 
@@ -69,5 +84,8 @@ namespace MusicApp.Views
             }
         }
 
+
+
+        
     }
 }

@@ -27,20 +27,22 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Border Style="{DynamicResource WindowBorderStyle}" Background="White" MouseLeftButtonDown="WindowMove_MouseLeftButtonDown">
+    <Border Style="{DynamicResource WindowBorderStyle}" Background="White">
         <Border.Effect>
             <DropShadowEffect Color="#1e1e1e" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
         </Border.Effect>
         <DockPanel>
             <!--头部-->
-            <Control:HeadWindowControl x:Name="headWindow" DockPanel.Dock="Top"/>
+            <Control:HeadWindowControl x:Name="headWindow" DockPanel.Dock="Top" MouseLeftButtonDown="WindowMove_MouseLeftButtonDown"/>
 
             <!--底部-->
             <Control:BottomPlayerWindowControl DockPanel.Dock="Bottom" Height="75"/>
-            <Control:SideNavBarWindowControl DockPanel.Dock="Left" Width="200" />
+            
+            <!--侧边-->
+            <Control:SideNavBarWindowControl x:Name="sideNavBarWindow" DockPanel.Dock="Left" Width="200" />
 
             <Border Background="White">
-                <TextBlock>Reminning Part</TextBlock>
+                <ContentControl Content="{Binding Page}"/>
             </Border>
         </DockPanel>
     </Border>

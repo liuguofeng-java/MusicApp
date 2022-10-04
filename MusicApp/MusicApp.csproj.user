@@ -18,6 +18,33 @@
     <Compile Update="Control\SideNavBarWindowControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="PageView\FMPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PageView\FocusOnPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PageView\FoundMusicPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PageView\LikeMusicPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PageView\LivePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PageView\LocalAndDownloadPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PageView\PodcastPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PageView\RecentPlayPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PageView\VideoPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Control\BottomPlayerWindowControl.xaml">
@@ -27,6 +54,33 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Control\SideNavBarWindowControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PageView\FMPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PageView\FocusOnPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PageView\FoundMusicPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PageView\LikeMusicPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PageView\LivePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PageView\LocalAndDownloadPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PageView\PodcastPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PageView\RecentPlayPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PageView\VideoPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Themes\Common.xaml">

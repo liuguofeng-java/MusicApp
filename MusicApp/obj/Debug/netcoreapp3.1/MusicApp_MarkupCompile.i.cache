@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\App.xaml
-52123089356
+14-1164049476
 
-81864749504
+22799317501
 192-1533232326
-Control\BottomPlayerWindowControl.xaml;Control\HeadWindowControl.xaml;Control\SideNavBarWindowControl.xaml;Themes\Common.xaml;Views\MainWindow.xaml;
+Control\BottomPlayerWindowControl.xaml;Control\HeadWindowControl.xaml;Control\SideNavBarWindowControl.xaml;PageView\FMPage.xaml;PageView\FocusOnPage.xaml;PageView\FoundMusicPage.xaml;PageView\LikeMusicPage.xaml;PageView\LivePage.xaml;PageView\LocalAndDownloadPage.xaml;PageView\PodcastPage.xaml;PageView\RecentPlayPage.xaml;PageView\VideoPage.xaml;Themes\Common.xaml;Views\MainWindow.xaml;
 
-False
+True
 

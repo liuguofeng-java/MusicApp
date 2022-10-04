@@ -85,16 +85,25 @@
         </Grid.ColumnDefinitions>
         <Border Background="White">
             <StackPanel Margin="10 10 2 0">
-                <RadioButton Style="{DynamicResource ListButtonStyle1}" Content="发现音乐" GroupName="list" />
-                <RadioButton Style="{DynamicResource ListButtonStyle1}" Content="播客" GroupName="list"/>
-                <RadioButton Style="{DynamicResource ListButtonStyle1}" Content="视频" GroupName="list"/>
-                <RadioButton Style="{DynamicResource ListButtonStyle1}" Content="关注" GroupName="list"/>
-                <RadioButton Style="{DynamicResource ListButtonStyle1}" Content="直播" GroupName="list"/>
-                <RadioButton Style="{DynamicResource ListButtonStyle1}" Content="私人FM" GroupName="list"/>
+                <RadioButton Style="{DynamicResource ListButtonStyle1}" Content="发现音乐" GroupName="menus" 
+                             Command="{Binding MenusCommand}" CommandParameter="FoundMusicPage" IsChecked="True"/>
+                <RadioButton Style="{DynamicResource ListButtonStyle1}" Content="播客" GroupName="menus"
+                             Command="{Binding MenusCommand}" CommandParameter="PodcastPage"/>
+                <RadioButton Style="{DynamicResource ListButtonStyle1}" Content="视频" GroupName="menus"
+                              Command="{Binding MenusCommand}" CommandParameter="VideoPage"/>
+                <RadioButton Style="{DynamicResource ListButtonStyle1}" Content="关注" GroupName="menus"
+                              Command="{Binding MenusCommand}" CommandParameter="FocusOnPage"/>
+                <RadioButton Style="{DynamicResource ListButtonStyle1}" Content="直播" GroupName="menus"
+                              Command="{Binding MenusCommand}" CommandParameter="LivePage"/>
+                <RadioButton Style="{DynamicResource ListButtonStyle1}" Content="私人FM" GroupName="menus"
+                              Command="{Binding MenusCommand}" CommandParameter="FMPage"/>
                 <Label Content="我的音乐" Foreground="#9f9f9f" />
-                <RadioButton Style="{DynamicResource ListButtonStyle2}" Content="&#xe682; 我喜欢的音乐" GroupName="list"/>
-                <RadioButton Style="{DynamicResource ListButtonStyle2}" Content="&#xe697; 本地与下载" GroupName="list"/>
-                <RadioButton Style="{DynamicResource ListButtonStyle2}" Content="&#xe6d7; 最近播放" GroupName="list"/>
+                <RadioButton Style="{DynamicResource ListButtonStyle2}" Content="&#xe682; 我喜欢的音乐" GroupName="menus"
+                              Command="{Binding MenusCommand}" CommandParameter="LikeMusicPage"/>
+                <RadioButton Style="{DynamicResource ListButtonStyle2}" Content="&#xe697; 本地与下载" GroupName="menus"
+                              Command="{Binding MenusCommand}" CommandParameter="LocalAndDownloadPage"/>
+                <RadioButton Style="{DynamicResource ListButtonStyle2}" Content="&#xe6d7; 最近播放" GroupName="menus"
+                              Command="{Binding MenusCommand}" CommandParameter="RecentPlayPage"/>
 
             </StackPanel>
         </Border>
