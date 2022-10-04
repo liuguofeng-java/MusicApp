@@ -8,10 +8,37 @@
              mc:Ignorable="d" 
              x:Name="notifyIcon"
              d:DesignHeight="450" d:DesignWidth="800">
+
     <tb:TaskbarIcon 
-        ToolTipText="鼠标移动上显示的文字"
-        PopupActivation="DoubleClick"
+        ToolTipText="两只老虎跑得快"
         LeftClickCommand="{Binding ClickCommand}"
         LeftClickCommandParameter="{Binding ElementName=notifyIcon}"
-        IconSource="/Assets/Images/Iocn/format.ico"/>
+        IconSource="/Assets/Images/Iocn/format.ico">
+        <tb:TaskbarIcon.ContextMenu>
+            <ContextMenu Style="{DynamicResource ContextMenu}">
+                <MenuItem  Header="两只老虎跑得快"/>
+                <MenuItem  Header="播放"/>
+                <MenuItem  Header="上一首"/>
+                <MenuItem  Header="下一首"/>
+                <MenuItem  Header="顺序播放">
+                    <MenuItem Header="列表循环"/>
+                    <MenuItem Header="单曲循环"/>
+                    <MenuItem Header="随机播放"/>
+                    <MenuItem Header="顺序播放"/>
+                </MenuItem>
+                <MenuItem Header="完整模式">
+                    <MenuItem Header="完整模式"/>
+                    <MenuItem Header="mini模式"/>
+                    <MenuItem Header="最小化"/>
+                </MenuItem>
+                <MenuItem Header="打开桌面歌词"/>
+                <MenuItem Header="锁定桌面歌词"/>
+                <MenuItem Header="设置"/>
+                <MenuItem Header="退出"/>
+
+
+            </ContextMenu>
+
+        </tb:TaskbarIcon.ContextMenu>
+    </tb:TaskbarIcon>
 </UserControl>
