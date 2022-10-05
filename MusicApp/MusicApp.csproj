@@ -9,7 +9,14 @@
   <ItemGroup>
     <None Remove="Assets\Fonts\iconfont.ttf" />
     <None Remove="Assets\Images\head_portrait.png" />
+    <None Remove="Assets\Images\Iocn\format.ico" />
     <None Remove="Assets\Images\Iocn\m_256.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Images\Iocn\format.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -17,15 +24,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\Fonts\iconfont.ttf" />
-    <Resource Include="Assets\Images\Iocn\format.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Resource Include="Assets\Fonts\iconfont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Images\head_portrait.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Images\Iocn\m_256.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 

@@ -15,7 +15,7 @@
                         <Grid Cursor="Hand">
                             <Border CornerRadius="5">
                                 <Border.Background>
-                                    <ImageBrush ImageSource="/Assets/Images/head_portrait.png" />
+                                    <ImageBrush ImageSource="pack://application:,,,/Assets/Images/head_portrait.png" />
                                 </Border.Background>
                             </Border>
                             <Border Name="border" Background="#dfe4ea" Opacity="0.3"/>

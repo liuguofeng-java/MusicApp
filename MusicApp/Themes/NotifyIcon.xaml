@@ -13,7 +13,7 @@
         ToolTipText="两只老虎跑得快"
         LeftClickCommand="{Binding ClickCommand}"
         LeftClickCommandParameter="{Binding ElementName=notifyIcon}"
-        IconSource="/Assets/Images/Iocn/format.ico">
+        IconSource="pack://application:,,,/Assets/Images/Iocn/format.ico">
         <tb:TaskbarIcon.ContextMenu>
             <ContextMenu Style="{DynamicResource ContextMenu}">
                 <MenuItem  Header="两只老虎跑得快"/>

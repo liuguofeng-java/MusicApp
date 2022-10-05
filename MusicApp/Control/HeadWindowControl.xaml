@@ -7,7 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="60" d:DesignWidth="1043">
     <UserControl.Resources>
-
         <!--logo-->
         <Style x:Key="LogoStyle" TargetType="{x:Type Button}">
             <Setter Property="Template">
@@ -17,7 +16,7 @@
                             <Border Background="White" CornerRadius="50" Width="25" Height="25">
                                 <Border Width="15" Height="15" CornerRadius="50">
                                     <Border.Background>
-                                        <ImageBrush ImageSource="/Assets/Images/Iocn/format.ico"/>
+                                        <ImageBrush ImageSource="pack://application:,,,/Assets/Images/Iocn/format.ico"/>
                                     </Border.Background>
                                 </Border>
                             </Border>
@@ -35,7 +34,7 @@
                         <StackPanel Orientation="Horizontal">
                             <Border Width="30" Height="30" CornerRadius="50">
                                 <Border.Background>
-                                    <ImageBrush ImageSource="/Assets/Images/head_portrait.png"></ImageBrush>
+                                    <ImageBrush ImageSource="pack://application:,,,/Assets/Images/head_portrait.png"></ImageBrush>
                                 </Border.Background>
                             </Border>
                             <Button  x:Name="Skin" Style="{DynamicResource WinButtonStyle}"
@@ -135,13 +134,11 @@
             </Setter>
 
         </Style>
-        
-        
     </UserControl.Resources>
     <Border DockPanel.Dock="Top" Height="60" Background="#ec4141">
         <Grid VerticalAlignment="Center">
             <!--左侧部分-->
-            <Button Margin="20 0 0 0"  Style="{DynamicResource LogoStyle}"/>
+            <Button x:Name="Logo" Margin="20 0 0 0"  Style="{DynamicResource LogoStyle}"/>
             <!--中心部分-->
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="230 0 0 0">
                 <!--返回-->

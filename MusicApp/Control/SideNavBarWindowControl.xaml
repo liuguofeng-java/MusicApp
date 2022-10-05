@@ -84,7 +84,7 @@
             <ColumnDefinition Width="2"/>
         </Grid.ColumnDefinitions>
         <Border Background="White">
-            <StackPanel Margin="10 10 2 0">
+            <StackPanel Margin="10 10 2 0" x:Name="radioButs">
                 <RadioButton Style="{DynamicResource ListButtonStyle1}" Content="发现音乐" GroupName="menus" 
                              Command="{Binding MenusCommand}" CommandParameter="FoundMusicPage" IsChecked="True"/>
                 <RadioButton Style="{DynamicResource ListButtonStyle1}" Content="播客" GroupName="menus"

@@ -12,7 +12,7 @@
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         Background="{x:Null}"
-        Icon="/Assets/Images/Iocn/m_256.ico">
+        Icon="pack://application:,,,/Assets/Images/Iocn/m_256.ico">
     <Window.Resources>
         <!--给阴影留出边距-->
         <Style x:Key="WindowBorderStyle" TargetType="Border">
@@ -56,6 +56,27 @@
         
         <!--系统托盘-->
         <Themes:NotifyIcon x:Name="notifyIcon" Grid.Column="1" />
+
+
+
+        <Grid Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="330"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="70"/>
+                <RowDefinition Height="270"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Background="White" Grid.Column="1" Grid.Row="1" CornerRadius="5">
+                <Border.Effect>
+                    <DropShadowEffect Color="#f2f2f2" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
+                </Border.Effect>
+            </Border>
+        </Grid>
+    
     </Grid>
     
 </Window>

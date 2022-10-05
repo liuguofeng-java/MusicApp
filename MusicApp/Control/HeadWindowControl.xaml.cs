@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MusicApp.ViewModels;
+using MusicApp.Views;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Timers;
@@ -20,7 +22,7 @@ namespace MusicApp.Control
     public partial class HeadWindowControl : UserControl
     {
 
-        public Window _parentWindow;
+        public MainWindow _parentWindow;
         public HeadWindowControl()
         {
             InitializeComponent();
@@ -36,9 +38,19 @@ namespace MusicApp.Control
             {
                 _parentWindow.Visibility = Visibility.Collapsed;
             };
+
+            //点击图标时
+            Logo.Click += (s, e) =>
+            {
+                //单选框变为选中状态
+                UIElementCollection element = _parentWindow.sideNavBarWindow.radioButs.Children;
+                ((RadioButton)element[0]).IsChecked = true;
+                //
+                SideNavBarWindowControlViewModel.setModle();
+            };
         }
 
-        
+
 
         /// <summary>
         /// 最大化\还原

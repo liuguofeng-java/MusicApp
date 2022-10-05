@@ -41,7 +41,7 @@ namespace MusicApp.Views
             DataContext = model;
 
             //初始化页面
-            SideNavBarWindowControlViewModel.setModle("FoundMusicPage");
+            SideNavBarWindowControlViewModel.setModle();
 
 
         }
