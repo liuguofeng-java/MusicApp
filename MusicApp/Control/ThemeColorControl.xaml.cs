@@ -1,4 +1,5 @@
-﻿using MusicApp.ViewModels;
+﻿using MusicApp.Common;
+using MusicApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,12 @@ namespace MusicApp.Control
             {
                 dictionaryList.Add(dictionary);
             }
-            GetDictionary();
+            string val = INIFileUtil.readValue("sys", "themeColor");
+            if (val != null)
+            {
+                ((RadioButton)RadioButContrainer.Children[Convert.ToInt32(val) - 1]).IsChecked = true;
+            }
+            GetDictionary(val);
         }
 
         public void GetDictionary(string num = null)
@@ -51,6 +57,7 @@ namespace MusicApp.Control
                     val = "/Themes/Color/DefaultColor.xaml";
                     break;
             }
+            INIFileUtil.writeValue("sys", "themeColor", num);
             ResourceDictionary dictionary = dictionaryList.FirstOrDefault(d => d.Source.OriginalString.Equals(val));
 
             Application.Current.Resources.MergedDictionaries.Add(dictionary);

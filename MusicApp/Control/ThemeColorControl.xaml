@@ -113,7 +113,7 @@
                     </Border.Effect>
                     <TabControl Style="{DynamicResource TabControlStyle}" >
                         <TabItem Style="{DynamicResource TabItemStyle}" Header="主题">
-                            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <WrapPanel x:Name="RadioButContrainer" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <RadioButton
                                     Command="{Binding SelectButCommand}"
                                     CommandParameter="1"
