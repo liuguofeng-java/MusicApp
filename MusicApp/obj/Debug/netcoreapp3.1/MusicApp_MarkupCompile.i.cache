@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\App.xaml
-15954053352
+18-1278623994
 
-24-409870895
+27-399395580
 200-163527755
-Control\BottomPlayerWindowControl.xaml;Control\HeadWindowControl.xaml;Control\SideNavBarWindowControl.xaml;PageView\FMPage.xaml;PageView\FocusOnPage.xaml;PageView\FoundMusicPage.xaml;PageView\LikeMusicPage.xaml;PageView\LivePage.xaml;PageView\LocalAndDownloadPage.xaml;PageView\PodcastPage.xaml;PageView\RecentPlayPage.xaml;PageView\VideoPage.xaml;Themes\Common.xaml;Themes\NotifyIcon.xaml;Views\MainWindow.xaml;
+Control\BottomPlayerWindowControl.xaml;Control\HeadWindowControl.xaml;Control\SideNavBarWindowControl.xaml;Control\ThemeColorControl.xaml;PageView\FMPage.xaml;PageView\FocusOnPage.xaml;PageView\FoundMusicPage.xaml;PageView\LikeMusicPage.xaml;PageView\LivePage.xaml;PageView\LocalAndDownloadPage.xaml;PageView\PodcastPage.xaml;PageView\RecentPlayPage.xaml;PageView\VideoPage.xaml;Themes\Color\BlackColor.xaml;Themes\Color\DefaultColor.xaml;Themes\Common.xaml;Themes\NotifyIcon.xaml;Views\MainWindow.xaml;
 
-False
+True
 

@@ -22,6 +22,7 @@
                             <Border x:Name="radioBorder" CornerRadius="3" Cursor="Hand">
                                 <TextBlock 
                                     x:Name="radioText"
+                                    Foreground="#000000"
                                     Text="{TemplateBinding Content}"
                                     Margin="10 0 0 0"
                                     HorizontalAlignment="Left" 

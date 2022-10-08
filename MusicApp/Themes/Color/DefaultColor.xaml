@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <!--主要颜色-->
+    <SolidColorBrush x:Key="MainBackColor" Color="#ec4141"/>
+
+    <!--头部 headwindowcontrol-->
+    <SolidColorBrush x:Key="HeadForeColor" Color="#fbd9d9"/>
+    <SolidColorBrush x:Key="HeadFocusForeColor" Color="#ffffff"/>
+    <SolidColorBrush x:Key="HeadButBackColor" Color="#da3c3c"/>
+    <SolidColorBrush x:Key="HeadButDisableColor" Color="#e26c6c"/>
+
+
+    <!--选择主题面板颜色-themecolorcontrol-->
+    <SolidColorBrush x:Key="ThemeColorBackColor" Color="#ffffff"/>
+
+
+
+
+</ResourceDictionary>

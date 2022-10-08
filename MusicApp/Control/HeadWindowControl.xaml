@@ -50,10 +50,10 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" Background="#60AA4030" CornerRadius="50" Cursor="Hand">
+                        <Border x:Name="border" Background="{DynamicResource HeadButBackColor}" CornerRadius="50" Cursor="Hand">
                             <TextBlock x:Name="textBlock" 
                                        VerticalAlignment="Center"
-                                       Foreground="White"
+                                       Foreground="{DynamicResource HeadForeColor}"
                                        HorizontalAlignment="Center"
                                        Text="{TemplateBinding Content}"
                                        FontSize="{TemplateBinding FontSize}"
@@ -61,7 +61,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Foreground" TargetName="textBlock" Value="#a4b0be88"/>
+                                <Setter Property="Foreground" TargetName="textBlock" Value="{DynamicResource HeadButDisableColor}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -100,7 +100,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
                         <Border x:Name="border" 
-                                Background="#60AA4030" CornerRadius="10">
+                                Background="{DynamicResource HeadButBackColor}" CornerRadius="10">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="40"/>
@@ -112,7 +112,7 @@
                                     Height="25" Width="25" Margin="3 0" FontSize="14" Content="&#xe623;"/>
                                 <TextBlock Text="搜索" Name="msg"
                                            Margin="5 0"
-                                           Foreground="#dfe6e9"
+                                           Foreground="{DynamicResource HeadButDisableColor}"
                                            Visibility="Collapsed"
                                            VerticalAlignment="Center"
                                            Grid.Column="1"/>
@@ -135,7 +135,7 @@
 
         </Style>
     </UserControl.Resources>
-    <Border DockPanel.Dock="Top" Height="60" Background="#ec4141">
+    <Border DockPanel.Dock="Top" Height="60" Background="{DynamicResource MainBackColor}">
         <Grid VerticalAlignment="Center">
             <!--左侧部分-->
             <Button x:Name="Logo" Margin="20 0 0 0"  Style="{DynamicResource LogoStyle}"/>
@@ -149,7 +149,7 @@
                             Height="25" Width="25" Margin="3 0" FontSize="10" IsEnabled="False" Content="&#xe601;"/>
 
                 <!--搜索框-->
-                <TextBox Style="{DynamicResource SearchTextBoxStyle}" Width="200" Foreground="White"/>
+                <TextBox Style="{DynamicResource SearchTextBoxStyle}" Width="200" Foreground="{DynamicResource HeadForeColor}"/>
             </StackPanel>
 
             <!--右侧部分-->

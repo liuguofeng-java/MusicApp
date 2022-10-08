@@ -1,0 +1,155 @@
+﻿<UserControl x:Class="MusicApp.Control.ThemeColorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MusicApp.OverwriteControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <!--选择栏-->
+        <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabControl}">
+                        <Grid x:Name="templateRoot" ClipToBounds="true" SnapsToDevicePixels="true" KeyboardNavigation.TabNavigation="Local">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition x:Name="ColumnDefinition0"/>
+                                <ColumnDefinition x:Name="ColumnDefinition1" Width="0"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition x:Name="RowDefinition0" Height="Auto"/>
+                                <RowDefinition x:Name="RowDefinition1" Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TabPanel x:Name="headerPanel" Background="Transparent" Grid.Column="0" IsItemsHost="true" Margin="2,2,2,0" Grid.Row="0" KeyboardNavigation.TabIndex="1" Panel.ZIndex="1"/>
+                            <Border x:Name="contentPanel" Grid.Column="0" KeyboardNavigation.DirectionalNavigation="Contained" Grid.Row="1" KeyboardNavigation.TabNavigation="Local" KeyboardNavigation.TabIndex="2">
+                                <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="TabItemStyle" TargetType="{x:Type TabItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <StackPanel Margin="20 10 0 0" Cursor="Hand">
+                            <TextBlock x:Name="text" Text="{TemplateBinding Header}" FontSize="15"/>
+                            <Border x:Name="border" Background="Transparent" Width="25" Height="1.5" Margin="0 5 0 0"/>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="FontWeight" TargetName="text" Value="Bold"/>
+                                <Setter Property="Background" TargetName="border" Value="{DynamicResource MainBackColor}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--选择主题按钮-->
+        <Style x:Key="SelectColorRadioStyle" TargetType="{x:Type RadioButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Border Width="90" Height="90" Margin="8" Cursor="Hand">
+                            <Border.Background>
+                                <ImageBrush ImageSource="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=(local:OverwriteRadioButton.ImageSource)}"/>
+                            </Border.Background>
+                            <Border 
+                                Name="border"
+                                Visibility="Collapsed"
+                                VerticalAlignment="Bottom" 
+                                HorizontalAlignment="Right" 
+                                CornerRadius="50"
+                                Background="{DynamicResource ThemeColorBackColor}"
+                                Width="25" 
+                                Height="25" >
+                                <Border.RenderTransform>
+                                    <TranslateTransform X="5" Y="5"></TranslateTransform>
+                                </Border.RenderTransform>
+                                <TextBlock 
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Center"    
+                                    Text="&#xe64d;" 
+                                    Foreground="{DynamicResource MainBackColor}"
+                                    FontSize="20"
+                                    FontFamily="{DynamicResource Iconfont}" />
+                            </Border>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Visibility" TargetName="border" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+       
+    </UserControl.Resources>
+    <Grid>
+        <Grid x:Name="GridVis">
+            <Border x:Name="border"
+                    Background="Transparent" 
+                    Width="340"
+                    Height="280"
+                    Margin="0 70 95 0"
+                    VerticalAlignment="Top" 
+                    HorizontalAlignment="Right" />
+
+            <Popup x:Name="PopupContrainer" 
+                   IsOpen="False"
+                   StaysOpen="False" 
+                   Placement="Center" 
+                   Width="340" 
+                   Height="280" 
+                   AllowsTransparency="True"
+                   PlacementTarget="{Binding ElementName=border}">
+                <Border Background="White" CornerRadius="5" Width="330" Height="270" >
+                    <Border.Effect>
+                        <DropShadowEffect  Color="#f2f2f2" ShadowDepth="0" BlurRadius="10" Opacity="1" Direction="0"/>
+                    </Border.Effect>
+                    <TabControl Style="{DynamicResource TabControlStyle}" >
+                        <TabItem Style="{DynamicResource TabItemStyle}" Header="主题">
+                            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <RadioButton
+                                    Command="{Binding SelectButCommand}"
+                                    CommandParameter="1"
+                                    Style="{DynamicResource SelectColorRadioStyle}" 
+                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/1.png"/>
+                                <RadioButton 
+                                    Command="{Binding SelectButCommand}"
+                                    CommandParameter="2"
+                                    IsChecked="true"
+                                    Style="{DynamicResource SelectColorRadioStyle}" 
+                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/2.png"/>
+                                <RadioButton 
+                                    Style="{DynamicResource SelectColorRadioStyle}" 
+                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/3.png"/>
+                                <RadioButton 
+                                    Style="{DynamicResource SelectColorRadioStyle}" 
+                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/4.png"/>
+                                <RadioButton 
+                                    Style="{DynamicResource SelectColorRadioStyle}" 
+                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/5.png"/>
+                                <RadioButton 
+                                    Style="{DynamicResource SelectColorRadioStyle}" 
+                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/6.png"/>
+                            </WrapPanel>
+                        </TabItem>
+                        <TabItem Style="{DynamicResource TabItemStyle}" Header="纯色">
+                            <Border Background="White"></Border>
+                        </TabItem>
+                    </TabControl>
+                </Border>
+            </Popup>
+
+            
+
+
+
+        </Grid>
+    </Grid>
+</UserControl>

@@ -8,6 +8,9 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Themes/Common.xaml"/>
+                <!--主题颜色-->
+                <ResourceDictionary Source="/Themes/Color/DefaultColor.xaml"/>
+                <ResourceDictionary Source="/Themes/Color/BlackColor.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 

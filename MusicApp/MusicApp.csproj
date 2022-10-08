@@ -11,6 +11,12 @@
     <None Remove="Assets\Images\head_portrait.png" />
     <None Remove="Assets\Images\Iocn\format.ico" />
     <None Remove="Assets\Images\Iocn\m_256.ico" />
+    <None Remove="Assets\Images\ThemeColor\1.png" />
+    <None Remove="Assets\Images\ThemeColor\2.png" />
+    <None Remove="Assets\Images\ThemeColor\3.png" />
+    <None Remove="Assets\Images\ThemeColor\4.png" />
+    <None Remove="Assets\Images\ThemeColor\5.png" />
+    <None Remove="Assets\Images\ThemeColor\6.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +39,31 @@
     <Resource Include="Assets\Images\Iocn\m_256.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\Images\ThemeColor\1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\ThemeColor\2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\ThemeColor\3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\ThemeColor\4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\ThemeColor\5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\ThemeColor\6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Themes\Color\BlackColor.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

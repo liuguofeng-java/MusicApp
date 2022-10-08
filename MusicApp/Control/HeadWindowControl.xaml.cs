@@ -45,8 +45,13 @@ namespace MusicApp.Control
                 //单选框变为选中状态
                 UIElementCollection element = _parentWindow.sideNavBarWindow.radioButs.Children;
                 ((RadioButton)element[0]).IsChecked = true;
-                //
                 SideNavBarWindowControlViewModel.setModle();
+            };
+
+            //点击皮肤显示
+            Skin.Click += (s, e) =>
+            {
+                _parentWindow.themeColor.PopupContrainer.IsOpen = true;
             };
         }
 

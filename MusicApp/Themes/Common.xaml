@@ -19,12 +19,12 @@
                                     HorizontalAlignment="Center"
                                     Text="{TemplateBinding Content}"
                                     FontSize="{TemplateBinding FontSize}"
-                                    Foreground="#fbd9d9" 
+                                    Foreground="{DynamicResource HeadForeColor}" 
                                     FontFamily="{DynamicResource Iconfont}"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Foreground" TargetName="border" Value="#ffffff"/>
+                            <Setter Property="Foreground" TargetName="border" Value="{DynamicResource HeadFocusForeColor}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
