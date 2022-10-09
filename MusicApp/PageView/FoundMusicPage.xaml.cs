@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MusicApp.Common;
+using MusicApp.Models.Vo;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +24,8 @@ namespace MusicApp.PageView
         public FoundMusicPage()
         {
             InitializeComponent();
+
         }
+
     }
 }

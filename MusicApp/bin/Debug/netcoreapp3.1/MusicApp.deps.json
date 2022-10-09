@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v3.1": {
       "MusicApp/1.0.0": {
         "dependencies": {
-          "Hardcodet.NotifyIcon.Wpf": "1.1.0"
+          "Hardcodet.NotifyIcon.Wpf": "1.1.0",
+          "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
           "MusicApp.dll": {}
@@ -19,6 +20,14 @@
           "lib/netcoreapp3.1/Hardcodet.NotifyIcon.Wpf.dll": {
             "assemblyVersion": "1.1.0.0",
             "fileVersion": "1.1.0.17"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
           }
         }
       }
@@ -36,6 +45,13 @@
       "sha512": "sha512-FFEkdRSidMrbMfQVwhCzq6KtSyR1qQojqtiUrkCyjnOOuMf7W3TNQkzFnBBxYxFe7uLk5mz7M38wFh1qdWyfvg==",
       "path": "hardcodet.notifyicon.wpf/1.1.0",
       "hashPath": "hardcodet.notifyicon.wpf.1.1.0.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
     }
   }
 }
