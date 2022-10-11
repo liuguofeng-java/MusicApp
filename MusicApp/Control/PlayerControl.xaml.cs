@@ -18,7 +18,6 @@ namespace MusicApp.Control
     /// </summary>
     public partial class PlayerControl : UserControl
     {
-        public BottomPlayerWindowControl _parentWindow { get; set; }
 
         public PlayerControl()
         {

@@ -1,9 +1,7 @@
 ﻿using MusicApp.Common;
-using MusicApp.Control;
+using MusicApp.Models;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 using System.Windows.Controls;
 
 namespace MusicApp.ViewModels
@@ -34,7 +32,9 @@ namespace MusicApp.ViewModels
         {
             Type type = Type.GetType("MusicApp.PageView." + pageName);
             ConstructorInfo constructorInfo = type.GetConstructor(Type.EmptyTypes);
-            SideNavBarWindowControl.SetModel((UserControl)constructorInfo.Invoke(null));
+
+            
+            ((MainWindowModel)ControlBean.getInstance().mainWindow.DataContext).Page = (UserControl)constructorInfo.Invoke(null);
         }
 
 

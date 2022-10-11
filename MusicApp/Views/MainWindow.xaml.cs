@@ -1,21 +1,9 @@
 ﻿using MusicApp.Models;
 using MusicApp.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MusicApp.Views
 {
@@ -27,15 +15,13 @@ namespace MusicApp.Views
         public MainWindowModel model { get; set; }
         public MainWindow()
         {
+            ControlBean.getInstance().mainWindow = this;
             InitializeComponent();
+
             //最大化宽度
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
             
-            headWindow._parentWindow = this;
-            sideNavBarWindow._parentWindow = this;
-            bottomPlayerWindow._parentWindow = this;
-            notifyIcon._parentWindow = this;
 
             //绑定数据
             model = new MainWindowModel();

@@ -20,8 +20,6 @@ namespace MusicApp.Themes
     /// </summary>
     public partial class NotifyIcon : UserControl
     {
-        public MainWindow _parentWindow { get; set; }
-
         public NotifyIcon()
         {
             InitializeComponent();

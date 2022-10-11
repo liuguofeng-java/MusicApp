@@ -87,7 +87,7 @@
         </Style>
     </UserControl.Resources>
     
-    <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+    <StackPanel Grid.Column="1" HorizontalAlignment="Center" Margin="0 10 0 0">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <!--播放规则-->
             <Button Style="{DynamicResource ControlMusicButtonStyle}" 

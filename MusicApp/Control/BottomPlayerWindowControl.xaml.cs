@@ -19,12 +19,10 @@ namespace MusicApp.Control
     /// </summary>
     public partial class BottomPlayerWindowControl : UserControl
     {
-        public MainWindow _parentWindow { get; set; }
 
         public BottomPlayerWindowControl()
         {
             InitializeComponent();
-            playerControl._parentWindow = this;
         }
     }
 }
