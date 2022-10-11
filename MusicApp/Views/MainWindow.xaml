@@ -43,7 +43,7 @@
                 <Control:HeadWindowControl x:Name="headWindow" DockPanel.Dock="Top" MouseLeftButtonDown="WindowMove_MouseLeftButtonDown"/>
 
                 <!--底部-->
-                <Control:BottomPlayerWindowControl DockPanel.Dock="Bottom" Height="75"/>
+                <Control:BottomPlayerWindowControl x:Name="bottomPlayerWindow" DockPanel.Dock="Bottom" Height="75"/>
 
                 <!--侧边-->
                 <Control:SideNavBarWindowControl x:Name="sideNavBarWindow" DockPanel.Dock="Left" Width="200" />

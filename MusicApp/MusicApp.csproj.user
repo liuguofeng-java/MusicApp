@@ -18,6 +18,9 @@
     <Compile Update="Control\HeadWindowControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Control\PlayerControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Control\SideNavBarWindowControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -63,6 +66,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Control\HeadWindowControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\PlayerControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Control\SideNavBarWindowControl.xaml">

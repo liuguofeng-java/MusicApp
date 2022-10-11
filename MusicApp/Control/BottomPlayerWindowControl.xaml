@@ -51,85 +51,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <!--音乐进度条-->
-        <Style x:Key="RepeatButtonTransparent" TargetType="{x:Type RepeatButton}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type RepeatButton}">
-                        <Rectangle Fill="{TemplateBinding Background}" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <ControlTemplate x:Key="SliderThumbHorizontalDefault" TargetType="{x:Type Thumb}">
-            <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
-                <Border Background="{TemplateBinding Background}" CornerRadius="50" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"/>
-            </Grid>
-        </ControlTemplate>
-        <ControlTemplate x:Key="SliderHorizontal" TargetType="{x:Type Slider}">
-            <Border x:Name="border" Background="Transparent">
-                <Track x:Name="PART_Track" Grid.Row="1">
-                    <Track.DecreaseRepeatButton>
-                        <RepeatButton Name="RepeatButton1" Height="3" Command="{x:Static Slider.DecreaseLarge}" Background="{TemplateBinding Background}" Style="{StaticResource RepeatButtonTransparent}"/>
-                    </Track.DecreaseRepeatButton>
-                    <Track.IncreaseRepeatButton>
-                        <RepeatButton Name="RepeatButton2" Height="3" Command="{x:Static Slider.IncreaseLarge}" Background="#e5e5e5" Style="{StaticResource RepeatButtonTransparent}"/>
-                    </Track.IncreaseRepeatButton>
-                    <Track.Thumb>
-                        <Thumb x:Name="Thumb" 
-                                Focusable="False" 
-                                Template="{DynamicResource SliderThumbHorizontalDefault}" 
-                                Width="0"
-                                Height="10"
-                                Background="{TemplateBinding Background}"
-                                VerticalAlignment="Center"/>
-                    </Track.Thumb>
-                        
-                </Track>
-            </Border>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsMouseOver" Value="true">
-                    <Setter Property="Width" TargetName="Thumb" Value="10"/>
-                    <Setter Property="Height" TargetName="RepeatButton1" Value="4"/>
-                    <Setter Property="Height" TargetName="RepeatButton2" Value="4"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
-        <Style x:Key="MusicSliderStyle" TargetType="{x:Type Slider}">
-            <Setter Property="Template" Value="{StaticResource SliderHorizontal}"/>
-            <Style.Triggers>
-                <Trigger Property="Orientation" Value="Vertical">
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <!--控制音乐按钮样式-->
-        <Style x:Key="ControlMusicButtonStyle" TargetType="{x:Type Button}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" 
-                                Cursor="Hand"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"
-                                CornerRadius="50"
-                                Width="{TemplateBinding Width}" 
-                                Height="{TemplateBinding Height}" 
-                                Background="{TemplateBinding Background}">
-                            <TextBlock Name="text" Text="{TemplateBinding Content}" 
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"
-                                       FontSize="{TemplateBinding FontSize}" 
-                                       FontFamily="{DynamicResource Iconfont}"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Foreground" TargetName="text" Value="red"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -177,72 +99,11 @@
                 </StackPanel>
 
 
-                <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <!--播放规则-->
-                        <Button Style="{DynamicResource ControlMusicButtonStyle}" 
-                                Margin="15 0"
-                                Content="&#xe802;" 
-                                Background="White" 
-                                Width="20" 
-                                Height="20"
-                                Foreground="#313131"/>
-                        <!--上一首-->
-                        <Button Style="{DynamicResource ControlMusicButtonStyle}" 
-                                Margin="15 0"
-                                Content="&#xe609;" 
-                                Background="White" 
-                                Width="20" 
-                                Height="20"
-                                Foreground="#313131"/>
-                        <!--继续或暂停-->
-                        <Button Style="{DynamicResource ControlMusicButtonStyle}" 
-                                Margin="15 0"
-                                Content="&#xe87c;" 
-                                Background="#f5f5f5" 
-                                Width="35" 
-                                Height="35"
-                                FontSize="15"
-                                Foreground="#313131"/>
-                        <!--下一首-->
-                        <Button Style="{DynamicResource ControlMusicButtonStyle}" 
-                                Content="&#xe60b;" 
-                                Margin="15 0"
-                                Background="White" 
-                                Width="20" 
-                                Height="20"
-                                Foreground="#313131"/>
-                        <!--词-->
-                        <Button Style="{DynamicResource ControlMusicButtonStyle}" 
-                                Margin="15 0"
-                                Content="词" 
-                                Background="White" 
-                                Width="20" 
-                                Height="20"
-                                Foreground="#313131"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" >
-                        <TextBlock Text="02:01" FontSize="12" Foreground="#999999" Margin="0 0 10 0"/>
-                        <Slider 
-                        x:Name="musicProgress"
-                        Style="{DynamicResource MusicSliderStyle}" 
-                        Minimum="0" 
-                        Maximum="100" 
-                        Width="350" 
-                        IsMoveToPointEnabled="True"
-                        Background="red" 
-                        Cursor="Hand"/>
-                        <TextBlock Text="02:47" FontSize="12" Foreground="#999999" Margin="10 0 0 0"/>
-                    </StackPanel>
-                </StackPanel>
+                <local:PlayerControl x:Name="playerControl" Grid.Column="1"/>
 
                 <StackPanel Grid.Column="2">
                     <TextBlock Text="xxxx" ></TextBlock>
                 </StackPanel>
-
-                
-                
-
 
             </Grid>
         </Border>

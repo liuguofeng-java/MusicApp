@@ -1,5 +1,4 @@
-﻿using MusicApp.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -15,16 +14,15 @@ using System.Windows.Shapes;
 namespace MusicApp.Control
 {
     /// <summary>
-    /// BottomPlayerWindowControl.xaml 的交互逻辑
+    /// PlayerControl.xaml 的交互逻辑
     /// </summary>
-    public partial class BottomPlayerWindowControl : UserControl
+    public partial class PlayerControl : UserControl
     {
-        public MainWindow _parentWindow { get; set; }
+        public BottomPlayerWindowControl _parentWindow { get; set; }
 
-        public BottomPlayerWindowControl()
+        public PlayerControl()
         {
             InitializeComponent();
-            playerControl._parentWindow = this;
         }
     }
 }

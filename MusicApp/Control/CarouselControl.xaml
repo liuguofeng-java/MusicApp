@@ -49,7 +49,7 @@
             </Grid.ColumnDefinitions>
             <Border Height="150" Width="550" CornerRadius="10">
                 <Border.Background>
-                    <ImageBrush x:Name="LeftImage" ImageSource="/Assets/Images/Banner/banner1.jpg"></ImageBrush>
+                    <ImageBrush x:Name="LeftImage" ImageSource="/Assets/Images/Banner/banner1.jpg"/>
                 </Border.Background>
                 <Button x:Name="Back"
                         Margin="10 0 0 0"
@@ -59,17 +59,17 @@
                         Height="20" 
                         HorizontalAlignment="Left"></Button>
             </Border>
-            <Border x:Name="CenterBordrr" Height="200" Width="550" Grid.Column="1" CornerRadius="10" Cursor="Hand">
+            <Border x:Name="CenterBordrr" Height="200" Grid.Column="1" CornerRadius="10" Cursor="Hand">
                 <Border.Background>
-                    <ImageBrush x:Name="CenterImage" ImageSource="/Assets/Images/Banner/banner2.jpg"></ImageBrush>
+                    <ImageBrush x:Name="CenterImage" ImageSource="/Assets/Images/Banner/banner2.jpg"/>
                 </Border.Background>
-                <Border CornerRadius="10 0 0 0" Background="Transparent" Height="35" Padding="10" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Border CornerRadius="10 0 10 0" Background="Transparent" MaxWidth="200" Height="35" Padding="10" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <TextBlock x:Name="CenterText" FontSize="13" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
             </Border>
             <Border Height="150" Width="550" Grid.Column="2" CornerRadius="10" HorizontalAlignment="Right">
                 <Border.Background>
-                    <ImageBrush x:Name="RightImage" ImageSource="/Assets/Images/Banner/banner3.jpg"></ImageBrush>
+                    <ImageBrush x:Name="RightImage" ImageSource="/Assets/Images/Banner/banner3.jpg"/>
                 </Border.Background>
                 <Button x:Name="Forward"
                         Margin="0 0 10 0"

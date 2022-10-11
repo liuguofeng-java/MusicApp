@@ -3,6 +3,7 @@ using MusicApp.Models.Vo;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -60,12 +61,26 @@ namespace MusicApp.Control
             //点击图片时
             CenterBordrr.MouseDown += (s, e) =>
             {
-                BitmapImage image = (BitmapImage)RightImage.ImageSource;
+                BitmapImage image = (BitmapImage)CenterImage.ImageSource;
                 string url = image.UriSource.ToString();
                 BannersItem bannersItem = list.Find(t => t.imageUrl.Equals(url));
 
+                switch (bannersItem.targetType)
+                {
+                    case 1:  //直接播放 --新歌首发--热歌推荐
+                        break;
+                    case 10: //打开歌曲列表 --新碟首发
+                        break;
+                    case 1000: //打开歌曲列表 --歌单
+                        break;
+                    case 3000: //弹出浏览器 --独家策划--数字专辑
 
-                Console.WriteLine(image);
+                        Process.Start(new ProcessStartInfo(bannersItem.url)
+                        {
+                            UseShellExecute = true,
+                        });
+                        break;
+                }
             };
         }
 
