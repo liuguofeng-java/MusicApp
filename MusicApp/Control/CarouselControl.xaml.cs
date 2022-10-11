@@ -68,6 +68,10 @@ namespace MusicApp.Control
                 switch (bannersItem.targetType)
                 {
                     case 1:  //直接播放 --新歌首发--热歌推荐
+                        List<string> idList = new List<string>();
+                        idList.Add(bannersItem.targetId.ToString());
+                        ControlBean.getInstance().playerControl.GetSongUrl(idList);
+                        ControlBean.getInstance().playerControl.StartPlay();
                         break;
                     case 10: //打开歌曲列表 --新碟首发
                         break;

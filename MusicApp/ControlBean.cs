@@ -28,5 +28,11 @@ namespace MusicApp
         /// 侧边栏实例
         /// </summary>
         public SideNavBarWindowControl sideNavBarWindowControl { get; set; }
+
+
+        /// <summary>
+        /// 底部播放器
+        /// </summary>
+        public PlayerControl playerControl { get; set; }
     }
 }
