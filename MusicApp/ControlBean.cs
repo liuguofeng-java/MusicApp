@@ -34,5 +34,10 @@ namespace MusicApp
         /// 底部播放器
         /// </summary>
         public PlayerControl playerControl { get; set; }
+
+        /// <summary>
+        /// 底部歌曲详情
+        /// </summary>
+        public SongDetailControl songDetailControl { get; set; }
     }
 }

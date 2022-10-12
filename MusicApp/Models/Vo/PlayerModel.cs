@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
+/// <summary>
+/// 接收歌曲url
+/// </summary>
 namespace MusicApp.Models.Vo
 {
     public class FreeTrialPrivilege

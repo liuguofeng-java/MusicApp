@@ -44,7 +44,7 @@
         </Style>
     </UserControl.Resources>
     <StackPanel>
-        <Grid MaxWidth="1200">
+        <Grid MaxWidth="1000" Margin="20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="3.5*"/>

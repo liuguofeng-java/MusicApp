@@ -14,6 +14,9 @@ namespace MusicApp.Control
     /// </summary>
     public partial class PlayerControl : UserControl
     {
+
+        private SongDetailControl songDetailControl = ControlBean.getInstance().songDetailControl;
+
         public List<SongDataItem> list;
         private DispatcherTimer timer;
         public PlayerControl()
@@ -50,6 +53,10 @@ namespace MusicApp.Control
         /// <param name="idList">歌曲id</param>
         public void GetSongUrl(List<string> idList)
         {
+            //获取歌曲详情\头像\名称\作者
+            songDetailControl.GetSongDetail(idList[0]);
+
+            //获取歌曲url
             //格式化id
             StringBuilder builder = new StringBuilder();
             idList.ForEach(item =>
