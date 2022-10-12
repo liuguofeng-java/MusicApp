@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:MusicApp.Control"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="800">
+    <!--
+        发现音乐->个性推荐 的轮播图
+    -->
     <UserControl.Resources>
         <!--前进后退按钮样式-->
         <Style x:Key="NavButtonStyle" TargetType="{x:Type Button}">

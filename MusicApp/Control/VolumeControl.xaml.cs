@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace MusicApp.Control
 {
     /// <summary>
-    /// VolumeControl.xaml 的交互逻辑
+    /// 调节程序音量按钮,点击按钮弹出调节音量进度条 的交互逻辑
     /// </summary>
     public partial class VolumeControl : UserControl
     {

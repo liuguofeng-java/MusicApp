@@ -6,6 +6,9 @@ using System.Text;
 
 namespace MusicApp.ViewModels
 {
+    /// <summary>
+    /// 点击'皮肤'弹出选择主题弹框的ViewModel
+    /// </summary>
     public class ThemeColorControlViewModel : CommandBase
     {
         public CommandBase SelectButCommand { get; set; }

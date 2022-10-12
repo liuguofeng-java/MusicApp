@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 namespace MusicApp.PageView
 {
     /// <summary>
-    /// FoundMusicPage.xaml 的交互逻辑
+    /// 首页 -> 发现音乐页面 的交互逻辑
     /// </summary>
     public partial class FoundMusicPage : UserControl
     {

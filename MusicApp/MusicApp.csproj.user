@@ -24,6 +24,9 @@
     <Compile Update="Control\SideNavBarWindowControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Control\SongDetailControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Control\ThemeColorControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -75,6 +78,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Control\SideNavBarWindowControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\SongDetailControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Control\ThemeColorControl.xaml">

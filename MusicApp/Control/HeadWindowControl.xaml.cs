@@ -6,7 +6,7 @@ using System.Windows.Controls;
 namespace MusicApp.Control
 {
     /// <summary>
-    /// HeadWindowControl.xaml 的交互逻辑
+    /// 主窗体头部,控制程序关闭\最小化\最大化等按钮 的交互逻辑
     /// </summary>
     public partial class HeadWindowControl : UserControl
     {

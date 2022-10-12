@@ -7,7 +7,7 @@ using System.Windows.Controls;
 namespace MusicApp.ViewModels
 {
     /// <summary>
-    /// 侧边栏
+    /// 主窗体侧边栏的ViewModel
     /// </summary>
     public class SideNavBarWindowControlViewModel
     {
@@ -32,8 +32,6 @@ namespace MusicApp.ViewModels
         {
             Type type = Type.GetType("MusicApp.PageView." + pageName);
             ConstructorInfo constructorInfo = type.GetConstructor(Type.EmptyTypes);
-
-            
             ((MainWindowModel)ControlBean.getInstance().mainWindow.DataContext).Page = (UserControl)constructorInfo.Invoke(null);
         }
 

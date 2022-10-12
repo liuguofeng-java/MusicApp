@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:MusicApp.Control"
              mc:Ignorable="d" 
              d:DesignHeight="60" d:DesignWidth="1043">
+    <!--主窗体头部,控制程序关闭\最小化\最大化等按钮-->
     <UserControl.Resources>
         <!--logo-->
         <Style x:Key="LogoStyle" TargetType="{x:Type Button}">

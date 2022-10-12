@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 namespace MusicApp.Control
 {
     /// <summary>
-    /// CarouselControl.xaml 的交互逻辑
+    /// 发现音乐->个性推荐 的轮播图 的交互逻辑
     /// </summary>
     public partial class CarouselControl : UserControl
     {

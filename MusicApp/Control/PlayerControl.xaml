@@ -5,6 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MusicApp.Control"
              mc:Ignorable="d" Height="70" Width="450">
+    <!--
+        控制音乐如:暂停进行\下一曲上一曲\音乐进度条 ,
+        主窗体底部中心位置
+    -->
     <UserControl.Resources>
         <!--音乐进度条-->
         <Style x:Key="RepeatButtonTransparent" TargetType="{x:Type RepeatButton}">

@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace MusicApp.Control
 {
     /// <summary>
-    /// BottomPlayerWindowControl.xaml 的交互逻辑
+    /// 在主窗体底部显示的控制面板 的交互逻辑
     /// </summary>
     public partial class BottomPlayerWindowControl : UserControl
     {

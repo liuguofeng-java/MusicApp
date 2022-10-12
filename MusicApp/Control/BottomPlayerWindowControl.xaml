@@ -6,53 +6,7 @@
              xmlns:local="clr-namespace:MusicApp.Control"
              mc:Ignorable="d" 
              d:DesignHeight="75" d:DesignWidth="1023">
-    <UserControl.Resources>
-        <!--音乐头像-->
-        <Style x:Key="MusicPictureStyle" TargetType="{x:Type Button}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Grid Cursor="Hand">
-                            <Border CornerRadius="5">
-                                <Border.Background>
-                                    <ImageBrush ImageSource="pack://application:,,,/Assets/Images/head_portrait.png" />
-                                </Border.Background>
-                            </Border>
-                            <Border Name="border" Background="#dfe4ea" Opacity="0.3"/>
-                            <TextBlock Name="text" 
-                                       FontSize="20"
-                                       Foreground="#adbcc2"
-                                       FontFamily="{DynamicResource Iconfont}"
-                                       VerticalAlignment="Center" 
-                                       HorizontalAlignment="Center"
-                                       Text="&#xe634;" />
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="False">
-                                <Setter Property="Visibility" Value="Collapsed" TargetName="border"/>
-                                <Setter Property="Visibility" Value="Collapsed" TargetName="text"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <!--音乐名称-->
-        <Style x:Key="MusicNameButtonStyle" TargetType="{x:Type Button}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <TextBlock Text="{TemplateBinding Content}" FontSize="15" Foreground="#333333"/>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        
-    </UserControl.Resources>
+    <!--在主窗体底部显示的控制面板-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2"/>
@@ -66,43 +20,15 @@
                     <ColumnDefinition Width="5*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Horizontal">
-                    <Button Width="50" Height="50" 
-                        BorderBrush="#f1f2f6" 
-                        BorderThickness="2"
-                        Margin="10 0 0 0"
-                        Style="{DynamicResource MusicPictureStyle}"/>
-                    <StackPanel Margin="10 3 0 0">
-                        <StackPanel Orientation="Horizontal">
-                            <Button Style="{DynamicResource MusicNameButtonStyle}" 
-                                Cursor="Hand" Content="心动232323232322232222贩卖机"
-                                MaxWidth="100"/>
-                            <TextBlock Cursor="Hand"
-                                   Margin="5 2 0 0"
-                                   FontFamily="{DynamicResource Iconfont}" 
-                                   FontSize="18" 
-                                   Text="&#xe682;"
-                                   HorizontalAlignment="Center"/>
-                        </StackPanel>
-                        <Button Cursor="Hand">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <TextBlock FontSize="13"
-                                           Margin="0 5 0 0"
-                                           Foreground="#333333" 
-                                           FontWeight="Light"
-                                           Text="张三" />
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                    </StackPanel>
-                </StackPanel>
+                <!--歌曲信息部分-->
+                <local:SongDetailControl/>
 
-
+                <!--控制播放播放-->
                 <local:PlayerControl x:Name="playerControl" Grid.Column="1"/>
 
+                <!--右侧控制声音歌曲列表播放-->
                 <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                    <local:VolumeControl Height="50"/>
+                    <local:VolumeControl Height="50" Width="50"/>
                 </StackPanel>
 
             </Grid>

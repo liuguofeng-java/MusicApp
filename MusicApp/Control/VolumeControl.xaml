@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:MusicApp.Control"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="200">
+    <!--调节程序音量按钮,点击按钮弹出调节音量进度条-->
     <UserControl.Resources>
         <!--音量按钮-->
         <Style x:Key="VolumeButtonStyle" TargetType="{x:Type Button}">

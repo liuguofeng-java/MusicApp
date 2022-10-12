@@ -7,6 +7,7 @@
              xmlns:Control="clr-namespace:MusicApp.Control"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <!--首页 -> 发现音乐页面-->
     <UserControl.Resources>
         <!--选择栏-->
         <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">

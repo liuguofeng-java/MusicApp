@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:MusicApp.Control"
              mc:Ignorable="d" 
              d:DesignHeight="535" d:DesignWidth="200">
+    <!--主窗体侧边栏选择菜单按钮-->
     <UserControl.Resources>
         <!--侧边栏按钮样式1-->
         <Style x:Key="ListButtonStyle1" TargetType="{x:Type RadioButton}">

@@ -5,7 +5,7 @@ namespace MusicApp.Control
 {
 
     /// <summary>
-    /// SideNavBarWindowControl.xaml 的交互逻辑
+    /// 主窗体侧边栏选择菜单按钮 的交互逻辑
     /// </summary>
     public partial class SideNavBarWindowControl : UserControl
     {

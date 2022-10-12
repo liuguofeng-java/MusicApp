@@ -10,7 +10,7 @@ using System.Windows.Threading;
 namespace MusicApp.Control
 {
     /// <summary>
-    /// PlayerControl.xaml 的交互逻辑
+    /// 控制音乐如:暂停进行\下一曲上一曲\音乐进度条 ,主窗体底部中心位置 的交互逻辑
     /// </summary>
     public partial class PlayerControl : UserControl
     {

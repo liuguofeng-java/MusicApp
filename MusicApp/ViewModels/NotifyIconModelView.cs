@@ -8,6 +8,9 @@ using System.Windows;
 
 namespace MusicApp.ViewModels
 {
+    /// <summary>
+    /// 程序托盘菜单的ModelView 
+    /// </summary>
     public class NotifyIconModelView : CommandBase
     {
         public CommandBase ClickCommand { get; set; }

@@ -6,6 +6,10 @@
              xmlns:local="clr-namespace:MusicApp.OverwriteControl"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <!--
+        点击'皮肤'弹出选择主题弹框,
+        主窗体在头部
+    -->
     <UserControl.Resources>
         <!--选择栏-->
         <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
