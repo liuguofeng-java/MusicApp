@@ -144,7 +144,11 @@
 
             <TextBlock x:Name="EndProgress" Text="00:00" FontSize="12" Foreground="#999999" Margin="10 0 0 0"/>
         </StackPanel>
-        <MediaElement Name="PlayMedia" Visibility="Hidden" LoadedBehavior="Manual" Volume ="20"/>
+        <MediaElement Name="PlayMedia" Visibility="Hidden" LoadedBehavior="Manual" Volume="20">
+            <MediaElement.CacheMode>
+                <BitmapCache EnableClearType="True"/>
+            </MediaElement.CacheMode>
+        </MediaElement>
 
     </StackPanel>
 </UserControl>

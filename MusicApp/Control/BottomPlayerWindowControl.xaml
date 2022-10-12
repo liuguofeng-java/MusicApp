@@ -101,8 +101,8 @@
 
                 <local:PlayerControl x:Name="playerControl" Grid.Column="1"/>
 
-                <StackPanel Grid.Column="2">
-                    <TextBlock Text="xxxx" ></TextBlock>
+                <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                    <local:VolumeControl Height="50"/>
                 </StackPanel>
 
             </Grid>

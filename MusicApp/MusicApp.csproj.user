@@ -27,6 +27,9 @@
     <Compile Update="Control\ThemeColorControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Control\VolumeControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="PageView\FMPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -75,6 +78,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Control\ThemeColorControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\VolumeControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="PageView\FMPage.xaml">

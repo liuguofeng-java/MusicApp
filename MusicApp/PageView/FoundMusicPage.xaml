@@ -56,7 +56,7 @@
     <Grid>
         <TabControl Style="{DynamicResource TabControlStyle}" Margin="5 5">
             <TabItem Style="{DynamicResource TabItemStyle}" Header="个性推荐">
-                <Control:CarouselControl x:Name="Banner" Height="230" VerticalAlignment="Top"/>
+                <Control:CarouselControl x:Name="Banner" VerticalAlignment="Top"/>
             </TabItem>
             <TabItem Style="{DynamicResource TabItemStyle}" Header="专属定制"/>
             <TabItem Style="{DynamicResource TabItemStyle}" Header="歌单"/>
