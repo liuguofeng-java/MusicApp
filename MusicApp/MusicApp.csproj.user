@@ -21,6 +21,12 @@
     <Compile Update="Control\PlayerControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Control\SearchListControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Control\SearchTextBoxControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Control\SideNavBarWindowControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -77,6 +83,12 @@
     <Page Update="Control\PlayerControl.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Control\SearchListControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\SearchTextBoxControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Control\SideNavBarWindowControl.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -126,6 +138,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Themes\NotifyIcon.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\ScrollViewDictionary.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainWindow.xaml">

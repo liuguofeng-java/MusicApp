@@ -93,24 +93,14 @@
         </Style>
        
     </UserControl.Resources>
-    <Grid>
-        <Grid x:Name="GridVis">
-            <Border x:Name="border"
-                    Background="Transparent" 
-                    Width="340"
-                    Height="280"
-                    Margin="0 70 95 0"
-                    VerticalAlignment="Top" 
-                    HorizontalAlignment="Right" />
-
+        <Grid>
             <Popup x:Name="PopupContrainer" 
                    IsOpen="False"
                    StaysOpen="False" 
-                   Placement="Center" 
+                   Placement="Mouse" 
                    Width="340" 
                    Height="280" 
-                   AllowsTransparency="True"
-                   PlacementTarget="{Binding ElementName=border}">
+                   AllowsTransparency="True">
                 <Border Background="White" CornerRadius="5" Width="330" Height="270" >
                     <Border.Effect>
                         <DropShadowEffect  Color="#f2f2f2" ShadowDepth="0" BlurRadius="10" Opacity="1" Direction="0"/>
@@ -155,5 +145,4 @@
 
 
         </Grid>
-    </Grid>
 </UserControl>

@@ -34,13 +34,13 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="0"/>
         </Grid.ColumnDefinitions>
-        <Border Style="{DynamicResource WindowBorderStyle}" Background="White">
+        <Border x:Name="BaseBorder" Style="{DynamicResource WindowBorderStyle}" Background="White">
             <Border.Effect>
                 <DropShadowEffect Color="#1e1e1e" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
             </Border.Effect>
             <DockPanel>
                 <!--头部-->
-                <Control:HeadWindowControl x:Name="headWindow" DockPanel.Dock="Top" MouseLeftButtonDown="WindowMove_MouseLeftButtonDown"/>
+                <Control:HeadWindowControl x:Name="headWindow" DockPanel.Dock="Top"/>
 
                 <!--底部-->
                 <Control:BottomPlayerWindowControl x:Name="bottomPlayerWindow" DockPanel.Dock="Bottom" Height="75"/>
@@ -60,6 +60,10 @@
 
         <!--主题颜色弹窗-->
         <Control:ThemeColorControl x:Name="themeColor"/>
+
+        <!--搜索列表,排行榜-->
+        <Control:SearchListControl />
+
 
     </Grid>
     

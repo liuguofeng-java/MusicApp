@@ -22,22 +22,51 @@ namespace MusicApp
         /// <summary>
         /// 主窗体实例
         /// </summary>
-        public MainWindow mainWindow { get; set; }
+        private MainWindow _mainWindow;
+        public MainWindow mainWindow
+        {
+            get { return this._mainWindow; }
+            set { _mainWindow = value; }
+        }
 
         /// <summary>
         /// 侧边栏实例
         /// </summary>
-        public SideNavBarWindowControl sideNavBarWindowControl { get; set; }
-
+        private SideNavBarWindowControl _sideNavBarWindowControl;
+        public SideNavBarWindowControl sideNavBarWindowControl
+        {
+            get { return this._sideNavBarWindowControl; }
+            set { _sideNavBarWindowControl = value; }
+        }
 
         /// <summary>
         /// 底部播放器
         /// </summary>
-        public PlayerControl playerControl { get; set; }
+        private PlayerControl _playerControl;
+        public PlayerControl playerControl
+        {
+            get { return this._playerControl; }
+            set { _playerControl = value; }
+        }
 
         /// <summary>
         /// 底部歌曲详情
         /// </summary>
-        public SongDetailControl songDetailControl { get; set; }
+        private SongDetailControl _songDetailControl { get; set; }
+        public SongDetailControl songDetailControl
+        {
+            get { return this._songDetailControl; }
+            set { _songDetailControl = value; }
+        }
+
+        /// <summary>
+        /// 搜索弹窗列表
+        /// </summary>
+        private SearchListControl _searchListControl;
+        public SearchListControl searchListControl
+        {
+            get { return this._searchListControl; }
+            set { _searchListControl = value; }
+        }
     }
 }

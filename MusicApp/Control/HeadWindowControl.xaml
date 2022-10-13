@@ -46,6 +46,8 @@
             </Setter>
         </Style>
 
+
+       
         <!--导航键-->
         <Style x:Key="NavButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Template">
@@ -95,48 +97,9 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <!--搜索框-->
-        <Style x:Key="SearchTextBoxStyle" TargetType="{x:Type TextBox}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border x:Name="border" 
-                                Background="{DynamicResource HeadButBackColor}" CornerRadius="10">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="40"/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Button Style="{DynamicResource WinButtonStyle}"
-                                        Grid.Column="0"
-                                        Cursor="Hand"  x:Name="SearchButton"
-                                    Height="25" Width="25" Margin="3 0" FontSize="14" Content="&#xe623;"/>
-                                <TextBlock Text="搜索" Name="msg"
-                                           Margin="5 0"
-                                           Foreground="{DynamicResource HeadButDisableColor}"
-                                           Visibility="Collapsed"
-                                           VerticalAlignment="Center"
-                                           Grid.Column="1"/>
-                                <ScrollViewer x:Name="PART_ContentHost"
-                                          Grid.Column="1"
-                                          Focusable="false"
-                                          VerticalAlignment="Center"
-                                          HorizontalScrollBarVisibility="Hidden" 
-                                          VerticalScrollBarVisibility="Hidden"/>
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Self}}" Value="">
-                                <Setter Property="Visibility" TargetName="msg" Value="Visible"></Setter>
-                            </DataTrigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-
-        </Style>
+       
     </UserControl.Resources>
-    <Border DockPanel.Dock="Top" Height="60" Background="{DynamicResource MainBackColor}">
+    <Border DockPanel.Dock="Top" Height="60" Background="{DynamicResource MainBackColor}" MouseLeftButtonDown="WindowMove_MouseLeftButtonDown">
         <Grid VerticalAlignment="Center">
             <!--左侧部分-->
             <Button x:Name="Logo" Margin="20 0 0 0"  Style="{DynamicResource LogoStyle}"/>
@@ -150,7 +113,7 @@
                             Height="25" Width="25" Margin="3 0" FontSize="10" IsEnabled="False" Content="&#xe601;"/>
 
                 <!--搜索框-->
-                <TextBox Style="{DynamicResource SearchTextBoxStyle}" Width="200" Foreground="{DynamicResource HeadForeColor}"/>
+                <local:SearchTextBoxControl />
             </StackPanel>
 
             <!--右侧部分-->

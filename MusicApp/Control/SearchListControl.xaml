@@ -1,0 +1,143 @@
+﻿<UserControl x:Class="MusicApp.Control.SearchListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MusicApp.Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="900">
+    <!--歌曲搜索框,输入弹出搜索结果-->
+    <UserControl.Resources>
+        <!--历史按钮-->
+        <Style x:Key="CacheButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border x:Name="border" 
+                                MouseDown="historyBut_MouseDown"
+                                Padding="15 5"
+                                BorderThickness="0.5" 
+                                BorderBrush="#535353" 
+                                Background="Transparent"
+                                CornerRadius="13"
+                                SnapsToDevicePixels="true">
+                                <TextBlock Text="{TemplateBinding Content}" 
+                                        Foreground="#bcbcbc"
+                                        HorizontalAlignment="Center" 
+                                        VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock x:Name="closeText" 
+                                    Cursor="Hand"
+                                    Text="&#xe603;" 
+                                    Visibility="Collapsed"
+                                    Margin="0 0 3 0"
+                                    MouseDown="closeText_MouseDown"
+                                    FontFamily="{DynamicResource Iconfont}" 
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Visibility" TargetName="closeText" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="border"  Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                 TextBlock.Foreground="{TemplateBinding Foreground}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#333333"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel x:Name="StackPanelContrainer" HorizontalAlignment="Left" Margin="250 73 0 0" >
+            <Border Background="#363636" Width="350" Height="510" CornerRadius="10">
+                <Border.Effect>
+                    <DropShadowEffect Color="#1e1e1e" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
+                </Border.Effect>
+                <ScrollViewer Template="{StaticResource MyScrollViewer}" VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <!--搜索记录文字-->
+                        <StackPanel>
+                            <StackPanel Margin="20 20 20 10" Orientation="Horizontal" Height="20" VerticalAlignment="Top" >
+                                <TextBlock Text="搜索历史" Foreground="#818181" 
+                                       FontSize="14"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                                <Border Margin="10 0 0 0" Cursor="Hand">
+                                    <TextBlock Text="&#xe611;"
+                                           FontSize="14"
+                                           Foreground="#818181"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontFamily="{DynamicResource Iconfont}"/>
+                                </Border>
+                            </StackPanel>
+                            <!--搜索记录容器-->
+                            <WrapPanel Margin="10 0">
+                                <Button Style="{DynamicResource CacheButtonStyle}" Content="两只老虎跑得快" Margin="5 0 5 5"/>
+                                <Button Style="{DynamicResource CacheButtonStyle}" Content="十年" Margin="5 0 5 5"/>
+                                <Button Style="{DynamicResource CacheButtonStyle}" Content="少一点天分" Margin="5 0 5 5"/>
+                                <Button Style="{DynamicResource CacheButtonStyle}" Content="白羊" Margin="5 0 5 5"/>
+                                <Button Style="{DynamicResource CacheButtonStyle}" Content="少年说" Margin="5 0 5 5"/>
+                                <Button Style="{DynamicResource CacheButtonStyle}" Content="张杰" Margin="5 0 5 5"/>
+                                <Button Style="{DynamicResource CacheButtonStyle}" Content="行行行" Margin="5 0 5 5"/>
+                            </WrapPanel>
+                            <!--热搜榜-->
+                            <TextBlock Text="热搜榜" Foreground="#818181" 
+                                       Margin="20 20 20 10"
+                                       FontSize="14"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"/>
+                            <ListBox x:Name="RankingListBox" Background="Transparent" BorderThickness="0">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding num}" Margin="20" FontSize="16" Foreground="{Binding color}"/>
+                                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <StackPanel Orientation="Horizontal"
+                                                    Margin="0 10 10 10">
+                                                    <TextBlock Text="{Binding searchWord}" 
+                                                       FontSize="14"
+                                                       FontWeight="Bold"
+                                                       Foreground="White" 
+                                                       Margin="0 0 10 0"/>
+                                                    <TextBlock Text="{Binding score}" 
+                                                           Foreground="#595959"
+                                                           VerticalAlignment="Bottom"/>
+                                                </StackPanel>
+                                                <TextBlock TextTrimming="CharacterEllipsis" Width="280" ToolTip="{Binding content}" Text="{Binding content}" Foreground="#727272"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
+
+
+
+
+                    </Grid>
+                </ScrollViewer>
+            </Border>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
