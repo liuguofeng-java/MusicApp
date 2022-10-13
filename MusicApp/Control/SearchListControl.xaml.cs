@@ -44,10 +44,13 @@ namespace MusicApp.Control
             };
 
             //默认隐藏控件
-            StackPanelContrainer.Visibility = Visibility.Collapsed;
+            GridContrainer.Visibility = Visibility.Collapsed;
 
             //获取排行
             GetRankingList();
+
+
+            
 
         }
 
@@ -67,6 +70,30 @@ namespace MusicApp.Control
             }
 
             RankingListBox.ItemsSource = data.data;
+        }
+
+        /// <summary>
+        /// 获取搜索结果
+        /// </summary>
+        /// <param name="keyword">搜索内容</param>
+        public void GetSearchList(string keyword)
+        {
+            if (string.IsNullOrEmpty(keyword)) return; 
+            //接收数据
+            string result = HttpUtil.HttpRequset(HttpUtil.serveUrl + "/search/suggest?keywords=" + keyword);
+            SearchDataModel data = JsonConvert.DeserializeObject<SearchDataModel>(result);
+            //单曲数据
+            SingleListBox.ItemsSource = data.result.songs;
+
+            //歌手
+            ArtistsListBox.ItemsSource = data.result.artists;
+
+            //专辑
+            AlbumListBox.ItemsSource = data.result.albums;
+
+            //歌单
+            SongListBox.ItemsSource = data.result.playlists;
+            Console.WriteLine(data);
         }
 
         /// <summary>

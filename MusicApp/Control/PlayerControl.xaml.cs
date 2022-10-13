@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using System.Windows;
 
 namespace MusicApp.Control
 {
@@ -54,6 +55,7 @@ namespace MusicApp.Control
         public void GetSongUrl(List<string> idList)
         {
             //获取歌曲详情\头像\名称\作者
+            songDetailControl.StackPanelContrainer.Visibility = Visibility.Visible;
             songDetailControl.GetSongDetail(idList[0]);
 
             //获取歌曲url

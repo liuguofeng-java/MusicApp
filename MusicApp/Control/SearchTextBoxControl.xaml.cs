@@ -1,26 +1,21 @@
 ﻿using MusicApp.Views;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MusicApp.Control
 {
     /// <summary>
-    /// SearchTextBoxControl.xaml 的交互逻辑
+    /// 搜索框 的交互逻辑
     /// </summary>
     public partial class SearchTextBoxControl : UserControl
     {
         private MainWindow mainWindow = ControlBean.getInstance().mainWindow;
-
+        //延时执行器
+        private System.Timers.Timer timer;
         public SearchTextBoxControl()
         {
             InitializeComponent();
@@ -28,8 +23,48 @@ namespace MusicApp.Control
             //点击主窗体border,隐藏搜索列表控件
             mainWindow.BaseBorder.MouseDown += (s, e) =>
             {
-                ControlBean.getInstance().searchListControl.StackPanelContrainer.Visibility = Visibility.Collapsed;
+                ControlBean.getInstance().searchListControl.GridContrainer.Visibility = Visibility.Collapsed;
             };
+
+            //文本值改变触发,搜索
+            SearchBox.TextChanged += (s, e) =>
+            {
+                var control = ControlBean.getInstance().searchListControl;
+                var text = SearchBox.Text;
+                
+                // 重启延时器
+                if (timer != null)
+                    timer.Stop();
+                //开始计时
+                timer = new System.Timers.Timer(1000);
+                timer.AutoReset = false;
+                timer.Elapsed += new ElapsedEventHandler((o, ex) => {
+
+                    new Thread(() =>
+                    {
+                        this.Dispatcher.Invoke(new Action(delegate
+                        {
+                            if (string.IsNullOrEmpty(text))
+                            {
+                                control.SearchContrainer.Visibility = Visibility.Collapsed;
+                                control.RankingContrainer.Visibility = Visibility.Visible;
+                            }
+                            else
+                            {
+                                control.SearchContrainer.Visibility = Visibility.Visible;
+                                control.RankingContrainer.Visibility = Visibility.Collapsed;
+                            }
+                            control.GetSearchList(text);
+                        }));
+                    }).Start();
+                    timer.Stop();//关闭延时器
+
+                });
+
+                timer.Start();                
+            };
+
+
         }
 
         /// <summary>
@@ -50,7 +85,7 @@ namespace MusicApp.Control
         private void InputScrollViewer_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //点击输入框,显示搜索列表控件
-            ControlBean.getInstance().searchListControl.StackPanelContrainer.Visibility = Visibility.Visible;
+            ControlBean.getInstance().searchListControl.GridContrainer.Visibility = Visibility.Visible;
         }
     }
 }

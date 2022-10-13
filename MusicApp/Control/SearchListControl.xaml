@@ -66,8 +66,9 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <StackPanel x:Name="StackPanelContrainer" HorizontalAlignment="Left" Margin="250 73 0 0" >
+    <Grid x:Name="GridContrainer" Margin="250 73 0 0">
+        <!--排行榜-->
+        <StackPanel x:Name="RankingContrainer" HorizontalAlignment="Left">
             <Border Background="#363636" Width="350" Height="510" CornerRadius="10">
                 <Border.Effect>
                     <DropShadowEffect Color="#1e1e1e" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
@@ -136,6 +137,78 @@
 
                     </Grid>
                 </ScrollViewer>
+            </Border>
+        </StackPanel>
+
+        <!--搜索-->
+        <StackPanel x:Name="SearchContrainer" HorizontalAlignment="Left" Visibility="Collapsed">
+            <Border Background="#363636" Width="350" Height="510" CornerRadius="10">
+                <Border.Effect>
+                    <DropShadowEffect Color="#1e1e1e" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
+                </Border.Effect>
+                
+                <ScrollViewer Template="{StaticResource MyScrollViewer}" VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <!--单曲-->
+                        <TextBlock Text="&#xe690; 单曲" 
+                                   FontSize="14" 
+                                   Margin="20 10 15 10" 
+                                   FontFamily="{DynamicResource Iconfont}" 
+                                   Foreground="#686868"/>
+                        <ListBox x:Name="SingleListBox" Background="Transparent" BorderThickness="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding name}" FontSize="12" Margin="50 10 15 10" Foreground="White"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <!--歌手-->
+                        <TextBlock Text="&#xe689; 歌手" 
+                                   FontSize="14" 
+                                   Margin="20 10 15 10" 
+                                   FontFamily="{DynamicResource Iconfont}" 
+                                   Foreground="#686868"/>
+                        <ListBox x:Name="ArtistsListBox" Background="Transparent" BorderThickness="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding name}" FontSize="12" Margin="50 10 15 10" Foreground="White"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        
+                        <!--专辑-->
+                        <TextBlock Text="&#xe69e; 专辑" 
+                                   FontSize="14" 
+                                   Margin="20 10 15 10" 
+                                   FontFamily="{DynamicResource Iconfont}" 
+                                   Foreground="#686868"/>
+                        <ListBox x:Name="AlbumListBox" Background="Transparent" BorderThickness="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding name}" FontSize="12" Margin="50 10 15 10" Foreground="White"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <!--歌单-->
+                        <TextBlock Text="&#xe67b; 歌单" 
+                                   FontSize="14" 
+                                   Margin="20 10 15 10" 
+                                   FontFamily="{DynamicResource Iconfont}" 
+                                   Foreground="#686868"/>
+                        <ListBox x:Name="SongListBox" Background="Transparent" BorderThickness="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding name}" FontSize="12" Margin="50 10 15 10" Foreground="White"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+
+                </ScrollViewer>
+                
+                
             </Border>
         </StackPanel>
 

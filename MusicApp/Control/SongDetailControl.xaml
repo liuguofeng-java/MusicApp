@@ -58,7 +58,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <StackPanel Orientation="Horizontal">
+    <StackPanel x:Name="StackPanelContrainer" Orientation="Horizontal"  Visibility="Collapsed">
         <Button Width="50" Height="50" 
                 BorderBrush="#f1f2f6" 
                 BorderThickness="2"
