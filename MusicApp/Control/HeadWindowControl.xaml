@@ -114,6 +114,8 @@
 
                 <!--搜索框-->
                 <local:SearchTextBoxControl />
+                <!--主题颜色弹窗-->
+                <local:ThemeColorControl x:Name="themeColor"/>
             </StackPanel>
 
             <!--右侧部分-->

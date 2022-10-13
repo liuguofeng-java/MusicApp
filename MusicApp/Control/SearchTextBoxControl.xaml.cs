@@ -31,7 +31,13 @@ namespace MusicApp.Control
             {
                 var control = ControlBean.getInstance().searchListControl;
                 var text = SearchBox.Text;
-                
+
+                //如果没有弹出搜索框就弹出
+                if (control.GridContrainer.Visibility != Visibility.Visible)
+                {
+                    control.GridContrainer.Visibility = Visibility.Visible;
+                }
+
                 // 重启延时器
                 if (timer != null)
                     timer.Stop();

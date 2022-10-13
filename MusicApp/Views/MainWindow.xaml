@@ -57,10 +57,6 @@
         <!--系统托盘-->
         <Themes:NotifyIcon x:Name="notifyIcon" Grid.Column="1" />
 
-
-        <!--主题颜色弹窗-->
-        <Control:ThemeColorControl x:Name="themeColor"/>
-
         <!--搜索列表,排行榜-->
         <Control:SearchListControl />
 

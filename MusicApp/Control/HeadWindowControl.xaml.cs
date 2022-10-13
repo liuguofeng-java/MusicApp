@@ -44,7 +44,7 @@ namespace MusicApp.Control
             //点击皮肤显示
             Skin.Click += (s, e) =>
             {
-                mainWindow.themeColor.PopupContrainer.IsOpen = true;
+                themeColor.PopupContrainer.IsOpen = true;
             };
         }
 

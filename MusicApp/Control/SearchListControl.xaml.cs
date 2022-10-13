@@ -82,18 +82,33 @@ namespace MusicApp.Control
             //接收数据
             string result = HttpUtil.HttpRequset(HttpUtil.serveUrl + "/search/suggest?keywords=" + keyword);
             SearchDataModel data = JsonConvert.DeserializeObject<SearchDataModel>(result);
+
+            //都是空不更新数据
+            if (data.result.songs == null && 
+                data.result.artists == null && 
+                data.result.albums == null && 
+                data.result.playlists == null)
+            {
+                return;
+            }
+
             //单曲数据
             SingleListBox.ItemsSource = data.result.songs;
+            if (data.result.songs == null) SingleText.Visibility = Visibility.Collapsed;
 
             //歌手
             ArtistsListBox.ItemsSource = data.result.artists;
+            if (data.result.artists == null) ArtistsText.Visibility = Visibility.Collapsed;
+
 
             //专辑
             AlbumListBox.ItemsSource = data.result.albums;
+            if (data.result.albums == null) AlbumText.Visibility = Visibility.Collapsed;
+
 
             //歌单
-            SongListBox.ItemsSource = data.result.playlists;
-            Console.WriteLine(data);
+            SongsListBox.ItemsSource = data.result.playlists;
+            if (data.result.playlists == null) SongsText.Visibility = Visibility.Collapsed;
         }
 
         /// <summary>
