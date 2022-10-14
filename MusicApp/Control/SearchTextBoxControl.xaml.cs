@@ -42,14 +42,15 @@ namespace MusicApp.Control
                 if (timer != null)
                     timer.Stop();
                 //开始计时
-                timer = new System.Timers.Timer(1000);
+                timer = new System.Timers.Timer(500);
                 timer.AutoReset = false;
                 timer.Elapsed += new ElapsedEventHandler((o, ex) => {
-
+                    //开启线程,防止卡顿主线程
                     new Thread(() =>
                     {
                         this.Dispatcher.Invoke(new Action(delegate
                         {
+                            //text == "" 显示排行榜,否则显示搜索
                             if (string.IsNullOrEmpty(text))
                             {
                                 control.SearchContrainer.Visibility = Visibility.Collapsed;

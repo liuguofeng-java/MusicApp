@@ -17,7 +17,7 @@ namespace MusicApp.ViewModels
             SelectButCommand = new CommandBase();
             SelectButCommand.DoExecute = new Action<object>((o) =>
             {
-                control.GetDictionary((string)o);
+                control.GetDictionary(Convert.ToInt32(o));
             });
             SelectButCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
         }

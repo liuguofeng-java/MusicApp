@@ -1,4 +1,5 @@
 ﻿using MusicApp.Control;
+using MusicApp.Models;
 using MusicApp.Views;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,16 @@ namespace MusicApp
         public static ControlBean getInstance()
         {
             return bean;
+        }
+
+        /// <summary>
+        /// 全局缓存数据
+        /// </summary>
+        private JsonDataModel _jsonData;
+        public JsonDataModel jsonData
+        {
+            get { return this._jsonData; }
+            set { _jsonData = value; }
         }
 
         /// <summary>

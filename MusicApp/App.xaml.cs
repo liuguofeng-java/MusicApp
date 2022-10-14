@@ -1,4 +1,5 @@
 ﻿using Hardcodet.Wpf.TaskbarNotification;
+using MusicApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,6 +15,9 @@ namespace MusicApp
     /// </summary>
     public partial class App : Application
     {
-        
+        public App()
+        {
+            InitJsonData.GetJsonFile();
+        }
     }
 }

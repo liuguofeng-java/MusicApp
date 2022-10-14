@@ -95,6 +95,7 @@ namespace MusicApp.Control
             //单曲数据
             SingleListBox.ItemsSource = data.result.songs;
             if (data.result.songs == null) SingleText.Visibility = Visibility.Collapsed;
+            ListBox listbox = SingleListBox;
 
             //歌手
             ArtistsListBox.ItemsSource = data.result.artists;

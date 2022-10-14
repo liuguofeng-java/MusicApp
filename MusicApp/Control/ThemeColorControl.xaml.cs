@@ -14,6 +14,7 @@ namespace MusicApp.Control
     public partial class ThemeColorControl : UserControl
     {
         private List<ResourceDictionary> dictionaryList;
+        private ControlBean bean = ControlBean.getInstance();
         public ThemeColorControl()
         {
             InitializeComponent();
@@ -26,30 +27,31 @@ namespace MusicApp.Control
             {
                 dictionaryList.Add(dictionary);
             }
-            string val = INIFileUtil.readValue("sys", "themeColor");
-            if (val != null)
+            int? themeColor = bean.jsonData.themeColor;
+            if (themeColor != null)
             {
-                ((RadioButton)RadioButContrainer.Children[Convert.ToInt32(val) - 1]).IsChecked = true;
+                ((RadioButton)RadioButContrainer.Children[Convert.ToInt32(themeColor) - 1]).IsChecked = true;
             }
-            GetDictionary(val);
+            GetDictionary(themeColor);
         }
 
-        public void GetDictionary(string num = null)
+        public void GetDictionary(int? num = null)
         {
             var val = string.Empty;
             switch (num)
             {
-                case "1":
+                case 1:
                     val  = "/Themes/Color/BlackColor.xaml";
                     break;
-                case "2":
+                case 2:
                     val = "/Themes/Color/DefaultColor.xaml";
                     break;
                 default:
                     val = "/Themes/Color/DefaultColor.xaml";
                     break;
             }
-            INIFileUtil.writeValue("sys", "themeColor", num);
+
+            bean.jsonData.themeColor = num;
             ResourceDictionary dictionary = dictionaryList.FirstOrDefault(d => d.Source.OriginalString.Equals(val));
 
             Application.Current.Resources.MergedDictionaries.Add(dictionary);

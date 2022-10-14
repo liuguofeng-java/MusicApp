@@ -19,7 +19,7 @@ namespace MusicApp.Control
     /// </summary>
     public partial class VolumeControl : UserControl
     {
-        private PlayerControl playerControl = ControlBean.getInstance().playerControl;
+        private ControlBean bean = ControlBean.getInstance();
         public VolumeControl()
         {
             InitializeComponent();
@@ -35,8 +35,11 @@ namespace MusicApp.Control
                 {
                     VolumeBut.Content = "\xe63c";
                 }
-                playerControl.PlayMedia.Volume = VolumeProgress.Value;
-                INIFileUtil.writeValue("sys", "volume", VolumeProgress.Value.ToString());
+                bean.playerControl.PlayMedia.Volume = VolumeProgress.Value;
+
+                bean.jsonData.volume = VolumeProgress.Value;
+
+                //INIFileUtil.writeValue("sys", "volume", VolumeProgress.Value.ToString());
             };
             //移入音量按钮,打开音量调节
             VolumeBut.MouseEnter += (s, e) =>
@@ -61,23 +64,27 @@ namespace MusicApp.Control
                     VolumeProgress.Value = 0;
                     VolumeBut.Content = "\xe610";
                 }
-                playerControl.PlayMedia.Volume = VolumeProgress.Value;
-                INIFileUtil.writeValue("sys", "volume", VolumeProgress.Value.ToString());
+                bean.playerControl.PlayMedia.Volume = VolumeProgress.Value;
+
+                bean.jsonData.volume = VolumeProgress.Value;
+
+                //INIFileUtil.writeValue("sys", "volume", VolumeProgress.Value.ToString());
             };
 
             //初始化音量
-            string volume = INIFileUtil.readValue("sys", "volume");
-            double val = string.IsNullOrEmpty(volume) ? 0.5 : Convert.ToDouble(volume);
-            if (string.IsNullOrEmpty(volume))
+            double? volume = bean.jsonData.volume;
+            double val = volume == null ? 0.5 : Convert.ToDouble(volume);
+            if (volume == null)
             {
-                INIFileUtil.writeValue("sys", "volume", "0.5");
+                //INIFileUtil.writeValue("sys", "volume", "0.5");
+                bean.jsonData.volume = 0.5;
             }
             if (VolumeProgress.Value == 0)
             {
                 VolumeBut.Content = "\xe610";
             }
             VolumeProgress.Value = val;
-            playerControl.PlayMedia.Volume = val;
+            bean.playerControl.PlayMedia.Volume = val;
         }
     }
 }
