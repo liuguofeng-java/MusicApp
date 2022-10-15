@@ -201,7 +201,7 @@ namespace MusicApp.Common
             }
             catch (Exception e)
             {
-                throw e;
+                return null;
             }
         }
 

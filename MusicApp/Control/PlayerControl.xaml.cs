@@ -16,7 +16,9 @@ namespace MusicApp.Control
     public partial class PlayerControl : UserControl
     {
 
-        private SongDetailControl songDetailControl = ControlBean.getInstance().songDetailControl;
+        private ControlBean bean = ControlBean.getInstance();
+
+        private SongPlayListModel playModel;
 
         public List<SongDataItem> list;
         private DispatcherTimer timer;
@@ -25,64 +27,41 @@ namespace MusicApp.Control
             ControlBean.getInstance().playerControl = this;
             InitializeComponent();
 
-            //进行或者暂停按钮按下
-            PlayBut.Click += (s, e) =>
-            {
-                if (PlayMedia.Position.TotalSeconds == 0) return;
-                if (PlayBut.Content.Equals("\xe87c"))
-                {
-                    PlayBut.Content = "\xea81";
-                    PlayMedia.Play();
-                }
-                else
-                {
-                    PlayBut.Content = "\xe87c";
-                    PlayMedia.Pause();
-                }
-            };
-
             //音乐进度条改变时
             MusicProgress.ValueChanged += (s, e) =>
             {
                 PlayMedia.Position = TimeSpan.FromSeconds(MusicProgress.Value);
             };
-        }
 
-        /// <summary>
-        /// 获取歌曲播放路径并放入播放列表
-        /// </summary>
-        /// <param name="idList">歌曲id</param>
-        public void GetSongUrl(List<string> idList)
-        {
-            //获取歌曲详情\头像\名称\作者
-            songDetailControl.StackPanelContrainer.Visibility = Visibility.Visible;
-            songDetailControl.GetSongDetail(idList[0]);
-
-            //获取歌曲url
-            //格式化id
-            StringBuilder builder = new StringBuilder();
-            idList.ForEach(item =>
+            //默认加载播放列表第一首
+            var playList = bean.jsonData.songPlayList;
+            if (playList != null && playList.Count != 0)
             {
-                builder.Append(item + ",");
-            });
-            string str = builder.ToString();
-            string ids = str.Substring(0, str.Length - 1);
-
-            //接收数据
-            string result = HttpUtil.HttpRequset(HttpUtil.serveUrl + "/song/url?id=" + ids);
-            PlayerModel data = JsonConvert.DeserializeObject<PlayerModel>(result);
-            list = data.data;
+                StartPlay(playList[0]);
+            }
         }
+
 
         /// <summary>
         /// 开始播放
         /// </summary>
-        public void StartPlay(SongDataItem songData = null)
+        /// <param name="model">音乐信息</param>
+        public void StartPlay(SongPlayListModel model)
         {
+            //点击了相同的歌
+            if (playModel != null && model.songId.Equals(playModel.songId))
+            {
+                PlayBut_Click(null, null);
+                return;
+            }
+            this.playModel = model;
+
+            //歌曲详情赋值
+            bean.songDetailControl.StackPanelContrainer.Visibility = Visibility.Visible;
+            bean.songDetailControl.DataContext = model;
+
             //开始播放歌曲
-            if (songData == null)
-                songData = list[0];
-            PlayMedia.Source = new Uri(songData.url);
+            PlayMedia.Source = new Uri(model.songUrl);
             PlayMedia.Play();
 
             //PlayBut.Content = "\xe87c";
@@ -90,12 +69,14 @@ namespace MusicApp.Control
 
 
             //计算歌曲时间
-            int second = songData.time / 1000;//总秒数
+            int second = model.songTime / 1000;//总秒数
             int minute = second / 60;//分钟数
             int remSecond = second - (minute * 60);//剩余秒数
 
             MusicProgress.Maximum = second;//进度条数
-            EndProgress.Text = minute + ":" + remSecond;//总时长
+            EndProgress.Text = (minute.ToString().Length == 1 ? "0" + minute.ToString() : minute.ToString())
+                                      + ":" +
+                                     (remSecond.ToString().Length == 1 ? "0" + remSecond.ToString() : remSecond.ToString());//总时长
 
             //开始计算
             timer = new DispatcherTimer();
@@ -113,5 +94,24 @@ namespace MusicApp.Control
             timer.Start();
         }
 
+        /// <summary>
+        /// 进行或者暂停按钮按下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlayBut_Click(object sender, RoutedEventArgs e)
+        {
+            if (PlayMedia.Position.TotalSeconds == 0) return;
+            if (PlayBut.Content.Equals("\xe87c"))
+            {
+                PlayBut.Content = "\xea81";
+                PlayMedia.Play();
+            }
+            else
+            {
+                PlayBut.Content = "\xe87c";
+                PlayMedia.Pause();
+            }
+        }
     }
 }

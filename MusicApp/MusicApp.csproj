@@ -12,9 +12,6 @@
 
   <ItemGroup>
     <None Remove="Assets\Fonts\iconfont.ttf" />
-    <None Remove="Assets\Images\Banner\banner1.jpg" />
-    <None Remove="Assets\Images\Banner\banner2.jpg" />
-    <None Remove="Assets\Images\Banner\banner3.jpg" />
     <None Remove="Assets\Images\head_portrait.png" />
     <None Remove="Assets\Images\Iocn\format.ico" />
     <None Remove="Assets\Images\Iocn\m_256.ico" />
@@ -24,18 +21,6 @@
     <None Remove="Assets\Images\ThemeColor\4.png" />
     <None Remove="Assets\Images\ThemeColor\5.png" />
     <None Remove="Assets\Images\ThemeColor\6.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Assets\Images\Banner\banner1.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Images\Banner\banner2.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Images\Banner\banner3.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>

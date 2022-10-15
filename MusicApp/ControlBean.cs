@@ -71,6 +71,16 @@ namespace MusicApp
         }
 
         /// <summary>
+        /// 底部代播放列表
+        /// </summary>
+        private SongPlayListControl _songPlayListControl;
+        public SongPlayListControl songPlayListControl
+        {
+            get { return this._songPlayListControl; }
+            set { _songPlayListControl = value; }
+        }
+
+        /// <summary>
         /// 搜索弹窗列表
         /// </summary>
         private SearchListControl _searchListControl;

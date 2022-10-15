@@ -53,11 +53,7 @@ C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\Th
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Themes\Color\BlackColor.baml
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Themes\Color\DefaultColor.baml
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\bin\Debug\netcoreapp3.1\Assets\Images\Banner\banner1.jpg
-C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\bin\Debug\netcoreapp3.1\Assets\Images\Banner\banner2.jpg
-C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\bin\Debug\netcoreapp3.1\Assets\Images\Banner\banner3.jpg
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\CarouselControl.g.cs
-C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp_Content.g.cs
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\CarouselControl.baml
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\PlayerControl.g.cs
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\PlayerControl.baml
@@ -73,3 +69,5 @@ C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\Se
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.csproj.AssemblyReference.cache
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.Properties.Resources.resources
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.csproj.GenerateResource.cache
+C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\SongPlayListControl.g.cs
+C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\SongPlayListControl.baml

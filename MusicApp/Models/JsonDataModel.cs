@@ -1,4 +1,5 @@
 ﻿using MusicApp.Common;
+using MusicApp.Models.Vo;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace MusicApp.Models
     /// </summary>
     public class JsonDataModel
     {
+        
         /// <summary>
         /// 音量缓存
         /// </summary>
@@ -39,6 +41,21 @@ namespace MusicApp.Models
             }
         }
 
+        /// <summary>
+        /// 待播放歌曲列表
+        /// </summary>
+        private List<SongPlayListModel> _songPlayList;
+        public List<SongPlayListModel> songPlayList
+        {
+            get 
+            { return this._songPlayList; }
+            set
+            {
+                _songPlayList = value;
+                InitJsonData.WriteJsonFile();
+            }
+        }
+
     }
 
     /// <summary>
@@ -46,6 +63,8 @@ namespace MusicApp.Models
     /// </summary>
     public static class InitJsonData
     {
+        //程序初始化完成会变成true
+        public static bool isInit = false;
         private static ControlBean controlBean = ControlBean.getInstance();
         /// <summary>
         /// 获取json数据
@@ -57,7 +76,7 @@ namespace MusicApp.Models
             {
                 jsonStr = "{}";
             }
-            controlBean.jsonData = JsonConvert.DeserializeObject<JsonDataModel>(jsonStr); ;
+            controlBean.jsonData = JsonConvert.DeserializeObject<JsonDataModel>(jsonStr);
         }
 
         /// <summary>
@@ -65,8 +84,11 @@ namespace MusicApp.Models
         /// </summary>
         public static void WriteJsonFile()
         {
-            string jsonStr = JsonConvert.SerializeObject(controlBean.jsonData);
-            JsonFileUtil.WriteJsonFile(jsonStr);
+            if (isInit)
+            {
+                string jsonStr = JsonConvert.SerializeObject(controlBean.jsonData);
+                JsonFileUtil.WriteJsonFile(jsonStr);
+            }
         }
     }
 }

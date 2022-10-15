@@ -110,7 +110,7 @@
                                 Height="20"
                                 Foreground="#313131"/>
             <!--继续或暂停-->
-            <Button x:Name="PlayBut" Style="{DynamicResource ControlMusicButtonStyle}" 
+            <Button x:Name="PlayBut" Click="PlayBut_Click" Style="{DynamicResource ControlMusicButtonStyle}" 
                                 Margin="15 0"
                                 Content="&#xe87c;" 
                                 Background="#f5f5f5" 

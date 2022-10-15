@@ -34,6 +34,10 @@ namespace MusicApp.Control
 
             //接收数据
             string result = HttpUtil.HttpRequset(HttpUtil.serveUrl + "/banner?type=0");
+            if (result == null)
+            {
+                return;
+            }
             BannerModel data = JsonConvert.DeserializeObject<BannerModel>(result);
             list = data.banners;
 
@@ -70,8 +74,7 @@ namespace MusicApp.Control
                     case 1:  //直接播放 --新歌首发--热歌推荐
                         List<string> idList = new List<string>();
                         idList.Add(bannersItem.targetId.ToString());
-                        ControlBean.getInstance().playerControl.GetSongUrl(idList);
-                        ControlBean.getInstance().playerControl.StartPlay();
+                        ControlBean.getInstance().songPlayListControl.GetSongPlayList(idList);
                         break;
                     case 10: //打开歌曲列表 --新碟首发
                         break;

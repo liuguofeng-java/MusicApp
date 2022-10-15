@@ -48,10 +48,6 @@ namespace MusicApp.Control
 
             //获取排行
             GetRankingList();
-
-
-            
-
         }
 
         /// <summary>
@@ -61,8 +57,11 @@ namespace MusicApp.Control
         {
             //接收数据
             string result = HttpUtil.HttpRequset(HttpUtil.serveUrl + "/search/hot/detail");
+            if (result == null)
+            {
+                return;
+            }
             RankingModel data = JsonConvert.DeserializeObject<RankingModel>(result);
-
             for (int i = 0; i < data.data.Count; i++)
             {
                 data.data[i].num = i + 1;
@@ -81,6 +80,10 @@ namespace MusicApp.Control
             if (string.IsNullOrEmpty(keyword)) return; 
             //接收数据
             string result = HttpUtil.HttpRequset(HttpUtil.serveUrl + "/search/suggest?keywords=" + keyword);
+            if (result == null)
+            {
+                return;
+            }
             SearchDataModel data = JsonConvert.DeserializeObject<SearchDataModel>(result);
 
             //都是空不更新数据

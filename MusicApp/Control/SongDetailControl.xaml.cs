@@ -26,20 +26,5 @@ namespace MusicApp.Control
             ControlBean.getInstance().songDetailControl = this;
             InitializeComponent();
         }
-
-
-        /// <summary>
-        /// 获取歌曲详细信息
-        /// </summary>
-        /// <param name="id">歌曲id</param>
-        public void GetSongDetail(string id)
-        {
-            //接收数据
-            string result = HttpUtil.HttpRequset(HttpUtil.serveUrl + "/song/detail?ids=" + id);
-            SongDetailModel detailModel = JsonConvert.DeserializeObject<SongDetailModel>(result);
-
-            DataContext = detailModel.songs[0];
-
-        }
     }
 }
