@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MusicApp.Common
 {
@@ -16,8 +17,7 @@ namespace MusicApp.Common
         /// </summary>
         /// <param name="url">下载路径</param>
         /// <param name="timeout">超时时间</param>
-        /// <param name="path">保存路径</param>
-        public static void HttpDownload(String url, String path, int timeout = 2000)
+        async public static Task<string> HttpDownload(String url, String path, String fileName, int timeout = 5000)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace MusicApp.Common
                     request.ProtocolVersion = HttpVersion.Version11;
 
                     // 这里设置了协议类型。
-                    ServicePointManager.SecurityProtocol = (SecurityProtocolType)(SecurityProtocolTypes.Ssl3 | SecurityProtocolTypes.Tls | SecurityProtocolTypes.Tls11 | SecurityProtocolTypes.Tls12);
+                    //ServicePointManager.SecurityProtocol = (SecurityProtocolType)(SecurityProtocolTypes.Ssl3 | SecurityProtocolTypes.Tls | SecurityProtocolTypes.Tls11 | SecurityProtocolTypes.Tls12);
                     request.KeepAlive = false;
                     ServicePointManager.CheckCertificateRevocationList = true;
                     ServicePointManager.DefaultConnectionLimit = 100;
@@ -61,8 +61,6 @@ namespace MusicApp.Common
                         throw new Exception("向服务器发送请求失败");
                 }
 
-                //根据返回值类型，确定文件名
-                String fileName = null;
                 String des = response.GetResponseHeader("Content-Disposition");
 
                 switch (response.ContentType)
@@ -74,19 +72,14 @@ namespace MusicApp.Common
                             String[] strs = des.Split(';');
                             strs = strs[1].Split('=');
 
-                            fileName = strs[1];
                         }
-
                         break;
 
                     case "application/octet-stream":
                         //返回二进制流
-                        //可以从URL 提取文件名          https://dldir1.qq.com/weixin/Windows/WeChatSetup.exe
                         {
                             String[] strs = des.Split('/');
-                            fileName = strs[strs.Length - 1];
                         }
-
                         break;
 
                     default:
@@ -94,7 +87,6 @@ namespace MusicApp.Common
                         //可以从URL 提取文件名
                         {
                             String[] strs = des.Split('/');
-                            fileName = strs[strs.Length - 1];
                         }
 
                         break;
@@ -115,10 +107,11 @@ namespace MusicApp.Common
                 fs.Close();
                 responseStream.Close();
                 response.Close();
+                return path + "\\" + fileName;
             }
             catch (Exception e)
             {
-                throw e;
+                return null;
             }
         }
 

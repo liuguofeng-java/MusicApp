@@ -8,6 +8,7 @@ FC:\Users\liuguofeng\Desktop\MusicApp\MusicApp\Control\SearchListControl.xaml;;
 FC:\Users\liuguofeng\Desktop\MusicApp\MusicApp\Control\SearchTextBoxControl.xaml;;
 FC:\Users\liuguofeng\Desktop\MusicApp\MusicApp\Control\SideNavBarWindowControl.xaml;;
 FC:\Users\liuguofeng\Desktop\MusicApp\MusicApp\Control\SongDetailControl.xaml;;
+FC:\Users\liuguofeng\Desktop\MusicApp\MusicApp\Control\SongPlayListControl.xaml;;
 FC:\Users\liuguofeng\Desktop\MusicApp\MusicApp\Control\ThemeColorControl.xaml;;
 FC:\Users\liuguofeng\Desktop\MusicApp\MusicApp\Control\VolumeControl.xaml;;
 FC:\Users\liuguofeng\Desktop\MusicApp\MusicApp\PageView\FMPage.xaml;;
@@ -21,5 +22,4 @@ FC:\Users\liuguofeng\Desktop\MusicApp\MusicApp\PageView\RecentPlayPage.xaml;;
 FC:\Users\liuguofeng\Desktop\MusicApp\MusicApp\PageView\VideoPage.xaml;;
 FC:\Users\liuguofeng\Desktop\MusicApp\MusicApp\Themes\NotifyIcon.xaml;;
 FC:\Users\liuguofeng\Desktop\MusicApp\MusicApp\Views\MainWindow.xaml;;
-FC:\Users\liuguofeng\Desktop\MusicApp\MusicApp\Control\SongPlayListControl.xaml;;
 

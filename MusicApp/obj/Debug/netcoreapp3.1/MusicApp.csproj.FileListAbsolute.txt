@@ -66,7 +66,6 @@ C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\Se
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\SearchTextBoxControl.g.cs
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\SearchListControl.baml
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\SearchTextBoxControl.baml
-C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.csproj.AssemblyReference.cache
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.Properties.Resources.resources
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.csproj.GenerateResource.cache
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\SongPlayListControl.g.cs

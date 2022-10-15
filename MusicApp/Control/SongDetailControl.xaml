@@ -19,14 +19,6 @@
                 <Setter.Value>
                     <ControlTemplate>
                         <Grid Cursor="Hand">
-                            <Border Background="#3b3b3d" CornerRadius="5">
-                                <TextBlock Text="&#xe613;" 
-                                           FontFamily="{DynamicResource Iconfont}" 
-                                           FontSize="35" 
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Foreground="#ffffff"/>
-                            </Border>
                             <Border CornerRadius="5">
                                 <Border.Background>
                                     <ImageBrush ImageSource="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=(local:OverwriteButton.ImageSource)}" />
@@ -66,13 +58,23 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <StackPanel x:Name="StackPanelContrainer" Orientation="Horizontal"  Visibility="Visible">
-        <Button Width="50" Height="50" 
+    <StackPanel x:Name="StackPanelContrainer" Orientation="Horizontal"  Visibility="Collapsed">
+        <Grid>
+            <Border Background="#3b3b3d" CornerRadius="5" Width="50" Height="50" Margin="10 0 0 0">
+                <TextBlock Text="&#xe613;" 
+                    FontFamily="{DynamicResource Iconfont}" 
+                    FontSize="35" 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Foreground="#ffffff"/>
+            </Border>
+            <Button x:Name="SongPic" Width="50" Height="50" 
                 BorderBrush="#f1f2f6" 
                 BorderThickness="2"
                 Margin="10 0 0 0"
-                local:OverwriteButton.ImageSource="{Binding picUrl}"
+                local:OverwriteButton.ImageSource="{Binding localPicUrl}"
                 Style="{DynamicResource MusicPictureStyle}"/>
+        </Grid>
         <StackPanel Margin="10 3 0 0" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <Button Style="{DynamicResource MusicNameButtonStyle}" 

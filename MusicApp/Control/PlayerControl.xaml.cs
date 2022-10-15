@@ -57,8 +57,7 @@ namespace MusicApp.Control
             this.playModel = model;
 
             //歌曲详情赋值
-            bean.songDetailControl.StackPanelContrainer.Visibility = Visibility.Visible;
-            bean.songDetailControl.DataContext = model;
+            bean.songDetailControl.SetSongDetail(model);
 
             //开始播放歌曲
             PlayMedia.Source = new Uri(model.songUrl);
