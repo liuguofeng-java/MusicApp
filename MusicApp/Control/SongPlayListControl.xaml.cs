@@ -81,6 +81,7 @@ namespace MusicApp.Control
                 SongPlayListModel model = songPlayList.Find(t => t.songId.Equals(idList[i]));
                 if (model != null)
                 {
+                    model.songUrl = playerModel.data[i].url;
                     list.Add(model);
                 }
                 else

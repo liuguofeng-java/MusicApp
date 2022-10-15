@@ -20,12 +20,17 @@ namespace MusicApp.Models.Vo
         public string songUrl { get; set; }
 
         /// <summary>
+        /// 本地下载后的mp3路径
+        /// </summary>
+        public string localSongUrl { get; set; }
+
+        /// <summary>
         /// 歌曲图片
         /// </summary>
         public string picUrl { get; set; }
 
         /// <summary>
-        /// 本地下载后的路径
+        /// 本地下载后歌曲名片的路径
         /// </summary>
         public string localPicUrl { get; set; }
 

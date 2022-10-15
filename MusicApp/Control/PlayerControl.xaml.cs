@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using System.Windows;
+using System.Threading;
+using System.IO;
 
 namespace MusicApp.Control
 {
@@ -60,7 +62,8 @@ namespace MusicApp.Control
             bean.songDetailControl.SetSongDetail(model);
 
             //开始播放歌曲
-            PlayMedia.Source = new Uri(model.songUrl);
+            GetSongUrl(model);
+            PlayMedia.Source = new Uri(model.localSongUrl);
             PlayMedia.Play();
 
             //PlayBut.Content = "\xe87c";
@@ -110,6 +113,34 @@ namespace MusicApp.Control
             {
                 PlayBut.Content = "\xe87c";
                 PlayMedia.Pause();
+            }
+        }
+
+
+        /// <summary>
+        /// 获取歌曲url
+        /// </summary>
+        /// <param name="model">播放歌曲信息</param>
+        /// <returns></returns>
+        private void GetSongUrl(SongPlayListModel model)
+        {
+
+            //保存本地文件的名
+            string fileName = model.songId + ".mp3";
+            string path = Directory.GetCurrentDirectory() + @"\cache\songs";
+
+            //存储图片
+            if (model.localSongUrl == null || StringUtil.UrlDiscern(model.localSongUrl) || !File.Exists(model.localSongUrl))
+            {
+                Directory.CreateDirectory(path);//文件夹没有就创建
+                string res = HttpUtil.HttpDownload(model.songUrl, path, fileName);
+                model.localSongUrl = res;
+            }
+
+            //如果保存失败
+            if (model.localSongUrl == null || !File.Exists(model.localSongUrl))
+            {
+                model.localSongUrl = null;
             }
         }
     }

@@ -70,3 +70,4 @@ C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.P
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.csproj.GenerateResource.cache
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\SongPlayListControl.g.cs
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\SongPlayListControl.baml
+C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.csproj.AssemblyReference.cache

@@ -33,7 +33,7 @@ namespace MusicApp.Control
         {
             StackPanelContrainer.Visibility = Visibility.Visible;
             SongPic.Visibility = Visibility.Collapsed;
-            new Thread(async () =>
+            new Thread(() =>
             {
                 //保存本地文件的名
                 string fileName = "localPicUrl" + model.songId + ".png";
@@ -43,7 +43,7 @@ namespace MusicApp.Control
                 if (model.localPicUrl == null || StringUtil.UrlDiscern(model.localPicUrl) || !File.Exists(model.localPicUrl))
                 {
                     Directory.CreateDirectory(path);//文件夹没有就创建
-                    string res = await HttpUtil.HttpDownload(model.picUrl, path, fileName);
+                    string res = HttpUtil.HttpDownload(model.picUrl, path, fileName);
                     model.localPicUrl = res;
                 }
 
