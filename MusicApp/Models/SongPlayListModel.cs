@@ -49,5 +49,10 @@ namespace MusicApp.Models.Vo
         /// </summary>
         public int songTime { get; set; }
 
+        /// <summary>
+        /// 格式化后音乐时长
+        /// </summary>
+        public string formatSongTime { get; set; }
+
     }
 }

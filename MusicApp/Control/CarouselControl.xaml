@@ -47,11 +47,11 @@
         <Grid MaxWidth="1000" Margin="20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="3.5*"/>
+                <ColumnDefinition Width="5*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Border Height="150" Width="550" CornerRadius="10" Background="#1f1f1f"/>
-            <Border Height="150" Width="550" CornerRadius="10">
+            <Border Height="150" Width="600" CornerRadius="10" Background="#1f1f1f"/>
+            <Border Height="150" Width="600" CornerRadius="10">
                 <Border.Background>
                     <ImageBrush x:Name="LeftImage" />
                 </Border.Background>
@@ -79,8 +79,8 @@
                     <TextBlock x:Name="CenterText" FontSize="13" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
             </Border>
-            <Border Height="150" Width="550" Grid.Column="2" CornerRadius="10" HorizontalAlignment="Right" Background="#1f1f1f"/>
-            <Border Height="150" Width="550" Grid.Column="2" CornerRadius="10" HorizontalAlignment="Right">
+            <Border Height="150" Width="600" Grid.Column="2" CornerRadius="10" HorizontalAlignment="Right" Background="#1f1f1f"/>
+            <Border Height="150" Width="600" Grid.Column="2" CornerRadius="10" HorizontalAlignment="Right">
                 <Border.Background>
                     <ImageBrush x:Name="RightImage"/>
                 </Border.Background>

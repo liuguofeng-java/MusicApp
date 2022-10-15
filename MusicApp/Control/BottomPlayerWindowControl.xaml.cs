@@ -1,5 +1,4 @@
-﻿using MusicApp.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -19,10 +18,33 @@ namespace MusicApp.Control
     /// </summary>
     public partial class BottomPlayerWindowControl : UserControl
     {
+        private ControlBean bean = ControlBean.getInstance();
 
         public BottomPlayerWindowControl()
         {
             InitializeComponent();
+
+
+            //点击主窗体关闭正在播放列表
+            bean.mainWindow.BaseBorder.MouseDown += (s, e) =>
+            {
+                var contrainer = bean.songPlayListControl.SongPlayListContrainer;
+                contrainer.Visibility = Visibility.Collapsed;
+            };
+
+            //点击列表按钮显示列表
+            PlayListBut.Click += (s, e) =>
+            {
+                var contrainer = bean.songPlayListControl.SongPlayListContrainer;
+                if (contrainer.Visibility == Visibility.Visible)
+                {
+                    contrainer.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    contrainer.Visibility = Visibility.Visible;
+                }
+            };
         }
     }
 }

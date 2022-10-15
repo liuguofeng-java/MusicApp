@@ -69,7 +69,7 @@
     <Compile Update="PageView\VideoPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Themes\NotifyIcon.xaml.cs">
+    <Compile Update="Control\NotifyIcon.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -143,7 +143,7 @@
     <Page Update="Themes\Common.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Themes\NotifyIcon.xaml">
+    <Page Update="Control\NotifyIcon.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Themes\ScrollViewDictionary.xaml">

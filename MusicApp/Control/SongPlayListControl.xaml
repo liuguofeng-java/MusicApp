@@ -5,42 +5,105 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MusicApp.Control"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="300">
+             d:DesignHeight="600" d:DesignWidth="420">
     <!--歌曲播放列表,主窗体右下方-->
     <UserControl.Resources>
-        <!--音量按钮-->
-        <Style x:Key="PlayListButtonStyle" TargetType="{x:Type Button}">
+        <!--给阴影留出边距-->
+        <Style x:Key="SongPlayBorderStyle" TargetType="{x:Type Border}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Value="Normal">
+                    <Setter Property="Margin" Value="0 70 10 85" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Value="Maximized">
+                    <Setter Property="Margin" Value="0 65 5 80" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <!--列表-->
+        <Style TargetType="{x:Type ListBoxItem}">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" Cursor="Hand">
-                            <TextBlock Text="{TemplateBinding Content}" FontFamily="{DynamicResource Iconfont}" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="border"  Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                 TextBlock.Foreground="{TemplateBinding Foreground}"/>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#f5f5f5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Popup x:Name="PlayListPopupContrainer" 
-               IsOpen="False"
-               StaysOpen="False" 
-               Placement="Top" 
-               Width="200" 
-               Height="170" 
-               HorizontalOffset="-10" 
-               VerticalOffset="30"
-               AllowsTransparency="True"
-               PlacementTarget="{Binding ElementName=PlayListBut}">
-            <ListBox x:Name="PlayListBox" Width="200" 
-               Height="170" >
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding songName}" Margin="10" Foreground="#333333" FontSize="15"/>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Popup>
-        <Button x:Name="PlayListBut" Content="&#xe67b;" Style="{DynamicResource PlayListButtonStyle}" Width="30" Height="30"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="420"/>
+        </Grid.ColumnDefinitions>
+        <Border Background="#ffffff" Grid.Column="1" Style="{DynamicResource SongPlayBorderStyle}" x:Name="SongPlayListContrainer">
+            <Border.Effect>
+                <DropShadowEffect Color="#c9d0d8" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="当前播放" Margin="20" FontSize="20" FontWeight="Bold" Foreground="#333333"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="总202首" Margin="20 0 0 0" Foreground="#d1d1d1"/>
+                    <TextBlock Text="&#xe6a9; 全部收藏" 
+                               Cursor="Hand"
+                               VerticalAlignment="Center"
+                               Margin="170 0 0 0" 
+                               FontSize="14" 
+                               Foreground="#333333" 
+                               FontFamily="{DynamicResource Iconfont}"/>
+                    <TextBlock Text="清空列表" 
+                               Cursor="Hand"
+                               VerticalAlignment="Center"
+                               Margin="20 0 0 0" 
+                               FontSize="14" 
+                               Foreground="#507daf"/>
+                </StackPanel>
+                <Border Background="#f2f2f2" Height="1.2" Margin="20 10 20 10" />
+                <!--列表-->
+                <ListBox x:Name="PlayListBox" Background="Transparent" BorderThickness="0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="20 10 0 10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding songName}"  
+                                           Foreground="#333333"
+                                           FontSize="12" 
+                                           Width="180"
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding author}"  
+                                           Foreground="#646464"
+                                           FontSize="12" 
+                                           Width="120"
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding formatSongTime}"  
+                                           Foreground="#d1d1d1"
+                                           FontSize="12" 
+                                           Width="50"
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center"/>
+                                </StackPanel>
+                                
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </StackPanel>
+
+            
+
+        </Border>
+
+
     </Grid>
 </UserControl>

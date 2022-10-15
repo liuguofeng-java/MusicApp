@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MusicApp.Themes
+namespace MusicApp.Control
 {
     /// <summary>
     /// 程序托盘菜单 的交互逻辑

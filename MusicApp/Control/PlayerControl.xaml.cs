@@ -70,15 +70,9 @@ namespace MusicApp.Control
             PlayBut.Content = "\xea81";//更新按钮图标
 
 
-            //计算歌曲时间
-            int second = model.songTime / 1000;//总秒数
-            int minute = second / 60;//分钟数
-            int remSecond = second - (minute * 60);//剩余秒数
 
-            MusicProgress.Maximum = second;//进度条数
-            EndProgress.Text = (minute.ToString().Length == 1 ? "0" + minute.ToString() : minute.ToString())
-                                      + ":" +
-                                     (remSecond.ToString().Length == 1 ? "0" + remSecond.ToString() : remSecond.ToString());//总时长
+            MusicProgress.Maximum = model.songTime / 1000; ;//进度条数
+            EndProgress.Text = model.formatSongTime;//总时长
 
             //开始计算
             timer = new DispatcherTimer();

@@ -8,18 +8,6 @@
              d:DesignHeight="200" d:DesignWidth="200">
     <!--调节程序音量按钮,点击按钮弹出调节音量进度条-->
     <UserControl.Resources>
-        <!--音量按钮-->
-        <Style x:Key="VolumeButtonStyle" TargetType="{x:Type Button}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" Cursor="Hand">
-                            <TextBlock Text="{TemplateBinding Content}" FontFamily="{DynamicResource Iconfont}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
         <!--声音进度条-->
         <Style x:Key="RepeatButtonTransparent" TargetType="{x:Type RepeatButton}">
             <Setter Property="Template">
@@ -99,6 +87,6 @@
                 <Border x:Name="VolumeBorder" Background="White" Height="30" Opacity="0.01" Cursor="Hand"/>
             </StackPanel>
         </Popup>
-        <Button x:Name="VolumeBut" Content="&#xe63c;" Style="{DynamicResource VolumeButtonStyle}" Width="30" Height="30"/>
+        <Button x:Name="VolumeBut" Content="&#xe63c;" Style="{DynamicResource DefaultButtonStyle}" FontSize="20" Width="30" Height="30"/>
     </Grid>
 </UserControl>

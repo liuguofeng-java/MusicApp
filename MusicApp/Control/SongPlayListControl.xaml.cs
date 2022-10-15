@@ -26,11 +26,7 @@ namespace MusicApp.Control
         {
             ControlBean.getInstance().songPlayListControl = this;
             InitializeComponent();
-
-            //点击列表按钮
-            PlayListBut.Click += (s, e) => {
-                PlayListPopupContrainer.IsOpen = true;
-            };
+            SongPlayListContrainer.Visibility = Visibility.Collapsed;
 
             //初始化列表
             PlayListBox.ItemsSource = bean.jsonData.songPlayList;
@@ -89,10 +85,17 @@ namespace MusicApp.Control
                     SongPlayListModel newModel = new SongPlayListModel();
                     newModel.songId = idList[i];
                     newModel.songUrl = playerModel.data[i].url;
-                    newModel.songTime = playerModel.data[i].time;
                     newModel.picUrl = detailModel.songs[i].al.picUrl;
                     newModel.songName = detailModel.songs[i].name;
                     newModel.author = detailModel.songs[i].ar[0].name;
+                    newModel.songTime = playerModel.data[i].time;
+                    //计算歌曲时间
+                    int second = newModel.songTime / 1000;//总秒数
+                    int minute = second / 60;//分钟数
+                    int remSecond = second - (minute * 60);//剩余秒数
+                    newModel.formatSongTime = (minute.ToString().Length == 1 ? "0" + minute.ToString() : minute.ToString())
+                                              + ":" +
+                                             (remSecond.ToString().Length == 1 ? "0" + remSecond.ToString() : remSecond.ToString());//总时长
                     list.Add(newModel);
                 }
                 

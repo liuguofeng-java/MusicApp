@@ -29,7 +29,7 @@
                 <!--右侧控制声音歌曲列表播放-->
                 <StackPanel Grid.Column="2" VerticalAlignment="Center" Orientation="Horizontal">
                     <local:VolumeControl Height="50" Width="50"/>
-                    <local:SongPlayListControl Height="50" Width="50"/>
+                    <Button x:Name="PlayListBut" Content="&#xe67b;" Style="{DynamicResource DefaultButtonStyle}" FontSize="14" Width="30" Height="30"/>
                 </StackPanel>
 
             </Grid>

@@ -3,9 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MusicApp"
-        xmlns:Control="clr-namespace:MusicApp.Control"
-        xmlns:Themes="clr-namespace:MusicApp.Themes"
+        xmlns:local="clr-namespace:MusicApp.Control"
         mc:Ignorable="d"
         Title="MainWindow" Height="690" Width="1043" 
         WindowStyle="None"
@@ -40,13 +38,13 @@
             </Border.Effect>
             <DockPanel>
                 <!--头部-->
-                <Control:HeadWindowControl x:Name="headWindow" DockPanel.Dock="Top"/>
+                <local:HeadWindowControl x:Name="headWindow" DockPanel.Dock="Top"/>
 
                 <!--底部-->
-                <Control:BottomPlayerWindowControl x:Name="bottomPlayerWindow" DockPanel.Dock="Bottom" Height="75"/>
+                <local:BottomPlayerWindowControl x:Name="bottomPlayerWindow" DockPanel.Dock="Bottom" Height="75"/>
 
                 <!--侧边-->
-                <Control:SideNavBarWindowControl x:Name="sideNavBarWindow" DockPanel.Dock="Left" Width="200" />
+                <local:SideNavBarWindowControl x:Name="sideNavBarWindow" DockPanel.Dock="Left" Width="200" />
 
                 <Border Background="White">
                     <ContentControl Content="{Binding Page}"/>
@@ -55,11 +53,14 @@
         </Border>
         
         <!--系统托盘-->
-        <Themes:NotifyIcon x:Name="notifyIcon" Grid.Column="1" />
+        <local:NotifyIcon x:Name="notifyIcon" Grid.Column="1" />
 
         <!--搜索列表,排行榜-->
-        <Control:SearchListControl />
-
+        <local:SearchListControl />
+        
+        <!--待播放的歌曲列表-->
+        <local:SongPlayListControl />
+        
 
     </Grid>
     
