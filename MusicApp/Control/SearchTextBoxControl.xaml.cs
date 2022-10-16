@@ -45,25 +45,23 @@ namespace MusicApp.Control
                 timer = new System.Timers.Timer(500);
                 timer.AutoReset = false;
                 timer.Elapsed += new ElapsedEventHandler((o, ex) => {
-                    //开启线程,防止卡顿主线程
-                    new Thread(() =>
+                    //text == "" 显示排行榜,否则显示搜索
+                    this.Dispatcher.Invoke(new Action(delegate
                     {
-                        this.Dispatcher.Invoke(new Action(delegate
+                        if (string.IsNullOrEmpty(text))
                         {
-                            //text == "" 显示排行榜,否则显示搜索
-                            if (string.IsNullOrEmpty(text))
-                            {
-                                control.SearchContrainer.Visibility = Visibility.Collapsed;
-                                control.RankingContrainer.Visibility = Visibility.Visible;
-                            }
-                            else
-                            {
-                                control.SearchContrainer.Visibility = Visibility.Visible;
-                                control.RankingContrainer.Visibility = Visibility.Collapsed;
-                            }
-                            control.GetSearchList(text);
-                        }));
-                    }).Start();
+                            control.SearchContrainer.Visibility = Visibility.Collapsed;
+                            control.RankingContrainer.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            control.SearchContrainer.Visibility = Visibility.Visible;
+                            control.RankingContrainer.Visibility = Visibility.Collapsed;
+                        }
+
+                    }));
+                        
+                    control.GetSearchList(text);
                     timer.Stop();//关闭延时器
 
                 });
@@ -91,8 +89,14 @@ namespace MusicApp.Control
         /// <param name="e"></param>
         private void InputScrollViewer_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            var control = ControlBean.getInstance().searchListControl;
+            //如果当前排行列表是空的,就重新获取
+            if (control.RankingListBox.Items.Count == 0)
+            {
+                control.GetRankingList();
+            }
             //点击输入框,显示搜索列表控件
-            ControlBean.getInstance().searchListControl.GridContrainer.Visibility = Visibility.Visible;
+            control.GridContrainer.Visibility = Visibility.Visible;
         }
     }
 }

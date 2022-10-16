@@ -1,4 +1,5 @@
 ﻿using MusicApp.Common;
+using MusicApp.Models;
 using MusicApp.Models.Vo;
 using Newtonsoft.Json;
 using System;
@@ -31,10 +32,14 @@ namespace MusicApp.Control
 
         public void SetSongDetail(SongPlayListModel model)
         {
-            StackPanelContrainer.Visibility = Visibility.Visible;
-            SongPic.Visibility = Visibility.Collapsed;
             new Thread(() =>
             {
+                this.Dispatcher.Invoke(new Action(delegate
+                {
+                    DataContext = model;
+                    StackPanelContrainer.Visibility = Visibility.Visible;
+                    SongPic.Visibility = Visibility.Collapsed;
+                }));
                 //保存本地文件的名
                 string fileName = "localPicUrl" + model.songId + ".png";
                 string path = Directory.GetCurrentDirectory() + @"\cache\images";
@@ -44,26 +49,14 @@ namespace MusicApp.Control
                 {
                     Directory.CreateDirectory(path);//文件夹没有就创建
                     string res = HttpUtil.HttpDownload(model.picUrl, path, fileName);
+                    if (res == null) return;
                     model.localPicUrl = res;
                 }
+                InitJsonData.WriteJsonFile();//手动更新缓存
 
-                //如果保存失败
-                if (model.localPicUrl == null)
-                {
-                    model.localPicUrl = model.picUrl;
-                }
-                else//保存成功
-                {
-                    //是否存在,有可能被清理
-                    if (!File.Exists(model.localPicUrl))
-                    {
-                        model.localPicUrl = model.picUrl;
-                    }
-                }
                 //赋值
                 this.Dispatcher.Invoke(new Action(delegate
                 {
-                    DataContext = model;
                     SongPic.Visibility = Visibility.Visible;
                 }));
 

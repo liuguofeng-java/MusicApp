@@ -17,7 +17,7 @@ namespace MusicApp.Common
         /// </summary>
         /// <param name="url">下载路径</param>
         /// <param name="timeout">超时时间</param>
-        public static string HttpDownload(String url, String path, String fileName, int timeout = 5000)
+        public static string HttpDownload(String url, String path, String fileName, int timeout = 10000)
         {
             try
             {

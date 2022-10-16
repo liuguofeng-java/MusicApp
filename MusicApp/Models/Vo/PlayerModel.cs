@@ -104,7 +104,7 @@ namespace MusicApp.Models.Vo
         /// <summary>
         /// 
         /// </summary>
-        public string freeTrialInfo { get; set; }
+        public FreeTrialInfo freeTrialInfo { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -141,6 +141,16 @@ namespace MusicApp.Models.Vo
         /// 
         /// </summary>
         public int time { get; set; }
+    }
+
+    public class FreeTrialInfo
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public int start { get; set; }
+        public int end { get; set; }
+         
     }
 
     public class PlayerModel

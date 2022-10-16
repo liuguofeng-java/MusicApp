@@ -30,6 +30,12 @@
                                                  TextBlock.Foreground="{TemplateBinding Foreground}"/>
                         </Border>
                         <ControlTemplate.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                <Setter TargetName="border" Property="Background" Value="#ffffff"/>
+                            </Trigger>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                <Setter TargetName="border" Property="Background" Value="#fafafa"/>
+                            </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Background" TargetName="border" Value="#f5f5f5"/>
                             </Trigger>
@@ -48,9 +54,15 @@
             <Border.Effect>
                 <DropShadowEffect Color="#c9d0d8" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
             </Border.Effect>
-            <StackPanel>
-                <TextBlock Text="当前播放" Margin="20" FontSize="20" FontWeight="Bold" Foreground="#333333"/>
-                <StackPanel Orientation="Horizontal">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="22"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="当前播放" Margin="20" FontSize="20" FontWeight="Bold" Foreground="#333333" Grid.Row="0"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <TextBlock Text="总202首" Margin="20 0 0 0" Foreground="#d1d1d1"/>
                     <TextBlock Text="&#xe6a9; 全部收藏" 
                                Cursor="Hand"
@@ -66,39 +78,40 @@
                                FontSize="14" 
                                Foreground="#507daf"/>
                 </StackPanel>
-                <Border Background="#f2f2f2" Height="1.2" Margin="20 10 20 10" />
+                <Border Background="#f2f2f2" Height="1.2" Margin="20 10 20 10" Grid.Row="2" />
                 <!--列表-->
-                <ListBox x:Name="PlayListBox" Background="Transparent" BorderThickness="0">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Border Margin="20 10 0 10">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding songName}"  
-                                           Foreground="#333333"
-                                           FontSize="12" 
-                                           Width="180"
-                                           HorizontalAlignment="Center" 
-                                           VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Binding author}"  
-                                           Foreground="#646464"
-                                           FontSize="12" 
-                                           Width="120"
-                                           HorizontalAlignment="Center" 
-                                           VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Binding formatSongTime}"  
-                                           Foreground="#d1d1d1"
-                                           FontSize="12" 
-                                           Width="50"
-                                           HorizontalAlignment="Center" 
-                                           VerticalAlignment="Center"/>
-                                </StackPanel>
-                                
-                            </Border>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                <ScrollViewer Template="{StaticResource MyScrollViewer}" VerticalScrollBarVisibility="Auto" Grid.Row="3">
+                    <ListBox x:Name="PlayListBox" Background="Transparent" BorderThickness="0" AlternationCount="2">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="20 10 0 10">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding songName}"  
+                                        Foreground="#333333"
+                                        FontSize="12" 
+                                        Width="180"
+                                        HorizontalAlignment="Center" 
+                                        VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding author}"  
+                                        Foreground="#646464"
+                                        FontSize="12" 
+                                        Width="120"
+                                        HorizontalAlignment="Center" 
+                                        VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding formatSongTime}"  
+                                        Foreground="#d1d1d1"
+                                        FontSize="12" 
+                                        Width="50"
+                                        HorizontalAlignment="Center" 
+                                        VerticalAlignment="Center"/>
+                                    </StackPanel>
 
-            </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+            </Grid>
 
             
 

@@ -273,7 +273,7 @@ namespace MusicApp.Models.Vo
         /// <summary>
         /// 
         /// </summary>
-        public string originSongSimpleData { get; set; }
+        public object originSongSimpleData { get; set; }
         /// <summary>
         /// 
         /// </summary>

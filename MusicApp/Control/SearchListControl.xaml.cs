@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,6 +23,7 @@ namespace MusicApp.Control
     /// </summary>
     public partial class SearchListControl : UserControl
     {
+        private ControlBean bean = ControlBean.getInstance();
         public SearchListControl()
         {
             ControlBean.getInstance().searchListControl = this;
@@ -48,6 +50,21 @@ namespace MusicApp.Control
 
             //获取排行
             GetRankingList();
+
+            //点击歌曲时触发
+            SingleListBox.SelectionChanged += (s, e) =>
+            {
+                var obj  = SingleListBox.Items[SingleListBox.SelectedIndex];
+
+                if (obj == null) return;
+
+                SearchSongsItem item = (SearchSongsItem)obj;
+                List<string> idList = new List<string>();
+                idList.Add(item.id.ToString());
+                bean.songPlayListControl.GetSongPlayList(idList);
+                GridContrainer.Visibility = Visibility.Collapsed;
+
+            };
         }
 
         /// <summary>
@@ -77,42 +94,50 @@ namespace MusicApp.Control
         /// <param name="keyword">搜索内容</param>
         public void GetSearchList(string keyword)
         {
-            if (string.IsNullOrEmpty(keyword)) return; 
-            //接收数据
-            string result = HttpUtil.HttpRequset(HttpUtil.serveUrl + "/search/suggest?keywords=" + keyword);
-            if (result == null)
+            new Thread(() =>
             {
-                return;
-            }
-            SearchDataModel data = JsonConvert.DeserializeObject<SearchDataModel>(result);
+                if (string.IsNullOrEmpty(keyword)) return;
+                //接收数据
+                string result = HttpUtil.HttpRequset(HttpUtil.serveUrl + "/search/suggest?keywords=" + keyword);
+                if (result == null)
+                {
+                    return;
+                }
+                SearchDataModel data = JsonConvert.DeserializeObject<SearchDataModel>(result);
 
-            //都是空不更新数据
-            if (data.result.songs == null && 
-                data.result.artists == null && 
-                data.result.albums == null && 
-                data.result.playlists == null)
-            {
-                return;
-            }
+                //都是空不更新数据
+                if (data.result.songs == null &&
+                    data.result.artists == null &&
+                    data.result.albums == null &&
+                    data.result.playlists == null)
+                {
+                    return;
+                }
 
-            //单曲数据
-            SingleListBox.ItemsSource = data.result.songs;
-            if (data.result.songs == null) SingleText.Visibility = Visibility.Collapsed;
-            ListBox listbox = SingleListBox;
+                //更新数据
+                this.Dispatcher.Invoke(new Action(delegate
+                {
+                    //单曲数据
+                    SingleListBox.ItemsSource = data.result.songs;
+                    if (data.result.songs == null) SingleText.Visibility = Visibility.Collapsed;
+                    ListBox listbox = SingleListBox;
 
-            //歌手
-            ArtistsListBox.ItemsSource = data.result.artists;
-            if (data.result.artists == null) ArtistsText.Visibility = Visibility.Collapsed;
-
-
-            //专辑
-            AlbumListBox.ItemsSource = data.result.albums;
-            if (data.result.albums == null) AlbumText.Visibility = Visibility.Collapsed;
+                    //歌手
+                    ArtistsListBox.ItemsSource = data.result.artists;
+                    if (data.result.artists == null) ArtistsText.Visibility = Visibility.Collapsed;
 
 
-            //歌单
-            SongsListBox.ItemsSource = data.result.playlists;
-            if (data.result.playlists == null) SongsText.Visibility = Visibility.Collapsed;
+                    //专辑
+                    AlbumListBox.ItemsSource = data.result.albums;
+                    if (data.result.albums == null) AlbumText.Visibility = Visibility.Collapsed;
+
+
+                    //歌单
+                    SongsListBox.ItemsSource = data.result.playlists;
+                    if (data.result.playlists == null) SongsText.Visibility = Visibility.Collapsed;
+                }));
+
+            }).Start();
         }
 
         /// <summary>
