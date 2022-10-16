@@ -2,18 +2,54 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 
-    <!--主要颜色-->
+    <!--主要-->
     <SolidColorBrush x:Key="MainBackColor" Color="#ec4141"/>
+    <SolidColorBrush x:Key="MinAuxBackColor" Color="#ffffff"/>
+    <SolidColorBrush x:Key="MainTextColor" Color="#353536"/>
+    <SolidColorBrush x:Key="MainPopupBackColor" Color="#ffffff"/>
+    <SolidColorBrush x:Key="MainLineBackColor" Color="#ff4e4e"/>
+    <SolidColorBrush x:Key="MainOverBackColor" Color="#000000"/>
+    <SolidColorBrush x:Key="MainScrollViewColor" Color="#e0e0e0"/>
 
-    <!--头部 headwindowcontrol-->
-    <SolidColorBrush x:Key="HeadForeColor" Color="#fbd9d9"/>
-    <SolidColorBrush x:Key="HeadFocusForeColor" Color="#ffffff"/>
-    <SolidColorBrush x:Key="HeadButBackColor" Color="#da3c3c"/>
-    <SolidColorBrush x:Key="HeadButDisableColor" Color="#e26c6c"/>
+    <!--头部-->
+    <SolidColorBrush x:Key="HeadForeColor" Color="#fad8d8"/>
+    <SolidColorBrush x:Key="HeadButBackColor" Color="#e33e3e"/>
+    <SolidColorBrush x:Key="HeadButDisableColor" Color="#e36b6b"/>
+
+    <!--侧边栏-->
+    <SolidColorBrush x:Key="SideFocusColor" Color="#f6f6f7"/>
+    <SolidColorBrush x:Key="SideOverColor" Color="#f6f6f7"/>
+    <SolidColorBrush x:Key="SideBorderColor" Color="#e0e0e0"/>
 
 
-    <!--选择主题面板颜色-themecolorcontrol-->
-    <SolidColorBrush x:Key="ThemeColorBackColor" Color="#ffffff"/>
+    <!--底部-->
+    <SolidColorBrush x:Key="BottomBackColor" Color="#ffffff"/>
+    <SolidColorBrush x:Key="BottomBorderColor" Color="#e0e0e0"/>
+    <SolidColorBrush x:Key="BottomTextColor" Color="#b6b6b6"/>
+    <SolidColorBrush x:Key="BottomButBackColor" Color="#ffffff"/>
+    <SolidColorBrush x:Key="BottomButTextColor" Color="#333333"/>
+    <SolidColorBrush x:Key="BottomButOverColor" Color="#f06767"/>
+    <SolidColorBrush x:Key="BottomMainButBackColor" Color="#e5e5e5"/>
+    <SolidColorBrush x:Key="BottomVolumeBackColor" Color="#ffffff"/>
+
+    <!--选择主题面板-->
+    <SolidColorBrush x:Key="ThemeColorText" Color="#333333"/>
+    <SolidColorBrush x:Key="ThemeColorTag" Color="#ec4141"/>
+
+    <!--当前播放列表-->
+    <SolidColorBrush x:Key="PlayListTextColor" Color="#333333"/>
+    <SolidColorBrush x:Key="PlayListAuxTextColor" Color="#cccccc"/>
+    <SolidColorBrush x:Key="PlayListBoxBackColor" Color="#fafafa"/>
+    <SolidColorBrush x:Key="PlayListBoxOverBackColor" Color="#f5f5f5"/>
+    <SolidColorBrush x:Key="PlayListBoxAuthorTextColor" Color="#646464"/>
+
+
+    <!--搜索框弹窗列表-->
+    <SolidColorBrush x:Key="SearchListAuxTextColor" Color="#666666"/>
+    <SolidColorBrush x:Key="SearchListTextColor" Color="#333333"/>
+    <SolidColorBrush x:Key="SearchListNumTextColor" Color="#d6d6d6"/>
+    <SolidColorBrush x:Key="SearchListBoxOverColor" Color="#f2f2f2"/>
+
 
 
 

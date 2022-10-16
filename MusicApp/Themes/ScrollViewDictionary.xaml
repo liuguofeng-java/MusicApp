@@ -34,11 +34,11 @@
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type Thumb}">
           <!--滚动条颜色和圆角设置-->
-          <Rectangle Name="thumbRect" Fill="#4e4e4e" RadiusX="3" RadiusY="3"/>
+            <Rectangle Name="thumbRect" Fill="{DynamicResource MainScrollViewColor}" RadiusX="3" RadiusY="3"/>
           <!--鼠标拉动滚动条时的颜色-->
           <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Fill" Value="#535353" TargetName="thumbRect" />
+                <Setter Property="Fill" Value="{DynamicResource MainScrollViewColor}" TargetName="thumbRect" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>

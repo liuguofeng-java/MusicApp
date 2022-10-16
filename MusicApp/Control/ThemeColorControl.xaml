@@ -39,13 +39,13 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TabItem}">
                         <StackPanel Margin="20 10 0 0" Cursor="Hand">
-                            <TextBlock x:Name="text" Text="{TemplateBinding Header}" FontSize="15"/>
+                            <TextBlock x:Name="text" Text="{TemplateBinding Header}" FontSize="15" Foreground="{DynamicResource ThemeColorText}"/>
                             <Border x:Name="border" Background="Transparent" Width="25" Height="1.5" Margin="0 5 0 0"/>
                         </StackPanel>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter Property="FontWeight" TargetName="text" Value="Bold"/>
-                                <Setter Property="Background" TargetName="border" Value="{DynamicResource MainBackColor}"/>
+                                <Setter Property="Background" TargetName="border" Value="{DynamicResource ThemeColorTag}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -67,7 +67,7 @@
                                 VerticalAlignment="Bottom" 
                                 HorizontalAlignment="Right" 
                                 CornerRadius="50"
-                                Background="{DynamicResource ThemeColorBackColor}"
+                                Background="{DynamicResource MainPopupBackColor}"
                                 Width="25" 
                                 Height="25" >
                                 <Border.RenderTransform>
@@ -77,7 +77,7 @@
                                     VerticalAlignment="Center" 
                                     HorizontalAlignment="Center"    
                                     Text="&#xe64d;" 
-                                    Foreground="{DynamicResource MainBackColor}"
+                                    Foreground="{DynamicResource ThemeColorTag}"
                                     FontSize="20"
                                     FontFamily="{DynamicResource Iconfont}" />
                             </Border>
@@ -104,9 +104,9 @@
                 HorizontalOffset="100"
                 VerticalOffset="25"
                 AllowsTransparency="True">
-            <Border Background="White" CornerRadius="5" Width="330" Height="270" >
+            <Border Background="{DynamicResource MainPopupBackColor}" CornerRadius="5" Width="330" Height="270" >
                 <Border.Effect>
-                    <DropShadowEffect  Color="#f2f2f2" ShadowDepth="0" BlurRadius="10" Opacity="1" Direction="0"/>
+                    <DropShadowEffect  Color="#252525" ShadowDepth="0" BlurRadius="10" Opacity="1" Direction="0"/>
                 </Border.Effect>
                 <TabControl Style="{DynamicResource TabControlStyle}">
                     <TabItem Style="{DynamicResource TabItemStyle}" Header="主题">
@@ -137,7 +137,7 @@
                         </WrapPanel>
                     </TabItem>
                     <TabItem Style="{DynamicResource TabItemStyle}" Header="纯色">
-                        <Border Background="White"></Border>
+                        <Border></Border>
                     </TabItem>
                 </TabControl>
             </Border>

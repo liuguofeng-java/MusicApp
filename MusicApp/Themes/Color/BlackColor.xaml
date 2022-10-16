@@ -4,13 +4,52 @@
 
     <!--主要-->
     <SolidColorBrush x:Key="MainBackColor" Color="#212124"/>
-    
+    <SolidColorBrush x:Key="MinAuxBackColor" Color="#2b2b2b"/>
+    <SolidColorBrush x:Key="MainTextColor" Color="#d2d2d2"/>
+    <SolidColorBrush x:Key="MainPopupBackColor" Color="#363636"/>
+    <SolidColorBrush x:Key="MainLineBackColor" Color="#ff0000"/>
+    <SolidColorBrush x:Key="MainOverBackColor" Color="#ffffff"/>
+    <SolidColorBrush x:Key="MainScrollViewColor" Color="#535353"/>
+
+
     <!--头部-->
     <SolidColorBrush x:Key="HeadForeColor" Color="#adafb2"/>
-    <SolidColorBrush x:Key="HeadFocusForeColor" Color="#ffffff"/>
     <SolidColorBrush x:Key="HeadButBackColor" Color="#2b2b2e"/>
     <SolidColorBrush x:Key="HeadButDisableColor" Color="#646466"/>
 
+    <!--侧边栏-->
+    <SolidColorBrush x:Key="SideFocusColor" Color="#333333"/>
+    <SolidColorBrush x:Key="SideOverColor" Color="#333333"/>
+    <SolidColorBrush x:Key="SideBorderColor" Color="#2f2f32"/>
+
+
+    <!--底部-->
+    <SolidColorBrush x:Key="BottomBackColor" Color="#222225"/>
+    <SolidColorBrush x:Key="BottomBorderColor" Color="#2f2f32"/>
+    <SolidColorBrush x:Key="BottomTextColor" Color="#616163"/>
+    <SolidColorBrush x:Key="BottomButBackColor" Color="#222225"/>
+    <SolidColorBrush x:Key="BottomButTextColor" Color="#d4d4d5"/>
+    <SolidColorBrush x:Key="BottomButOverColor" Color="#c33a3b"/>
+    <SolidColorBrush x:Key="BottomMainButBackColor" Color="#2b2b2e"/>
+    <SolidColorBrush x:Key="BottomVolumeBackColor" Color="#252525"/>
+
+    <!--选择主题面板-->
+    <SolidColorBrush x:Key="ThemeColorText" Color="#d6d6d6"/>
+    <SolidColorBrush x:Key="ThemeColorTag" Color="#ec4141"/>
+
+    <!--当前播放列表-->
+    <SolidColorBrush x:Key="PlayListTextColor" Color="#d6d6d6"/>
+    <SolidColorBrush x:Key="PlayListAuxTextColor" Color="#5b5b5b"/>
+    <SolidColorBrush x:Key="PlayListBoxBackColor" Color="#393939"/>
+    <SolidColorBrush x:Key="PlayListBoxOverBackColor" Color="#3d3d3d"/>
+    <SolidColorBrush x:Key="PlayListBoxAuthorTextColor" Color="#8d8d8d"/>
+
+    
+    <!--搜索框弹窗列表-->
+    <SolidColorBrush x:Key="SearchListAuxTextColor" Color="#8c8c8c"/>
+    <SolidColorBrush x:Key="SearchListTextColor" Color="#ffffff"/>
+    <SolidColorBrush x:Key="SearchListNumTextColor" Color="#5d5d5d"/>
+    <SolidColorBrush x:Key="SearchListBoxOverColor" Color="#333333"/>
 
 
 </ResourceDictionary>

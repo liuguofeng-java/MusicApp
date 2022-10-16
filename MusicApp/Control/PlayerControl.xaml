@@ -32,7 +32,7 @@
                         <RepeatButton Name="RepeatButton1" Height="3" Command="{x:Static Slider.DecreaseLarge}" Background="{TemplateBinding Background}" Style="{StaticResource RepeatButtonTransparent}"/>
                     </Track.DecreaseRepeatButton>
                     <Track.IncreaseRepeatButton>
-                        <RepeatButton Name="RepeatButton2" Height="3" Command="{x:Static Slider.IncreaseLarge}" Background="#e5e5e5" Style="{StaticResource RepeatButtonTransparent}"/>
+                        <RepeatButton Name="RepeatButton2" Height="3" Command="{x:Static Slider.IncreaseLarge}" Background="{DynamicResource BottomMainButBackColor}" Style="{StaticResource RepeatButtonTransparent}"/>
                     </Track.IncreaseRepeatButton>
                     <Track.Thumb>
                         <Thumb x:Name="Thumb" 
@@ -82,7 +82,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Foreground" TargetName="text" Value="red"/>
+                                <Setter Property="Foreground" TargetName="text" Value="{DynamicResource BottomButOverColor}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -97,56 +97,56 @@
             <Button Style="{DynamicResource ControlMusicButtonStyle}" 
                                 Margin="15 0"
                                 Content="&#xe802;" 
-                                Background="White" 
+                                Background="{DynamicResource BottomButBackColor}" 
                                 Width="20" 
                                 Height="20"
-                                Foreground="#313131"/>
+                                Foreground="{DynamicResource BottomButTextColor}"/>
             <!--上一首-->
             <Button x:Name="LastSong" Style="{DynamicResource ControlMusicButtonStyle}" 
                                 Margin="15 0"
                                 Content="&#xe609;" 
-                                Background="White" 
+                                Background="{DynamicResource BottomButBackColor}" 
                                 Width="20" 
                                 Height="20"
-                                Foreground="#313131"/>
+                                Foreground="{DynamicResource BottomButTextColor}"/>
             <!--继续或暂停-->
             <Button x:Name="PlayBut" Click="PlayBut_Click" Style="{DynamicResource ControlMusicButtonStyle}" 
                                 Margin="15 0"
                                 Content="&#xe87c;" 
-                                Background="#f5f5f5" 
+                                Background="{DynamicResource BottomMainButBackColor}" 
                                 Width="35" 
                                 Height="35"
                                 FontSize="15"
-                                Foreground="#313131"/>
+                                Foreground="{DynamicResource BottomButTextColor}"/>
             <!--下一首-->
             <Button x:Name="NextSong" Style="{DynamicResource ControlMusicButtonStyle}" 
                                 Content="&#xe60b;" 
                                 Margin="15 0"
-                                Background="White" 
+                                Background="{DynamicResource BottomButBackColor}" 
                                 Width="20" 
                                 Height="20"
-                                Foreground="#313131"/>
+                                Foreground="{DynamicResource BottomButTextColor}"/>
             <!--词-->
             <Button Style="{DynamicResource ControlMusicButtonStyle}" 
                                 Margin="15 0"
                                 Content="词" 
-                                Background="White" 
+                                Background="{DynamicResource BottomButBackColor}" 
                                 Width="20" 
                                 Height="20"
-                                Foreground="#313131"/>
+                                Foreground="{DynamicResource BottomButTextColor}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" >
-            <TextBlock x:Name="StartProgress" Text="00:00" FontSize="12" Foreground="#999999" Margin="0 0 10 0"/>
+            <TextBlock x:Name="StartProgress" Text="00:00" FontSize="12" Foreground="{DynamicResource BottomTextColor}" Margin="0 0 10 0"/>
             <Slider 
                     x:Name="MusicProgress"
                     Style="{DynamicResource MusicSliderStyle}" 
                     Minimum="0" 
                     Width="350" 
                     IsMoveToPointEnabled="True"
-                    Background="red" 
+                    Background="{DynamicResource MainLineBackColor}" 
                     Cursor="Hand"/>
 
-            <TextBlock x:Name="EndProgress" Text="00:00" FontSize="12" Foreground="#999999" Margin="10 0 0 0"/>
+            <TextBlock x:Name="EndProgress" Text="00:00" FontSize="12" Foreground="{DynamicResource BottomTextColor}" Margin="10 0 0 0"/>
         </StackPanel>
         <MediaElement Name="PlayMedia" Visibility="Hidden" LoadedBehavior="Manual"/>
     </StackPanel>

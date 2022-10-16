@@ -23,7 +23,7 @@
                             <Border x:Name="radioBorder" CornerRadius="3" Cursor="Hand">
                                 <TextBlock 
                                     x:Name="radioText"
-                                    Foreground="#000000"
+                                    Foreground="{DynamicResource MainTextColor}"
                                     Text="{TemplateBinding Content}"
                                     Margin="10 0 0 0"
                                     HorizontalAlignment="Left" 
@@ -32,10 +32,11 @@
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="radioBorder" Value="#f1f2f6"/>
+                                <Setter Property="Background" TargetName="radioBorder" Value="{DynamicResource SideOverColor}"/>
+                                <Setter Property="Foreground" TargetName="radioText" Value="{DynamicResource MainOverBackColor}"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter Property="Background" TargetName="radioBorder" Value="#f1f2f6"/>
+                                <Setter Property="Background" TargetName="radioBorder" Value="{DynamicResource SideFocusColor}"/>
                                 <Setter Property="FontWeight" TargetName="radioText" Value="Black"/>
                                 <Setter Property="FontSize" TargetName="radioText" Value="17"/>
                             </Trigger>
@@ -61,6 +62,7 @@
                                     x:Name="radioText"
                                     Text="{TemplateBinding Content}"
                                     FontFamily="{DynamicResource Iconfont}"
+                                    Foreground="{DynamicResource MainTextColor}"
                                     Margin="10 0 0 0"
                                     HorizontalAlignment="Left" 
                                     VerticalAlignment="Center"/>
@@ -68,10 +70,11 @@
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="radioBorder" Value="#f1f2f6"/>
+                                <Setter Property="Background" TargetName="radioBorder" Value="{DynamicResource SideOverColor}"/>
+                                <Setter Property="Foreground" TargetName="radioText" Value="{DynamicResource MainOverBackColor}"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter Property="Background" TargetName="radioBorder" Value="#f1f2f6"/>
+                                <Setter Property="Background" TargetName="radioBorder" Value="{DynamicResource SideFocusColor}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -83,9 +86,9 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="1"/>
         </Grid.ColumnDefinitions>
-        <Border Background="White">
+        <Border Background="{DynamicResource MinAuxBackColor}">
             <StackPanel Margin="10 10 2 0" x:Name="radioButs">
                 <RadioButton Style="{DynamicResource ListButtonStyle1}" Content="发现音乐" GroupName="menus" 
                              Command="{Binding MenusCommand}" CommandParameter="FoundMusicPage" IsChecked="True"/>
@@ -109,7 +112,7 @@
 
             </StackPanel>
         </Border>
-        <Border Background="#f1f2f6" Grid.Column="1" />
+        <Border Background="{DynamicResource SideBorderColor}" Width="1" Grid.Column="1" />
         
 
     </Grid>

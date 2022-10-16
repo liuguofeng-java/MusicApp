@@ -24,14 +24,16 @@
                                     <ImageBrush ImageSource="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=(local:OverwriteButton.ImageSource)}" />
                                 </Border.Background>
                             </Border>
-                            <Border Name="border" Background="#dfe4ea" Opacity="0.3"/>
+                            <Border Name="border" Background="#dfe4ea" BorderBrush="{x:Null}" BorderThickness="1" RenderTransformOrigin="0.5,0.5" Opacity="0.3">
+                            </Border>
                             <TextBlock Name="text" 
                                        FontSize="20"
-                                       Foreground="#adbcc2"
+                                       Foreground="{DynamicResource BottomButTextColor}"
                                        FontFamily="{DynamicResource Iconfont}"
                                        VerticalAlignment="Center" 
                                        HorizontalAlignment="Center"
                                        Text="&#xe634;" />
+                            
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="False">
@@ -48,7 +50,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <TextBlock Text="{TemplateBinding Content}" FontSize="15" Foreground="#333333"/>
+                        <TextBlock Text="{TemplateBinding Content}" FontSize="15" Foreground="{DynamicResource BottomButTextColor}"/>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
                             </Trigger>
@@ -60,16 +62,16 @@
     </UserControl.Resources>
     <StackPanel x:Name="StackPanelContrainer" Orientation="Horizontal"  Visibility="Collapsed">
         <Grid>
-            <Border Background="#3b3b3d" CornerRadius="5" Width="50" Height="50" Margin="10 0 0 0">
+            <Border Background="{DynamicResource BottomBackColor}" CornerRadius="5" Width="50" Height="50" Margin="10 0 0 0">
                 <TextBlock Text="&#xe613;" 
                     FontFamily="{DynamicResource Iconfont}" 
                     FontSize="35" 
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Foreground="#ffffff"/>
+                    Foreground="{DynamicResource BottomButTextColor}"/>
             </Border>
             <Button x:Name="SongPic" Width="50" Height="50" 
-                BorderBrush="#f1f2f6" 
+                BorderBrush="{DynamicResource BottomButTextColor}" 
                 BorderThickness="2"
                 Margin="10 0 0 0"
                 local:OverwriteButton.ImageSource="{Binding localPicUrl}"
@@ -83,6 +85,7 @@
                 <TextBlock Cursor="Hand"
                             Margin="5 2 0 0"
                             FontFamily="{DynamicResource Iconfont}" 
+                            Foreground="{DynamicResource BottomButTextColor}"
                             FontSize="18" 
                             Text="&#xe682;"
                             HorizontalAlignment="Center"/>
@@ -92,7 +95,7 @@
                     <ControlTemplate>
                         <TextBlock FontSize="13"
                                     Margin="0 5 0 0"
-                                    Foreground="#333333" 
+                                    Foreground="{DynamicResource BottomButTextColor}" 
                                     FontWeight="Light"
                                     Text="{Binding author}" />
                     </ControlTemplate>

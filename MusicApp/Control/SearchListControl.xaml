@@ -17,13 +17,13 @@
                             <Border x:Name="border" 
                                 MouseDown="historyBut_MouseDown"
                                 Padding="15 5"
-                                BorderThickness="0.5" 
-                                BorderBrush="#535353" 
+                                BorderThickness="0.2" 
+                                BorderBrush="{DynamicResource SearchListTextColor}" 
                                 Background="Transparent"
                                 CornerRadius="13"
                                 SnapsToDevicePixels="true">
                                 <TextBlock Text="{TemplateBinding Content}" 
-                                        Foreground="#bcbcbc"
+                                        Foreground="{DynamicResource SearchListTextColor}"
                                         HorizontalAlignment="Center" 
                                         VerticalAlignment="Center"/>
                             </Border>
@@ -33,6 +33,7 @@
                                     Visibility="Collapsed"
                                     Margin="0 0 3 0"
                                     MouseDown="closeText_MouseDown"
+                                    Foreground="{DynamicResource SearchListTextColor}"
                                     FontFamily="{DynamicResource Iconfont}" 
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Center"/>
@@ -57,7 +58,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="#333333"/>
+                                <Setter Property="Background" TargetName="border" Value="{DynamicResource SearchListBoxOverColor}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -68,7 +69,7 @@
     <Grid x:Name="GridContrainer" Margin="250 73 0 0">
         <!--排行榜-->
         <StackPanel x:Name="RankingContrainer" HorizontalAlignment="Left">
-            <Border Background="#363636" Width="350" Height="510" CornerRadius="10">
+            <Border Background="{DynamicResource MainPopupBackColor}" Width="350" Height="510" CornerRadius="10">
                 <Border.Effect>
                     <DropShadowEffect Color="#1e1e1e" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
                 </Border.Effect>
@@ -77,14 +78,14 @@
                         <!--搜索记录文字-->
                         <StackPanel>
                             <StackPanel Margin="20 20 20 10" Orientation="Horizontal" Height="20" VerticalAlignment="Top" >
-                                <TextBlock Text="搜索历史" Foreground="#818181" 
+                                <TextBlock Text="搜索历史" Foreground="{DynamicResource SearchListAuxTextColor}" 
                                        FontSize="14"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"/>
                                 <Border Margin="10 0 0 0" Cursor="Hand">
                                     <TextBlock Text="&#xe611;"
                                            FontSize="14"
-                                           Foreground="#818181"
+                                           Foreground="{DynamicResource SearchListAuxTextColor}"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            FontFamily="{DynamicResource Iconfont}"/>
@@ -101,7 +102,7 @@
                                 <Button Style="{DynamicResource CacheButtonStyle}" Content="行行行" Margin="5 0 5 5"/>
                             </WrapPanel>
                             <!--热搜榜-->
-                            <TextBlock Text="热搜榜" Foreground="#818181" 
+                            <TextBlock Text="热搜榜" Foreground="{DynamicResource SearchListAuxTextColor}" 
                                        Margin="20 20 20 10"
                                        FontSize="14"
                                        HorizontalAlignment="Left"
@@ -117,13 +118,13 @@
                                                     <TextBlock Text="{Binding searchWord}" 
                                                        FontSize="14"
                                                        FontWeight="Bold"
-                                                       Foreground="White" 
+                                                       Foreground="{DynamicResource SearchListTextColor}" 
                                                        Margin="0 0 10 0"/>
                                                     <TextBlock Text="{Binding score}" 
-                                                           Foreground="#595959"
+                                                           Foreground="{DynamicResource SearchListNumTextColor}"
                                                            VerticalAlignment="Bottom"/>
                                                 </StackPanel>
-                                                <TextBlock TextTrimming="CharacterEllipsis" Width="280" ToolTip="{Binding content}" Text="{Binding content}" Foreground="#727272"/>
+                                                <TextBlock TextTrimming="CharacterEllipsis" Width="280" ToolTip="{Binding content}" Text="{Binding content}" Foreground="{DynamicResource SearchListAuxTextColor}"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </DataTemplate>
@@ -137,7 +138,7 @@
 
         <!--搜索-->
         <StackPanel x:Name="SearchContrainer" HorizontalAlignment="Left" Visibility="Collapsed">
-            <Border Background="#363636" Width="350" Height="510" CornerRadius="10">
+            <Border Background="{DynamicResource MainPopupBackColor}" Width="350" Height="510" CornerRadius="10">
                 <Border.Effect>
                     <DropShadowEffect Color="#1e1e1e" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
                 </Border.Effect>
@@ -149,11 +150,11 @@
                                    FontSize="14" 
                                    Margin="20 10 15 10" 
                                    FontFamily="{DynamicResource Iconfont}" 
-                                   Foreground="#686868"/>
+                                   Foreground="{DynamicResource SearchListAuxTextColor}"/>
                         <ListBox x:Name="SingleListBox" Background="Transparent" BorderThickness="0">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding name}" FontSize="12" Margin="50 10 15 10" Foreground="White"/>
+                                    <TextBlock Text="{Binding name}" FontSize="12" Margin="50 10 15 10" Foreground="{DynamicResource SearchListTextColor}"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
@@ -163,11 +164,11 @@
                                    FontSize="14" 
                                    Margin="20 10 15 10" 
                                    FontFamily="{DynamicResource Iconfont}" 
-                                   Foreground="#686868"/>
+                                   Foreground="{DynamicResource SearchListAuxTextColor}"/>
                         <ListBox x:Name="ArtistsListBox" Background="Transparent" BorderThickness="0">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding name}" FontSize="12" Margin="50 10 15 10" Foreground="White"/>
+                                    <TextBlock Text="{Binding name}" FontSize="12" Margin="50 10 15 10" Foreground="{DynamicResource SearchListTextColor}"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
@@ -177,11 +178,11 @@
                                    FontSize="14" 
                                    Margin="20 10 15 10" 
                                    FontFamily="{DynamicResource Iconfont}" 
-                                   Foreground="#686868"/>
+                                   Foreground="{DynamicResource SearchListAuxTextColor}"/>
                         <ListBox x:Name="AlbumListBox" Background="Transparent" BorderThickness="0">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding name}" FontSize="12" Margin="50 10 15 10" Foreground="White"/>
+                                    <TextBlock Text="{Binding name}" FontSize="12" Margin="50 10 15 10" Foreground="{DynamicResource SearchListTextColor}"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
@@ -191,11 +192,11 @@
                                    FontSize="14" 
                                    Margin="20 10 15 10" 
                                    FontFamily="{DynamicResource Iconfont}" 
-                                   Foreground="#686868"/>
+                                   Foreground="{DynamicResource SearchListAuxTextColor}"/>
                         <ListBox x:Name="SongsListBox" Background="Transparent" BorderThickness="0">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding name}" FontSize="12" Margin="50 10 15 10" Foreground="White"/>
+                                    <TextBlock Text="{Binding name}" FontSize="12" Margin="50 10 15 10" Foreground="{DynamicResource SearchListTextColor}"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>

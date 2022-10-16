@@ -31,13 +31,13 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                                <Setter TargetName="border" Property="Background" Value="#ffffff"/>
+                                <Setter TargetName="border" Property="Background" Value="{DynamicResource MainPopupBackColor}"/>
                             </Trigger>
                             <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-                                <Setter TargetName="border" Property="Background" Value="#fafafa"/>
+                                <Setter TargetName="border" Property="Background" Value="{DynamicResource PlayListBoxBackColor}"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="#f5f5f5"/>
+                                <Setter Property="Background" TargetName="border" Value="{DynamicResource PlayListBoxOverBackColor}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -50,9 +50,9 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="420"/>
         </Grid.ColumnDefinitions>
-        <Border Background="#ffffff" Grid.Column="1" Style="{DynamicResource SongPlayBorderStyle}" x:Name="SongPlayListContrainer">
+        <Border Background="{DynamicResource MainPopupBackColor}" Grid.Column="1" Style="{DynamicResource SongPlayBorderStyle}" x:Name="SongPlayListContrainer">
             <Border.Effect>
-                <DropShadowEffect Color="#c9d0d8" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
+                <DropShadowEffect Color="#191919" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
             </Border.Effect>
             <Grid>
                 <Grid.RowDefinitions>
@@ -61,15 +61,15 @@
                     <RowDefinition Height="22"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="当前播放" Margin="20" FontSize="20" FontWeight="Bold" Foreground="#333333" Grid.Row="0"/>
+                <TextBlock Text="当前播放" Margin="20" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource PlayListTextColor}" Grid.Row="0"/>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="总202首" Margin="20 0 0 0" Foreground="#d1d1d1"/>
+                    <TextBlock Text="总202首" Margin="20 0 0 0" Foreground="{DynamicResource PlayListAuxTextColor}"/>
                     <TextBlock Text="&#xe6a9; 全部收藏" 
                                Cursor="Hand"
                                VerticalAlignment="Center"
                                Margin="170 0 0 0" 
                                FontSize="14" 
-                               Foreground="#333333" 
+                               Foreground="{DynamicResource PlayListTextColor}" 
                                FontFamily="{DynamicResource Iconfont}"/>
                     <TextBlock Text="清空列表" 
                                Cursor="Hand"
@@ -78,7 +78,7 @@
                                FontSize="14" 
                                Foreground="#507daf"/>
                 </StackPanel>
-                <Border Background="#f2f2f2" Height="1.2" Margin="20 10 20 10" Grid.Row="2" />
+                <Border Background="{DynamicResource PlayListAuxTextColor}" Height="1.2" Margin="20 10 20 5" Grid.Row="2" />
                 <!--列表-->
                 <ScrollViewer Template="{StaticResource MyScrollViewer}" VerticalScrollBarVisibility="Auto" Grid.Row="3">
                     <ListBox x:Name="PlayListBox" Background="Transparent" BorderThickness="0" AlternationCount="2">
@@ -87,13 +87,13 @@
                                 <Border Margin="20 10 0 10">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding songName}"  
-                                        Foreground="#333333"
+                                        Foreground="{DynamicResource PlayListTextColor}"
                                         FontSize="12" 
                                         Width="180"
                                         HorizontalAlignment="Center" 
                                         VerticalAlignment="Center"/>
                                         <TextBlock Text="{Binding author}"  
-                                        Foreground="#646464"
+                                        Foreground="{DynamicResource PlayListBoxAuthorTextColor}"
                                         FontSize="12" 
                                         Width="120"
                                         HorizontalAlignment="Center" 

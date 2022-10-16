@@ -27,13 +27,13 @@
             <Border x:Name="border">
             <Track x:Name="PART_Track" Grid.Column="1">
                 <Track.DecreaseRepeatButton>
-                    <RepeatButton x:Name="RepeatButton1" Command="{x:Static Slider.DecreaseLarge}" Width="5" Background="red" Style="{StaticResource RepeatButtonTransparent}"/>
+                        <RepeatButton x:Name="RepeatButton1" Command="{x:Static Slider.DecreaseLarge}" Width="5" Background="{DynamicResource MainLineBackColor}" Style="{StaticResource RepeatButtonTransparent}"/>
                 </Track.DecreaseRepeatButton>
                 <Track.IncreaseRepeatButton>
-                    <RepeatButton  x:Name="RepeatButton2" Command="{x:Static Slider.IncreaseLarge}" Width="5" Background="#e5e5e5" Style="{StaticResource RepeatButtonTransparent}"/>
+                        <RepeatButton  x:Name="RepeatButton2" Command="{x:Static Slider.IncreaseLarge}" Width="5" Background="{DynamicResource BottomMainButBackColor}" Style="{StaticResource RepeatButtonTransparent}"/>
                 </Track.IncreaseRepeatButton>
                 <Track.Thumb>
-                    <Thumb x:Name="Thumb" Focusable="False" Height="0" Width="0" OverridesDefaultStyle="True" Background="red" Template="{StaticResource SliderThumbVerticalDefault}" VerticalAlignment="Top"/>
+                        <Thumb x:Name="Thumb" Focusable="False" Height="0" Width="0" OverridesDefaultStyle="True" Background="{DynamicResource MainLineBackColor}" Template="{StaticResource SliderThumbVerticalDefault}" VerticalAlignment="Top"/>
                 </Track.Thumb>
             </Track>
             </Border>
@@ -66,7 +66,7 @@
             <StackPanel x:Name="VolumeStackPanelContrainer" 
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Top">
-                <Border Background="White" Height="120" Width="30" CornerRadius="2" Margin="10 10 10 0">
+                <Border Background="{DynamicResource BottomVolumeBackColor}" Height="120" Width="30" CornerRadius="2" Margin="10 10 10 0">
                     <Border.Effect>
                         <DropShadowEffect Color="#1e1e1e" ShadowDepth="1" BlurRadius="5" Opacity="0.5" Direction="0"/>
                     </Border.Effect>
@@ -83,10 +83,10 @@
                 <Path HorizontalAlignment="Center" 
                     VerticalAlignment="Center" 
                     Data="M 0 -0.01 L 6 4 L 12 -0.01 Z"
-                    Fill="Wheat"/>
-                <Border x:Name="VolumeBorder" Background="White" Height="30" Opacity="0.01" Cursor="Hand"/>
+                    Fill="{DynamicResource BottomVolumeBackColor}"/>
+                <Border x:Name="VolumeBorder" Background="{DynamicResource BottomBackColor}" Height="30" Opacity="0.01" Cursor="Hand"/>
             </StackPanel>
         </Popup>
-        <Button x:Name="VolumeBut" Content="&#xe63c;" Style="{DynamicResource DefaultButtonStyle}" FontSize="20" Width="30" Height="30"/>
+        <Button x:Name="VolumeBut" Content="&#xe63c;" Style="{DynamicResource DefaultButtonStyle}" Foreground="{DynamicResource BottomButTextColor}" FontSize="20" Width="30" Height="30"/>
     </Grid>
 </UserControl>

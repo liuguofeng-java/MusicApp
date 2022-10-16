@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MusicApp.PageView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="{DynamicResource MinAuxBackColor}">
         <TextBlock Text="关注"/>
     </Grid>
 </UserControl>
