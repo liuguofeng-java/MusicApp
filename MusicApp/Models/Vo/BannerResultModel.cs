@@ -8,7 +8,7 @@ using System.Windows.Media.Imaging;
 /// </summary>
 namespace MusicApp.Models.Vo
 {
-    public class BannerModel
+    public class BannerResultModel
     {
         /// <summary>
         /// 

@@ -36,10 +36,7 @@ namespace MusicApp.Control
                     VolumeBut.Content = "\xe63c";
                 }
                 bean.playerControl.PlayMedia.Volume = VolumeProgress.Value;
-
                 bean.jsonData.volume = VolumeProgress.Value;
-
-                //INIFileUtil.writeValue("sys", "volume", VolumeProgress.Value.ToString());
             };
             //移入音量按钮,打开音量调节
             VolumeBut.MouseEnter += (s, e) =>
@@ -67,8 +64,6 @@ namespace MusicApp.Control
                 bean.playerControl.PlayMedia.Volume = VolumeProgress.Value;
 
                 bean.jsonData.volume = VolumeProgress.Value;
-
-                //INIFileUtil.writeValue("sys", "volume", VolumeProgress.Value.ToString());
             };
 
             //初始化音量
@@ -76,7 +71,6 @@ namespace MusicApp.Control
             double val = volume == null ? 0.5 : Convert.ToDouble(volume);
             if (volume == null)
             {
-                //INIFileUtil.writeValue("sys", "volume", "0.5");
                 bean.jsonData.volume = 0.5;
             }
             if (VolumeProgress.Value == 0)

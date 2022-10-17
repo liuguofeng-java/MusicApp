@@ -331,7 +331,7 @@ namespace MusicApp.Models.Vo
         public List<string> order { get; set; }
     }
 
-    public class SearchDataModel
+    public class SearchDataResultModel
     {
         /// <summary>
         /// 

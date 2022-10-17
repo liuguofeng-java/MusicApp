@@ -153,7 +153,7 @@ namespace MusicApp.Models.Vo
          
     }
 
-    public class PlayerModel
+    public class PlayerControlModel
     {
         /// <summary>
         /// 

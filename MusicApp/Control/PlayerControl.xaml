@@ -112,7 +112,7 @@
             <!--继续或暂停-->
             <Button x:Name="PlayBut" Click="PlayBut_Click" Style="{DynamicResource ControlMusicButtonStyle}" 
                                 Margin="15 0"
-                                Content="&#xe87c;" 
+                                Content="{Binding playButContent}" 
                                 Background="{DynamicResource BottomMainButBackColor}" 
                                 Width="35" 
                                 Height="35"
@@ -136,17 +136,19 @@
                                 Foreground="{DynamicResource BottomButTextColor}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" >
-            <TextBlock x:Name="StartProgress" Text="00:00" FontSize="12" Foreground="{DynamicResource BottomTextColor}" Margin="0 0 10 0"/>
+            <TextBlock x:Name="StartProgress" Text="{Binding startProgressTiem}" FontSize="12" Foreground="{DynamicResource BottomTextColor}" Margin="0 0 10 0"/>
             <Slider 
                     x:Name="MusicProgress"
                     Style="{DynamicResource MusicSliderStyle}" 
-                    Minimum="0" 
+                    Minimum="0"
+                    Maximum="{Binding playProgressLength}"
                     Width="350" 
                     IsMoveToPointEnabled="True"
+                    Value="{Binding playProgress}"
                     Background="{DynamicResource MainLineBackColor}" 
                     Cursor="Hand"/>
 
-            <TextBlock x:Name="EndProgress" Text="00:00" FontSize="12" Foreground="{DynamicResource BottomTextColor}" Margin="10 0 0 0"/>
+            <TextBlock x:Name="EndProgress" Text="{Binding endProgressTiem}" FontSize="12" Foreground="{DynamicResource BottomTextColor}" Margin="10 0 0 0"/>
         </StackPanel>
         <MediaElement Name="PlayMedia" Visibility="Hidden" LoadedBehavior="Manual"/>
     </StackPanel>

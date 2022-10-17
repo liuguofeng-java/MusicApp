@@ -480,7 +480,7 @@ namespace MusicApp.Models.Vo
         public List<ChargeInfoListItem> chargeInfoList { get; set; }
     }
 
-    public class SongDetailModel
+    public class SongDetailResultModel
     {
         /// <summary>
         /// 

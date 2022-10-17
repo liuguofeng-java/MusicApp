@@ -52,7 +52,7 @@ namespace MusicApp.Models.Vo
         public string alg { get; set; }
     }
 
-    public class RankingModel
+    public class RankingResultModel
     {
         /// <summary>
         /// 

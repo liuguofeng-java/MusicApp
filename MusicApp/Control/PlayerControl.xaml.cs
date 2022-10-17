@@ -23,18 +23,21 @@ namespace MusicApp.Control
 
         private SongPlayListModel playModel;
 
-        public List<SongDataItem> list;
         private DispatcherTimer timer;
         public PlayerControl()
         {
             ControlBean.getInstance().playerControl = this;
             InitializeComponent();
 
+            DataContext  = new PlayerModel();
+
+
             //音乐进度条改变时
             MusicProgress.ValueChanged += (s, e) =>
             {
                 PlayMedia.Position = TimeSpan.FromSeconds(MusicProgress.Value);
             };
+
 
             //默认加载播放列表第一首
             var playList = bean.jsonData.songPlayList;
@@ -47,7 +50,7 @@ namespace MusicApp.Control
             PlayMedia.MediaEnded += (s, e) =>
             {
                 PlayMedia.Stop();
-                PlayBut.Content = "\xe87c";
+                ((PlayerModel)DataContext).playButContent = "\xe87c";
                 bean.songDetailControl.StackPanelContrainer.Visibility = Visibility.Collapsed;
                 bean.songPlayListControl.NextSongPlay(playModel.songId, false);
             };
@@ -75,6 +78,7 @@ namespace MusicApp.Control
         /// <param name="isStartPlay">是否播放</param>
         public void InitPlay(SongPlayListModel model, bool isStartPlay = true)
         {
+            PlayerModel dataContext = (PlayerModel)DataContext;
             new Thread(() =>
             {
                 //点击了相同的歌
@@ -87,11 +91,14 @@ namespace MusicApp.Control
                 //先要停止歌曲
                 this.Dispatcher.Invoke(new Action(delegate
                 {
+                    if (timer != null)
+                    {
+                        timer.Stop();
+                    }
+                    dataContext.playButContent = "\xe87c";
                     bean.songDetailControl.StackPanelContrainer.Visibility = Visibility.Collapsed;
-                    PlayBut.Content = "\xe87c";
                     PlayMedia.Stop();
                 }));
-
                 this.playModel = model;
 
                 //歌曲详情赋值
@@ -101,36 +108,35 @@ namespace MusicApp.Control
                 GetSongUrl(model);
                 if (model.localSongUrl == null)
                     return;
+
                 this.Dispatcher.Invoke(new Action(delegate
                 {
+                    //更新歌曲url
                     PlayMedia.Source = new Uri(model.localSongUrl);
-
                     if (isStartPlay)
                     {
-                        PlayBut.Content = "\xea81";//更新按钮图标
+                        dataContext.playButContent = "\xea81";//更新按钮图标
                         PlayMedia.Play();
                     }
-                    MusicProgress.Value = 0;//初始化进度
-                    MusicProgress.Maximum = model.songTime / 1000; ;//进度条数
-                    EndProgress.Text = model.formatSongTime;//总时长
-                }));
+                    dataContext.playProgress = 0;//初始化进度
+                    dataContext.playProgressLength = model.songTime / 1000; ;//进度条数
+                    dataContext.endProgressTiem = model.formatSongTime;//总时长
 
-                this.Dispatcher.Invoke(new Action(delegate
-                {
+
                     //计时器更新进度条
                     timer = new DispatcherTimer();
-                    timer.Interval = TimeSpan.FromSeconds(1);
+                    timer.Interval = TimeSpan.FromMilliseconds(500);
                     timer.Tick += new EventHandler((s, e) =>
                     {
-                    
-                        MusicProgress.Value = PlayMedia.Position.TotalSeconds;
-                        int second = (int)PlayMedia.Position.TotalSeconds;//总秒数
+                        var totalSeconds = PlayMedia.Position.TotalSeconds;
+                        int second = (int)totalSeconds;//总秒数
                         int minute = second / 60;//分钟数
                         int remSecond = second - (minute * 60);//剩余秒数
-                        StartProgress.Text = (minute.ToString().Length == 1 ? "0" + minute.ToString() : minute.ToString())
+
+                        dataContext.playProgress = totalSeconds;
+                        dataContext.startProgressTiem = (minute.ToString().Length == 1 ? "0" + minute.ToString() : minute.ToString())
                                                 + ":" +
                                                 (remSecond.ToString().Length == 1 ? "0" + remSecond.ToString() : remSecond.ToString());
-                    
                     });
                     timer.Start();
                 }));
@@ -145,20 +151,22 @@ namespace MusicApp.Control
         /// <param name="e"></param>
         private void PlayBut_Click(object sender, RoutedEventArgs e)
         {
+            PlayerModel dataContext = (PlayerModel)DataContext;
+
             this.Dispatcher.Invoke(new Action(delegate
             {
                 if (PlayMedia.Position.TotalSeconds == 0)
                 {
                     bean.songPlayListControl.NextSongPlay(playModel.songId, false);
                 };
-                if (PlayBut.Content.Equals("\xe87c"))
+                if (dataContext.playButContent.Equals("\xe87c"))
                 {
-                    PlayBut.Content = "\xea81";
+                    dataContext.playButContent = "\xea81";
                     PlayMedia.Play();
                 }
                 else
                 {
-                    PlayBut.Content = "\xe87c";
+                    dataContext.playButContent = "\xe87c";
                     PlayMedia.Pause();
                 }
             }));

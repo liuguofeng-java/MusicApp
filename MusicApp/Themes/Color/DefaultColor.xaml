@@ -9,6 +9,7 @@
     <SolidColorBrush x:Key="MainPopupBackColor" Color="#ffffff"/>
     <SolidColorBrush x:Key="MainLineBackColor" Color="#ff4e4e"/>
     <SolidColorBrush x:Key="MainOverBackColor" Color="#000000"/>
+    <SolidColorBrush x:Key="MainButOverBackColor" Color="#ffffff"/>
     <SolidColorBrush x:Key="MainScrollViewColor" Color="#e0e0e0"/>
 
     <!--头部-->

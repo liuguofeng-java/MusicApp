@@ -128,7 +128,7 @@ namespace MusicApp.Control
                 {
                     return;
                 }
-                SongDetailModel detailModel = JsonConvert.DeserializeObject<SongDetailModel>(songDetailRes);
+                SongDetailResultModel detailModel = JsonConvert.DeserializeObject<SongDetailResultModel>(songDetailRes);
 
                 //获取歌曲url
                 string songUrlRes = HttpUtil.HttpRequset(HttpUtil.serveUrl + "/song/url?id=" + ids);
@@ -136,7 +136,7 @@ namespace MusicApp.Control
                 {
                     return;
                 }
-                PlayerModel playerModel = JsonConvert.DeserializeObject<PlayerModel>(songUrlRes);
+                PlayerControlModel playerModel = JsonConvert.DeserializeObject<PlayerControlModel>(songUrlRes);
 
                 //歌曲url和歌曲详细一致
                 if (idList.Count != detailModel.songs.Count || idList.Count != playerModel.data.Count)

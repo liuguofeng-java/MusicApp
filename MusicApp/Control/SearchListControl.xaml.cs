@@ -78,7 +78,7 @@ namespace MusicApp.Control
             {
                 return;
             }
-            RankingModel data = JsonConvert.DeserializeObject<RankingModel>(result);
+            RankingResultModel data = JsonConvert.DeserializeObject<RankingResultModel>(result);
             for (int i = 0; i < data.data.Count; i++)
             {
                 data.data[i].num = i + 1;
@@ -103,7 +103,7 @@ namespace MusicApp.Control
                 {
                     return;
                 }
-                SearchDataModel data = JsonConvert.DeserializeObject<SearchDataModel>(result);
+                SearchDataResultModel data = JsonConvert.DeserializeObject<SearchDataResultModel>(result);
 
                 //都是空不更新数据
                 if (data.result.songs == null &&

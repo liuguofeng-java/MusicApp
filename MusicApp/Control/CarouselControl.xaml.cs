@@ -38,7 +38,7 @@ namespace MusicApp.Control
             {
                 return;
             }
-            BannerModel data = JsonConvert.DeserializeObject<BannerModel>(result);
+            BannerResultModel data = JsonConvert.DeserializeObject<BannerResultModel>(result);
             list = data.banners;
 
 
