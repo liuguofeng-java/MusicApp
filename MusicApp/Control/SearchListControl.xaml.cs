@@ -54,8 +54,9 @@ namespace MusicApp.Control
             //点击歌曲时触发
             SingleListBox.SelectionChanged += (s, e) =>
             {
+                if (SingleListBox.SelectedIndex == -1) return;
                 var obj  = SingleListBox.Items[SingleListBox.SelectedIndex];
-
+                SingleListBox.SelectedIndex = -1;
                 if (obj == null) return;
 
                 SearchSongsItem item = (SearchSongsItem)obj;

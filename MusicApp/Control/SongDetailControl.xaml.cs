@@ -47,10 +47,18 @@ namespace MusicApp.Control
                 //存储图片
                 if (model.localPicUrl == null || StringUtil.UrlDiscern(model.localPicUrl) || !File.Exists(model.localPicUrl))
                 {
-                    Directory.CreateDirectory(path);//文件夹没有就创建
-                    string res = HttpUtil.HttpDownload(model.picUrl, path, fileName);
-                    if (res == null) return;
-                    model.localPicUrl = res;
+                    //如果之前存在过,否则就下载
+                    if (File.Exists(path + @"\" + fileName))
+                    {
+                        model.localPicUrl = path + @"\" + fileName;
+                    }
+                    else
+                    {
+                        Directory.CreateDirectory(path);//文件夹没有就创建
+                        string res = HttpUtil.HttpDownload(model.picUrl, path, fileName);
+                        if (res == null) return;
+                        model.localPicUrl = res;
+                    }
                 }
                 InitJsonData.WriteJsonFile();//手动更新缓存
 

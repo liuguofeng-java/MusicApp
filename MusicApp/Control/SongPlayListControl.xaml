@@ -25,7 +25,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="ListBoxItem">
                         <Border x:Name="border"  Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            <ContentPresenter x:Name="content" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                  TextBlock.Foreground="{TemplateBinding Foreground}"/>
                         </Border>
@@ -39,6 +39,9 @@
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Background" TargetName="border" Value="{DynamicResource PlayListBoxOverBackColor}"/>
                             </Trigger>
+                            <DataTrigger Binding="{Binding isSelected, Mode=Twoway}" Value="true">
+                                <Setter Property="TextBlock.Foreground" TargetName="content" Value="{DynamicResource PlayListIsSelectdColor}"/>
+                            </DataTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -63,7 +66,7 @@
                 </Grid.RowDefinitions>
                 <TextBlock Text="当前播放" Margin="20" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource PlayListTextColor}" Grid.Row="0"/>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="总202首" Margin="20 0 0 0" Foreground="{DynamicResource PlayListAuxTextColor}"/>
+                    <TextBlock x:Name="SongCount" Margin="20 0 0 0" Foreground="{DynamicResource PlayListAuxTextColor}"/>
                     <TextBlock Text="&#xe6a9; 全部收藏" 
                                Cursor="Hand"
                                VerticalAlignment="Center"
@@ -71,7 +74,8 @@
                                FontSize="14" 
                                Foreground="{DynamicResource PlayListTextColor}" 
                                FontFamily="{DynamicResource Iconfont}"/>
-                    <TextBlock Text="清空列表" 
+                    <TextBlock x:Name="CloseList"
+                               Text="清空列表"
                                Cursor="Hand"
                                VerticalAlignment="Center"
                                Margin="20 0 0 0" 
@@ -86,27 +90,30 @@
                             <DataTemplate>
                                 <Border Margin="20 10 0 10">
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding songName}"  
-                                        Foreground="{DynamicResource PlayListTextColor}"
-                                        FontSize="12" 
-                                        Width="180"
-                                        HorizontalAlignment="Center" 
-                                        VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Binding author}"  
-                                        Foreground="{DynamicResource PlayListBoxAuthorTextColor}"
-                                        FontSize="12" 
-                                        Width="120"
-                                        HorizontalAlignment="Center" 
-                                        VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Binding formatSongTime}"  
-                                        Foreground="#d1d1d1"
-                                        FontSize="12" 
-                                        Width="50"
-                                        HorizontalAlignment="Center" 
-                                        VerticalAlignment="Center"/>
+                                        <TextBlock x:Name="SongNameText" Text="{Binding songName}"  
+                                            FontSize="12" 
+                                            Width="180"
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                                        <TextBlock x:Name="AuthorText" Text="{Binding author}"  
+                                            FontSize="12" 
+                                            Width="120"
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                                        <TextBlock x:Name="FormatSongTimeText" Text="{Binding formatSongTime}"  
+                                            FontSize="12" 
+                                            Foreground="{DynamicResource PlayListTimeTextColor}"
+                                            Width="50"
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
                                     </StackPanel>
-
                                 </Border>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding isSelected, Mode=Twoway}" Value="false">
+                                        <Setter Property="Foreground" TargetName="SongNameText" Value="{DynamicResource PlayListTextColor}"/>
+                                        <Setter Property="Foreground" TargetName="AuthorText" Value="{DynamicResource PlayListBoxAuthorTextColor}"/>
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>

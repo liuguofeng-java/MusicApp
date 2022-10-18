@@ -29,6 +29,11 @@ namespace MusicApp.Control
             InitializeComponent();
             SongPlayListContrainer.Visibility = Visibility.Collapsed;
 
+            if (bean.jsonData.songPlayList == null)
+            {
+                bean.jsonData.songPlayList = new List<SongPlayListModel>();
+            }
+
             //初始化列表
             PlayListBox.ItemsSource = bean.jsonData.songPlayList;
 
@@ -48,15 +53,25 @@ namespace MusicApp.Control
                 }
             };
 
+            //点击两次播放歌曲
             PlayListBox.MouseDoubleClick += (s, e) =>
             {
                 var obj = PlayListBox.Items[PlayListBox.SelectedIndex];
-
                 if (obj == null) return;
                 var  item = (SongPlayListModel)obj;
-
                 bean.songPlayListControl.NextSongPlay(item.songId, false, 3);
             };
+
+            //点击清空按钮
+            CloseList.MouseDown += (s, e) =>
+            {
+                bean.jsonData.songPlayList = new List<SongPlayListModel>();
+                PlayListBox.ItemsSource = bean.jsonData.songPlayList;
+                bean.playerControl.StopPlay();
+            };
+
+            SongCount.Text = "总" + bean.jsonData.songPlayList.Count + "首";
+
         }
 
 
@@ -68,13 +83,16 @@ namespace MusicApp.Control
         /// <param name="type">1 顺序播放,2 列表循环,3 单曲循环</param>
         public void NextSongPlay(string songId, bool isLast = false, int type = 1)
         {
-            
             //待播放歌曲列表
             List<SongPlayListModel> list = bean.jsonData.songPlayList;
             //待播放列表长度
             int count = list.Count;
             if (count == 0) return;
-            if (songId == null) bean.playerControl.InitPlay(list[0]);
+            if (songId == null)
+            {
+                bean.playerControl.InitPlay(list[0]);
+                return;
+            };
             //当前播放完的下标
             int index = list.FindIndex(t => t.songId.Equals(songId));
            
@@ -102,8 +120,28 @@ namespace MusicApp.Control
                     bean.playerControl.InitPlay(list[index]);
                     break;
             }
+        }
 
-
+        /// <summary>
+        /// 更改列表状态
+        /// </summary>
+        /// <param name="model"></param>
+        public void SetLisBoxColor(SongPlayListModel model)
+        {
+            //待播放歌曲列表
+            List<SongPlayListModel> list = bean.jsonData.songPlayList;
+            this.Dispatcher.Invoke(new Action(delegate
+            {
+                list.ForEach(item =>
+                {
+                    if (item.isSelected == true)
+                    {
+                        item.isSelected = false;
+                    }
+                });
+                model.isSelected = true;
+            }));
+            
         }
 
         /// <summary>
@@ -190,6 +228,7 @@ namespace MusicApp.Control
                 {
                     bean.jsonData.songPlayList = list;
                     PlayListBox.ItemsSource = list;
+                    SongCount.Text = "总"+ list.Count + "首";
                 }));
                     
                 //开始播放

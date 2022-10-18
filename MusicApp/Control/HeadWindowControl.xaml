@@ -114,8 +114,6 @@
 
                 <!--搜索框-->
                 <local:SearchTextBoxControl />
-                <!--主题颜色弹窗-->
-                <local:ThemeColorControl x:Name="themeColor"/>
             </StackPanel>
 
             <!--右侧部分-->
@@ -127,6 +125,9 @@
                 <!--皮肤-->
                 <Button Style="{DynamicResource WinButtonStyle}" x:Name="Skin"
                             Height="30" Width="30" Margin="3 0" FontSize="17" Content="&#xe647;"/>
+                <!--主题颜色弹窗-->
+                <local:ThemeColorControl x:Name="themeColor"/>
+                
                 <!--设置-->
                 <Button Style="{DynamicResource WinButtonStyle}" x:Name="Settings"
                             Height="30" Width="30" Margin="3 0" FontSize="22" Content="&#xe604;"/>

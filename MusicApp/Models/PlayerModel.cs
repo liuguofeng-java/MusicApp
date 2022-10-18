@@ -25,9 +25,23 @@ namespace MusicApp.Models
         }
 
         /// <summary>
+        /// 是否禁用歌曲进度条
+        /// </summary>
+        private bool _disabledPlayProgress = false;
+        public bool disabledPlayProgress
+        {
+            get { return this._disabledPlayProgress; }
+            set
+            {
+                _disabledPlayProgress = value;
+                DoNotify();
+            }
+        }
+
+        /// <summary>
         /// 歌曲进度条长度
         /// </summary>
-        private double _playProgressLength;
+        private double _playProgressLength = 1;
         public double playProgressLength
         {
             get { return this._playProgressLength; }
@@ -67,7 +81,7 @@ namespace MusicApp.Models
         }
 
         /// <summary>
-        /// 歌曲播放时长
+        /// 播放按钮
         /// </summary>
         private string _playButContent = "\xe87c";
         public string playButContent

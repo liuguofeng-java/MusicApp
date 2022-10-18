@@ -139,6 +139,7 @@
             <TextBlock x:Name="StartProgress" Text="{Binding startProgressTiem}" FontSize="12" Foreground="{DynamicResource BottomTextColor}" Margin="0 0 10 0"/>
             <Slider 
                     x:Name="MusicProgress"
+                    IsEnabled="{Binding disabledPlayProgress}"
                     Style="{DynamicResource MusicSliderStyle}" 
                     Minimum="0"
                     Maximum="{Binding playProgressLength}"

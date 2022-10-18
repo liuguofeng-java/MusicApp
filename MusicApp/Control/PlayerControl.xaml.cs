@@ -49,10 +49,7 @@ namespace MusicApp.Control
             //播放结束事件
             PlayMedia.MediaEnded += (s, e) =>
             {
-                PlayMedia.Stop();
-                ((PlayerModel)DataContext).playButContent = "\xe87c";
-                bean.songDetailControl.StackPanelContrainer.Visibility = Visibility.Collapsed;
-                bean.songPlayListControl.NextSongPlay(playModel.songId, false);
+                StopPlay();
             };
 
             //上一首
@@ -67,8 +64,6 @@ namespace MusicApp.Control
                 bean.songPlayListControl.NextSongPlay(playModel.songId, false, 2);
             };
 
-
-
         }
 
         /// <summary>
@@ -78,7 +73,7 @@ namespace MusicApp.Control
         /// <param name="isStartPlay">是否播放</param>
         public void InitPlay(SongPlayListModel model, bool isStartPlay = true)
         {
-            PlayerModel dataContext = (PlayerModel)DataContext;
+            PlayerModel dataContext = null;
             new Thread(() =>
             {
                 //点击了相同的歌
@@ -91,16 +86,25 @@ namespace MusicApp.Control
                 //先要停止歌曲
                 this.Dispatcher.Invoke(new Action(delegate
                 {
+                    dataContext = (PlayerModel)DataContext;
                     if (timer != null)
                     {
                         timer.Stop();
                     }
+                    //初始化控件数据
+                    dataContext.playProgress = 0;
+                    dataContext.startProgressTiem = "00:00";
+                    dataContext.endProgressTiem = "00:00";
+                    dataContext.playProgressLength = 1;
+                    dataContext.disabledPlayProgress = false;
                     dataContext.playButContent = "\xe87c";
                     bean.songDetailControl.StackPanelContrainer.Visibility = Visibility.Collapsed;
                     PlayMedia.Stop();
                 }));
                 this.playModel = model;
 
+                //初始化列表颜色
+                bean.songPlayListControl.SetLisBoxColor(model);
                 //歌曲详情赋值
                 bean.songDetailControl.SetSongDetail(model);
 
@@ -108,6 +112,7 @@ namespace MusicApp.Control
                 GetSongUrl(model);
                 if (model.localSongUrl == null)
                     return;
+
 
                 this.Dispatcher.Invoke(new Action(delegate
                 {
@@ -118,6 +123,7 @@ namespace MusicApp.Control
                         dataContext.playButContent = "\xea81";//更新按钮图标
                         PlayMedia.Play();
                     }
+                    dataContext.disabledPlayProgress = true;//进度条放开
                     dataContext.playProgress = 0;//初始化进度
                     dataContext.playProgressLength = model.songTime / 1000; ;//进度条数
                     dataContext.endProgressTiem = model.formatSongTime;//总时长
@@ -151,13 +157,17 @@ namespace MusicApp.Control
         /// <param name="e"></param>
         private void PlayBut_Click(object sender, RoutedEventArgs e)
         {
-            PlayerModel dataContext = (PlayerModel)DataContext;
-
             this.Dispatcher.Invoke(new Action(delegate
             {
+                PlayerModel dataContext = (PlayerModel)DataContext;
                 if (PlayMedia.Position.TotalSeconds == 0)
                 {
-                    bean.songPlayListControl.NextSongPlay(playModel.songId, false);
+                    if (playModel != null)
+                    {
+                        PlayMedia.Play();
+                        dataContext.playButContent = "\xea81";//更新按钮图标
+                    }
+                    return;
                 };
                 if (dataContext.playButContent.Equals("\xe87c"))
                 {
@@ -171,6 +181,18 @@ namespace MusicApp.Control
                 }
             }));
 
+        }
+
+        /// <summary>
+        /// 停止播放
+        /// </summary>
+        public void StopPlay()
+        {
+            PlayMedia.Stop();
+            ((PlayerModel)DataContext).playButContent = "\xe87c";
+            bean.songDetailControl.StackPanelContrainer.Visibility = Visibility.Collapsed;
+            bean.songPlayListControl.NextSongPlay(playModel.songId, false);
+            playModel = null;
         }
 
 
@@ -189,10 +211,18 @@ namespace MusicApp.Control
             //存储图片
             if (model.localSongUrl == null || StringUtil.UrlDiscern(model.localSongUrl) || !File.Exists(model.localSongUrl))
             {
-                Directory.CreateDirectory(path);//文件夹没有就创建
-                string res = HttpUtil.HttpDownload(model.songUrl, path, fileName);
-                if (res == null) return;
-                model.localSongUrl = res;
+                //如果之前存在过,否则就下载
+                if (File.Exists(path + @"\"+  fileName))
+                {
+                    model.localSongUrl = path + @"\" + fileName;
+                }
+                else
+                {
+                    Directory.CreateDirectory(path);//文件夹没有就创建
+                    string res = HttpUtil.HttpDownload(model.songUrl, path, fileName);
+                    if (res == null) return;
+                    model.localSongUrl = res;
+                }
             }
             InitJsonData.WriteJsonFile();//手动更新缓存
 

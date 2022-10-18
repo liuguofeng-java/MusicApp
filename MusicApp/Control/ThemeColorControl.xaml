@@ -101,47 +101,47 @@
                 Placement="Bottom" 
                 Width="340" 
                 Height="280"
-                HorizontalOffset="100"
+                HorizontalOffset="-150"
                 VerticalOffset="25"
                 AllowsTransparency="True">
-            <Border Background="{DynamicResource MainPopupBackColor}" CornerRadius="5" Width="330" Height="270" >
-                <Border.Effect>
-                    <DropShadowEffect  Color="#252525" ShadowDepth="0" BlurRadius="10" Opacity="1" Direction="0"/>
-                </Border.Effect>
-                <TabControl Style="{DynamicResource TabControlStyle}">
-                    <TabItem Style="{DynamicResource TabItemStyle}" Header="主题">
-                        <WrapPanel x:Name="RadioButContrainer" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <RadioButton
-                                    Command="{Binding SelectButCommand}"
-                                    CommandParameter="1"
-                                    Style="{DynamicResource SelectColorRadioStyle}" 
-                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/1.png"/>
-                            <RadioButton 
-                                    Command="{Binding SelectButCommand}"
-                                    CommandParameter="2"
-                                    IsChecked="true"
-                                    Style="{DynamicResource SelectColorRadioStyle}" 
-                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/2.png"/>
-                            <RadioButton 
-                                    Style="{DynamicResource SelectColorRadioStyle}" 
-                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/3.png"/>
-                            <RadioButton 
-                                    Style="{DynamicResource SelectColorRadioStyle}" 
-                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/4.png"/>
-                            <RadioButton 
-                                    Style="{DynamicResource SelectColorRadioStyle}" 
-                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/5.png"/>
-                            <RadioButton 
-                                    Style="{DynamicResource SelectColorRadioStyle}" 
-                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/6.png"/>
-                        </WrapPanel>
-                    </TabItem>
-                    <TabItem Style="{DynamicResource TabItemStyle}" Header="纯色">
-                        <Border></Border>
-                    </TabItem>
-                </TabControl>
-            </Border>
-        </local:OverwritePopup>
+                <Border Background="{DynamicResource MainPopupBackColor}" CornerRadius="5" Width="330" Height="270" >
+                    <Border.Effect>
+                        <DropShadowEffect  Color="#252525" ShadowDepth="0" BlurRadius="10" Opacity="1" Direction="0"/>
+                    </Border.Effect>
+                    <TabControl Style="{DynamicResource TabControlStyle}">
+                        <TabItem Style="{DynamicResource TabItemStyle}" Header="主题">
+                            <WrapPanel x:Name="RadioButContrainer" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <RadioButton
+                                        Command="{Binding SelectButCommand}"
+                                        CommandParameter="1"
+                                        Style="{DynamicResource SelectColorRadioStyle}" 
+                                        local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/1.png"/>
+                                <RadioButton 
+                                        Command="{Binding SelectButCommand}"
+                                        CommandParameter="2"
+                                        IsChecked="true"
+                                        Style="{DynamicResource SelectColorRadioStyle}" 
+                                        local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/2.png"/>
+                                <RadioButton 
+                                        Style="{DynamicResource SelectColorRadioStyle}" 
+                                        local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/3.png"/>
+                                <RadioButton 
+                                        Style="{DynamicResource SelectColorRadioStyle}" 
+                                        local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/4.png"/>
+                                <RadioButton 
+                                        Style="{DynamicResource SelectColorRadioStyle}" 
+                                        local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/5.png"/>
+                                <RadioButton 
+                                        Style="{DynamicResource SelectColorRadioStyle}" 
+                                        local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/6.png"/>
+                            </WrapPanel>
+                        </TabItem>
+                        <TabItem Style="{DynamicResource TabItemStyle}" Header="纯色">
+                            <Border></Border>
+                        </TabItem>
+                    </TabControl>
+                </Border>
+            </local:OverwritePopup>
 
             
 

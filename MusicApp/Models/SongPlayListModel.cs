@@ -136,5 +136,18 @@ namespace MusicApp.Models.Vo
             }
         }
 
+        /// <summary>
+        /// 列表颜色
+        /// </summary>
+        private bool _isSelected = false;
+        public bool isSelected
+        {
+            get { return this._isSelected; }
+            set
+            {
+                _isSelected = value;
+                DoNotify();
+            }
+        }
     }
 }

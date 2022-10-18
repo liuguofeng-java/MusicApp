@@ -44,8 +44,11 @@
     <SolidColorBrush x:Key="PlayListBoxBackColor" Color="#393939"/>
     <SolidColorBrush x:Key="PlayListBoxOverBackColor" Color="#3d3d3d"/>
     <SolidColorBrush x:Key="PlayListBoxAuthorTextColor" Color="#8d8d8d"/>
+    <SolidColorBrush x:Key="PlayListTimeTextColor" Color="#646464"/>
+    <SolidColorBrush x:Key="PlayListIsSelectdColor" Color="#d63f3f"/>
 
-    
+
+
     <!--搜索框弹窗列表-->
     <SolidColorBrush x:Key="SearchListAuxTextColor" Color="#8c8c8c"/>
     <SolidColorBrush x:Key="SearchListTextColor" Color="#ffffff"/>
