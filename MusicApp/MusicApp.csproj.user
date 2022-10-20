@@ -34,6 +34,9 @@
     <Compile Update="Control\SongDetailControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Control\SongInfoControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Control\SongPlayListControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -97,6 +100,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Control\SongDetailControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\SongInfoControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Control\SongPlayListControl.xaml">

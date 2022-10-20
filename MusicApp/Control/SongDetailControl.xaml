@@ -3,56 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MusicApp.OverwriteControl"
+             xmlns:local="clr-namespace:MusicApp.Control"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="300">
-    
-    <!--
-        歌曲详情 如头像、歌曲名称、作者、等信息
-        在主窗体底部左侧
-    -->
-    
+             d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <!--音乐头像-->
-        <Style x:Key="MusicPictureStyle" TargetType="{x:Type Button}">
+        <!--作者信息按钮-->
+        <Style x:Key="AuthorInfoButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate>
-                        <Grid Cursor="Hand">
-                            <Border CornerRadius="5">
-                                <Border.Background>
-                                    <ImageBrush ImageSource="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=(local:OverwriteButton.ImageSource)}" />
-                                </Border.Background>
-                            </Border>
-                            <Border Name="border" Background="#dfe4ea" BorderBrush="{x:Null}" BorderThickness="1" RenderTransformOrigin="0.5,0.5" Opacity="0.3">
-                            </Border>
-                            <TextBlock Name="text" 
-                                       FontSize="20"
-                                       Foreground="{DynamicResource BottomButTextColor}"
-                                       FontFamily="{DynamicResource Iconfont}"
-                                       VerticalAlignment="Center" 
-                                       HorizontalAlignment="Center"
-                                       Text="&#xe634;" />
-                            
-                        </Grid>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border">
+                            <TextBlock x:Name="text" Text="{TemplateBinding Content}" Foreground="#313131" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="False">
-                                <Setter Property="Visibility" Value="Collapsed" TargetName="border"/>
-                                <Setter Property="Visibility" Value="Collapsed" TargetName="text"/>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Foreground" TargetName="text" Value="#4374ab"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-        <!--音乐名称-->
-        <Style x:Key="MusicNameButtonStyle" TargetType="{x:Type Button}">
+
+        <!--歌词列表-->
+        <Style TargetType="{x:Type ListBoxItem}">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <TextBlock Text="{TemplateBinding Content}" FontSize="15" Foreground="{DynamicResource BottomButTextColor}"/>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="border"  Background="{TemplateBinding Background}" HorizontalAlignment="Center">
+                            <ContentPresenter x:Name="content" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                 TextBlock.Foreground="{TemplateBinding Foreground}"/>
+                        </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{DynamicResource PlayListBoxOverBackColor}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -60,47 +45,48 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <StackPanel x:Name="StackPanelContrainer" Orientation="Horizontal"  Visibility="Collapsed">
-        <Grid>
-            <Border Background="{DynamicResource BottomBackColor}" CornerRadius="5" Width="50" Height="50" Margin="10 0 0 0">
-                <TextBlock Text="&#xe613;" 
-                    FontFamily="{DynamicResource Iconfont}" 
-                    FontSize="35" 
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Foreground="{DynamicResource BottomButTextColor}"/>
-            </Border>
-            <Button x:Name="SongPic" Width="50" Height="50" 
-                BorderBrush="{DynamicResource BottomButTextColor}" 
-                BorderThickness="2"
-                Margin="10 0 0 0"
-                local:OverwriteButton.ImageSource="{Binding localPicUrl}"
-                Style="{DynamicResource MusicPictureStyle}"/>
+    <!--歌曲详情,展示正在播放音乐的歌词等信息-->
+
+    <Grid HorizontalAlignment="Center" Margin="0 100 0 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="烟火" Foreground="#313131" FontSize="35" HorizontalAlignment="Center" Grid.Row="0"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Style="{DynamicResource AuthorInfoButtonStyle}" Content="不是花火呀" HorizontalAlignment="Right" Grid.Column="0"/>
+            <TextBlock Text="-" HorizontalAlignment="Center" Foreground="#313131" Grid.Column="1"/>
+            <Button Style="{DynamicResource AuthorInfoButtonStyle}" Content="一分一寸" HorizontalAlignment="Left" Grid.Column="2"/>
         </Grid>
-        <StackPanel Margin="10 3 0 0" VerticalAlignment="Center">
-            <StackPanel Orientation="Horizontal">
-                <Button Style="{DynamicResource MusicNameButtonStyle}" 
-                        Cursor="Hand" Content="{Binding songName}"
-                        MaxWidth="100"/>
-                <TextBlock Cursor="Hand"
-                            Margin="5 2 0 0"
-                            FontFamily="{DynamicResource Iconfont}" 
-                            Foreground="{DynamicResource BottomButTextColor}"
-                            FontSize="18" 
-                            Text="&#xe682;"
-                            HorizontalAlignment="Center"/>
-            </StackPanel>
-            <Button Cursor="Hand">
-                <Button.Template>
-                    <ControlTemplate>
-                        <TextBlock FontSize="13"
-                                    Margin="0 5 0 0"
-                                    Foreground="{DynamicResource BottomButTextColor}" 
-                                    FontWeight="Light"
-                                    Text="{Binding author}" />
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-        </StackPanel>
-    </StackPanel>
+
+        <!--歌词列表-->
+        <ScrollViewer Template="{StaticResource MyScrollViewer}" VerticalScrollBarVisibility="Auto" Grid.Row="3" Margin="0 50 0 0">
+            <ListBox x:Name="LyricList" Background="Transparent" BorderThickness="0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border x:Name="border" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock x:Name="text" Text="{Binding sentence}" Foreground="#313131" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+                        </Border>
+                        <DataTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="FontSize" TargetName="text" Value="30"/>
+                                <Setter Property="Margin" TargetName="border" Value="0 20 0 20"/>
+                            </Trigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+
+            
+        
+        
+        
+    </Grid>
 </UserControl>

@@ -20,8 +20,6 @@
                     <ColumnDefinition Width="5*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <!--歌曲信息部分-->
-                <local:SongDetailControl/>
 
                 <!--控制播放播放-->
                 <local:PlayerControl x:Name="playerControl" Grid.Column="1"/>

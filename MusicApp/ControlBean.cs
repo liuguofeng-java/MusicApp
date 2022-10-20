@@ -63,11 +63,11 @@ namespace MusicApp
         /// <summary>
         /// 底部歌曲详情
         /// </summary>
-        private SongDetailControl _songDetailControl { get; set; }
-        public SongDetailControl songDetailControl
+        private SongInfoControl _SongInfoControl { get; set; }
+        public SongInfoControl SongInfoControl
         {
-            get { return this._songDetailControl; }
-            set { _songDetailControl = value; }
+            get { return this._SongInfoControl; }
+            set { _SongInfoControl = value; }
         }
 
         /// <summary>

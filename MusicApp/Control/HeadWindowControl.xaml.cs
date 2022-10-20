@@ -109,5 +109,26 @@ namespace MusicApp.Control
             }
         }
 
+
+
+        #region 是否是默认样式
+
+        public static bool GetIsDefault(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(MyPropertyProperty);
+        }
+
+        public static void SetIsDefault(DependencyObject obj, object value)
+        {
+            obj.SetValue(MyPropertyProperty, value);
+        }
+
+        public static readonly DependencyProperty MyPropertyProperty =
+            DependencyProperty.RegisterAttached("IsDefault", typeof(bool), typeof(SongInfoControl), new PropertyMetadata((s, e) =>
+            {
+                
+            }));
+
+        #endregion
     }
 }

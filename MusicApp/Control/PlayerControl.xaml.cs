@@ -55,12 +55,14 @@ namespace MusicApp.Control
             //上一首
             LastSong.Click += (s, e) =>
             {
+                if (playModel == null) return;
                 bean.songPlayListControl.NextSongPlay(playModel.songId, true, 2);
             };
 
             //下一首
             NextSong.Click += (s, e) =>
             {
+                if (playModel == null) return;
                 bean.songPlayListControl.NextSongPlay(playModel.songId, false, 2);
             };
 
@@ -98,7 +100,7 @@ namespace MusicApp.Control
                     dataContext.playProgressLength = 1;
                     dataContext.disabledPlayProgress = false;
                     dataContext.playButContent = "\xe87c";
-                    bean.songDetailControl.StackPanelContrainer.Visibility = Visibility.Collapsed;
+                    bean.SongInfoControl.StackPanelContrainer.Visibility = Visibility.Collapsed;
                     PlayMedia.Stop();
                 }));
                 this.playModel = model;
@@ -106,7 +108,7 @@ namespace MusicApp.Control
                 //初始化列表颜色
                 bean.songPlayListControl.SetLisBoxColor(model);
                 //歌曲详情赋值
-                bean.songDetailControl.SetSongDetail(model);
+                bean.SongInfoControl.SetSongDetail(model);
 
                 //开始播放歌曲
                 GetSongUrl(model);
@@ -131,7 +133,7 @@ namespace MusicApp.Control
 
                     //计时器更新进度条
                     timer = new DispatcherTimer();
-                    timer.Interval = TimeSpan.FromMilliseconds(500);
+                    timer.Interval = TimeSpan.FromMilliseconds(1000);
                     timer.Tick += new EventHandler((s, e) =>
                     {
                         var totalSeconds = PlayMedia.Position.TotalSeconds;
@@ -190,7 +192,7 @@ namespace MusicApp.Control
         {
             PlayMedia.Stop();
             ((PlayerModel)DataContext).playButContent = "\xe87c";
-            bean.songDetailControl.StackPanelContrainer.Visibility = Visibility.Collapsed;
+            bean.SongInfoControl.StackPanelContrainer.Visibility = Visibility.Collapsed;
             bean.songPlayListControl.NextSongPlay(playModel.songId, false);
             playModel = null;
         }

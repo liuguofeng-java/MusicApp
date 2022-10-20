@@ -28,10 +28,6 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="0"/>
-        </Grid.ColumnDefinitions>
         <Border x:Name="BaseBorder" Style="{DynamicResource WindowBorderStyle}" Background="White">
             <Border.Effect>
                 <DropShadowEffect Color="#1e1e1e" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
@@ -51,17 +47,19 @@
                 </Border>
             </DockPanel>
         </Border>
-        
+
         <!--系统托盘-->
-        <local:NotifyIcon x:Name="notifyIcon" Grid.Column="1" />
+        <local:NotifyIcon x:Name="notifyIcon"/>
+
+        <!--歌曲信息部分-->
+        <local:SongInfoControl/>
 
         <!--搜索列表,排行榜-->
         <local:SearchListControl />
-        
+
         <!--待播放的歌曲列表-->
         <local:SongPlayListControl />
-        
 
     </Grid>
-    
+
 </Window>

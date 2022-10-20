@@ -45,9 +45,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-
-       
         <!--导航键-->
         <Style x:Key="NavButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Template">
@@ -99,7 +96,7 @@
         </Style>
        
     </UserControl.Resources>
-    <Border DockPanel.Dock="Top" Height="60" Background="{DynamicResource MainBackColor}" MouseLeftButtonDown="WindowMove_MouseLeftButtonDown">
+    <Border Height="60" Background="{DynamicResource MainBackColor}" MouseLeftButtonDown="WindowMove_MouseLeftButtonDown">
         <Grid VerticalAlignment="Center">
             <!--左侧部分-->
             <Button x:Name="Logo" Margin="20 0 0 0"  Style="{DynamicResource LogoStyle}"/>
