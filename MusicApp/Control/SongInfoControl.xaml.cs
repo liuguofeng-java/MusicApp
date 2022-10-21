@@ -26,7 +26,7 @@ namespace MusicApp.Control
     {
         public SongInfoControl()
         {
-            ControlBean.getInstance().SongInfoControl = this;
+            ControlBean.getInstance().songInfoControl = this;
             InitializeComponent();
         }
 
@@ -34,7 +34,7 @@ namespace MusicApp.Control
         /// 歌曲 如头像、歌曲名称、作者、赋值
         /// </summary>
         /// <param name="model"></param>
-        public void SetSongDetail(SongPlayListModel model)
+        public void SetSongInfo(SongPlayListModel model)
         {
             new Thread(() =>
             {
@@ -71,6 +71,7 @@ namespace MusicApp.Control
                 {
                     SongPic.Visibility = Visibility.Visible;
                 }));
+                SongDetail.InitLyrics(model);
 
             }).Start();
         }

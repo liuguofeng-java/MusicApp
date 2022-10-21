@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\App.xaml
-26842748324
+271572969396
 
-47-2046251194
+50-950583606
 201-313312364
-Control\BottomPlayerWindowControl.xaml;Control\CarouselControl.xaml;Control\HeadWindowControl.xaml;Control\NotifyIcon.xaml;Control\PlayerControl.xaml;Control\SearchListControl.xaml;Control\SearchTextBoxControl.xaml;Control\SideNavBarWindowControl.xaml;Control\SongDetailControl.xaml;Control\SongPlayListControl.xaml;Control\ThemeColorControl.xaml;Control\VolumeControl.xaml;PageView\FMPage.xaml;PageView\FocusOnPage.xaml;PageView\FoundMusicPage.xaml;PageView\LikeMusicPage.xaml;PageView\LivePage.xaml;PageView\LocalAndDownloadPage.xaml;PageView\PodcastPage.xaml;PageView\RecentPlayPage.xaml;PageView\VideoPage.xaml;Themes\Color\BlackColor.xaml;Themes\Color\DefaultColor.xaml;Themes\Common.xaml;Themes\ScrollViewDictionary.xaml;Views\MainWindow.xaml;
+Control\BottomPlayerWindowControl.xaml;Control\CarouselControl.xaml;Control\HeadWindowControl.xaml;Control\NotifyIcon.xaml;Control\PlayerControl.xaml;Control\SearchListControl.xaml;Control\SearchTextBoxControl.xaml;Control\SideNavBarWindowControl.xaml;Control\SongDetailControl.xaml;Control\SongInfoControl.xaml;Control\SongPlayListControl.xaml;Control\ThemeColorControl.xaml;Control\VolumeControl.xaml;PageView\FMPage.xaml;PageView\FocusOnPage.xaml;PageView\FoundMusicPage.xaml;PageView\LikeMusicPage.xaml;PageView\LivePage.xaml;PageView\LocalAndDownloadPage.xaml;PageView\PodcastPage.xaml;PageView\RecentPlayPage.xaml;PageView\VideoPage.xaml;Themes\Color\BlackColor.xaml;Themes\Color\DefaultColor.xaml;Themes\Common.xaml;Themes\ScrollViewDictionary.xaml;Views\MainWindow.xaml;
 
 False
 

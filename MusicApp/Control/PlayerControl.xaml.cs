@@ -100,7 +100,7 @@ namespace MusicApp.Control
                     dataContext.playProgressLength = 1;
                     dataContext.disabledPlayProgress = false;
                     dataContext.playButContent = "\xe87c";
-                    bean.SongInfoControl.StackPanelContrainer.Visibility = Visibility.Collapsed;
+                    bean.songInfoControl.StackPanelContrainer.Visibility = Visibility.Collapsed;
                     PlayMedia.Stop();
                 }));
                 this.playModel = model;
@@ -108,7 +108,7 @@ namespace MusicApp.Control
                 //初始化列表颜色
                 bean.songPlayListControl.SetLisBoxColor(model);
                 //歌曲详情赋值
-                bean.SongInfoControl.SetSongDetail(model);
+                bean.songInfoControl.SetSongInfo(model);
 
                 //开始播放歌曲
                 GetSongUrl(model);
@@ -192,7 +192,7 @@ namespace MusicApp.Control
         {
             PlayMedia.Stop();
             ((PlayerModel)DataContext).playButContent = "\xe87c";
-            bean.SongInfoControl.StackPanelContrainer.Visibility = Visibility.Collapsed;
+            bean.songInfoControl.StackPanelContrainer.Visibility = Visibility.Collapsed;
             bean.songPlayListControl.NextSongPlay(playModel.songId, false);
             playModel = null;
         }

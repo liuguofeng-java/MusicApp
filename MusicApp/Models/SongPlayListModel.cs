@@ -95,6 +95,20 @@ namespace MusicApp.Models.Vo
         }
 
         /// <summary>
+        /// 歌词
+        /// </summary>
+        private string _lyric;
+        public string lyric
+        {
+            get { return this._lyric; }
+            set
+            {
+                _lyric = value;
+                DoNotify();
+            }
+        }
+
+        /// <summary>
         /// 作者
         /// </summary>
         private string _author;

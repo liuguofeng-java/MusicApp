@@ -61,17 +61,28 @@ namespace MusicApp
         }
 
         /// <summary>
-        /// 底部歌曲详情
+        /// 底部歌曲信息
         /// </summary>
-        private SongInfoControl _SongInfoControl { get; set; }
-        public SongInfoControl SongInfoControl
+        private SongInfoControl _songInfoControl { get; set; }
+        public SongInfoControl songInfoControl
         {
-            get { return this._SongInfoControl; }
-            set { _SongInfoControl = value; }
+            get { return this._songInfoControl; }
+            set { _songInfoControl = value; }
+        }
+
+
+        /// <summary>
+        /// 歌曲详情
+        /// </summary>
+        private SongDetailControl _songDetailControl;
+        public SongDetailControl songDetailControl
+        {
+            get { return this._songDetailControl; }
+            set { _songDetailControl = value; }
         }
 
         /// <summary>
-        /// 底部代播放列表
+        /// 底部待播放列表
         /// </summary>
         private SongPlayListControl _songPlayListControl;
         public SongPlayListControl songPlayListControl

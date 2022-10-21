@@ -64,7 +64,7 @@
         <Storyboard x:Key="TopStoryboard">
             <DoubleAnimation Duration="0:0:0:0.5" To="0" Storyboard.TargetName="topTranslateTransform" Storyboard.TargetProperty="Y"/>
             <DoubleAnimation Duration="0:0:0:0.5" To="0" Storyboard.TargetName="bottomTranslateTransform" Storyboard.TargetProperty="Y"/>
-            <DoubleAnimation Duration="0:0:0:0.3" To="0" Storyboard.TargetName="lyricsTranslateTransform" Storyboard.TargetProperty="Y"/>
+            <DoubleAnimation Duration="0:0:0:0.2" To="0" Storyboard.TargetName="lyricsTranslateTransform" Storyboard.TargetProperty="Y"/>
         </Storyboard>
         <!--向下的动画-->
         <Storyboard x:Key="BottomStoryboard">
@@ -98,21 +98,22 @@
                     </TransformGroup>
                 </Border.RenderTransform>
                 <Grid>
-                    <Border Height="{Binding ElementName=LyricsContent,Path=ActualHeight}" Width="{Binding ElementName=LyricsContent,Path=ActualWidth}" VerticalAlignment="Bottom">
+                    <Border>
                         <Border.Effect>
-                            <BlurEffect Radius="50"></BlurEffect>
+                            <BlurEffect Radius="20"/>
                         </Border.Effect>
                         <Border.Background>
-                            <ImageBrush ImageSource="{Binding localPicUrl}" Stretch="Fill" TileMode="Tile" />
+                            <ImageBrush ImageSource="{Binding localPicUrl}" />
                         </Border.Background>
                     </Border>
                     <Border Background="{DynamicResource MainPopupBackColor}" Opacity="0.9"></Border>
                     <!--歌词区域-->
-                    <local:SongDetailControl/>
+                    <local:SongDetailControl x:Name="SongDetail"/>
                 </Grid>
             </Border>
         </Grid>
 
+        <!--歌曲/头像/作者/歌曲名称部分-->
         <StackPanel Grid.Row="1">
             <!--歌曲详情按钮-->
             <StackPanel Orientation="Horizontal" Height="75">

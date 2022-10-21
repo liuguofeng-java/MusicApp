@@ -46,16 +46,16 @@
     <SolidColorBrush x:Key="PlayListTimeTextColor" Color="#646464"/>
     <SolidColorBrush x:Key="PlayListIsSelectdColor" Color="#d63f3f"/>
 
-
-
-
     <!--搜索框弹窗列表-->
     <SolidColorBrush x:Key="SearchListAuxTextColor" Color="#666666"/>
     <SolidColorBrush x:Key="SearchListTextColor" Color="#333333"/>
     <SolidColorBrush x:Key="SearchListNumTextColor" Color="#d6d6d6"/>
     <SolidColorBrush x:Key="SearchListBoxOverColor" Color="#f2f2f2"/>
 
-
+    <!--歌曲详情-->
+    <SolidColorBrush x:Key="SongDetailTextColr" Color="#666666"/>
+    <SolidColorBrush x:Key="SongDetailFocus" Color="#000000"/>
+    <SolidColorBrush x:Key="SongDetailTitleColor" Color="#313131"/>
 
 
 

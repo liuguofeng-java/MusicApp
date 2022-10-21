@@ -117,7 +117,7 @@ namespace MusicApp.Models.Vo
         /// <summary>
         /// 
         /// </summary>
-        public string song { get; set; }
+        public object song { get; set; }
         /// <summary>
         /// 
         /// </summary>

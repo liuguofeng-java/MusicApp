@@ -1,6 +1,11 @@
-﻿using System;
+﻿using MusicApp.Common;
+using MusicApp.Models;
+using MusicApp.Models.Vo;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace MusicApp.Control
 {
@@ -18,118 +24,147 @@ namespace MusicApp.Control
     /// </summary>
     public partial class SongDetailControl : UserControl
     {
+
+        private DispatcherTimer timer;
+
+        private SongDetailModel songDetailModel;
+
+        private ControlBean bean = ControlBean.getInstance();
         public SongDetailControl()
         {
             InitializeComponent();
+            songDetailModel = new SongDetailModel();
 
-
-            List<LyricItem> list = new List<LyricItem>();
-
-            list.Add(new LyricItem("作词: 乔与"));
-            list.Add(new LyricItem("作曲 : 楚明玉"));
-            list.Add(new LyricItem("编曲：曾吴秋杰"));
-
-            list.Add(new LyricItem("我害怕沉默 就找话题"));
-
-            list.Add(new LyricItem("每一句都慎重的考虑"));
-
-            list.Add(new LyricItem("心酸和眼红我克制住 匿藏在心里"));
-
-            list.Add(new LyricItem("我全力以赴你的情绪"));
-
-            list.Add(new LyricItem("放弃了思考这种能力"));
-
-            list.Add(new LyricItem("越爱越担心 失去"));
-
-            list.Add(new LyricItem("我会治愈我不算为难"));
-
-            list.Add(new LyricItem("温暖你变成了习惯"));
-
-            list.Add(new LyricItem("你出示条件 我照单成全"));
-
-            list.Add(new LyricItem("我纵容 你一寸 又一寸 将我的心 贯穿"));
-
-            list.Add(new LyricItem("又一分 又一分 拔出来 一半"));
-
-            list.Add(new LyricItem("让我能保持痛感"));
-
-            list.Add(new LyricItem("迁就 你一次 又一次 分寸的 试探"));
-
-            list.Add(new LyricItem("我一遍 又一遍 来配合 你出演"));
-
-            list.Add(new LyricItem("我出众的情愿"));
-
-            list.Add(new LyricItem("我害怕沉默 就找话题"));
-
-            list.Add(new LyricItem("每一句都慎重的考虑"));
-
-            list.Add(new LyricItem("心酸和眼红我克制住 匿藏在心里"));
-
-            list.Add(new LyricItem("我全力以赴你的情绪"));
-
-            list.Add(new LyricItem("放弃了思考这种能力"));
-
-            list.Add(new LyricItem("越爱越担心 失去"));
-
-            list.Add(new LyricItem("我会治愈我不算为难"));
-
-            list.Add(new LyricItem("温暖你变成了习惯"));
-
-            list.Add(new LyricItem("你出示条件 我照单成全"));
-
-            list.Add(new LyricItem("我纵容 你一寸 又一寸 将我的心 贯穿"));
-
-            list.Add(new LyricItem("又一分 又一分 拔出来 一半"));
-
-            list.Add(new LyricItem("让我能保持痛感"));
-
-            list.Add(new LyricItem("迁就 你一次 又一次 分寸的 试探"));
-
-            list.Add(new LyricItem("我一遍 又一遍 来配合 你出演"));
-
-            list.Add(new LyricItem("我出众的情愿"));
-
-            list.Add(new LyricItem("我纵容 你一寸 又一寸 将我的心 贯穿"));
-
-            list.Add(new LyricItem("又一分 又一分 拔出来 一半"));
-
-            list.Add(new LyricItem("让我能保持痛感"));
-
-            list.Add(new LyricItem("迁就 你一次 又一次 分寸的 试探"));
-
-            list.Add(new LyricItem("我一遍 又一遍 来配合 你出演"));
-
-            list.Add(new LyricItem("我出众的情愿"));
-
-            list.Add(new LyricItem("制作人：曾吴秋杰"));
-
-            list.Add(new LyricItem("混音：周星宇 / 曾吴秋杰"));
-
-            list.Add(new LyricItem("吉他：曾吴秋杰"));
-
-            list.Add(new LyricItem("和声：曾吴秋杰"));
-
-            list.Add(new LyricItem("统筹：火蓉 / 季秋洋 / 黄鲲"));
-
-            list.Add(new LyricItem("企划：丁柏昕 / 倪奇"));
-
-            list.Add(new LyricItem("OP：深声文化"));
-
-            list.Add(new LyricItem("出品：网易青云LAB x 网易飓风"));
-
-            LyricList.ItemsSource = list;
+            //解决ListBox不能滚动的问题
+            LyricList.PreviewMouseWheel += (s, e) =>
+            {
+                if (!e.Handled)
+                {
+                    // ListView拦截鼠标滚轮事件
+                    e.Handled = true;
+                    // 激发一个鼠标滚轮事件，冒泡给外层ListView接收到
+                    var eventArg = new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta);
+                    eventArg.RoutedEvent = UIElement.MouseWheelEvent;
+                    eventArg.Source = s;
+                    var parent = ((ListBox)s).Parent as UIElement;
+                    parent.RaiseEvent(eventArg);
+                }
+            };
         }
-    }
 
-
-    public class LyricItem
-    {
-        public LyricItem(string sentence)
+        /// <summary>
+        /// 初始化歌词
+        /// </summary>
+        /// <param name="songModel"></param>
+        public void InitLyrics(SongPlayListModel songModel)
         {
-            this.sentence = sentence;
+            new Thread(() => 
+            {
+                //保存歌词
+                if (songModel.lyric == null )
+                {
+                    string lyricsRes = HttpUtil.HttpRequset(HttpUtil.serveUrl + "/lyric?id=" + songModel.songId);
+                    if (lyricsRes == null)
+                    {
+                        return;
+                    }
+                    LyricsResultModel detailModel = JsonConvert.DeserializeObject<LyricsResultModel>(lyricsRes);
+                    string lyrics = detailModel.lrc.lyric;//歌词数据
+                    songModel.lyric = lyrics;
+                    InitJsonData.WriteJsonFile();//手动更新缓存
+                }
+
+                List<LyricItme> lyricItmes = new List<LyricItme>();
+                //把歌词分开
+                List<string> lists = new List<string>(songModel.lyric.Split("\n"));
+                lists.RemoveAt(lists.Count - 1); //删除最后一个空数据
+
+                for (int i = 0; i < lists.Count; i++)
+                {
+                    var item = lists[i];
+                    LyricItme l = new LyricItme();
+                    if (i == 0) //是否第一个
+                    {
+                        l.isFirstOne = true;
+                        l.firstOneMargin = "0 " + (ListBoxContrainer.ActualHeight / 2) + " 0 0";
+                    }
+                    if (i == lists.Count - 1) //是否最后一个
+                    {
+                        l.lastOne = true;
+                        l.lastMargin = "0 0 0 " + (ListBoxContrainer.ActualHeight / 2);
+                    }
+                    //计算歌词的时间
+                    int index = item.IndexOf("]");
+                    l.value = item.Substring(index + 1);
+                    l.formatTime = item.Substring(1, index - 1);
+                    //计算秒
+                    var dateStr = l.formatTime.Split(":");
+                    l.time = (Convert.ToInt32(dateStr[0]) * 60) + Convert.ToDouble(dateStr[1]);
+                    lyricItmes.Add(l);
+                }
+
+                //更新数据
+                songDetailModel.author = songModel.author;
+                songDetailModel.songName = songModel.songName;
+                this.Dispatcher.Invoke(new Action(delegate
+                {
+                    LyricList.ItemsSource = lyricItmes;
+                    DataContext = songDetailModel;
+                }));
+
+                //开启定时器
+                StartTimer();
+            }).Start();
+
         }
-        public string sentence { get; set; }
+
+
+
+
+        private void StartTimer()
+        {
+            //计时器更新进度条
+            this.Dispatcher.Invoke(new Action(delegate
+            {
+                if (timer != null) timer.Stop();
+                if (timer == null)
+                {
+                    timer = new DispatcherTimer();
+                    timer.Interval = TimeSpan.FromMilliseconds(500);
+                }
+                timer.Tick += new EventHandler((s, e) =>
+                {
+                    List<LyricItme> itemsSource = (List<LyricItme>)LyricList.ItemsSource;
+                    double totalSeconds = bean.playerControl.PlayMedia.Position.TotalSeconds;
+                    for (int i = 0; i < itemsSource.Count; i++)
+                    {
+                        if (totalSeconds <= itemsSource[i].time 
+                            && itemsSource[i].time - totalSeconds < 1
+                            && !string.IsNullOrEmpty(itemsSource[i].value))
+                        {
+                            itemsSource[i].isFocus = true;//找到这点
+
+                            var x = LyricScrollViewer.ScrollableHeight / itemsSource.Count;
+                            LyricScrollViewer.ScrollToVerticalOffset(x * i);
+                            for (int j = 0; j < i; j++)//把之前设置false
+                            {
+                                if (itemsSource[j].isFocus == true)
+                                {
+                                    itemsSource[j].isFocus = false;
+                                }
+                            }
+                            break;
+                        }
+                    }
+
+                });
+                timer.Start();
+            }));
+        }
+
+
     }
+
 }
 
 
