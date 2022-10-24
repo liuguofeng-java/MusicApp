@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MusicApp.PageView.LivePage"
+﻿<Page x:Class="MusicApp.PageView.LivePage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,4 +9,4 @@
     <Grid Background="{DynamicResource MinAuxBackColor}">
         <TextBlock Text="直播"/>
     </Grid>
-</UserControl>
+</Page>

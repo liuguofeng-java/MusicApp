@@ -14,7 +14,7 @@ namespace MusicApp.Models
         /// 歌曲名称
         /// </summary>
         private string _songName;
-        public string songName
+        public string SongName
         {
             get { return this._songName; }
             set
@@ -28,12 +28,26 @@ namespace MusicApp.Models
         /// 作者
         /// </summary>
         private string _author;
-        public string author
+        public string Author
         {
             get { return this._author; }
             set
             {
                 _author = value;
+                DoNotify();
+            }
+        }
+
+        /// <summary>
+        /// 歌词信息
+        /// </summary>
+        private List<LyricItme> _lyricList;
+        public List<LyricItme> LyricList
+        {
+            get { return this._lyricList; }
+            set
+            {
+                _lyricList = value;
                 DoNotify();
             }
         }
@@ -47,46 +61,44 @@ namespace MusicApp.Models
         /// <summary>
         /// 歌词
         /// </summary>
-        public string value { get; set; }
+        public string Value { get; set; }
 
         /// <summary>
         /// 时间进度
         /// </summary>
-        public double time { get; set; }
+        public double Time { get; set; }
 
         /// <summary>
         /// 格式化时间进度
         /// </summary>
-        public string formatTime { get; set; }
+        public string FormatTime { get; set; }
 
 
         /// <summary>
         /// 是否第一个
         /// </summary>
-        public bool isFirstOne { get; set; }
+        public bool IsFirstOne { get; set; }
 
         /// <summary>
         /// 第一个的外边界
         /// </summary>
-        public string firstOneMargin { get; set; }
-
-
+        public string FirstOneMargin { get; set; }
 
         /// <summary>
         /// 是否最后一个
         /// </summary>
-        public bool lastOne { get; set; }
+        public bool LastOne { get; set; }
 
         /// <summary>
         /// 最后一个的外边界
         /// </summary>
-        public string lastMargin { get; set; }
+        public string LastMargin { get; set; }
 
         /// <summary>
         /// 是否是焦点
         /// </summary>
         private bool _isFocus;
-        public bool isFocus
+        public bool IsFocus
         {
             get { return this._isFocus; }
             set

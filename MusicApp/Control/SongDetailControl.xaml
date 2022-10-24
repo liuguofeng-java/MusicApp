@@ -44,6 +44,14 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Storyboard x:Key="ScrollStoryboard">
+            <DoubleAnimation Storyboard.TargetName="ScrollViewer" Storyboard.TargetProperty="{Binding LyricScrollViewer}"
+                        From="0" To="500" Duration="0:0:0.6">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
     </UserControl.Resources>
     <!--歌词-->
     <Grid HorizontalAlignment="Center" Margin="0 100 0 0">
@@ -52,14 +60,14 @@
             <RowDefinition Height="20"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding songName}" Foreground="{DynamicResource SongDetailTitleColor}" FontSize="35" HorizontalAlignment="Center" Grid.Row="0"/>
+        <TextBlock Text="{Binding Model.SongName}" Foreground="{DynamicResource SongDetailTitleColor}" FontSize="35" HorizontalAlignment="Center" Grid.Row="0"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Style="{DynamicResource AuthorInfoButtonStyle}" 
                     Foreground="{DynamicResource SongDetailTextColr}" 
-                    Content="{Binding author}" 
+                    Content="{Binding Model.Author}" 
                     HorizontalAlignment="Center" 
                     Grid.Column="2"/>
         </Grid>
@@ -67,12 +75,17 @@
         <Border Name="ListBoxContrainer" Grid.Row="3" Margin="0 20 0 100">
             <!--歌词列表-->
             <ScrollViewer x:Name="LyricScrollViewer" Template="{StaticResource MyScrollViewer}" VerticalScrollBarVisibility="Auto">
-                <ListBox x:Name="LyricList" Background="Transparent" BorderThickness="0" Width="400" ScrollViewer.CanContentScroll="False">
+                <ListBox x:Name="LyricList" 
+                         ItemsSource="{Binding Model.LyricList}"
+                         Background="Transparent" 
+                         BorderThickness="0" 
+                         MaxWidth="900" MinWidth="300" 
+                         ScrollViewer.CanContentScroll="False">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border x:Name="border" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <TextBlock x:Name="text" 
-                                           Text="{Binding value}" 
+                                           Text="{Binding Value}" 
                                            Margin="0 10" 
                                            Foreground="{DynamicResource SongDetailTextColr}" 
                                            HorizontalAlignment="Center" 
@@ -80,16 +93,16 @@
                                            FontSize="16"/>
                             </Border>
                             <DataTemplate.Triggers>
-                                <DataTrigger Binding="{Binding isFocus, Mode=Twoway}" Value="true">
+                                <DataTrigger Binding="{Binding IsFocus, Mode=Twoway}" Value="true">
                                     <Setter Property="FontSize" TargetName="text" Value="20"/>
                                     <Setter Property="Foreground" TargetName="text" Value="{DynamicResource SongDetailFocus}"/>
                                     <Setter Property="FontWeight" TargetName="text" Value="Bold"/>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding isFirstOne, Mode=Twoway}" Value="true">
-                                    <Setter Property="Margin" TargetName="border" Value="{Binding firstOneMargin}"/>
+                                <DataTrigger Binding="{Binding IsFirstOne, Mode=Twoway}" Value="true">
+                                    <Setter Property="Margin" TargetName="border" Value="{Binding FirstOneMargin}"/>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding lastOne, Mode=Twoway}" Value="true">
-                                    <Setter Property="Margin" TargetName="border" Value="{Binding lastMargin}"/>
+                                <DataTrigger Binding="{Binding LastOne, Mode=Twoway}" Value="true">
+                                    <Setter Property="Margin" TargetName="border" Value="{Binding LastMargin}"/>
                                 </DataTrigger>
                             </DataTemplate.Triggers>
                         </DataTemplate>
@@ -97,11 +110,5 @@
                 </ListBox>
             </ScrollViewer>
         </Border>
-        
-
-            
-        
-        
-        
     </Grid>
 </UserControl>

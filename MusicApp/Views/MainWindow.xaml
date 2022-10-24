@@ -4,52 +4,174 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MusicApp.Control"
+        xmlns:common="clr-namespace:MusicApp.Common" 
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="MainWindow" Height="690" Width="1043" 
-        WindowStyle="None"
+        Title="MainWindow" Height="690" Width="1043" MaxHeight="690" MaxWidth="1043" 
         WindowStartupLocation="CenterScreen"
-        AllowsTransparency="True"
         Background="{x:Null}"
         Icon="pack://application:,,,/Assets/Images/Iocn/m_256.ico">
+    <WindowChrome.WindowChrome>
+        <WindowChrome 
+            CaptionHeight="0"
+            GlassFrameThickness="1"
+            UseAeroCaptionButtons="False"
+            NonClientFrameEdges="None"
+            CornerRadius="0"
+            ResizeBorderThickness="3"/>
+
+    </WindowChrome.WindowChrome>
     <Window.Resources>
-        <!--给阴影留出边距-->
-        <Style x:Key="WindowBorderStyle" TargetType="Border">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Value="Normal">
-                    <Setter Property="Margin" Value="10" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Value="Minimized">
-                    <Setter Property="Margin" Value="10" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Value="Maximized">
-                    <Setter Property="Margin" Value="6" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
+        <common:RadioButtonConvert x:Key="menusRadioButtonConvert"/>
     </Window.Resources>
     <Grid>
-        <Border x:Name="BaseBorder" Style="{DynamicResource WindowBorderStyle}" Background="White">
+        <Border x:Name="BaseBorder" Background="White">
+            <behaviors:Interaction.Triggers>
+                <behaviors:EventTrigger EventName="MouseDown">
+                    <behaviors:InvokeCommandAction Command="{Binding BaseBorderMouseDownCommand}" CommandParameter="{Binding ElementName=SearchBox,Path=Text}" />
+                </behaviors:EventTrigger>
+            </behaviors:Interaction.Triggers>
             <Border.Effect>
                 <DropShadowEffect Color="#1e1e1e" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
             </Border.Effect>
             <DockPanel>
                 <!--头部-->
-                <local:HeadWindowControl x:Name="headWindow" DockPanel.Dock="Top"/>
+                <Border x:Name="headWindow" Height="60" Background="{DynamicResource MainBackColor}" MouseLeftButtonDown="WindowMove_MouseLeftButtonDown" DockPanel.Dock="Top">
+                    <Grid VerticalAlignment="Center">
+                        <!--左侧部分-->
+                        <Button x:Name="Logo" Margin="20 0 0 0"  Style="{DynamicResource LogoStyle}"/>
+                        <!--中心部分-->
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="230 0 0 0">
+                            <!--返回-->
+                            <Button x:Name="Back" 
+                                    Style="{DynamicResource NavButtonStyle}"
+                                    Height="25" 
+                                    Width="25" Margin="3 0" FontSize="10" 
+                                    Content="&#xe600;" 
+                                    Command="{x:Static NavigationCommands.BrowseBack}"
+                                    CommandTarget="{Binding ElementName=FrmePage}"/>
+                            <!--前进-->
+                            <Button x:Name="Next" 
+                                    Style="{DynamicResource NavButtonStyle}"
+                                    Height="25" Width="25" 
+                                    Margin="3 0" FontSize="10" Content="&#xe601;" 
+                                    Command="{x:Static NavigationCommands.BrowseForward}"
+                                    CommandTarget="{Binding ElementName=FrmePage}"/>
+                            <!--搜索框-->
+                            <local:SearchTextBoxControl />
+                        </StackPanel>
+
+                        <!--右侧部分-->
+                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal" Margin="0 0 15 0">
+                            <!--头像用户名-->
+                            <Button Style="{DynamicResource LoginStyle}"/>
+                            <!--vip-->
+                            <Button Style="{DynamicResource VipStyle}"/>
+                            <!--皮肤-->
+                            <Button Style="{DynamicResource WinButtonStyle}" x:Name="Skin"
+                            Height="30" Width="30" Margin="3 0" FontSize="17" Content="&#xe647;"/>
+                            <!--主题颜色弹窗-->
+                            <local:ThemeColorControl x:Name="themeColor"/>
+
+                            <!--设置-->
+                            <Button Style="{DynamicResource WinButtonStyle}" x:Name="Settings"
+                            Height="30" Width="30" Margin="3 0" FontSize="22" Content="&#xe604;"/>
+                            <!--mini模式-->
+                            <Button Style="{DynamicResource WinButtonStyle}" x:Name="Mail"
+                            Height="30" Width="30" Margin="3 0" FontSize="17" Content="&#xe7b1;"/>
+                            <!--边框-->
+                            <Border BorderThickness="0.15" Height="15" BorderBrush="White" Margin="10 0"/>
+                            <!--mini模式-->
+                            <Button Style="{DynamicResource WinButtonStyle}" x:Name="Mini"
+                            Height="30" Width="30" Margin="3 0" FontSize="17" Content="&#xe64e;"/>
+                            <!--最小化-->
+                            <Button Style="{DynamicResource WinButtonStyle}" x:Name="ZoomOutWindowBut"
+                            Height="30" Width="30" Margin="3 0" FontSize="17" Content="&#xe60e;"/>
+                            <!--最大化\还原-->
+                            <Button Style="{DynamicResource WinButtonStyle}" x:Name="ZoomWindowBut"
+                            Height="30" Width="30" Margin="3 0" FontSize="15" Content="&#xe65d;"/>
+                            <!--关闭-->
+                            <Button Style="{DynamicResource WinButtonStyle}" x:Name="CloseWindowBut"
+                            Height="30" Width="30" Margin="3 0" FontSize="17" Content="&#xe723;"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
 
                 <!--底部-->
-                <local:BottomPlayerWindowControl x:Name="bottomPlayerWindow" DockPanel.Dock="Bottom" Height="75"/>
+                <Grid x:Name="bottomPlayerWindow" DockPanel.Dock="Bottom" Height="75">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border Background="{DynamicResource BottomBorderColor}" Height="1"/>
+                    <Border Background="{DynamicResource BottomBackColor}" Grid.Row="1">
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--控制播放播放-->
+                            <local:PlayerControl x:Name="playerControl" Grid.Column="1"/>
+
+                            <!--右侧控制声音歌曲列表播放-->
+                            <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 0 20 0">
+                                <local:VolumeControl Height="50" Width="50"/>
+                                <Button Content="&#xe67b;" 
+                                        Style="{DynamicResource DefaultButtonStyle}" 
+                                        Foreground="{DynamicResource BottomButTextColor}" 
+                                        FontSize="14"
+                                        Width="30" 
+                                        Height="30"
+                                        Command="{Binding SongPlayListClickCommand}"/>
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+                </Grid>
+
 
                 <!--侧边-->
-                <local:SideNavBarWindowControl x:Name="sideNavBarWindow" DockPanel.Dock="Left" Width="200" />
+                <Grid x:Name="sideNavBarWindow" DockPanel.Dock="Left" Width="200" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="1"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="{DynamicResource MinAuxBackColor}">
+                        <StackPanel Margin="10 10 2 0" x:Name="radioButs">
+                            <RadioButton Style="{DynamicResource MenuListButtonStyle1}" Content="发现音乐" GroupName="menus" 
+                                IsChecked="{Binding Model.MenusChecked, Mode=TwoWay,Converter={StaticResource menusRadioButtonConvert},ConverterParameter=FoundMusicPage}"/>
+                            <RadioButton Style="{DynamicResource MenuListButtonStyle1}" Content="播客" GroupName="menus"
+                                IsChecked="{Binding Model.MenusChecked, Mode=TwoWay,Converter={StaticResource menusRadioButtonConvert},ConverterParameter=PodcastPage}"/>
+                            <RadioButton Style="{DynamicResource MenuListButtonStyle1}" Content="视频" GroupName="menus"
+                                IsChecked="{Binding Model.MenusChecked, Mode=TwoWay,Converter={StaticResource menusRadioButtonConvert},ConverterParameter=VideoPage}"/>
+                            <RadioButton Style="{DynamicResource MenuListButtonStyle1}" Content="关注" GroupName="menus"
+                                IsChecked="{Binding Model.MenusChecked, Mode=TwoWay,Converter={StaticResource menusRadioButtonConvert},ConverterParameter=FocusOnPage}"/>
+                            <RadioButton Style="{DynamicResource MenuListButtonStyle1}" Content="直播" GroupName="menus"
+                                IsChecked="{Binding Model.MenusChecked, Mode=TwoWay,Converter={StaticResource menusRadioButtonConvert},ConverterParameter=LivePage}"/>
+                            <RadioButton Style="{DynamicResource MenuListButtonStyle1}" Content="私人FM" GroupName="menus"
+                                IsChecked="{Binding Model.MenusChecked, Mode=TwoWay,Converter={StaticResource menusRadioButtonConvert},ConverterParameter=FMPage}"/>
+                            <Label Content="我的音乐" Foreground="#9f9f9f" />
+                            <RadioButton Style="{DynamicResource MenuListButtonStyle2}" Content="&#xe682; 我喜欢的音乐" GroupName="menus"
+                                IsChecked="{Binding Model.MenusChecked, Mode=TwoWay,Converter={StaticResource menusRadioButtonConvert},ConverterParameter=LikeMusicPage}"/>
+                            <RadioButton Style="{DynamicResource MenuListButtonStyle2}" Content="&#xe697; 本地与下载" GroupName="menus"
+                                IsChecked="{Binding Model.MenusChecked, Mode=TwoWay,Converter={StaticResource menusRadioButtonConvert},ConverterParameter=LocalAndDownloadPage}"/>
+                            <RadioButton Style="{DynamicResource MenuListButtonStyle2}" Content="&#xe6d7; 最近播放" GroupName="menus"
+                                IsChecked="{Binding Model.MenusChecked, Mode=TwoWay,Converter={StaticResource menusRadioButtonConvert},ConverterParameter=RecentPlayPage}"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="{DynamicResource SideBorderColor}" Width="1" Grid.Column="1" />
+                </Grid>
 
                 <Border Background="White">
-                    <ContentControl Content="{Binding Page}"/>
+                    <Frame x:Name="FrmePage" Content="{Binding Model.Page}" NavigationUIVisibility="Hidden"/>
                 </Border>
             </DockPanel>
         </Border>
 
         <!--系统托盘-->
-        <local:NotifyIcon x:Name="notifyIcon"/>
+        <!--<local:NotifyIcon x:Name="notifyIcon"/>-->
 
         <!--歌曲信息部分-->
         <local:SongInfoControl/>
@@ -58,7 +180,7 @@
         <local:SearchListControl />
 
         <!--待播放的歌曲列表-->
-        <local:SongPlayListControl />
+        <local:SongPlayListControl x:Name="songPlayListControl" />
 
     </Grid>
 

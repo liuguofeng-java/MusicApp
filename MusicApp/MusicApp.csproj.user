@@ -10,13 +10,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Control\BottomPlayerWindowControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Control\CarouselControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Control\HeadWindowControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Control\PlayerControl.xaml.cs">
@@ -26,9 +20,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Control\SearchTextBoxControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Control\SideNavBarWindowControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Control\SongDetailControl.xaml.cs">
@@ -78,13 +69,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Control\BottomPlayerWindowControl.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Control\CarouselControl.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Control\HeadWindowControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Control\PlayerControl.xaml">
@@ -94,9 +79,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Control\SearchTextBoxControl.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Control\SideNavBarWindowControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Control\SongDetailControl.xaml">
@@ -154,6 +136,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Themes\ScrollViewDictionary.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\Style\MainWindowStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainWindow.xaml">

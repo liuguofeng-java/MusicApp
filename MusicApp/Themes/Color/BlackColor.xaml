@@ -58,4 +58,7 @@
     <SolidColorBrush x:Key="SongDetailFocus" Color="#ffffff"/>
     <SolidColorBrush x:Key="SongDetailTitleColor" Color="#d4d4d4"/>
 
+    <!--发现音乐-->
+    <SolidColorBrush x:Key="FoundMusicRButColor" Color="#383838"/>
+
 </ResourceDictionary>

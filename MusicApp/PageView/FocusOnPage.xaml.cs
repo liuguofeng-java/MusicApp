@@ -16,7 +16,7 @@ namespace MusicApp.PageView
     /// <summary>
     /// FocusOnPage.xaml 的交互逻辑
     /// </summary>
-    public partial class FocusOnPage : UserControl
+    public partial class FocusOnPage : Page
     {
         public FocusOnPage()
         {

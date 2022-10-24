@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MusicApp.Control"
+             xmlns:local="clr-namespace:MusicApp.Control" xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" Height="70" Width="450">
     <!--
         控制音乐如:暂停进行\下一曲上一曲\音乐进度条 ,
@@ -41,7 +41,14 @@
                                 Width="0"
                                 Height="10"
                                 Background="{TemplateBinding Background}"
-                                VerticalAlignment="Center"/>
+                                VerticalAlignment="Center">
+                            <!--<behaviors:Interaction.Triggers>
+                                <behaviors:EventTrigger EventName="DragCompleted">
+                                    <behaviors:InvokeCommandAction Command="{Binding MusicProgressChangedCommand}" />
+                                </behaviors:EventTrigger>
+                            </behaviors:Interaction.Triggers>-->
+                        </Thumb>
+
                     </Track.Thumb>
 
                 </Track>
@@ -56,10 +63,6 @@
         </ControlTemplate>
         <Style x:Key="MusicSliderStyle" TargetType="{x:Type Slider}">
             <Setter Property="Template" Value="{StaticResource SliderHorizontal}"/>
-            <Style.Triggers>
-                <Trigger Property="Orientation" Value="Vertical">
-                </Trigger>
-            </Style.Triggers>
         </Style>
         <!--控制音乐按钮样式-->
         <Style x:Key="ControlMusicButtonStyle" TargetType="{x:Type Button}">
@@ -108,16 +111,17 @@
                                 Background="{DynamicResource BottomButBackColor}" 
                                 Width="20" 
                                 Height="20"
-                                Foreground="{DynamicResource BottomButTextColor}"/>
+                                Foreground="{DynamicResource BottomButTextColor}" Command="{Binding PlayLastClickCommand}"/>
             <!--继续或暂停-->
-            <Button x:Name="PlayBut" Click="PlayBut_Click" Style="{DynamicResource ControlMusicButtonStyle}" 
+            <!--Click="PlayBut_Click-->
+            <Button x:Name="PlayBut" Style="{DynamicResource ControlMusicButtonStyle}" 
                                 Margin="15 0"
-                                Content="{Binding playButContent}" 
+                                Content="{Binding Model.PlayButContent}" 
                                 Background="{DynamicResource BottomMainButBackColor}" 
                                 Width="35" 
                                 Height="35"
                                 FontSize="15"
-                                Foreground="{DynamicResource BottomButTextColor}"/>
+                                Foreground="{DynamicResource BottomButTextColor}" Command="{Binding PlayButClickCommand}"/>
             <!--下一首-->
             <Button x:Name="NextSong" Style="{DynamicResource ControlMusicButtonStyle}" 
                                 Content="&#xe60b;" 
@@ -125,7 +129,7 @@
                                 Background="{DynamicResource BottomButBackColor}" 
                                 Width="20" 
                                 Height="20"
-                                Foreground="{DynamicResource BottomButTextColor}"/>
+                                Foreground="{DynamicResource BottomButTextColor}" Command="{Binding PlayNextClickCommand}"/>
             <!--词-->
             <Button Style="{DynamicResource ControlMusicButtonStyle}" 
                                 Margin="15 0"
@@ -136,21 +140,34 @@
                                 Foreground="{DynamicResource BottomButTextColor}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" >
-            <TextBlock x:Name="StartProgress" Text="{Binding startProgressTiem}" FontSize="12" Foreground="{DynamicResource BottomTextColor}" Margin="0 0 10 0"/>
-            <Slider 
-                    x:Name="MusicProgress"
-                    IsEnabled="{Binding disabledPlayProgress}"
+            <TextBlock x:Name="StartProgress" Text="{Binding Model.StartProgressTiem}" FontSize="12" Foreground="{DynamicResource BottomTextColor}" Margin="0 0 10 0"/>
+            <Slider x:Name="MusicProgress"
+                    IsEnabled="{Binding Model.DisabledPlayProgress}"
                     Style="{DynamicResource MusicSliderStyle}" 
                     Minimum="0"
-                    Maximum="{Binding playProgressLength}"
+                    Maximum="{Binding Model.PlayProgressLength}"
                     Width="350" 
                     IsMoveToPointEnabled="True"
-                    Value="{Binding playProgress}"
+                    Value="{Binding Model.PlayProgress}"
                     Background="{DynamicResource MainLineBackColor}" 
-                    Cursor="Hand"/>
-
-            <TextBlock x:Name="EndProgress" Text="{Binding endProgressTiem}" FontSize="12" Foreground="{DynamicResource BottomTextColor}" Margin="10 0 0 0"/>
+                    Cursor="Hand">
+                <behaviors:Interaction.Triggers>
+                    <behaviors:EventTrigger EventName="MouseLeftButtonUp">
+                        <behaviors:InvokeCommandAction Command="{Binding MusicProgressChangedCommand}" CommandParameter="{Binding ElementName=MusicProgress,Path=Value}"/>
+                    </behaviors:EventTrigger>
+                </behaviors:Interaction.Triggers>
+            </Slider>
+            <TextBlock x:Name="EndProgress" Text="{Binding Model.EndProgressTiem}" FontSize="12" Foreground="{DynamicResource BottomTextColor}" Margin="10 0 0 0"/>
         </StackPanel>
-        <MediaElement Name="PlayMedia" Visibility="Hidden" LoadedBehavior="Manual"/>
+        <MediaElement x:Name="PlayMedia" Visibility="Hidden" LoadedBehavior="Manual" Volume="{Binding Model.VolumeValue}">
+            <behaviors:Interaction.Triggers>
+                <behaviors:EventTrigger EventName="Loaded">
+                    <behaviors:InvokeCommandAction Command="{Binding MediaLoadedCommand}" CommandParameter="{Binding ElementName=PlayMedia}"/>
+                </behaviors:EventTrigger>
+                <behaviors:EventTrigger EventName="MediaEnded">
+                    <behaviors:InvokeCommandAction Command="{Binding MediaEndedCommand}"/>
+                </behaviors:EventTrigger>
+            </behaviors:Interaction.Triggers>
+        </MediaElement>
     </StackPanel>
 </UserControl>

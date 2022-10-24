@@ -2,8 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 
-namespace MusicApp.Models.Vo
+namespace MusicApp.Models
 {
     /// <summary>
     /// 待播放歌曲列表
@@ -11,155 +12,46 @@ namespace MusicApp.Models.Vo
     public class SongPlayListModel : NotifyBase
     {
         /// <summary>
-        /// 歌曲id
+        /// 歌曲列表
         /// </summary>
-        private string _songId;
-        public string songId
+        private List<SongModel> _songLists;
+        public List<SongModel> SongLists
         {
-            get { return this._songId; }
+            get {
+                if (_songLists == null) _songLists = new List<SongModel>();
+                return this._songLists; 
+            }
             set
             {
-                _songId = value;
+                _songLists = value;
                 DoNotify();
             }
         }
 
         /// <summary>
-        /// 歌曲url
+        /// 是否隐藏列表
         /// </summary>
-        private string _songUrl;
-        public string songUrl
+        private Visibility _playListVisibility;
+        public Visibility PlayListVisibility
         {
-            get { return this._songUrl; }
+            get { return this._playListVisibility; }
             set
             {
-                _songUrl = value;
+                _playListVisibility = value;
                 DoNotify();
             }
         }
 
         /// <summary>
-        /// 本地下载后的mp3路径
+        /// 歌曲列表
         /// </summary>
-        private string _localSongUrl;
-        public string localSongUrl
+        private string _songPlayCount;
+        public string SongPlayCount
         {
-            get { return this._localSongUrl; }
+            get { return this._songPlayCount; }
             set
             {
-                _localSongUrl = value;
-                DoNotify();
-            }
-        }
-
-        /// <summary>
-        /// 歌曲图片
-        /// </summary>
-        private string _picUrl;
-        public string picUrl
-        {
-            get { return this._picUrl; }
-            set
-            {
-                _picUrl = value;
-                DoNotify();
-            }
-        }
-
-        /// <summary>
-        /// 本地下载后歌曲名片的路径
-        /// </summary>
-        private string _localPicUrl;
-        public string localPicUrl
-        {
-            get { return this._localPicUrl; }
-            set
-            {
-                _localPicUrl = value;
-                DoNotify();
-            }
-        }
-
-        /// <summary>
-        /// 歌曲名称
-        /// </summary>
-        private string _songName;
-        public string songName
-        {
-            get { return this._songName; }
-            set
-            {
-                _songName = value;
-                DoNotify();
-            }
-        }
-
-        /// <summary>
-        /// 歌词
-        /// </summary>
-        private string _lyric;
-        public string lyric
-        {
-            get { return this._lyric; }
-            set
-            {
-                _lyric = value;
-                DoNotify();
-            }
-        }
-
-        /// <summary>
-        /// 作者
-        /// </summary>
-        private string _author;
-        public string author
-        {
-            get { return this._author; }
-            set
-            {
-                _author = value;
-                DoNotify();
-            }
-        }
-
-        /// <summary>
-        /// 音乐时长
-        /// </summary>
-        private int _songTime;
-        public int songTime
-        {
-            get { return this._songTime; }
-            set
-            {
-                _songTime = value;
-                DoNotify();
-            }
-        }
-
-        /// <summary>
-        /// 格式化后音乐时长
-        /// </summary>
-        private string _formatSongTime;
-        public string formatSongTime
-        {
-            get { return this._formatSongTime; }
-            set
-            {
-                _formatSongTime = value;
-                DoNotify();
-            }
-        }
-
-        /// <summary>
-        /// 列表颜色
-        /// </summary>
-        private bool _isSelected = false;
-        public bool isSelected
-        {
-            get { return this._isSelected; }
-            set
-            {
-                _isSelected = value;
+                _songPlayCount = value;
                 DoNotify();
             }
         }

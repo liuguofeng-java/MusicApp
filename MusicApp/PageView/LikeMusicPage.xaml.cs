@@ -16,7 +16,7 @@ namespace MusicApp.PageView
     /// <summary>
     /// LikeMusicPage.xaml 的交互逻辑
     /// </summary>
-    public partial class LikeMusicPage : UserControl
+    public partial class LikeMusicPage : Page
     {
         public LikeMusicPage()
         {

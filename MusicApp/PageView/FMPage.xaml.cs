@@ -16,7 +16,7 @@ namespace MusicApp.PageView
     /// <summary>
     /// FMPage.xaml 的交互逻辑
     /// </summary>
-    public partial class FMPage : UserControl
+    public partial class FMPage : Page
     {
         public FMPage()
         {

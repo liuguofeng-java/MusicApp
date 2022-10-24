@@ -16,7 +16,7 @@ namespace MusicApp.PageView
     /// <summary>
     /// PodcastPage.xaml 的交互逻辑
     /// </summary>
-    public partial class PodcastPage : UserControl
+    public partial class PodcastPage : Page
     {
         public PodcastPage()
         {

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MusicApp.OverwriteControl"
+             xmlns:convert="clr-namespace:MusicApp.Common"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <!--
@@ -11,6 +12,7 @@
         主窗体在头部
     -->
     <UserControl.Resources>
+        <convert:RadioButtonConvert x:Key="RadioButtonConvert"/>
         <!--选择栏-->
         <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
             <Setter Property="Template">
@@ -112,28 +114,29 @@
                         <TabItem Style="{DynamicResource TabItemStyle}" Header="主题">
                             <WrapPanel x:Name="RadioButContrainer" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <RadioButton
-                                        Command="{Binding SelectButCommand}"
-                                        CommandParameter="1"
-                                        Style="{DynamicResource SelectColorRadioStyle}" 
-                                        local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/1.png"/>
+                                    Command="{Binding SelectButCommand}"
+                                    CommandParameter="BlackColor"
+                                    IsChecked="{Binding Model.ThemeSelect,Mode=TwoWay,Converter={StaticResource RadioButtonConvert},ConverterParameter=BlackColor}"
+                                    Style="{DynamicResource SelectColorRadioStyle}" 
+                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/1.png"/>
                                 <RadioButton 
-                                        Command="{Binding SelectButCommand}"
-                                        CommandParameter="2"
-                                        IsChecked="true"
-                                        Style="{DynamicResource SelectColorRadioStyle}" 
-                                        local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/2.png"/>
+                                    Command="{Binding SelectButCommand}"
+                                    CommandParameter="DefaultColor"
+                                    IsChecked="{Binding Model.ThemeSelect ,Mode=TwoWay,Converter={StaticResource RadioButtonConvert},ConverterParameter=DefaultColor}"
+                                    Style="{DynamicResource SelectColorRadioStyle}" 
+                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/2.png"/>
                                 <RadioButton 
-                                        Style="{DynamicResource SelectColorRadioStyle}" 
-                                        local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/3.png"/>
+                                    Style="{DynamicResource SelectColorRadioStyle}" 
+                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/3.png"/>
                                 <RadioButton 
-                                        Style="{DynamicResource SelectColorRadioStyle}" 
-                                        local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/4.png"/>
+                                    Style="{DynamicResource SelectColorRadioStyle}" 
+                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/4.png"/>
                                 <RadioButton 
-                                        Style="{DynamicResource SelectColorRadioStyle}" 
-                                        local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/5.png"/>
+                                    Style="{DynamicResource SelectColorRadioStyle}" 
+                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/5.png"/>
                                 <RadioButton 
-                                        Style="{DynamicResource SelectColorRadioStyle}" 
-                                        local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/6.png"/>
+                                    Style="{DynamicResource SelectColorRadioStyle}" 
+                                    local:OverwriteRadioButton.ImageSource="/Assets/Images/ThemeColor/6.png"/>
                             </WrapPanel>
                         </TabItem>
                         <TabItem Style="{DynamicResource TabItemStyle}" Header="纯色">

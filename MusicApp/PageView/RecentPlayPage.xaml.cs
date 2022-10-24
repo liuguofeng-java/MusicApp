@@ -16,7 +16,7 @@ namespace MusicApp.PageView
     /// <summary>
     /// RecentPlayPage.xaml 的交互逻辑
     /// </summary>
-    public partial class RecentPlayPage : UserControl
+    public partial class RecentPlayPage : Page
     {
         public RecentPlayPage()
         {

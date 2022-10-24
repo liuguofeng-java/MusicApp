@@ -16,7 +16,7 @@ namespace MusicApp.PageView
     /// <summary>
     /// VideoPage.xaml 的交互逻辑
     /// </summary>
-    public partial class VideoPage : UserControl
+    public partial class VideoPage : Page
     {
         public VideoPage()
         {

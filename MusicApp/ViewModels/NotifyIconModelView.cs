@@ -18,8 +18,6 @@ namespace MusicApp.ViewModels
         /// </summary>
         public NotifyIconModelView()
         {
-            mainWindow = ControlBean.getInstance().mainWindow;
-
             ClickCommand = new CommandBase();
             ClickCommand.DoExecute = new Action<object>((o) =>
             {

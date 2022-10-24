@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MusicApp.Control"
+             xmlns:local="clr-namespace:MusicApp.Control" xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="900">
     <!--歌曲搜索框,输入弹出搜索结果-->
@@ -14,8 +14,9 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid>
+                            <!--MouseDown="historyBut_MouseDown"-->
                             <Border x:Name="border" 
-                                MouseDown="historyBut_MouseDown"
+                                
                                 Padding="15 5"
                                 BorderThickness="0.2" 
                                 BorderBrush="{DynamicResource SearchListTextColor}" 
@@ -27,12 +28,13 @@
                                         HorizontalAlignment="Center" 
                                         VerticalAlignment="Center"/>
                             </Border>
+                            <!--MouseDown="closeText_MouseDown"-->
                             <TextBlock x:Name="closeText" 
                                     Cursor="Hand"
                                     Text="&#xe603;" 
                                     Visibility="Collapsed"
                                     Margin="0 0 3 0"
-                                    MouseDown="closeText_MouseDown"
+                                    
                                     Foreground="{DynamicResource SearchListTextColor}"
                                     FontFamily="{DynamicResource Iconfont}" 
                                     HorizontalAlignment="Right"
@@ -66,9 +68,9 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid x:Name="GridContrainer" Margin="250 73 0 0">
+    <Grid x:Name="GridContrainer" Margin="250 73 0 0" Visibility="{ Binding Model.GridVisibility}">
         <!--排行榜-->
-        <StackPanel x:Name="RankingContrainer" HorizontalAlignment="Left">
+        <StackPanel x:Name="RankingContrainer" HorizontalAlignment="Left" Visibility="{ Binding Model.RankingVisibility}">
             <Border Background="{DynamicResource MainPopupBackColor}" Width="350" Height="510" CornerRadius="10">
                 <Border.Effect>
                     <DropShadowEffect Color="#1e1e1e" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
@@ -107,7 +109,7 @@
                                        FontSize="14"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center"/>
-                            <ListBox x:Name="RankingListBox" Background="Transparent" BorderThickness="0">
+                            <ListBox x:Name="RankingListBox" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Model.RankingList}">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
@@ -137,7 +139,7 @@
         </StackPanel>
 
         <!--搜索-->
-        <StackPanel x:Name="SearchContrainer" HorizontalAlignment="Left" Visibility="Collapsed">
+        <StackPanel x:Name="SearchContrainer" HorizontalAlignment="Left" Visibility="{ Binding Model.SearchVisibility}">
             <Border Background="{DynamicResource MainPopupBackColor}" Width="350" Height="510" CornerRadius="10">
                 <Border.Effect>
                     <DropShadowEffect Color="#1e1e1e" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
@@ -151,7 +153,12 @@
                                    Margin="20 10 15 10" 
                                    FontFamily="{DynamicResource Iconfont}" 
                                    Foreground="{DynamicResource SearchListAuxTextColor}"/>
-                        <ListBox x:Name="SingleListBox" Background="Transparent" BorderThickness="0">
+                        <ListBox x:Name="SingleListBox" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Model.SingleList}">
+                            <behaviors:Interaction.Triggers>
+                                <behaviors:EventTrigger EventName="SelectionChanged">
+                                    <behaviors:InvokeCommandAction Command="{Binding SingleSelectionChangedCommand}" CommandParameter="{Binding ElementName=SingleListBox,Path=SelectedIndex}"/>
+                                </behaviors:EventTrigger>
+                            </behaviors:Interaction.Triggers>
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding name}" FontSize="12" Margin="50 10 15 10" Foreground="{DynamicResource SearchListTextColor}"/>
@@ -165,7 +172,7 @@
                                    Margin="20 10 15 10" 
                                    FontFamily="{DynamicResource Iconfont}" 
                                    Foreground="{DynamicResource SearchListAuxTextColor}"/>
-                        <ListBox x:Name="ArtistsListBox" Background="Transparent" BorderThickness="0">
+                        <ListBox x:Name="ArtistsListBox" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Model.ArtistsList}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding name}" FontSize="12" Margin="50 10 15 10" Foreground="{DynamicResource SearchListTextColor}"/>
@@ -179,7 +186,7 @@
                                    Margin="20 10 15 10" 
                                    FontFamily="{DynamicResource Iconfont}" 
                                    Foreground="{DynamicResource SearchListAuxTextColor}"/>
-                        <ListBox x:Name="AlbumListBox" Background="Transparent" BorderThickness="0">
+                        <ListBox x:Name="AlbumListBox" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Model.AlbumList}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding name}" FontSize="12" Margin="50 10 15 10" Foreground="{DynamicResource SearchListTextColor}"/>
@@ -193,7 +200,7 @@
                                    Margin="20 10 15 10" 
                                    FontFamily="{DynamicResource Iconfont}" 
                                    Foreground="{DynamicResource SearchListAuxTextColor}"/>
-                        <ListBox x:Name="SongsListBox" Background="Transparent" BorderThickness="0">
+                        <ListBox x:Name="SongsListBox" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Model.SongsList}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding name}" FontSize="12" Margin="50 10 15 10" Foreground="{DynamicResource SearchListTextColor}"/>

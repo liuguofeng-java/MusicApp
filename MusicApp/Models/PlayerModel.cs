@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace MusicApp.Models
 {
@@ -11,10 +13,68 @@ namespace MusicApp.Models
     public class PlayerModel : NotifyBase
     {
         /// <summary>
+        /// 当前播放器
+        /// </summary>
+        private MediaElement _mediaElement;
+        public MediaElement MediaElement
+        {
+            get { return this._mediaElement; }
+            set
+            {
+                _mediaElement = value;
+                DoNotify();
+            }
+        }
+
+        /// <summary>
+        /// 当前播放器音量
+        /// </summary>
+        private double _volumeValue;
+        public double VolumeValue
+        {
+            get { return this._volumeValue; }
+            set
+            {
+                _volumeValue = value;
+                DoNotify();
+            }
+        }
+
+        /// <summary>
+        /// 当前播放的音乐
+        /// </summary>
+        private SongModel _songPlayModel;
+        public SongModel SongPlayModel
+        {
+            get { return this._songPlayModel; }
+            set
+            {
+                _songPlayModel = value;
+                DoNotify();
+            }
+        }
+
+        /// <summary>
+        /// 更新进度条定时器
+        /// </summary>
+        private DispatcherTimer _timer;
+        public DispatcherTimer Timer
+        {
+            get { return this._timer; }
+            set
+            {
+                _timer = value;
+                DoNotify();
+            }
+        }
+
+
+
+        /// <summary>
         /// 歌曲进度条进度
         /// </summary>
         private double _playProgress;
-        public double playProgress
+        public double PlayProgress
         {
             get { return this._playProgress; }
             set
@@ -28,7 +88,7 @@ namespace MusicApp.Models
         /// 是否禁用歌曲进度条
         /// </summary>
         private bool _disabledPlayProgress = false;
-        public bool disabledPlayProgress
+        public bool DisabledPlayProgress
         {
             get { return this._disabledPlayProgress; }
             set
@@ -42,7 +102,7 @@ namespace MusicApp.Models
         /// 歌曲进度条长度
         /// </summary>
         private double _playProgressLength = 1;
-        public double playProgressLength
+        public double PlayProgressLength
         {
             get { return this._playProgressLength; }
             set
@@ -56,7 +116,7 @@ namespace MusicApp.Models
         /// 歌曲播放进度
         /// </summary>
         private string _startProgressTiem = "00:00";
-        public string startProgressTiem
+        public string StartProgressTiem
         {
             get { return this._startProgressTiem; }
             set
@@ -70,7 +130,7 @@ namespace MusicApp.Models
         /// 歌曲播放时长
         /// </summary>
         private string _endProgressTiem = "00:00";
-        public string endProgressTiem
+        public string EndProgressTiem
         {
             get { return this._endProgressTiem; }
             set
@@ -84,7 +144,7 @@ namespace MusicApp.Models
         /// 播放按钮
         /// </summary>
         private string _playButContent = "\xe87c";
-        public string playButContent
+        public string PlayButContent
         {
             get { return this._playButContent; }
             set

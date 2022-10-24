@@ -83,7 +83,7 @@
             <BeginStoryboard Storyboard="{DynamicResource BottomStoryboard}"/>
         </EventTrigger>
     </UserControl.Triggers>
-    <Grid Margin="10">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="75"/>
@@ -103,7 +103,7 @@
                             <BlurEffect Radius="20"/>
                         </Border.Effect>
                         <Border.Background>
-                            <ImageBrush ImageSource="{Binding localPicUrl}" />
+                            <ImageBrush ImageSource="{Binding Model.SongModel.LocalPicUrl}" />
                         </Border.Background>
                     </Border>
                     <Border Background="{DynamicResource MainPopupBackColor}" Opacity="0.9"></Border>
@@ -136,7 +136,7 @@
                 </Button>
             </StackPanel>
             <!--歌曲信息\头像\名称\作者等信息-->
-            <StackPanel x:Name="StackPanelContrainer" Orientation="Horizontal"  Visibility="Visible" Height="75">
+            <StackPanel Orientation="Horizontal" Height="75" Visibility="{Binding Model.SongInfoVisibility}">
                 <StackPanel.RenderTransform>
                     <TranslateTransform x:Name="bottomTranslateTransform" Y="-75"></TranslateTransform>
                 </StackPanel.RenderTransform>
@@ -144,24 +144,25 @@
                 <Grid>
                     <Border Background="{DynamicResource BottomBackColor}" CornerRadius="5" Width="50" Height="50" Margin="10 0 0 0">
                         <TextBlock Text="&#xe613;" 
-                        FontFamily="{DynamicResource Iconfont}" 
-                        FontSize="35" 
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Foreground="{DynamicResource BottomButTextColor}"/>
+                            FontFamily="{DynamicResource Iconfont}" 
+                            FontSize="35" 
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="{DynamicResource BottomButTextColor}"/>
                     </Border>
                     <Button x:Name="SongPic" Width="50" Height="50" 
-                    BorderBrush="{DynamicResource BottomButTextColor}" 
-                    BorderThickness="2"
-                    Margin="10 0 0 0"
-                    over:OverwriteButton.ImageSource="{Binding localPicUrl}"
-                    Style="{DynamicResource MusicPictureStyle}"/>
+                        Visibility="{Binding Model.SongPicVisibility}"
+                        BorderBrush="{DynamicResource BottomButTextColor}" 
+                        BorderThickness="2"
+                        Margin="10 0 0 0"
+                        over:OverwriteButton.ImageSource="{Binding Model.SongModel.LocalPicUrl}"
+                        Style="{DynamicResource MusicPictureStyle}"/>
                 </Grid>
                 <!--歌曲名称-->
                 <StackPanel Margin="10 3 0 0" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal">
                         <Button Style="{DynamicResource MusicNameButtonStyle}" 
-                        Cursor="Hand" Content="{Binding songName}"
+                        Cursor="Hand" Content="{Binding Model.SongModel.SongName}"
                         MaxWidth="100"/>
                         <TextBlock Cursor="Hand"
                             Margin="5 2 0 0"
@@ -179,7 +180,7 @@
                                     Margin="0 5 0 0"
                                     Foreground="{DynamicResource BottomButTextColor}" 
                                     FontWeight="Light"
-                                    Text="{Binding author}" />
+                                    Text="{Binding Model.SongModel.Author}" />
                             </ControlTemplate>
                         </Button.Template>
                     </Button>

@@ -1,10 +1,5 @@
-﻿using Hardcodet.Wpf.TaskbarNotification;
-using MusicApp.Models;
+﻿using MusicApp.Models;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -18,10 +13,13 @@ namespace MusicApp
     {
         public App()
         {
+            //获取缓存
             InitJsonData.GetJsonFile();
             InitJsonData.isInit = true;
+
             this.App_Startup();
         }
+
 
         void App_Startup()
         {

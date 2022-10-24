@@ -16,7 +16,7 @@ namespace MusicApp.PageView
     /// <summary>
     /// LivePage.xaml 的交互逻辑
     /// </summary>
-    public partial class LivePage : UserControl
+    public partial class LivePage : Page
     {
         public LivePage()
         {

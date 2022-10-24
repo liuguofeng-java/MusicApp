@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MusicApp.Control"
+             xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="300">
     <UserControl.Resources>
@@ -19,24 +20,36 @@
                                     <ColumnDefinition Width="40"/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
+                                <!--Click="SearchButton_Click"-->
                                 <Button Style="{DynamicResource WinButtonStyle}"
                                         Grid.Column="0"
                                         Cursor="Hand"  
-                                        Click="SearchButton_Click"
                                         x:Name="SearchButton"
-                                    Height="25" Width="25" Margin="3 0" FontSize="14" Content="&#xe623;"/>
+                                    Height="25" Width="25" Margin="3 0" FontSize="14" Content="&#xe623;">
+                                    <behaviors:Interaction.Triggers>
+                                        <behaviors:EventTrigger EventName="Click">
+                                            <behaviors:InvokeCommandAction Command="{Binding TextClickSearchCommand}" CommandParameter="{Binding ElementName=SearchBox,Path=Text}"/>
+                                        </behaviors:EventTrigger>
+                                    </behaviors:Interaction.Triggers>
+                                </Button>
                                 <TextBlock Text="搜索" Name="msg"
                                            Margin="5 0"
                                            Foreground="{DynamicResource HeadButDisableColor}"
                                            Visibility="Collapsed"
                                            VerticalAlignment="Center"
                                            Grid.Column="1"/>
+
                                 <ScrollViewer x:Name="PART_ContentHost"
-                                          MouseDown="InputScrollViewer_MouseDown"
                                           Grid.Column="1"
                                           VerticalAlignment="Center"
                                           HorizontalScrollBarVisibility="Hidden" 
-                                          VerticalScrollBarVisibility="Hidden"/>
+                                          VerticalScrollBarVisibility="Hidden">
+                                    <behaviors:Interaction.Triggers>
+                                        <behaviors:EventTrigger EventName="MouseDown">
+                                            <behaviors:InvokeCommandAction Command="{Binding TextMouseDownCommand}" />
+                                        </behaviors:EventTrigger>
+                                    </behaviors:Interaction.Triggers>
+                                </ScrollViewer>
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -64,6 +77,12 @@
                     x:Name="SearchBox" 
                     Height="25" 
                     Width="200" 
-                    Foreground="{DynamicResource HeadForeColor}"/>
-    
+                    Foreground="{DynamicResource HeadForeColor}">
+        <behaviors:Interaction.Triggers>
+            <behaviors:EventTrigger EventName="TextChanged">
+                <behaviors:InvokeCommandAction Command="{Binding TextChangedCommand}" CommandParameter="{Binding ElementName=SearchBox,Path=Text}" />
+            </behaviors:EventTrigger>
+        </behaviors:Interaction.Triggers>
+    </TextBox>
+
 </UserControl>

@@ -13,49 +13,17 @@ namespace MusicApp.Control
     /// </summary>
     public partial class ThemeColorControl : UserControl
     {
-        private List<ResourceDictionary> dictionaryList;
-        private ControlBean bean = ControlBean.getInstance();
         public ThemeColorControl()
         {
             InitializeComponent();
 
-            DataContext = new ThemeColorControlViewModel(this);
+            var model = new ThemeColorControlViewModel();
+            DataContext = model;
 
-            //找到系统所有资源
-            dictionaryList = new List<ResourceDictionary>();
-            foreach (ResourceDictionary dictionary in Application.Current.Resources.MergedDictionaries)
-            {
-                dictionaryList.Add(dictionary);
-            }
-            int? themeColor = bean.jsonData.themeColor;
-            if (themeColor != null)
-            {
-                ((RadioButton)RadioButContrainer.Children[Convert.ToInt32(themeColor) - 1]).IsChecked = true;
-            }
-            GetDictionary(themeColor);
+            
         }
 
-        public void GetDictionary(int? num = null)
-        {
-            var val = string.Empty;
-            switch (num)
-            {
-                case 1:
-                    val  = "/Themes/Color/BlackColor.xaml";
-                    break;
-                case 2:
-                    val = "/Themes/Color/DefaultColor.xaml";
-                    break;
-                default:
-                    val = "/Themes/Color/DefaultColor.xaml";
-                    break;
-            }
-
-            bean.jsonData.themeColor = num;
-            ResourceDictionary dictionary = dictionaryList.FirstOrDefault(d => d.Source.OriginalString.Equals(val));
-
-            Application.Current.Resources.MergedDictionaries.Add(dictionary);
-        }
+        
 
 
 

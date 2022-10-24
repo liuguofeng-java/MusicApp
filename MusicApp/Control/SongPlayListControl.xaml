@@ -3,22 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MusicApp.Control"
+             xmlns:local="clr-namespace:MusicApp.Control" xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="420">
     <!--歌曲播放列表,主窗体右下方-->
     <UserControl.Resources>
-        <!--给阴影留出边距-->
-        <Style x:Key="SongPlayBorderStyle" TargetType="{x:Type Border}">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Value="Normal">
-                    <Setter Property="Margin" Value="0 70 10 85" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Value="Maximized">
-                    <Setter Property="Margin" Value="0 65 5 80" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
         <!--列表-->
         <Style TargetType="{x:Type ListBoxItem}">
             <Setter Property="Template">
@@ -39,7 +28,7 @@
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Background" TargetName="border" Value="{DynamicResource PlayListBoxOverBackColor}"/>
                             </Trigger>
-                            <DataTrigger Binding="{Binding isSelected, Mode=Twoway}" Value="true">
+                            <DataTrigger Binding="{Binding IsSelected, Mode=Twoway}" Value="true">
                                 <Setter Property="TextBlock.Foreground" TargetName="content" Value="{DynamicResource PlayListIsSelectdColor}"/>
                             </DataTrigger>
                         </ControlTemplate.Triggers>
@@ -53,7 +42,10 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="420"/>
         </Grid.ColumnDefinitions>
-        <Border Background="{DynamicResource MainPopupBackColor}" Grid.Column="1" Style="{DynamicResource SongPlayBorderStyle}" x:Name="SongPlayListContrainer">
+        <Border Background="{DynamicResource MainPopupBackColor}" 
+                Margin="0 60 0 75"
+                Grid.Column="1" 
+                Visibility="{Binding Model.PlayListVisibility}">
             <Border.Effect>
                 <DropShadowEffect Color="#191919" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
             </Border.Effect>
@@ -66,7 +58,10 @@
                 </Grid.RowDefinitions>
                 <TextBlock Text="当前播放" Margin="20" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource PlayListTextColor}" Grid.Row="0"/>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock x:Name="SongCount" Margin="20 0 0 0" Foreground="{DynamicResource PlayListAuxTextColor}"/>
+                    <TextBlock x:Name="SongCount" 
+                               Text="{Binding Model.SongPlayCount}"                               
+                               Margin="20 0 0 0" 
+                               Foreground="{DynamicResource PlayListAuxTextColor}"/>
                     <TextBlock Text="&#xe6a9; 全部收藏" 
                                Cursor="Hand"
                                VerticalAlignment="Center"
@@ -80,27 +75,38 @@
                                VerticalAlignment="Center"
                                Margin="20 0 0 0" 
                                FontSize="14" 
-                               Foreground="#507daf"/>
+                               Foreground="#507daf">
+                        <behaviors:Interaction.Triggers>
+                            <behaviors:EventTrigger EventName="MouseDoubleClick">
+                                <behaviors:InvokeCommandAction Command="{Binding ClosePlayListCommand}"/>
+                            </behaviors:EventTrigger>
+                        </behaviors:Interaction.Triggers>
+                    </TextBlock>
                 </StackPanel>
                 <Border Background="{DynamicResource PlayListAuxTextColor}" Height="1.2" Margin="20 10 20 5" Grid.Row="2" />
                 <!--列表-->
                 <ScrollViewer Template="{StaticResource MyScrollViewer}" VerticalScrollBarVisibility="Auto" Grid.Row="3">
-                    <ListBox x:Name="PlayListBox" Background="Transparent" BorderThickness="0" AlternationCount="2">
+                    <ListBox x:Name="PlayListBox" Background="Transparent" BorderThickness="0" AlternationCount="2" ItemsSource="{Binding Model.SongLists}">
+                        <behaviors:Interaction.Triggers>
+                            <behaviors:EventTrigger EventName="MouseDoubleClick">
+                                <behaviors:InvokeCommandAction Command="{Binding PlayListMouseDoubleClickCommand}" CommandParameter="{Binding ElementName=PlayListBox,Path=SelectedIndex}"/>
+                            </behaviors:EventTrigger>
+                        </behaviors:Interaction.Triggers>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Border Margin="20 10 0 10">
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock x:Name="SongNameText" Text="{Binding songName}"  
+                                        <TextBlock x:Name="SongNameText" Text="{Binding SongName}"  
                                             FontSize="12" 
                                             Width="180"
                                             HorizontalAlignment="Center" 
                                             VerticalAlignment="Center"/>
-                                        <TextBlock x:Name="AuthorText" Text="{Binding author}"  
+                                        <TextBlock x:Name="AuthorText" Text="{Binding Author}"  
                                             FontSize="12" 
                                             Width="120"
                                             HorizontalAlignment="Center" 
                                             VerticalAlignment="Center"/>
-                                        <TextBlock x:Name="FormatSongTimeText" Text="{Binding formatSongTime}"  
+                                        <TextBlock x:Name="FormatSongTimeText" Text="{Binding FormatSongTime}"  
                                             FontSize="12" 
                                             Foreground="{DynamicResource PlayListTimeTextColor}"
                                             Width="50"
@@ -109,7 +115,7 @@
                                     </StackPanel>
                                 </Border>
                                 <DataTemplate.Triggers>
-                                    <DataTrigger Binding="{Binding isSelected, Mode=Twoway}" Value="false">
+                                    <DataTrigger Binding="{Binding IsSelected, Mode=Twoway}" Value="false">
                                         <Setter Property="Foreground" TargetName="SongNameText" Value="{DynamicResource PlayListTextColor}"/>
                                         <Setter Property="Foreground" TargetName="AuthorText" Value="{DynamicResource PlayListBoxAuthorTextColor}"/>
                                     </DataTrigger>

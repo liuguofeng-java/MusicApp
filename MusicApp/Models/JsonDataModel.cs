@@ -12,12 +12,11 @@ namespace MusicApp.Models
     /// </summary>
     public class JsonDataModel
     {
-        
         /// <summary>
         /// 音量缓存
         /// </summary>
         private double? _volume;
-        public double? volume
+        public double? Volume
         {
             get { return this._volume; }
             set 
@@ -30,8 +29,8 @@ namespace MusicApp.Models
         /// <summary>
         /// 主题缓存
         /// </summary>
-        private int? _themeColor;
-        public int? themeColor
+        private string _themeColor;
+        public string ThemeColor
         {
             get { return this._themeColor; }
             set
@@ -44,8 +43,8 @@ namespace MusicApp.Models
         /// <summary>
         /// 待播放歌曲列表
         /// </summary>
-        private List<SongPlayListModel> _songPlayList;
-        public List<SongPlayListModel> songPlayList
+        private List<SongModel> _songPlayList;
+        public List<SongModel> SongPlayList
         {
             get 
             { return this._songPlayList; }
@@ -65,7 +64,7 @@ namespace MusicApp.Models
     {
         //程序初始化完成会变成true
         public static bool isInit = false;
-        private static ControlBean controlBean = ControlBean.getInstance();
+        public static JsonDataModel jsonDataModel = new JsonDataModel();
         /// <summary>
         /// 获取json数据
         /// </summary>
@@ -74,9 +73,9 @@ namespace MusicApp.Models
             var jsonStr = JsonFileUtil.GetJsonFile();
             if (string.IsNullOrEmpty(jsonStr))
             {
-                jsonStr = "{}";
+                jsonStr = JsonConvert.SerializeObject(jsonDataModel); ;
             }
-            controlBean.jsonData = JsonConvert.DeserializeObject<JsonDataModel>(jsonStr);
+            jsonDataModel = JsonConvert.DeserializeObject<JsonDataModel>(jsonStr);
         }
 
         /// <summary>
@@ -86,7 +85,7 @@ namespace MusicApp.Models
         {
             if (isInit)
             {
-                string jsonStr = JsonConvert.SerializeObject(controlBean.jsonData);
+                string jsonStr = JsonConvert.SerializeObject(jsonDataModel);
                 JsonFileUtil.WriteJsonFile(jsonStr);
             }
         }

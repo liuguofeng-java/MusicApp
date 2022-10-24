@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MusicApp.Control"
+             xmlns:local="clr-namespace:MusicApp.Control" xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="800">
     <!--
@@ -15,10 +15,13 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border CornerRadius="50" Background="#4b4b4b" Cursor="Hand">
+                        <Border CornerRadius="50" 
+                                Background="#1e1e1e00" 
+                                Cursor="Hand">
                             <TextBlock Text="{TemplateBinding Content}"
-                                       Foreground="{DynamicResource MainOverBackColor}"
-                                       FontSize="8"
+                                       Foreground="#ffffff"
+                                       FontSize="13"
+                                       FontWeight="Bold"
                                        FontFamily="{DynamicResource Iconfont}"
                                        VerticalAlignment="Center" 
                                        HorizontalAlignment="Center"/>
@@ -32,7 +35,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type RadioButton}">
-                        <Border x:Name="border" CornerRadius="50" Background="{DynamicResource MainPopupBackColor}" Width="5" Height="5" Margin="8"/>
+                        <Border x:Name="border" CornerRadius="50" Background="{DynamicResource FoundMusicRButColor}" Width="5" Height="5" Margin="8"/>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="true">
                                 <Setter Property="Background" TargetName="border" Value="{DynamicResource MainLineBackColor}"/>
@@ -53,15 +56,16 @@
             <Border Height="150" Width="600" CornerRadius="10" Background="{DynamicResource MainBackColor}"/>
             <Border Height="150" Width="600" CornerRadius="10">
                 <Border.Background>
-                    <ImageBrush x:Name="LeftImage" />
+                    <ImageBrush ImageSource="{Binding Model.LeftImage}" />
                 </Border.Background>
                 <Button x:Name="Back"
                         Margin="10 0 0 0"
+                        Width="30"
+                        Height="30"
                         Style="{DynamicResource NavButtonStyle}"
                         Content="&#xe600;"
-                        Width="20"
-                        Height="20" 
-                        HorizontalAlignment="Left"></Button>
+                        HorizontalAlignment="Left"
+                        Command="{Binding BackClickCommand}"/>
             </Border>
             <Border Height="200" Grid.Column="1" CornerRadius="10" Background="{DynamicResource MainBackColor}">
                 <TextBlock Text="&#xe6ee;" 
@@ -71,27 +75,37 @@
                            VerticalAlignment="Center" 
                            FontFamily="{DynamicResource Iconfont}"/>
             </Border>
-            <Border x:Name="CenterBordrr" Height="200" Grid.Column="1" CornerRadius="10" Cursor="Hand">
+            <Border Height="200" Grid.Column="1" CornerRadius="10" Cursor="Hand">
+                <behaviors:Interaction.Triggers>
+                    <behaviors:EventTrigger EventName="MouseDown">
+                        <behaviors:InvokeCommandAction Command="{Binding CenterMouseDownCommand}"/>
+                    </behaviors:EventTrigger>
+                </behaviors:Interaction.Triggers>
                 <Border.Background>
-                    <ImageBrush x:Name="CenterImage" />
+                    <ImageBrush ImageSource="{Binding Model.CenterImage}" />
                 </Border.Background>
-                <Border CornerRadius="10 0 10 0" Background="Transparent" MaxWidth="200" Height="35" Padding="10" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                    <TextBlock x:Name="CenterText" FontSize="13" Foreground="{DynamicResource MainOverBackColor}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Border CornerRadius="5 0 5 0" Background="{Binding Model.CenterTextBack}" MaxWidth="200" Height="25" Padding="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <TextBlock Text="{Binding Model.CenterText}"
+                               FontSize="12" 
+                               Foreground="#ffffff" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"/>
                 </Border>
             </Border>
             <Border Height="150" Width="600" Grid.Column="2" CornerRadius="10" HorizontalAlignment="Right" Background="{DynamicResource MainBackColor}"/>
             <Border Height="150" Width="600" Grid.Column="2" CornerRadius="10" HorizontalAlignment="Right">
                 <Border.Background>
-                    <ImageBrush x:Name="RightImage"/>
+                    <ImageBrush ImageSource="{Binding Model.RightImage}"/>
                 </Border.Background>
                 <Button x:Name="Forward"
                         Margin="0 0 10 0"
                         Style="{DynamicResource NavButtonStyle}"
                         Content="&#xe601;"
-                        Foreground="{DynamicResource MainOverBackColor}"
-                        Width="20"
-                        Height="20" 
-                        HorizontalAlignment="Right"/>
+                        Width="30"
+                        Height="30"
+                        Foreground="{DynamicResource MainOverBackColor}" 
+                        HorizontalAlignment="Right"
+                        Command="{Binding ForwardClickCommand}"/>
             </Border>
         </Grid>
         <StackPanel x:Name="ButContrainer" Orientation="Horizontal" HorizontalAlignment="Center"/>

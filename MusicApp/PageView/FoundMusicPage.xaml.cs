@@ -19,7 +19,7 @@ namespace MusicApp.PageView
     /// <summary>
     /// 首页 -> 发现音乐页面 的交互逻辑
     /// </summary>
-    public partial class FoundMusicPage : UserControl
+    public partial class FoundMusicPage : Page
     {
         public FoundMusicPage()
         {

@@ -16,7 +16,7 @@ namespace MusicApp.PageView
     /// <summary>
     /// LocalAndDownloadPage.xaml 的交互逻辑
     /// </summary>
-    public partial class LocalAndDownloadPage : UserControl
+    public partial class LocalAndDownloadPage : Page
     {
         public LocalAndDownloadPage()
         {
