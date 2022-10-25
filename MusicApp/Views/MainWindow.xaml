@@ -188,7 +188,13 @@
                 </Grid>
 
                 <Border Background="White">
-                    <Frame x:Name="FrmePage" Content="{Binding Model.Page}" NavigationUIVisibility="Hidden"/>
+                    <Frame x:Name="FrmePage" Content="{Binding Model.Page}" NavigationUIVisibility="Hidden">
+                        <behaviors:Interaction.Triggers>
+                            <behaviors:EventTrigger EventName="ContentRendered">
+                                <behaviors:InvokeCommandAction Command="{Binding FrmeContentRenderedCommand}" CommandParameter="{Binding ElementName=FrmePage,Path=Content}"/>
+                            </behaviors:EventTrigger>
+                        </behaviors:Interaction.Triggers>
+                    </Frame>
                 </Border>
             </DockPanel>
         </Border>

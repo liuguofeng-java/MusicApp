@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -22,7 +23,8 @@ namespace MusicApp.ViewModels
 
         //点击最底层border
         public CommandBase BaseBorderMouseDownCommand { get; set; }
-
+        //Frme内容改变
+        public CommandBase FrmeContentRenderedCommand { get; set; }
         //点击带播放列表
         public CommandBase SongPlayListClickCommand { get; set; }
         //点击播放或暂停
@@ -45,6 +47,15 @@ namespace MusicApp.ViewModels
                 BaseBorderMouseDownDelegate.Invoke(o);
             });
             BaseBorderMouseDownCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
+
+            //Frme内容改变
+            FrmeContentRenderedCommand = new CommandBase();
+            FrmeContentRenderedCommand.DoExecute = new Action<object>((o) =>
+            {
+                var package = o.ToString();
+                Model.MenusChecked = (MenusChecked)Enum.Parse(typeof(MenusChecked), package.Substring(package.LastIndexOf(".") + 1));
+            });
+            FrmeContentRenderedCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 
             //播放
             PlayClickCommand = new CommandBase();
