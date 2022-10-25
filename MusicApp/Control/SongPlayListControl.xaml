@@ -47,7 +47,7 @@
                 Grid.Column="1" 
                 Visibility="{Binding Model.PlayListVisibility}">
             <Border.Effect>
-                <DropShadowEffect Color="#191919" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
+                <DropShadowEffect Color="#1e1e1e00" ShadowDepth="0" BlurRadius="10" Opacity="0.1" Direction="0"/>
             </Border.Effect>
             <Grid>
                 <Grid.RowDefinitions>

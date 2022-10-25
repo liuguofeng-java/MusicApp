@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace MusicApp.ViewModels
@@ -56,8 +57,9 @@ namespace MusicApp.ViewModels
             MediaEndedCommand = new CommandBase();
             MediaEndedCommand.DoExecute = new Action<object>((o) =>
             {
+                var songId = Model.SongPlayModel.SongId;
                 StopPlay();
-                SongPlayListViewModel.This.NextSongPlay(Model.SongPlayModel.SongId, false); //播放下一首
+                SongPlayListViewModel.This.NextSongPlay(songId, false); //播放下一首
             });
             MediaEndedCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 
@@ -76,20 +78,12 @@ namespace MusicApp.ViewModels
 
             //上一首
             PlayLastClickCommand = new CommandBase();
-            PlayLastClickCommand.DoExecute = new Action<object>((o) =>
-            {
-                if (Model.SongPlayModel == null) return;
-                SongPlayListViewModel.This.NextSongPlay(Model.SongPlayModel.SongId, true, 2);
-            });
+            PlayLastClickCommand.DoExecute = new Action<object>((o) => PlayLastClick());
             PlayLastClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 
             //下一首
             PlayNextClickCommand = new CommandBase();
-            PlayNextClickCommand.DoExecute = new Action<object>((o) =>
-            {
-                if (Model.SongPlayModel == null) return;
-                SongPlayListViewModel.This.NextSongPlay(Model.SongPlayModel.SongId, false, 2);
-            });
+            PlayNextClickCommand.DoExecute = new Action<object>((o) => PlayNextClick());
             PlayNextClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
         }
 
@@ -128,7 +122,6 @@ namespace MusicApp.ViewModels
                 Application.Current.Dispatcher.Invoke(new Action(delegate
                 {
                     Model.MediaElement.Stop();
-
                 }));
                 //更新当前歌曲信息
                 Model.SongPlayModel = model;
@@ -136,8 +129,8 @@ namespace MusicApp.ViewModels
                 //初始化列表颜色
                 SongPlayListViewModel.This.SetLisBoxColor(model);
                 //歌曲详情赋值
-                SongInfoViewModel.This.SetSongInfo(model);
-
+                SongInfoViewModel.This.SetSongInfo(model, isStartPlay);
+                
                 //下载歌曲到本地
                 GetSongUrl(model);
                 if (model.LocalSongUrl == null)
@@ -183,7 +176,7 @@ namespace MusicApp.ViewModels
         /// <summary>
         /// 进行或者暂停按钮按下
         /// </summary>
-        private void PlayButClick()
+        public void PlayButClick()
         {
             Application.Current.Dispatcher.Invoke(new Action(delegate
             {
@@ -206,8 +199,28 @@ namespace MusicApp.ViewModels
                     Model.PlayButContent = "\xe87c";
                     Model.MediaElement.Pause();
                 }
-
+                //设置主窗体任务栏
+                MainWindowViewModel.This.SetTaskbarStat(Model.SongPlayModel.SongName,
+                    Model.PlayButContent.Equals("\xe87c"), 
+                    new BitmapImage(new Uri(Model.SongPlayModel.LocalPicUrl)));
             }));
+        }
+        /// <summary>
+        /// 上一首
+        /// </summary>
+        public void PlayLastClick()
+        {
+            if (Model.SongPlayModel == null) return;
+            SongPlayListViewModel.This.NextSongPlay(Model.SongPlayModel.SongId, true, 2);
+        }
+
+        /// <summary>
+        /// 下一首
+        /// </summary>
+        public void PlayNextClick()
+        {
+            if (Model.SongPlayModel == null) return;
+            SongPlayListViewModel.This.NextSongPlay(Model.SongPlayModel.SongId, false, 2);
         }
 
         /// <summary>
@@ -218,7 +231,12 @@ namespace MusicApp.ViewModels
             //停止歌曲
             Model.MediaElement.Stop();
             Model.PlayButContent = "\xe87c"; //更新图标
+            Model.DisabledPlayProgress = false;//禁用进度条
+            SongPlayListViewModel.This.SetLisBoxColor(new SongModel());//初始化列表颜色
             SongInfoViewModel.This.Model.SongInfoVisibility = Visibility.Hidden;//隐藏歌曲信息
+            Model.SongPlayModel = null;
+            //设置主窗体任务栏
+            MainWindowViewModel.This.SetTaskbarStat("网易云", true, null);
         }
 
 

@@ -72,7 +72,7 @@ namespace MusicApp.ViewModels
         /// <param name="isLast">是否是上一首</param>
         /// <param name="type">1 顺序播放,2 列表循环,3 单曲循环</param>
         public void NextSongPlay(string songId, bool isLast = false, int type = 1)
-        {  
+        {
             //待播放列表长度
             int count = Model.SongLists.Count;
             if (count == 0) return;

@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace MusicApp.ViewModels
 {
@@ -25,7 +26,7 @@ namespace MusicApp.ViewModels
         /// 歌曲 如头像、歌曲名称、作者、赋值
         /// </summary>
         /// <param name="model"></param>
-        public void SetSongInfo(SongModel model)
+        public void SetSongInfo(SongModel model, bool isStartPlay)
         {
             new Thread(() =>
             {
@@ -58,6 +59,11 @@ namespace MusicApp.ViewModels
                 Model.SongPicVisibility = Visibility.Visible;
                 SongDetailViewModel.This.InitLyrics(model);
 
+                Application.Current.Dispatcher.Invoke(new Action(delegate 
+                {
+                    //设置主窗体任务栏
+                    MainWindowViewModel.This.SetTaskbarStat(model.SongName, !isStartPlay, new BitmapImage(new Uri(model.LocalPicUrl)));
+                }));
             }).Start();
         }
     }

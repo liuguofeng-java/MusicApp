@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MusicApp.Control"
-             xmlns:over="clr-namespace:MusicApp.OverwriteControl"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900">
     
@@ -22,7 +21,7 @@
                         <Grid Cursor="Hand">
                             <Border CornerRadius="5">
                                 <Border.Background>
-                                    <ImageBrush ImageSource="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=(over:OverwriteButton.ImageSource)}" />
+                                    <ImageBrush ImageSource="{Binding Model.SongModel.LocalPicUrl}"></ImageBrush>
                                 </Border.Background>
                             </Border>
                             <Border Name="border" Background="#dfe4ea" BorderBrush="{x:Null}" BorderThickness="1" RenderTransformOrigin="0.5,0.5" Opacity="0.3">
@@ -155,7 +154,6 @@
                         BorderBrush="{DynamicResource BottomButTextColor}" 
                         BorderThickness="2"
                         Margin="10 0 0 0"
-                        over:OverwriteButton.ImageSource="{Binding Model.SongModel.LocalPicUrl}"
                         Style="{DynamicResource MusicPictureStyle}"/>
                 </Grid>
                 <!--歌曲名称-->

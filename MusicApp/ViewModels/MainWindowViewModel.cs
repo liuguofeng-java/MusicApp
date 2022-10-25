@@ -5,6 +5,8 @@ using System.Reflection;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace MusicApp.ViewModels
 {
@@ -23,6 +25,12 @@ namespace MusicApp.ViewModels
 
         //点击带播放列表
         public CommandBase SongPlayListClickCommand { get; set; }
+        //点击播放或暂停
+        public CommandBase PlayClickCommand { get; set; }
+        //上一首
+        public CommandBase LastClickCommand { get; set; }
+        //下一首
+        public CommandBase NextClickCommand { get; set; }
         public MainWindowViewModel()
         {
             This = this;
@@ -38,12 +46,26 @@ namespace MusicApp.ViewModels
             });
             BaseBorderMouseDownCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 
+            //播放
+            PlayClickCommand = new CommandBase();
+            PlayClickCommand.DoExecute = new Action<object>((o) => PlayerViewModel.This.PlayButClick());
+            PlayClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
+
+            //上一首
+            LastClickCommand = new CommandBase();
+            LastClickCommand.DoExecute = new Action<object>((o) => PlayerViewModel.This.PlayLastClick());
+            LastClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
+
+            //下一首
+            NextClickCommand = new CommandBase();
+            NextClickCommand.DoExecute = new Action<object>((o) => PlayerViewModel.This.PlayNextClick());
+            NextClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
+
             //点击带播放列表
             SongPlayListClickCommand = new CommandBase();
             SongPlayListClickCommand.DoExecute = new Action<object>((o) =>
             {
                 var songPlayListView = SongPlayListViewModel.This;
-
                 if (songPlayListView.Model.PlayListVisibility == Visibility.Visible)
                 {
                     songPlayListView.Model.PlayListVisibility = Visibility.Collapsed;
@@ -56,6 +78,24 @@ namespace MusicApp.ViewModels
             SongPlayListClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
         }
 
-
+        /// <summary>
+        /// 设置任务栏
+        /// </summary>
+        /// <param name="title">名称</param>
+        /// <param name="isPlay">是否播放</param>
+        /// <param name="overlayImage">任务栏缩略图</param>
+        public void SetTaskbarStat(string title, bool isPlay, BitmapImage overlayImage)
+        {
+            Model.TitleName = title;
+            Model.OverlayImage = overlayImage;
+            if (isPlay)
+            {
+                Model.PlayButImage = "/Assets/Images/TaskbarItemInfo/start.png";
+            }
+            else
+            {
+                Model.PlayButImage = "/Assets/Images/TaskbarItemInfo/stop.png";
+            }
+        }
     }
 }

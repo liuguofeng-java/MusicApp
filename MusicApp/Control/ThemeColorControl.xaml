@@ -108,7 +108,7 @@
                 AllowsTransparency="True">
                 <Border Background="{DynamicResource MainPopupBackColor}" CornerRadius="5" Width="330" Height="270" >
                     <Border.Effect>
-                        <DropShadowEffect  Color="#252525" ShadowDepth="0" BlurRadius="10" Opacity="1" Direction="0"/>
+                        <DropShadowEffect Color="#1e1e1e00" ShadowDepth="0" BlurRadius="10" Opacity="0.1" Direction="0"/>
                     </Border.Effect>
                     <TabControl Style="{DynamicResource TabControlStyle}">
                         <TabItem Style="{DynamicResource TabItemStyle}" Header="主题">

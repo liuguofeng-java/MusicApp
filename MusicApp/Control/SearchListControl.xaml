@@ -73,7 +73,7 @@
         <StackPanel x:Name="RankingContrainer" HorizontalAlignment="Left" Visibility="{ Binding Model.RankingVisibility}">
             <Border Background="{DynamicResource MainPopupBackColor}" Width="350" Height="510" CornerRadius="10">
                 <Border.Effect>
-                    <DropShadowEffect Color="#1e1e1e" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
+                    <DropShadowEffect Color="#1e1e1e00" ShadowDepth="0" BlurRadius="10" Opacity="0.1" Direction="0"/>
                 </Border.Effect>
                 <ScrollViewer Template="{StaticResource MyScrollViewer}" VerticalScrollBarVisibility="Auto">
                     <Grid>
@@ -142,7 +142,7 @@
         <StackPanel x:Name="SearchContrainer" HorizontalAlignment="Left" Visibility="{ Binding Model.SearchVisibility}">
             <Border Background="{DynamicResource MainPopupBackColor}" Width="350" Height="510" CornerRadius="10">
                 <Border.Effect>
-                    <DropShadowEffect Color="#1e1e1e" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
+                    <DropShadowEffect Color="#1e1e1e00" ShadowDepth="0" BlurRadius="10" Opacity="0.1" Direction="0"/>
                 </Border.Effect>
                 
                 <ScrollViewer Template="{StaticResource MyScrollViewer}" VerticalScrollBarVisibility="Auto">

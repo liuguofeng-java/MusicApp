@@ -7,10 +7,14 @@
         xmlns:common="clr-namespace:MusicApp.Common" 
         xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="MainWindow" Height="690" Width="1043" MaxHeight="690" MaxWidth="1043" 
+        Title="{Binding Model.TitleName}" 
+        Height="690" Width="1043" MinHeight="690" MinWidth="1043" 
         WindowStartupLocation="CenterScreen"
         Background="{x:Null}"
         Icon="pack://application:,,,/Assets/Images/Iocn/m_256.ico">
+    <Window.Resources>
+        <common:RadioButtonConvert x:Key="menusRadioButtonConvert"/>
+    </Window.Resources>
     <WindowChrome.WindowChrome>
         <WindowChrome 
             CaptionHeight="0"
@@ -19,21 +23,40 @@
             NonClientFrameEdges="None"
             CornerRadius="0"
             ResizeBorderThickness="3"/>
-
     </WindowChrome.WindowChrome>
-    <Window.Resources>
-        <common:RadioButtonConvert x:Key="menusRadioButtonConvert"/>
-    </Window.Resources>
+    <!--任务栏缩略图-->
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo x:Name="taskBarItemInfo1" ThumbnailClipMargin="20 1000 0 0"
+                     Overlay="{Binding Model.OverlayImage}"
+                     Description="{Binding Model.TitleName}">
+            <TaskbarItemInfo.ThumbButtonInfos>
+                <ThumbButtonInfoCollection>
+                    <ThumbButtonInfo
+                        Command="{Binding LastClickCommand}"
+                        DismissWhenClicked="False"
+                        Description="上一首"
+                        ImageSource="/Assets/Images/TaskbarItemInfo/last.png"/>
+                    <ThumbButtonInfo
+                        Command="{Binding PlayClickCommand}"
+                        DismissWhenClicked="False"
+                        Description="播放或停止"
+                        ImageSource="{Binding Model.PlayButImage}"/>
+                    <ThumbButtonInfo
+                        Command="{Binding NextClickCommand}"
+                        DismissWhenClicked="False"
+                        Description="下一首"
+                        ImageSource="/Assets/Images/TaskbarItemInfo/next.png"/>
+                </ThumbButtonInfoCollection>
+            </TaskbarItemInfo.ThumbButtonInfos>
+        </TaskbarItemInfo>
+    </Window.TaskbarItemInfo>
     <Grid>
         <Border x:Name="BaseBorder" Background="White">
             <behaviors:Interaction.Triggers>
                 <behaviors:EventTrigger EventName="MouseDown">
-                    <behaviors:InvokeCommandAction Command="{Binding BaseBorderMouseDownCommand}" CommandParameter="{Binding ElementName=SearchBox,Path=Text}" />
+                    <behaviors:InvokeCommandAction Command="{Binding BaseBorderMouseDownCommand}"/>
                 </behaviors:EventTrigger>
             </behaviors:Interaction.Triggers>
-            <Border.Effect>
-                <DropShadowEffect Color="#1e1e1e" ShadowDepth="0" BlurRadius="10" Opacity="0.5" Direction="0"/>
-            </Border.Effect>
             <DockPanel>
                 <!--头部-->
                 <Border x:Name="headWindow" Height="60" Background="{DynamicResource MainBackColor}" MouseLeftButtonDown="WindowMove_MouseLeftButtonDown" DockPanel.Dock="Top">
@@ -182,6 +205,8 @@
         <!--待播放的歌曲列表-->
         <local:SongPlayListControl x:Name="songPlayListControl" />
 
+
+        
     </Grid>
 
 </Window>
