@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MusicApp.PageView"
-             xmlns:Control="clr-namespace:MusicApp.Control"
+             xmlns:widget="clr-namespace:MusicApp.Control.Widget"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <!--首页 -> 发现音乐页面-->
@@ -58,7 +58,16 @@
     <Grid Background="{DynamicResource MinAuxBackColor}">
         <TabControl Style="{DynamicResource TabControlStyle}" Margin="5 5">
             <TabItem Style="{DynamicResource TabItemStyle}" Header="个性推荐">
-                <Control:CarouselControl x:Name="Banner" VerticalAlignment="Top"/>
+                <ScrollViewer x:Name="ScrollViewer" Template="{StaticResource MyScrollViewer}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="280"/>
+                            <RowDefinition Height="2*" MinHeight="450"/>
+                        </Grid.RowDefinitions>
+                        <widget:CarouselControl x:Name="Banner" VerticalAlignment="Top"/>
+                        <widget:SongsControl Grid.Row="1" />
+                    </Grid>
+                </ScrollViewer>
             </TabItem>
             <TabItem Style="{DynamicResource TabItemStyle}" Header="专属定制"/>
             <TabItem Style="{DynamicResource TabItemStyle}" Header="歌单"/>

@@ -134,5 +134,21 @@ namespace MusicApp.Models
                 DoNotify();
             }
         }
+
+        /// <summary>
+        /// 搜索弹出框单曲
+        /// </summary>
+        private int _selectdIndex = -1;
+
+        public int SelectdIndex
+        {
+            get
+            { return this._selectdIndex; }
+            set
+            {
+                _selectdIndex = value;
+                DoNotify();
+            }
+        }
     }
 }

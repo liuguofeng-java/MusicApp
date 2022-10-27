@@ -1,5 +1,7 @@
 ﻿using MusicApp.Common;
 using MusicApp.Models;
+using MusicApp.Models.Vo;
+using Newtonsoft.Json;
 using System;
 using System.Reflection;
 using System.Threading;
@@ -87,7 +89,29 @@ namespace MusicApp.ViewModels
                 }
             });
             SongPlayListClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
+
+
+            //游客登录
+            Anonimous();
         }
+
+        /// <summary>
+        /// 游客登录
+        /// </summary>
+        public void Anonimous()
+        {
+            if (InitJsonData.jsonDataModel.AnonCookie != null) return;
+            string anonimousRes = HttpUtil.HttpRequset(HttpUtil.serveUrl + "/register/anonimous");
+            if (anonimousRes == null)
+                return;
+            AnonimousRedultModel anonRedultModel = JsonConvert.DeserializeObject<AnonimousRedultModel>(anonimousRes);
+            if(anonRedultModel.code == 200)
+            {
+
+                InitJsonData.jsonDataModel.AnonCookie = anonRedultModel;
+            }
+        }
+
 
         /// <summary>
         /// 设置任务栏

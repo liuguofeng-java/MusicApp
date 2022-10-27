@@ -153,10 +153,10 @@
                                    Margin="20 10 15 10" 
                                    FontFamily="{DynamicResource Iconfont}" 
                                    Foreground="{DynamicResource SearchListAuxTextColor}"/>
-                        <ListBox x:Name="SingleListBox" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Model.SingleList}">
+                        <ListBox x:Name="SingleListBox" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Model.SingleList}" SelectedIndex="{Binding Model.SelectdIndex}">
                             <behaviors:Interaction.Triggers>
                                 <behaviors:EventTrigger EventName="SelectionChanged">
-                                    <behaviors:InvokeCommandAction Command="{Binding SingleSelectionChangedCommand}" CommandParameter="{Binding ElementName=SingleListBox,Path=SelectedIndex}"/>
+                                    <behaviors:InvokeCommandAction Command="{Binding SingleSelectionChangedCommand}"/>
                                 </behaviors:EventTrigger>
                             </behaviors:Interaction.Triggers>
                             <ListBox.ItemTemplate>

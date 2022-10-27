@@ -45,10 +45,13 @@ namespace MusicApp.ViewModels
             MediaLoadedCommand.DoExecute = new Action<object>((o) =>
             {
                 Model.MediaElement = (MediaElement)o;
+                //初始化数据
+                var songPlay = InitJsonData.jsonDataModel.SongPlay;
                 //默认播放第一首
-                if (SongPlayListViewModel.This.Model.SongLists.Count != 0)
+                if (songPlay != null)
                 {
-                    InitPlay(SongPlayListViewModel.This.Model.SongLists[0],false);
+                    InitPlay(songPlay, false);
+                    Model.SongPlayModel = songPlay;
                 }
             });
             MediaLoadedCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
@@ -95,15 +98,16 @@ namespace MusicApp.ViewModels
         /// <param name="isStartPlay">是否播放</param>
         public void InitPlay(SongModel model, bool isStartPlay = true)
         {
+            //点击了相同的歌
+            if (Model.SongPlayModel != null && model.SongId.Equals(Model.SongPlayModel.SongId))
+            {
+                PlayButClick();
+                return;
+            }
+
+            //下载音乐可能会慢,卡ui线程
             new Thread(() =>
             {
-                //点击了相同的歌
-                if (Model.SongPlayModel != null && model.SongId.Equals(Model.SongPlayModel.SongId))
-                {
-                    PlayButClick();
-                    return;
-                }
-
                 //先要停止歌曲
                 if (Model.Timer != null)
                 {
@@ -130,12 +134,10 @@ namespace MusicApp.ViewModels
                 SongPlayListViewModel.This.SetLisBoxColor(model);
                 //歌曲详情赋值
                 SongInfoViewModel.This.SetSongInfo(model, isStartPlay);
-                
                 //下载歌曲到本地
                 GetSongUrl(model);
                 if (model.LocalSongUrl == null)
                     return;
-
 
                 //更新歌曲
                 Application.Current.Dispatcher.Invoke(new Action(delegate
@@ -170,6 +172,8 @@ namespace MusicApp.ViewModels
                     Model.Timer.Start();
                 }));
 
+                //保存当前音乐实例到本地
+                InitJsonData.jsonDataModel.SongPlay = Model.SongPlayModel;
             }).Start();
         }
 

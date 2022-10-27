@@ -1,7 +1,9 @@
 ﻿using MusicApp.Common;
 using MusicApp.Control;
+using MusicApp.Control.Widget;
 using MusicApp.Models;
 using MusicApp.Models.Vo;
+using MusicApp.Models.Widget;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,35 +11,37 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
-namespace MusicApp.ViewModels
+namespace MusicApp.ViewModels.Widget
 {
     public class CarouselViewModel : NotifyBase
     {
         public CarouselModel Model { get; set; }
-
+        public CarouselControl Control { get; set; }
         //点击后退
         public CommandBase BackClickCommand { get; set; }
-
         //点击前进
         public CommandBase ForwardClickCommand { get; set; }
-
         //点击中间轮播图时
         public CommandBase CenterMouseDownCommand { get; set; }
-
         //记录当前索引
         public int[] indexs;
-        public CarouselViewModel()
+        public CarouselViewModel(CarouselControl control)
         {
+            Control = control;
             Model = new CarouselModel();
 
             //点击后退
             BackClickCommand = new CommandBase();
             BackClickCommand.DoExecute = new Action<object>((o) => 
             {
+                if (indexs.Length < 3) return;
                 SwitchBanner(indexs[0] - 1, indexs[1] - 1, indexs[2] - 1, false);
             });
             BackClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
@@ -46,6 +50,7 @@ namespace MusicApp.ViewModels
             ForwardClickCommand = new CommandBase();
             ForwardClickCommand.DoExecute = new Action<object>((o) =>
             {
+                if (indexs.Length < 3) return;
                 SwitchBanner(indexs[0] + 1, indexs[1] + 1, indexs[2] + 1);
             });
             ForwardClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
@@ -105,15 +110,30 @@ namespace MusicApp.ViewModels
             });
 
             //生成按钮
-            Model.List.ForEach(item =>
+            for (int i = 0; i < Model.List.Count; i++)
             {
-                /*RadioButton rb = new RadioButton();
-                rb.SetResourceReference(StyleProperty, "RadioButStyle");
-                ButContrainer.Children.Add(rb);*/
-            });
+                RadioButton rb = new RadioButton();
+                rb.Content = i;
+                rb.SetResourceReference(FrameworkElement.StyleProperty, "RadioButStyle");
+                Control.ButContrainer.Children.Add(rb);
+                rb.MouseEnter += (s, e) =>
+                {
+                    int index = Convert.ToInt32(rb.Content);
+                    SwitchBanner(index -1 < 0 ? Model.List.Count - 1 : index - 1, index, index + 1);
+                };
+            }
             //初始化图片
             SwitchBanner(Model.List.Count - 1, 0, 1);
 
+
+            //轮播
+            var time = new DispatcherTimer();
+            time.Interval = TimeSpan.FromMilliseconds(8000);
+            time.Tick += new EventHandler((s, e) =>
+            {
+                SwitchBanner(indexs[0] + 1, indexs[1] + 1, indexs[2] + 1);
+            });
+            time.Start();
         }
 
 
@@ -160,7 +180,7 @@ namespace MusicApp.ViewModels
                 }
             }
 
-            //((RadioButton)ButContrainer.Children[centerIndex]).IsChecked = true;
+            ((RadioButton)Control.ButContrainer.Children[centerIndex]).IsChecked = true;
             indexs = new int[] { leftIndex, centerIndex, rightIndex };
             Model.RightImage = Model.List[leftIndex].image;
 

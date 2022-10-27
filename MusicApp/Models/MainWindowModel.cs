@@ -63,6 +63,9 @@ namespace MusicApp.Models
                     case MenusChecked.RecentPlayPage:
                         Page = PageManager.recentPlayPage;
                         break;
+                    case MenusChecked.SongListOfDay://每日推荐歌曲列表
+                        Page = PageManager.songListOfDay;
+                        break;
 
 
                 }
@@ -131,6 +134,7 @@ namespace MusicApp.Models
         FMPage,
         LikeMusicPage,
         LocalAndDownloadPage,
-        RecentPlayPage
+        RecentPlayPage,
+        SongListOfDay
     }
 }

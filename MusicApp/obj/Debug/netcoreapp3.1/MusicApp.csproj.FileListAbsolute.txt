@@ -45,8 +45,6 @@ C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\Th
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Themes\Color\BlackColor.baml
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Themes\Color\DefaultColor.baml
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\CarouselControl.g.cs
-C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\CarouselControl.baml
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\PlayerControl.g.cs
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\PlayerControl.baml
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\VolumeControl.g.cs
@@ -69,3 +67,9 @@ C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\So
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Themes\Style\MainWindowStyle.baml
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\MusicApp.csproj.AssemblyReference.cache
 C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\bin\Debug\netcoreapp3.1\Microsoft.Xaml.Behaviors.dll
+C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\Widget\CarouselControl.baml
+C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\Widget\CarouselControl.g.cs
+C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\Widget\SongsControl.g.cs
+C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\Control\Widget\SongsControl.baml
+C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\PageView\ChildPage\SongListOfDay.g.cs
+C:\Users\liuguofeng\Desktop\MusicApp\MusicApp\obj\Debug\netcoreapp3.1\PageView\ChildPage\SongListOfDay.baml

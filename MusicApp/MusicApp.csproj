@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <None Remove="Assets\Fonts\iconfont.ttf" />
+    <None Remove="Assets\Images\dim.png" />
     <None Remove="Assets\Images\head_portrait.png" />
     <None Remove="Assets\Images\Iocn\format.ico" />
     <None Remove="Assets\Images\Iocn\m_256.ico" />
@@ -36,6 +37,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Images\dim.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\Images\Iocn\format.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -121,6 +125,10 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Component\" />
   </ItemGroup>
 
 </Project>

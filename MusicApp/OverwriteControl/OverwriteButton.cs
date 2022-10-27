@@ -10,17 +10,16 @@ namespace MusicApp.OverwriteControl
     {
         public static object GetImageSource(DependencyObject obj)
         {
-            return (int)obj.GetValue(MyPropertyProperty);
+            return (int)obj.GetValue(ImageSourceProperty);
         }
 
         public static void SetImageSource(DependencyObject obj, object value)
         {
-            obj.SetValue(MyPropertyProperty, value);
+            obj.SetValue(ImageSourceProperty, value);
         }
 
-        public static readonly DependencyProperty MyPropertyProperty =
+        public static readonly DependencyProperty ImageSourceProperty =
             DependencyProperty.RegisterAttached("ImageSource", typeof(string), typeof(OverwriteButton), new PropertyMetadata(null));
-
 
     }
 }

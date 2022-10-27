@@ -1,10 +1,8 @@
 ﻿using MusicApp.Common;
-using MusicApp.Models.Vo;
 using MusicApp.ViewModels;
-using Newtonsoft.Json;
+using MusicApp.ViewModels.Widget;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,24 +14,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MusicApp.Control
+namespace MusicApp.Control.Widget
 {
     /// <summary>
-    /// 发现音乐->个性推荐 的轮播图 的交互逻辑
+    /// SongsControl.xaml 的交互逻辑
     /// </summary>
-    public partial class CarouselControl : UserControl
+    public partial class SongsControl : UserControl
     {
-        public CarouselControl()
+        public SongsControl()
         {
             InitializeComponent();
-
-            var model = new CarouselViewModel();
+            var model = new SongsViewModel();
             DataContext = model;
-
-            
         }
-
-        
-
     }
 }

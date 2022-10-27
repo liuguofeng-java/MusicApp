@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Media.Imaging;
 
-namespace MusicApp.Models
+namespace MusicApp.Models.Widget
 {
     public class CarouselModel : NotifyBase
     {

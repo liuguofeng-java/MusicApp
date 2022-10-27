@@ -17,7 +17,7 @@
         LeftClickCommandParameter="{Binding ElementName=notifyIcon}"
         IconSource="pack://application:,,,/Assets/Images/Iocn/format.ico">
         <tb:TaskbarIcon.ContextMenu>
-            <ContextMenu Style="{DynamicResource ContextMenu}">
+            <ContextMenu>
                 <MenuItem  Header="两只老虎跑得快"/>
                 <MenuItem  Header="播放"/>
                 <MenuItem  Header="上一首"/>

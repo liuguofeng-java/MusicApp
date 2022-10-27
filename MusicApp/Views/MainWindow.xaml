@@ -200,8 +200,8 @@
         </Border>
 
         <!--系统托盘-->
-        <!--<local:NotifyIcon x:Name="notifyIcon"/>-->
-
+        <local:NotifyIcon x:Name="notifyIcon"/>
+        
         <!--歌曲信息部分-->
         <local:SongInfoControl/>
 

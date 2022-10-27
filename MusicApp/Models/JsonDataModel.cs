@@ -55,6 +55,36 @@ namespace MusicApp.Models
             }
         }
 
+        /// <summary>
+        /// 当前播放音乐实例
+        /// </summary>
+        private SongModel _songPlay;
+        public SongModel SongPlay
+        {
+            get
+            { return this._songPlay; }
+            set
+            {
+                _songPlay = value;
+                InitJsonData.WriteJsonFile();
+            }
+        }
+
+        /// <summary>
+        /// 当前播放音乐实例
+        /// </summary>
+        private AnonimousRedultModel _anonCookie;
+        public AnonimousRedultModel AnonCookie
+        {
+            get
+            { return this._anonCookie; }
+            set
+            {
+                _anonCookie = value;
+                InitJsonData.WriteJsonFile();
+            }
+        }
+
     }
 
     /// <summary>

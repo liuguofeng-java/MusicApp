@@ -1,8 +1,11 @@
 ﻿using MusicApp.Common;
 using MusicApp.Models.Vo;
+using MusicApp.ViewModels;
+using MusicApp.ViewModels.Widget;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,24 +17,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MusicApp.PageView
+namespace MusicApp.Control.Widget
 {
     /// <summary>
-    /// 首页 -> 发现音乐页面 的交互逻辑
+    /// 发现音乐->个性推荐 的轮播图 的交互逻辑
     /// </summary>
-    public partial class FoundMusicPage : Page
+    public partial class CarouselControl : UserControl
     {
-        public FoundMusicPage()
+        public CarouselControl()
         {
             InitializeComponent();
 
+            var model = new CarouselViewModel(this);
+            DataContext = model;
 
-            //解决事件传导问题
-            ScrollViewer.AddHandler(ScrollViewer.MouseLeftButtonDownEvent, new MouseButtonEventHandler((s, e) => {
-                e.Handled = false;
-            }), true);
-
+            
         }
+
+        
 
     }
 }

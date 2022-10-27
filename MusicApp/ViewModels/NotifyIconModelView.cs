@@ -12,7 +12,6 @@ namespace MusicApp.ViewModels
     {
         public CommandBase ClickCommand { get; set; }
 
-        private MainWindow mainWindow;
         /// <summary>
         /// 点击右侧任务栏显示主窗体
         /// </summary>
@@ -21,9 +20,9 @@ namespace MusicApp.ViewModels
             ClickCommand = new CommandBase();
             ClickCommand.DoExecute = new Action<object>((o) =>
             {
-                mainWindow.Visibility = Visibility.Visible;
+                /*mainWindow.Visibility = Visibility.Visible;
                 mainWindow.Topmost = true;
-                mainWindow.Topmost = false;
+                mainWindow.Topmost = false;*/
             });
             ClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
         }

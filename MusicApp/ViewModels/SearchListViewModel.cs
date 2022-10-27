@@ -110,10 +110,10 @@ namespace MusicApp.ViewModels
         /// <param name="o"></param>
         public void SingleSelectionChangedDoExecute(object o)
         {
-            var selectedIndex = (int)o;
+            var selectedIndex = Model.SelectdIndex;
             if (selectedIndex == -1) return;
             var item = Model.SingleList[selectedIndex];
-            //SingleListBox.SelectedIndex = -1;
+            Model.SelectdIndex = -1;
             if (item == null) return;
             List<string> idList = new List<string>();
             idList.Add(item.id.ToString());

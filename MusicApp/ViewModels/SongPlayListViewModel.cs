@@ -125,7 +125,9 @@ namespace MusicApp.ViewModels
                     item.IsSelected = false;
                 }
             });
-            model.IsSelected = true;
+            SongModel songModel = list.Find(t => t.SongId.Equals(model.SongId));
+            if (songModel == null) return;
+            songModel.IsSelected = true;
 
         }
 
