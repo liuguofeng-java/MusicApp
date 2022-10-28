@@ -12,7 +12,17 @@
                 <!--主题颜色-->
                 <ResourceDictionary Source="/Themes/Color/DefaultColor.xaml"/>
                 <ResourceDictionary Source="/Themes/Color/BlackColor.xaml"/>
+                
+                
+                
             </ResourceDictionary.MergedDictionaries>
+            
+            
+            <Style TargetType="{x:Type Window}">
+                <Setter Property="FontFamily" Value="微软雅黑" />
+                <Setter Property="FontSize" Value="13" />
+            </Style>
+        
         </ResourceDictionary>
 
         

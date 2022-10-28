@@ -565,6 +565,10 @@ namespace MusicApp.Models.Vo
     public class ResultItem
     {
         /// <summary>
+        /// 序号
+        /// </summary>
+        public string num { get; set; }
+        /// <summary>
         /// 
         /// </summary>
         public long id { get; set; }
@@ -600,5 +604,9 @@ namespace MusicApp.Models.Vo
         /// 
         /// </summary>
         public string alg { get; set; }
+        /// <summary>
+        /// 格式化时间
+        /// </summary>
+        public string formatTime { get; set; }
     }
 }

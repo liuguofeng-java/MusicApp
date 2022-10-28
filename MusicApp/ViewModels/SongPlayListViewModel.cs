@@ -190,13 +190,7 @@ namespace MusicApp.ViewModels
                         newModel.SongName = detailModel.songs[i].name;
                         newModel.Author = detailModel.songs[i].ar[0].name;
                         newModel.SongTime = playerModel.data[i].time;
-                        //计算歌曲时间
-                        int second = newModel.SongTime / 1000;//总秒数
-                        int minute = second / 60;//分钟数
-                        int remSecond = second - (minute * 60);//剩余秒数
-                        newModel.FormatSongTime = (minute.ToString().Length == 1 ? "0" + minute.ToString() : minute.ToString())
-                                                  + ":" +
-                                                 (remSecond.ToString().Length == 1 ? "0" + remSecond.ToString() : remSecond.ToString());//总时长
+                        newModel.FormatSongTime = StringUtil.FormatTimeoutToString(newModel.SongTime);
                         list.Add(newModel);
                     }
 

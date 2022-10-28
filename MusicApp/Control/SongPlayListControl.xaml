@@ -7,36 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="420">
     <!--歌曲播放列表,主窗体右下方-->
-    <UserControl.Resources>
-        <!--列表-->
-        <Style TargetType="{x:Type ListBoxItem}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListBoxItem">
-                        <Border x:Name="border"  Background="{TemplateBinding Background}">
-                            <ContentPresenter x:Name="content" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                 TextBlock.Foreground="{TemplateBinding Foreground}"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                                <Setter TargetName="border" Property="Background" Value="{DynamicResource MainPopupBackColor}"/>
-                            </Trigger>
-                            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-                                <Setter TargetName="border" Property="Background" Value="{DynamicResource PlayListBoxBackColor}"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{DynamicResource PlayListBoxOverBackColor}"/>
-                            </Trigger>
-                            <DataTrigger Binding="{Binding IsSelected, Mode=Twoway}" Value="true">
-                                <Setter Property="TextBlock.Foreground" TargetName="content" Value="{DynamicResource PlayListIsSelectdColor}"/>
-                            </DataTrigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -86,7 +56,7 @@
                 <Border Background="{DynamicResource PlayListAuxTextColor}" Height="1.2" Margin="20 10 20 5" Grid.Row="2" />
                 <!--列表-->
                 <ScrollViewer Template="{StaticResource MyScrollViewer}" VerticalScrollBarVisibility="Auto" Grid.Row="3">
-                    <ListBox x:Name="PlayListBox" Background="Transparent" BorderThickness="0" AlternationCount="2" ItemsSource="{Binding Model.SongLists}">
+                    <ListBox x:Name="PlayListBox" ItemContainerStyle="{DynamicResource DefaultListBoxItem}" Background="Transparent" BorderThickness="0" AlternationCount="2" ItemsSource="{Binding Model.SongLists}">
                         <behaviors:Interaction.Triggers>
                             <behaviors:EventTrigger EventName="MouseDoubleClick">
                                 <behaviors:InvokeCommandAction Command="{Binding PlayListMouseDoubleClickCommand}" CommandParameter="{Binding ElementName=PlayListBox,Path=SelectedIndex}"/>
@@ -94,30 +64,36 @@
                         </behaviors:Interaction.Triggers>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Border Margin="20 10 0 10">
+                                <Border x:Name="border" Margin="20 10 0 10">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock x:Name="SongNameText" Text="{Binding SongName}"  
                                             FontSize="12" 
                                             Width="180"
                                             HorizontalAlignment="Center" 
-                                            VerticalAlignment="Center"/>
+                                            VerticalAlignment="Center"
+                                            TextTrimming="CharacterEllipsis" ToolTip="{Binding SongName}" MaxWidth="180"/>
                                         <TextBlock x:Name="AuthorText" Text="{Binding Author}"  
                                             FontSize="12" 
                                             Width="120"
                                             HorizontalAlignment="Center" 
-                                            VerticalAlignment="Center"/>
+                                            VerticalAlignment="Center" 
+                                            TextTrimming="CharacterEllipsis" ToolTip="{Binding Author}" MaxWidth="120"/>
                                         <TextBlock x:Name="FormatSongTimeText" Text="{Binding FormatSongTime}"  
                                             FontSize="12" 
                                             Foreground="{DynamicResource PlayListTimeTextColor}"
                                             Width="50"
                                             HorizontalAlignment="Center" 
-                                            VerticalAlignment="Center"/>
+                                            VerticalAlignment="Center" 
+                                            TextTrimming="CharacterEllipsis" ToolTip="{Binding FormatSongTime}" MaxWidth="50"/>
                                     </StackPanel>
                                 </Border>
                                 <DataTemplate.Triggers>
                                     <DataTrigger Binding="{Binding IsSelected, Mode=Twoway}" Value="false">
                                         <Setter Property="Foreground" TargetName="SongNameText" Value="{DynamicResource PlayListTextColor}"/>
                                         <Setter Property="Foreground" TargetName="AuthorText" Value="{DynamicResource PlayListBoxAuthorTextColor}"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsSelected, Mode=Twoway}" Value="true">
+                                        <Setter Property="TextBlock.Foreground" TargetName="border" Value="{DynamicResource PlayListIsSelectdColor}"/>
                                     </DataTrigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>

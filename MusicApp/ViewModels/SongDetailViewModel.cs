@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
@@ -70,11 +71,20 @@ namespace MusicApp.ViewModels
                     //计算歌词的时间
                     int index = item.IndexOf("]");
                     l.Value = item.Substring(index + 1);
-                    l.FormatTime = item.Substring(1, index - 1);
-                    //计算秒
-                    var dateStr = l.FormatTime.Split(":");
-                    l.Time = (Convert.ToInt32(dateStr[0]) * 60) + Convert.ToDouble(dateStr[1]);
-                    lyricItmes.Add(l);
+
+                    //找到时间才添加
+                    if (index != -1)
+                    {
+                        l.FormatTime = item.Substring(1, index - 1);
+                        
+                        //计算秒
+                        var dateStr = l.FormatTime.Split(":");
+                        if(dateStr.Length > 1)
+                        {
+                            l.Time = (Convert.ToInt32(dateStr[0]) * 60) + Convert.ToDouble(dateStr[1]);
+                            lyricItmes.Add(l);
+                        }
+                    }
                 }
 
                 //更新数据
@@ -88,8 +98,9 @@ namespace MusicApp.ViewModels
         }
 
 
-
-
+        /// <summary>
+        /// 开启歌词滚动
+        /// </summary>
         private void StartTimer()
         {
             Application.Current.Dispatcher.BeginInvoke(new Action(() =>

@@ -24,5 +24,21 @@ namespace MusicApp.Common
                 return false;
             }
         }
+
+        /// <summary>
+        /// 时间戳转string
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public static string FormatTimeoutToString(int time)
+        {
+            //计算歌曲时间
+            int second = time / 1000;//总秒数
+            int minute = second / 60;//分钟数
+            int remSecond = second - (minute * 60);//剩余秒数
+            return (minute.ToString().Length == 1 ? "0" + minute.ToString() : minute.ToString())
+                                      + ":" +
+                                     (remSecond.ToString().Length == 1 ? "0" + remSecond.ToString() : remSecond.ToString());//总时长
+        }
     }
 }
