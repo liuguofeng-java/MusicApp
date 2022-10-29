@@ -41,7 +41,7 @@ namespace MusicApp.ViewModels.Widget
             BackClickCommand = new CommandBase();
             BackClickCommand.DoExecute = new Action<object>((o) => 
             {
-                if (indexs.Length < 3) return;
+                if (indexs == null || indexs.Length < 3) return;
                 SwitchBanner(indexs[0] - 1, indexs[1] - 1, indexs[2] - 1, false);
             });
             BackClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
@@ -50,7 +50,7 @@ namespace MusicApp.ViewModels.Widget
             ForwardClickCommand = new CommandBase();
             ForwardClickCommand.DoExecute = new Action<object>((o) =>
             {
-                if (indexs.Length < 3) return;
+                if (indexs == null || indexs.Length < 3) return;
                 SwitchBanner(indexs[0] + 1, indexs[1] + 1, indexs[2] + 1);
             });
             ForwardClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });

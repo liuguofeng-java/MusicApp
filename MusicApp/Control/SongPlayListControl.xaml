@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MusicApp.Control" xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:app="clr-namespace:MusicApp.Component.AppCsStyle"
+             xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="420">
     <!--歌曲播放列表,主窗体右下方-->
@@ -55,7 +56,7 @@
                 </StackPanel>
                 <Border Background="{DynamicResource PlayListAuxTextColor}" Height="1.2" Margin="20 10 20 5" Grid.Row="2" />
                 <!--列表-->
-                <ScrollViewer Template="{StaticResource MyScrollViewer}" VerticalScrollBarVisibility="Auto" Grid.Row="3">
+                <app:DefaultScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="3">
                     <ListBox x:Name="PlayListBox" ItemContainerStyle="{DynamicResource DefaultListBoxItem}" Background="Transparent" BorderThickness="0" AlternationCount="2" ItemsSource="{Binding Model.SongLists}">
                         <behaviors:Interaction.Triggers>
                             <behaviors:EventTrigger EventName="MouseDoubleClick">
@@ -99,7 +100,7 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                </ScrollViewer>
+                </app:DefaultScrollViewer>
             </Grid>
 
             

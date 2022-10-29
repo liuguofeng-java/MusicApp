@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MusicApp.PageView"
+             xmlns:app="clr-namespace:MusicApp.Component.AppCsStyle"
              xmlns:widget="clr-namespace:MusicApp.Control.Widget"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -58,7 +58,7 @@
     <Grid Background="{DynamicResource MinAuxBackColor}">
         <TabControl Style="{DynamicResource TabControlStyle}" Margin="5 5">
             <TabItem Style="{DynamicResource TabItemStyle}" Header="个性推荐">
-                <ScrollViewer x:Name="ScrollViewer" Template="{StaticResource MyScrollViewer}">
+                <app:DefaultScrollViewer x:Name="ScrollViewer">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="280"/>
@@ -67,7 +67,7 @@
                         <widget:CarouselControl x:Name="Banner" VerticalAlignment="Top"/>
                         <widget:SongsControl Grid.Row="1" />
                     </Grid>
-                </ScrollViewer>
+                </app:DefaultScrollViewer>
             </TabItem>
             <TabItem Style="{DynamicResource TabItemStyle}" Header="专属定制"/>
             <TabItem Style="{DynamicResource TabItemStyle}" Header="歌单"/>

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MusicApp.Control" xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:app="clr-namespace:MusicApp.Component.AppCsStyle" 
+             xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="900">
     <!--歌曲搜索框,输入弹出搜索结果-->
@@ -75,7 +76,7 @@
                 <Border.Effect>
                     <DropShadowEffect Color="#1e1e1e00" ShadowDepth="0" BlurRadius="10" Opacity="0.1" Direction="0"/>
                 </Border.Effect>
-                <ScrollViewer Template="{StaticResource MyScrollViewer}" VerticalScrollBarVisibility="Auto">
+                <app:DefaultScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
                         <!--搜索记录文字-->
                         <StackPanel>
@@ -134,7 +135,7 @@
                             </ListBox>
                         </StackPanel>
                     </Grid>
-                </ScrollViewer>
+                </app:DefaultScrollViewer>
             </Border>
         </StackPanel>
 
@@ -144,8 +145,8 @@
                 <Border.Effect>
                     <DropShadowEffect Color="#1e1e1e00" ShadowDepth="0" BlurRadius="10" Opacity="0.1" Direction="0"/>
                 </Border.Effect>
-                
-                <ScrollViewer Template="{StaticResource MyScrollViewer}" VerticalScrollBarVisibility="Auto">
+
+                <app:DefaultScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
                         <!--单曲-->
                         <TextBlock x:Name="SingleText" Text="&#xe690; 单曲" 
@@ -209,7 +210,7 @@
                         </ListBox>
                     </StackPanel>
 
-                </ScrollViewer>
+                </app:DefaultScrollViewer>
                 
                 
             </Border>

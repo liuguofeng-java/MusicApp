@@ -28,22 +28,6 @@ namespace MusicApp.Control
             InitializeComponent();
             var model = new SongPlayListViewModel();
             DataContext = model;
-
-            //解决ListBox不能滚动的问题
-            PlayListBox.PreviewMouseWheel += (s, e) =>
-            {
-                if (!e.Handled)
-                {
-                    // ListView拦截鼠标滚轮事件
-                    e.Handled = true;
-                    // 激发一个鼠标滚轮事件，冒泡给外层ListView接收到
-                    var eventArg = new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta);
-                    eventArg.RoutedEvent = UIElement.MouseWheelEvent;
-                    eventArg.Source = s;
-                    var parent = ((ListBox)s).Parent as UIElement;
-                    parent.RaiseEvent(eventArg);
-                }
-            };
         }
 
 

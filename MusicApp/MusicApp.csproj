@@ -128,7 +128,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Component\" />
+    <Folder Include="Component\AppCsStyle\" />
   </ItemGroup>
 
 </Project>

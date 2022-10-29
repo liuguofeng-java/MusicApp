@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MusicApp.Control"
+             xmlns:app="clr-namespace:MusicApp.Component.AppCsStyle"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <!--歌曲详情,展示正在播放音乐的歌词等信息-->
@@ -74,7 +74,7 @@
 
         <Border Name="ListBoxContrainer" Grid.Row="3" Margin="0 20 0 100">
             <!--歌词列表-->
-            <ScrollViewer x:Name="LyricScrollViewer" Template="{StaticResource MyScrollViewer}" VerticalScrollBarVisibility="Auto">
+            <app:DefaultScrollViewer x:Name="LyricScrollViewer" VerticalScrollBarVisibility="Auto">
                 <ListBox x:Name="LyricList" 
                          ItemsSource="{Binding Model.LyricList}"
                          Background="Transparent" 
@@ -108,7 +108,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-            </ScrollViewer>
+            </app:DefaultScrollViewer>
         </Border>
     </Grid>
 </UserControl>

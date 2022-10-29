@@ -26,11 +26,6 @@ namespace MusicApp.PageView
             InitializeComponent();
 
 
-            //解决事件传导问题
-            ScrollViewer.AddHandler(ScrollViewer.MouseLeftButtonDownEvent, new MouseButtonEventHandler((s, e) => {
-                e.Handled = false;
-            }), true);
-
         }
 
     }

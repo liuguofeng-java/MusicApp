@@ -7,8 +7,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Component/AppStyle.xaml"/>
                 <ResourceDictionary Source="/Themes/Common.xaml"/>
-                <ResourceDictionary Source="/Themes/ScrollViewDictionary.xaml"/>
                 <!--主题颜色-->
                 <ResourceDictionary Source="/Themes/Color/DefaultColor.xaml"/>
                 <ResourceDictionary Source="/Themes/Color/BlackColor.xaml"/>

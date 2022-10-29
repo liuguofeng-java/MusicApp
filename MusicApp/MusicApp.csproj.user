@@ -75,6 +75,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Component\AppStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Control\Widget\CarouselControl.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -147,7 +150,7 @@
     <Page Update="Control\NotifyIcon.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Themes\ScrollViewDictionary.xaml">
+    <Page Update="Component\AppStyle\DefaultScrollView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Themes\Style\MainWindowStyle.xaml">
