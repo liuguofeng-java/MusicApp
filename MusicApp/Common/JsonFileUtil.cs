@@ -23,7 +23,7 @@ namespace MusicApp.Common
                 Directory.CreateDirectory(Path.GetDirectoryName(iniPath));
                 if (!File.Exists(iniPath))
                 {
-                    File.Create(iniPath);
+                    File.Create(iniPath).Close();
                 }
             }
             using (FileStream fs = new FileStream(iniPath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
@@ -49,7 +49,7 @@ namespace MusicApp.Common
                 Directory.CreateDirectory(Path.GetDirectoryName(iniPath));
                 if (!File.Exists(iniPath))
                 {
-                    File.Create(iniPath);
+                    File.Create(iniPath).Close();
                 }
             }
             string json = string.Empty;

@@ -2,6 +2,7 @@
 using MusicApp.Models;
 using MusicApp.Models.Vo;
 using MusicApp.Models.Widget;
+using MusicApp.ViewModels.PageView.ChildPage;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,11 @@ namespace MusicApp.ViewModels.Widget
         public SongsModel Model { get; set; }
         //点击每日推荐歌曲列表
         public CommandBase SongListOfDayClickCommand { get; set; }
+        
+        //点击全部按钮按钮
+        public CommandBase PlayAllClickCommand { get; set; }
+
+
 
         public SongsViewModel()
         {
@@ -26,6 +32,16 @@ namespace MusicApp.ViewModels.Widget
                 MainWindowViewModel.This.Model.MenusChecked = MenusChecked.SongListOfDay;
             });
             SongListOfDayClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
+
+
+            //点击全部按钮按钮
+            PlayAllClickCommand = new CommandBase();
+            PlayAllClickCommand.DoExecute = new Action<object>((o) =>
+            {
+                SongListOfDayViewModel.This.GetRecommendSong(true);
+            });
+            PlayAllClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
+             
         }
 
         

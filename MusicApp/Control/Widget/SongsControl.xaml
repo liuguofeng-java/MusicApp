@@ -19,49 +19,44 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="45"/>
                     </Grid.RowDefinitions>
-
-                    <Button>
-                        <Button.Template>
-                            <ControlTemplate>
-                                <Border CornerRadius="5">
-                                    <Border.Background>
-                                        <ImageBrush ImageSource="/Assets/Images/dim.png" Stretch="Fill"/>
-                                    </Border.Background>
-                                    <Border>
-                                        <behaviors:Interaction.Triggers>
-                                            <behaviors:EventTrigger EventName="MouseLeftButtonDown">
-                                                <behaviors:InvokeCommandAction Command="{Binding SongListOfDayClickCommand}"/>
-                                            </behaviors:EventTrigger>
-                                        </behaviors:Interaction.Triggers>
-                                        <Grid>
-                                            <TextBlock Text="20" FontSize="25" Foreground="White" Margin="0 20 0 0"
+                    <Border CornerRadius="5">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Assets/Images/dim.png" Stretch="Fill"/>
+                        </Border.Background>
+                        <Border Background="Transparent">
+                            <behaviors:Interaction.Triggers>
+                                <behaviors:EventTrigger EventName="MouseLeftButtonDown">
+                                    <behaviors:InvokeCommandAction Command="{Binding SongListOfDayClickCommand}"/>
+                                </behaviors:EventTrigger>
+                            </behaviors:Interaction.Triggers>
+                            <Grid>
+                                <TextBlock Text="20" FontSize="25" Foreground="White" Margin="0 20 0 0"
                                             VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                            <TextBlock Text="&#xe89e;" FontSize="70" FontFamily="{DynamicResource Iconfont}" Foreground="White"
+                                <TextBlock Text="&#xe89e;" FontSize="70" FontFamily="{DynamicResource Iconfont}" Foreground="White"
                                             VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                            <Button x:Name="but" Width="30" Height="30" Cursor="Hand"
-                                                HorizontalAlignment="Right" VerticalAlignment="Bottom" 
-                                                Margin="10" Visibility="Collapsed">
-                                                <Button.Template>
-                                                    <ControlTemplate>
-                                                        <Border Background="White" Opacity="0.9" CornerRadius="50">
-                                                            <TextBlock Text="&#xe87c;"  FontFamily="{DynamicResource Iconfont}"
+                                <Button x:Name="but" Width="30" Height="30" Cursor="Hand" Command="{Binding PlayAllClickCommand}"
+                                                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Border Background="White" Opacity="0.9" CornerRadius="50">
+                                                <TextBlock Text="&#xe87c;"  FontFamily="{DynamicResource Iconfont}"
                                                            HorizontalAlignment="Center" VerticalAlignment="Center"
                                                            Foreground="red" FontSize="15" />
-                                                        </Border>
-                                                    </ControlTemplate>
-                                                </Button.Template>
-                                            </Button>
-                                        </Grid>
-                                    </Border>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver"  Value="true">
-                                        <Setter Property="Visibility" TargetName="but" Value="Visible"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Border}},Path=IsMouseOver}" Value="True">
+                                                    <Setter  Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Border}},Path=IsMouseOver}" Value="False">
+                                                    <Setter  Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </Grid>
+                        </Border>
+                    </Border>
                     <TextBlock Text="每日歌曲推荐" Margin="5" Grid.Row="1" FontSize="14" FontWeight="Light" Foreground="#333333"/>
                 </Grid>
             </Border>

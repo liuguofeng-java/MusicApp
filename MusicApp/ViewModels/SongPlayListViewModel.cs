@@ -176,20 +176,24 @@ namespace MusicApp.ViewModels
                     if (songPlayList == null) songPlayList = new List<SongModel>();
                     //是否已经存在播放列表
                     SongModel model = songPlayList.Find(t => t.SongId.Equals(idList[i]));
+
+                    //查出的数据没有顺序,要用find查找一下
+                    var player = playerModel.data.Find(t => t.id.ToString().Equals(idList[i]));
+                    var detail = detailModel.songs.Find(t => t.id.ToString().Equals(idList[i]));
                     if (model != null)
                     {
-                        model.SongUrl = playerModel.data[i].url;
+                        model.SongUrl = player.url;
                         list.Add(model);
                     }
                     else
                     {
                         SongModel newModel = new SongModel();
                         newModel.SongId = idList[i];
-                        newModel.SongUrl = playerModel.data[i].url;
-                        newModel.PicUrl = detailModel.songs[i].al.picUrl;
-                        newModel.SongName = detailModel.songs[i].name;
-                        newModel.Author = detailModel.songs[i].ar[0].name;
-                        newModel.SongTime = playerModel.data[i].time;
+                        newModel.SongUrl = player.url;
+                        newModel.PicUrl = detail.al.picUrl;
+                        newModel.SongName = detail.name;
+                        newModel.Author = detail.ar[0].name;
+                        newModel.SongTime = player.time;
                         newModel.FormatSongTime = StringUtil.FormatTimeoutToString(newModel.SongTime);
                         list.Add(newModel);
                     }

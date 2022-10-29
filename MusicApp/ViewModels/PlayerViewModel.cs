@@ -70,7 +70,12 @@ namespace MusicApp.ViewModels
             MusicProgressChangedCommand = new CommandBase();
             MusicProgressChangedCommand.DoExecute = new Action<object>((o) =>
             {
-                Model.MediaElement.Position = TimeSpan.FromSeconds((double)o);
+                var time = (double)o;
+                if (time - Model.PlayProgress > 1 && Model.PlayProgress != 0)
+                {
+                    Model.MediaElement.Position = TimeSpan.FromSeconds(time);
+                    Model.PlayProgress = TimeSpan.FromSeconds(time).TotalSeconds;
+                }
             });
             MusicProgressChangedCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 
