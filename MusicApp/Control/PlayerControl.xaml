@@ -42,11 +42,6 @@
                                 Height="10"
                                 Background="{TemplateBinding Background}"
                                 VerticalAlignment="Center">
-                            <!--<behaviors:Interaction.Triggers>
-                                <behaviors:EventTrigger EventName="DragCompleted">
-                                    <behaviors:InvokeCommandAction Command="{Binding MusicProgressChangedCommand}" />
-                                </behaviors:EventTrigger>
-                            </behaviors:Interaction.Triggers>-->
                         </Thumb>
 
                     </Track.Thumb>
@@ -150,7 +145,7 @@
                     IsMoveToPointEnabled="True"
                     Value="{Binding Model.PlayProgress}"
                     Background="{DynamicResource MainLineBackColor}" 
-                    Cursor="Hand" >
+                    Cursor="Hand" ValueChanged="MusicProgress_ValueChanged">
                 <behaviors:Interaction.Triggers>
                     <behaviors:EventTrigger EventName="ValueChanged">
                         <behaviors:InvokeCommandAction Command="{Binding MusicProgressChangedCommand}" CommandParameter="{Binding ElementName=MusicProgress,Path=Value}"/>

@@ -26,5 +26,10 @@ namespace MusicApp.Control
             var model = new PlayerViewModel();
             DataContext = model;
         }
+
+        private void MusicProgress_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
     }
 }
