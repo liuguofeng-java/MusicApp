@@ -91,48 +91,54 @@
     
     <StackPanel Grid.Column="1" HorizontalAlignment="Center" Margin="0 10 0 0">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <!--播放规则-->
+            <!--播放模式-->
             <Button Style="{DynamicResource ControlMusicButtonStyle}" 
-                                Margin="15 0"
-                                Content="&#xe802;" 
-                                Background="{DynamicResource BottomButBackColor}" 
-                                Width="20" 
-                                Height="20"
-                                Foreground="{DynamicResource BottomButTextColor}"/>
+                    Margin="15 0"
+                    Content="{Binding Model.PlayModelStat.Content}" 
+                    Background="{DynamicResource BottomButBackColor}" 
+                    Width="20" 
+                    Height="20"
+                    Foreground="{DynamicResource BottomButTextColor}" 
+                    ToolTip="{Binding Model.PlayModelStat.Message}"
+                    Command="{Binding PlayModeClickCommand}" 
+                    CommandParameter="{Binding Model.PlayModelStat.Name}"/>
             <!--上一首-->
             <Button x:Name="LastSong" Style="{DynamicResource ControlMusicButtonStyle}" 
-                                Margin="15 0"
-                                Content="&#xe609;" 
-                                Background="{DynamicResource BottomButBackColor}" 
-                                Width="20" 
-                                Height="20"
-                                Foreground="{DynamicResource BottomButTextColor}" Command="{Binding PlayLastClickCommand}"/>
+                    Margin="15 0"
+                    Content="&#xe609;" 
+                    Background="{DynamicResource BottomButBackColor}" 
+                    Width="20" 
+                    Height="20"
+                    Foreground="{DynamicResource BottomButTextColor}" 
+                    Command="{Binding PlayLastClickCommand}"/>
             <!--继续或暂停-->
             <!--Click="PlayBut_Click-->
             <Button x:Name="PlayBut" Style="{DynamicResource ControlMusicButtonStyle}" 
-                                Margin="15 0"
-                                Content="{Binding Model.PlayButContent}" 
-                                Background="{DynamicResource BottomMainButBackColor}" 
-                                Width="35" 
-                                Height="35"
-                                FontSize="15"
-                                Foreground="{DynamicResource BottomButTextColor}" Command="{Binding PlayButClickCommand}"/>
+                    Margin="15 0"
+                    Content="{Binding Model.PlayButContent}" 
+                    Background="{DynamicResource BottomMainButBackColor}" 
+                    Width="35" 
+                    Height="35"
+                    FontSize="15"
+                    Foreground="{DynamicResource BottomButTextColor}" 
+                    Command="{Binding PlayButClickCommand}"/>
             <!--下一首-->
             <Button x:Name="NextSong" Style="{DynamicResource ControlMusicButtonStyle}" 
-                                Content="&#xe60b;" 
-                                Margin="15 0"
-                                Background="{DynamicResource BottomButBackColor}" 
-                                Width="20" 
-                                Height="20"
-                                Foreground="{DynamicResource BottomButTextColor}" Command="{Binding PlayNextClickCommand}"/>
+                    Content="&#xe60b;" 
+                    Margin="15 0"
+                    Background="{DynamicResource BottomButBackColor}" 
+                    Width="20" 
+                    Height="20"
+                    Foreground="{DynamicResource BottomButTextColor}" 
+                    Command="{Binding PlayNextClickCommand}"/>
             <!--词-->
             <Button Style="{DynamicResource ControlMusicButtonStyle}" 
-                                Margin="15 0"
-                                Content="词" 
-                                Background="{DynamicResource BottomButBackColor}" 
-                                Width="20" 
-                                Height="20"
-                                Foreground="{DynamicResource BottomButTextColor}"/>
+                    Margin="15 0"
+                    Content="词" 
+                    Background="{DynamicResource BottomButBackColor}" 
+                    Width="20" 
+                    Height="20"
+                    Foreground="{DynamicResource BottomButTextColor}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" >
             <TextBlock x:Name="StartProgress" Text="{Binding Model.StartProgressTiem}" FontSize="12" Foreground="{DynamicResource BottomTextColor}" Margin="0 0 10 0"/>

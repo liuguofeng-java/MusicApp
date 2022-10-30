@@ -56,6 +56,22 @@ namespace MusicApp.Models
         }
 
         /// <summary>
+        /// 播放模式
+        /// </summary>
+        private PlayModel _playModelStat = PlayModel.ListLoop;
+        public PlayModel PlayModelStat
+        {
+            get
+            { return this._playModelStat; }
+            set
+            {
+                _playModelStat = value;
+                InitJsonData.WriteJsonFile();
+            }
+        }
+
+
+        /// <summary>
         /// 当前播放音乐实例
         /// </summary>
         private SongModel _songPlay;
@@ -85,6 +101,17 @@ namespace MusicApp.Models
             }
         }
 
+    }
+
+    /// <summary>
+    /// 播放模式
+    /// </summary>
+    public enum PlayModel
+    {
+        ListLoop,//列表循环
+        SimpleLoop,//单曲循环
+        RandomPlay,//随机循环
+        OrderPlay,//顺序循环
     }
 
     /// <summary>

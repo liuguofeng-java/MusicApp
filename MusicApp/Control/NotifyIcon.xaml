@@ -5,14 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MusicApp.Control"
              xmlns:tb="http://www.hardcodet.net/taskbar"
+             xmlns:common="clr-namespace:MusicApp.Common"
              mc:Ignorable="d" 
              x:Name="notifyIcon"
              d:DesignHeight="450" d:DesignWidth="800">
-    
+
     <!--程序托盘菜单-->
+    <UserControl.Resources>
+        <common:RadioButtonConvert x:Key="RadioButtonConvert"/>
+    </UserControl.Resources>
     <Grid>
         <tb:TaskbarIcon 
-        ToolTipText="两只老虎跑得快"
+        ToolTipText="{Binding Model.SongName}"
         LeftClickCommand="{Binding ClickCommand}"
         LeftClickCommandParameter="{Binding ElementName=notifyIcon}"
         IconSource="pack://application:,,,/Assets/Images/Iocn/format.ico">
@@ -39,14 +43,26 @@
                     
                     <Separator Style="{DynamicResource SeparatorStyle}"/>
 
-                    <MenuItem Header="顺序播放" Icon="&#xe7fe;">
-                     
+                    <MenuItem Header="顺序播放" Icon="{Binding Model.PlayModelStat.Content}">
+                        <MenuItem Header="列表循环" Width="150" Icon="&#xe68d;"
+                                  Command="{Binding CheckPlayModelClickCommand}" CommandParameter="ListLoop"
+                                  IsCheckable="{Binding Model.PlayModelStat.Name, Mode=TwoWay,Converter={StaticResource RadioButtonConvert},ConverterParameter=ListLoop}"/>
+                        <MenuItem Header="单曲循环" Width="150" Icon="&#xea77;"
+                                  Command="{Binding CheckPlayModelClickCommand}" CommandParameter="SimpleLoop"
+                                  IsCheckable="{Binding Model.PlayModelStat.Name, Mode=TwoWay,Converter={StaticResource RadioButtonConvert},ConverterParameter=SimpleLoop}"/>
+                        <MenuItem Header="随机播放" Width="150" Icon="&#xea75;"
+                                  Command="{Binding CheckPlayModelClickCommand}" CommandParameter="RandomPlay"
+                                  IsCheckable="{Binding Model.PlayModelStat.Name, Mode=TwoWay,Converter={StaticResource RadioButtonConvert},ConverterParameter=RandomPlay}"/>
+                        <MenuItem Header="顺序播放" Width="150" Icon="&#xe802;" 
+                                  Command="{Binding CheckPlayModelClickCommand}" CommandParameter="OrderPlay"
+                                  IsCheckable="{Binding Model.PlayModelStat.Name, Mode=TwoWay,Converter={StaticResource RadioButtonConvert},ConverterParameter=OrderPlay}"/>
+
                     </MenuItem>
 
-                    <MenuItem Header="完整模式">
-                        <MenuItem Header="完整模式" Width="150" Icon="xxx"/>
-                        <MenuItem Header="mini模式" Width="150" Icon="xxx"/>
-                        <MenuItem Header="最小化" Width="150" Icon="xxx"/>
+                    <MenuItem Header="完整模式" Icon="&#xe64c;">
+                        <MenuItem Header="完整模式" Width="150" Icon="&#xe64c;"/>
+                        <MenuItem Header="mini模式" Width="150" Icon="&#xe64e;"/>
+                        <MenuItem Header="最小化" Width="150" Icon="&#xe65a;"/>
                     </MenuItem>
                     <MenuItem Header="打开桌面歌曲" Icon="&#xe61d;"/>
                     <MenuItem Header="锁定桌面歌词" Icon="&#xe669;"/>

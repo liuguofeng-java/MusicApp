@@ -10,7 +10,7 @@ namespace MusicApp.ViewModels
     /// <summary>
     /// 程序托盘菜单的ModelView 
     /// </summary>
-    public class NotifyIconModelView : CommandBase
+    public class NotifyIconModelView
     {
         public NotifyIconModel Model { get; set; }
         //点击托盘
@@ -22,6 +22,9 @@ namespace MusicApp.ViewModels
         public CommandBase LastClickCommand { get; set; }
         //下一首
         public CommandBase NextClickCommand { get; set; }
+
+        //选择播放模式
+        public CommandBase CheckPlayModelClickCommand { get; set; }
 
         //点击退出
         public CommandBase CloseClickCommand { get; set; }
@@ -53,6 +56,15 @@ namespace MusicApp.ViewModels
             NextClickCommand.DoExecute = new Action<object>((o) => PlayerViewModel.This.PlayNextClick());
             NextClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 
+            //选择播放模式
+            CheckPlayModelClickCommand = new CommandBase();
+            CheckPlayModelClickCommand.DoExecute = new Action<object>((o) =>
+            {
+                var playModel = (PlayModel)Enum.Parse(typeof(PlayModel),o.ToString());
+                PlayerViewModel.This.SetPlayModelStat(playModel);
+            });
+            CheckPlayModelClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
+
             //点击退出
             CloseClickCommand = new CommandBase();
             CloseClickCommand.DoExecute = new Action<object>((o) =>
@@ -61,9 +73,9 @@ namespace MusicApp.ViewModels
             });
             CloseClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 
-
-            //播放器事件,更新任务栏
-            PlayerViewModel.This.PlayDelegate += new Action<SongModel>((o) =>
+            var playThis =  PlayerViewModel.This;
+            //播放器事件,更新托盘
+            playThis.PlayDelegate += new Action<SongModel>((o) =>
             {
                 switch (o.Status)
                 {
@@ -81,6 +93,12 @@ namespace MusicApp.ViewModels
                         break;
                 }
             });
+
+            //播放器模式事件触发
+            playThis.PlayModelDelegate += new Action<PlayModelStat>((o) =>
+            {
+                Model.PlayModelStat = o;
+            });
         }
 
 
@@ -90,6 +108,10 @@ namespace MusicApp.ViewModels
         public void showWindow()
         {
             Window mainWindow = Application.Current.MainWindow;
+            if (mainWindow.WindowState == WindowState.Minimized)
+            {
+                mainWindow.WindowState = WindowState.Normal;
+            }
             mainWindow.Visibility = Visibility.Visible;
             mainWindow.Topmost = true;
             Thread.Sleep(100);

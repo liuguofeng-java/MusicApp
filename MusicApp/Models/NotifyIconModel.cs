@@ -37,5 +37,19 @@ namespace MusicApp.Models
                 DoNotify();
             }
         }
+
+        /// <summary>
+        /// 播放模式
+        /// </summary>
+        private PlayModelStat _playModelStat;
+        public PlayModelStat PlayModelStat
+        {
+            get { return this._playModelStat; }
+            set
+            {
+                _playModelStat = value;
+                DoNotify();
+            }
+        }
     }
 }

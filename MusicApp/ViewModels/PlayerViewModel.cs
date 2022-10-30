@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using static MusicApp.Models.SongModel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MusicApp.ViewModels
 {
@@ -20,6 +21,9 @@ namespace MusicApp.ViewModels
     {
         // 播放器事件委托(停止或者开始)
         public Action<SongModel> PlayDelegate { get; set; }
+
+        // 播放模式事件委托(更新播放模式)
+        public Action<PlayModelStat> PlayModelDelegate { get; set; }
 
         public static PlayerViewModel This { get; set; }
         public PlayerModel Model { get; set; }
@@ -32,6 +36,9 @@ namespace MusicApp.ViewModels
 
         //手动改变音乐进度条时
         public CommandBase MusicProgressChangedCommand { get; set; }
+
+        //点击播放模式
+        public CommandBase PlayModeClickCommand { get; set; }
 
         //点击暂停/继续
         public CommandBase PlayButClickCommand { get; set; }
@@ -60,6 +67,9 @@ namespace MusicApp.ViewModels
                     InitPlay(songPlay);
                     Model.SongPlayModel = songPlay;
                 }
+                //初始化播放模式
+                var playModel = InitJsonData.jsonDataModel.PlayModelStat;
+                SetPlayModelStat(playModel);
             });
             MediaLoadedCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 
@@ -92,6 +102,33 @@ namespace MusicApp.ViewModels
             });
             MusicProgressChangedCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 
+            //点击播放模式
+            PlayModeClickCommand = new CommandBase();
+            PlayModeClickCommand.DoExecute = new Action<object>((o) =>
+            {
+                PlayModel playModel = (PlayModel)Enum.Parse(typeof(PlayModel), o.ToString());
+                switch (playModel)
+                {
+                    case PlayModel.ListLoop: //列表循环
+                        SetPlayModelStat(PlayModel.SimpleLoop);
+                        break;
+
+                    case PlayModel.SimpleLoop: //单曲循环
+                        SetPlayModelStat(PlayModel.RandomPlay);
+                        break;
+
+                    case PlayModel.RandomPlay: //随机循环
+                        SetPlayModelStat(PlayModel.OrderPlay);
+                        break;
+
+                    case PlayModel.OrderPlay: //顺序循环
+                        SetPlayModelStat(PlayModel.ListLoop);
+                        break;
+                }
+                InitJsonData.jsonDataModel.PlayModelStat = Model.PlayModelStat.Name;//保存到本地缓存
+            });
+            PlayModeClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
+
             //点击暂停/继续
             PlayButClickCommand = new CommandBase();
             PlayButClickCommand.DoExecute = new Action<object>((o) => PlayButClick());
@@ -107,7 +144,6 @@ namespace MusicApp.ViewModels
             PlayNextClickCommand.DoExecute = new Action<object>((o) => PlayNextClick());
             PlayNextClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
         }
-
 
         /// <summary>
         /// 准备播放
@@ -287,12 +323,11 @@ namespace MusicApp.ViewModels
                     try
                     {
                         Directory.CreateDirectory(path);//文件夹没有就创建
-                                                        //获取歌曲url
+                        //获取歌曲url
                         string songUrlRes = HttpUtil.HttpRequset(HttpUtil.serveUrl + "/song/url?id=" + model.SongId);
                         if (songUrlRes == null)
                         {
                             throw new Exception("获取url失败!");
-                            return;
                         }
                         PlayerControlModel playerModel = JsonConvert.DeserializeObject<PlayerControlModel>(songUrlRes);
 
@@ -318,6 +353,42 @@ namespace MusicApp.ViewModels
             {
                 model.LocalSongUrl = null;
             }
+        }
+
+
+        /// <summary>
+        /// 赋值模式
+        /// </summary>
+        /// <param name="playModel"></param>
+        /// <returns></returns>
+        public void SetPlayModelStat(PlayModel playModel)
+        {
+            PlayModelStat result = new PlayModelStat();
+            result.Name = playModel;
+            switch (playModel)
+            {
+                case PlayModel.ListLoop: //列表循环
+                    result.Content = "\xe68d";
+                    result.Message = "列表循环";
+                    break;
+
+                case PlayModel.SimpleLoop: //单曲循环
+                    result.Content = "\xea77";
+                    result.Message = "单曲循环";
+                    break;
+
+                case PlayModel.RandomPlay: //随机循环
+                    result.Content = "\xea75";
+                    result.Message = "随机循环";
+                    break;
+
+                case PlayModel.OrderPlay: //顺序循环
+                    result.Content = "\xe802";
+                    result.Message = "顺序循环";
+                    break;
+            }
+            PlayModelDelegate?.Invoke(result);//触发播放模式事件
+            Model.PlayModelStat = result;
         }
     }
 }
