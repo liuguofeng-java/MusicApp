@@ -79,7 +79,7 @@ namespace MusicApp.ViewModels
             {
                 var songId = Model.SongPlayModel.SongId;
                 StopPlay();
-                SongPlayListViewModel.This.NextSongPlay(songId, false); //播放下一首
+                SongPlayListViewModel.This.NextSongPlay(songId, false,Model.PlayModelStat.Name); //播放下一首
             });
             MediaEndedCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 
@@ -158,6 +158,14 @@ namespace MusicApp.ViewModels
                 return;
             }
 
+            //关闭进度条定时器
+            if (Model.Timer != null)
+            {
+                Model.Timer.Stop();
+            }
+            //停止音乐
+            Model.MediaElement.Stop();
+
             //下载音乐可能会慢,卡ui线程
             new Thread(() =>
             {
@@ -168,17 +176,7 @@ namespace MusicApp.ViewModels
                 Model.PlayProgressLength = 1;
                 Model.DisabledPlayProgress = false;
                 Model.PlayButContent = "\xe87c";
-                //先停止正在播放的音乐
-                Application.Current.Dispatcher.Invoke(new Action(delegate
-                {
-                    //关闭进度条定时器
-                    if (Model.Timer != null)
-                    {
-                        Model.Timer.Stop();
-                    }
-                    //停止音乐
-                    Model.MediaElement.Stop();
-                }));
+                
                 //更新当前歌曲信息
                 Model.SongPlayModel = model;
                 Model.SongPlayModel.IsLoading = true;
@@ -266,7 +264,7 @@ namespace MusicApp.ViewModels
         public void PlayLastClick()
         {
             if (Model.SongPlayModel == null) return;
-            SongPlayListViewModel.This.NextSongPlay(Model.SongPlayModel.SongId, true, 2);
+            SongPlayListViewModel.This.NextSongPlay(Model.SongPlayModel.SongId, true);
         }
 
         /// <summary>
@@ -275,7 +273,7 @@ namespace MusicApp.ViewModels
         public void PlayNextClick()
         {
             if (Model.SongPlayModel == null) return;
-            SongPlayListViewModel.This.NextSongPlay(Model.SongPlayModel.SongId, false, 2);
+            SongPlayListViewModel.This.NextSongPlay(Model.SongPlayModel.SongId, false);
         }
 
         /// <summary>
@@ -341,7 +339,7 @@ namespace MusicApp.ViewModels
                     }
                     catch
                     {
-                        SongPlayListViewModel.This.NextSongPlay(Model.SongPlayModel.SongId, false, 2);
+                        SongPlayListViewModel.This.NextSongPlay(Model.SongPlayModel.SongId, false);
 
                     }
                 }

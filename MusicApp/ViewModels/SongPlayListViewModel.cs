@@ -34,7 +34,7 @@ namespace MusicApp.ViewModels
                 int selectdindex = (int)o;
                 var item = Model.SongLists[selectdindex];
                 if (item == null) return;
-                NextSongPlay(item.SongId, false, 3);
+                NextSongPlay(item.SongId, false, PlayModel.SimpleLoop);
             });
             PlayListMouseDoubleClickCommand.DoCanExecute = new Func<object, bool>((o) => {return true; });
 
@@ -76,8 +76,8 @@ namespace MusicApp.ViewModels
         /// </summary>
         /// <param name="songId">当前播放完的歌曲id</param>
         /// <param name="isLast">是否是上一首</param>
-        /// <param name="type">1 顺序播放,2 列表循环,3 单曲循环</param>
-        public void NextSongPlay(string songId, bool isLast = false, int type = 1)
+        /// <param name="type"> ListLoop=列表循环 ,SimpleLoop=单曲循环 ,RandomPlay=随机循环 ,OrderPlay=顺序循环</param>
+        public void NextSongPlay(string songId, bool isLast = false, PlayModel type = PlayModel.ListLoop)
         {
             //待播放列表长度
             int count = Model.SongLists.Count;
@@ -100,19 +100,25 @@ namespace MusicApp.ViewModels
             }
             switch (type)
             {
-                case 1:
-                    if (count > index + 1)
-                        PlayerViewModel.This.InitPlay(Model.SongLists[index + 1]);
-                    break;
-                case 2:
+                case PlayModel.ListLoop:
                     if (count > index + 1)
                         PlayerViewModel.This.InitPlay(Model.SongLists[index + 1]);
                     else
                         PlayerViewModel.This.InitPlay(Model.SongLists[0]);
                     break;
-                case 3:
+                case PlayModel.SimpleLoop:
                     PlayerViewModel.This.InitPlay(Model.SongLists[index]);
                     break;
+
+                case PlayModel.RandomPlay:
+                    int random = new Random().Next(0,count + 1);
+                    PlayerViewModel.This.InitPlay(Model.SongLists[random]);
+                    break;
+                case PlayModel.OrderPlay:
+                    if (count > index + 1)
+                        PlayerViewModel.This.InitPlay(Model.SongLists[index + 1]);
+                    break;
+
             }
         }
 
