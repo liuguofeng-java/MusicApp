@@ -63,6 +63,18 @@
                                 <behaviors:InvokeCommandAction Command="{Binding PlayListMouseDoubleClickCommand}" CommandParameter="{Binding ElementName=PlayListBox,Path=SelectedIndex}"/>
                             </behaviors:EventTrigger>
                         </behaviors:Interaction.Triggers>
+                        <ListBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="置顶"></MenuItem>
+                                <MenuItem Header="设为已读" />
+                                <MenuItem Header="开启新消息提醒" />
+                                <MenuItem Header="在独立窗口打开" />
+                                <MenuItem Header="不显聊天" >
+                                    <MenuItem Header="xxx"></MenuItem>
+                                </MenuItem>
+                                <MenuItem Header="删除聊天" />
+                            </ContextMenu>
+                        </ListBox.ContextMenu>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Border x:Name="border" Margin="20 10 0 10">

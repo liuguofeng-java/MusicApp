@@ -19,6 +19,21 @@ namespace MusicApp.ViewModels
         {
             This = this;
             Model = new SongInfoModel();
+
+            //播放器事件
+            PlayerViewModel.This.PlayDelegate += new Action<SongModel>((o) =>
+            {
+                //开始和暂停更新
+                if (!o.Status.Equals(SongModel.PlayStatus.ClosePlay))
+                {
+                    //如果已经加载控件
+                    if (Model.SongInfoVisibility == Visibility.Visible && o.SongId.Equals(Model.SongModel.SongId)) return;
+                    SetSongInfo(o);
+                }
+                //播放和关闭要隐藏当前控件
+                if (o.Status.Equals(SongModel.PlayStatus.StartPlay) || o.Status.Equals(SongModel.PlayStatus.ClosePlay))
+                    Model.SongInfoVisibility = Visibility.Hidden;
+            });
         }
 
 
@@ -26,7 +41,7 @@ namespace MusicApp.ViewModels
         /// 歌曲 如头像、歌曲名称、作者、赋值
         /// </summary>
         /// <param name="model"></param>
-        public void SetSongInfo(SongModel model, bool isStartPlay)
+        public void SetSongInfo(SongModel model)
         {
             new Thread(() =>
             {
@@ -58,12 +73,6 @@ namespace MusicApp.ViewModels
                 //赋值
                 Model.SongPicVisibility = Visibility.Visible;
                 SongDetailViewModel.This.InitLyrics(model);
-
-                Application.Current.Dispatcher.Invoke(new Action(delegate 
-                {
-                    //设置主窗体任务栏
-                    MainWindowViewModel.This.SetTaskbarStat(model.SongName, !isStartPlay, new BitmapImage(new Uri(model.LocalPicUrl)));
-                }));
             }).Start();
         }
     }

@@ -160,5 +160,47 @@ namespace MusicApp.Models
                 DoNotify();
             }
         }
+
+        /// <summary>
+        /// 是否加载中 
+        /// </summary>
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get { return this._isLoading; }
+            set
+            {
+                _isLoading = value;
+                DoNotify();
+            }
+        }
+
+        /// <summary>
+        /// 播放状态 
+        /// </summary>
+        private PlayStatus _status = PlayStatus.StartPlay;
+        public PlayStatus Status
+        {
+            get { return this._status; }
+            set
+            {
+                _status = value;
+                DoNotify();
+            }
+        }
+
+
+        /// <summary>
+        /// 播放状态
+        /// </summary>
+        public enum PlayStatus
+        {
+            StartPlay,//正在播放
+            StopPlay,//停止播放
+            ClosePlay //彻底关闭
+        }
     }
+
+
+
 }

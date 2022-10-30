@@ -26,7 +26,7 @@
     </WindowChrome.WindowChrome>
     <!--任务栏缩略图-->
     <Window.TaskbarItemInfo>
-        <TaskbarItemInfo x:Name="taskBarItemInfo1" ThumbnailClipMargin="20 1000 0 0"
+        <TaskbarItemInfo x:Name="taskBarItemInfo1"
                      Overlay="{Binding Model.OverlayImage}"
                      Description="{Binding Model.TitleName}">
             <TaskbarItemInfo.ThumbButtonInfos>

@@ -78,6 +78,9 @@
     <Page Update="Component\AppStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Component\AppStyle\DefaultContextMenu.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Control\Widget\CarouselControl.xaml">
       <SubType>Designer</SubType>
     </Page>

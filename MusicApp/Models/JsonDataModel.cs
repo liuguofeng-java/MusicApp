@@ -103,7 +103,7 @@ namespace MusicApp.Models
             var jsonStr = JsonFileUtil.GetJsonFile();
             if (string.IsNullOrEmpty(jsonStr))
             {
-                jsonStr = JsonConvert.SerializeObject(jsonDataModel); ;
+                jsonStr = JsonConvert.SerializeObject(jsonDataModel);
             }
             jsonDataModel = JsonConvert.DeserializeObject<JsonDataModel>(jsonStr);
         }

@@ -1,4 +1,5 @@
-﻿using MusicApp.ViewModels;
+﻿using MusicApp.Models;
+using MusicApp.ViewModels;
 using System;
 using System.Runtime.InteropServices;
 using System.Timers;
@@ -20,13 +21,32 @@ namespace MusicApp.Views
             var model = new MainWindowViewModel();
 
             InitializeComponent();
+
             DataContext = model;
+
+            //播放器事件,更新任务栏
+            PlayerViewModel.This.PlayDelegate += new Action<SongModel>((o) =>
+            {
+                switch (o.Status)
+                {
+                    case SongModel.PlayStatus.StartPlay:
+                        model.SetTaskbarStat(o.SongName, false, null);
+                        break;
+                    case SongModel.PlayStatus.StopPlay:
+                        model.SetTaskbarStat(o.SongName, true, null);
+                        break;
+                    case SongModel.PlayStatus.ClosePlay:
+                        model.SetTaskbarStat("网易云音乐", true, null);
+                        break;
+                }
+            });
+
 
             //最大化宽度
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
 
-
+            //设置窗体直角
             IntPtr hWnd = new WindowInteropHelper(GetWindow(this)).EnsureHandle();
             var attribute = DWMWINDOWATTRIBUTE.DWMWA_WINDOW_CORNER_PREFERENCE;
             var preference = DWM_WINDOW_CORNER_PREFERENCE.DWMWCP_DONOTROUND;

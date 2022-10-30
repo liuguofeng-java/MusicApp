@@ -61,6 +61,12 @@ namespace MusicApp.ViewModels
             Model.SongPlayCount = "总" + Model.SongLists.Count + "首";
             //初始化数据
             Model.SongLists = InitJsonData.jsonDataModel.SongPlayList;
+
+            //播放器事件
+            PlayerViewModel.This.PlayDelegate += new Action<SongModel>((o) =>
+            {
+                SetLisBoxColor(o);
+            });
         }
 
 
@@ -155,18 +161,6 @@ namespace MusicApp.ViewModels
                 }
                 SongDetailResultModel detailModel = JsonConvert.DeserializeObject<SongDetailResultModel>(songDetailRes);
 
-                //获取歌曲url
-                string songUrlRes = HttpUtil.HttpRequset(HttpUtil.serveUrl + "/song/url?id=" + ids);
-                if (songUrlRes == null)
-                {
-                    return;
-                }
-                PlayerControlModel playerModel = JsonConvert.DeserializeObject<PlayerControlModel>(songUrlRes);
-
-                //歌曲url和歌曲详细一致
-                if (idList.Count != detailModel.songs.Count || idList.Count != playerModel.data.Count)
-                    throw new Exception("获取待播放歌曲播放列表出差了!");
-
                 //待播放歌曲列表
                 List<SongModel> songPlayList = Model.SongLists;
                 //临时变量
@@ -178,22 +172,22 @@ namespace MusicApp.ViewModels
                     SongModel model = songPlayList.Find(t => t.SongId.Equals(idList[i]));
 
                     //查出的数据没有顺序,要用find查找一下
-                    var player = playerModel.data.Find(t => t.id.ToString().Equals(idList[i]));
+                   // var player = playerModel.data.Find(t => t.id.ToString().Equals(idList[i]));
                     var detail = detailModel.songs.Find(t => t.id.ToString().Equals(idList[i]));
                     if (model != null)
                     {
-                        model.SongUrl = player.url;
+                        //model.SongUrl = player.url;
                         list.Add(model);
                     }
                     else
                     {
                         SongModel newModel = new SongModel();
                         newModel.SongId = idList[i];
-                        newModel.SongUrl = player.url;
+                        //newModel.SongUrl = player.url;
                         newModel.PicUrl = detail.al.picUrl;
                         newModel.SongName = detail.name;
                         newModel.Author = detail.ar[0].name;
-                        newModel.SongTime = player.time;
+                        //newModel.SongTime = player.time;
                         newModel.FormatSongTime = StringUtil.FormatTimeoutToString(newModel.SongTime);
                         list.Add(newModel);
                     }

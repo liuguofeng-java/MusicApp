@@ -1,6 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
     <ResourceDictionary.MergedDictionaries>
+        <!--滚动条-->
         <ResourceDictionary Source="/Component/AppStyle/DefaultScrollView.xaml"/>
+        <!--默认菜单-->
+        <ResourceDictionary Source="/Component/AppStyle/DefaultContextMenu.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary> 
 

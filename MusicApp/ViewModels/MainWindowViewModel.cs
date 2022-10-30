@@ -91,8 +91,9 @@ namespace MusicApp.ViewModels
             SongPlayListClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 
 
+           
             //游客登录
-            Anonimous();
+            //Anonimous();
         }
 
         /// <summary>

@@ -10,37 +10,61 @@
              d:DesignHeight="450" d:DesignWidth="800">
     
     <!--程序托盘菜单-->
-
-    <tb:TaskbarIcon 
+    <Grid>
+        <tb:TaskbarIcon 
         ToolTipText="两只老虎跑得快"
         LeftClickCommand="{Binding ClickCommand}"
         LeftClickCommandParameter="{Binding ElementName=notifyIcon}"
         IconSource="pack://application:,,,/Assets/Images/Iocn/format.ico">
-        <tb:TaskbarIcon.ContextMenu>
-            <ContextMenu>
-                <MenuItem  Header="两只老虎跑得快"/>
-                <MenuItem  Header="播放"/>
-                <MenuItem  Header="上一首"/>
-                <MenuItem  Header="下一首"/>
-                <MenuItem  Header="顺序播放">
-                    <MenuItem Header="列表循环"/>
-                    <MenuItem Header="单曲循环"/>
-                    <MenuItem Header="随机播放"/>
-                    <MenuItem Header="顺序播放"/>
-                </MenuItem>
-                <MenuItem Header="完整模式">
-                    <MenuItem Header="完整模式"/>
-                    <MenuItem Header="mini模式"/>
-                    <MenuItem Header="最小化"/>
-                </MenuItem>
-                <MenuItem Header="打开桌面歌词"/>
-                <MenuItem Header="锁定桌面歌词"/>
-                <MenuItem Header="设置"/>
-                <MenuItem Header="退出"/>
+            <tb:TaskbarIcon.ContextMenu>
+
+                <ContextMenu Width="200">
+                    <!--显示歌曲名称-->
+                    <MenuItem Header="{Binding Model.SongName}" 
+                              Icon="&#xe655;"
+                              IsEnabled="{Binding Model.IsIsEnabledSongInfo}" 
+                              Command="{Binding ClickCommand}"/>
+                    <MenuItem Header="播放暂停" 
+                              Icon="&#xea6e;" 
+                              IsEnabled="{Binding Model.IsIsEnabledSongInfo}"
+                              Command="{Binding PlayClickCommand}"/>
+                    <MenuItem Header="上一首" 
+                              Icon="&#xe78a;" 
+                              IsEnabled="{Binding Model.IsIsEnabledSongInfo}"
+                              Command="{Binding LastClickCommand}"/>
+                    <MenuItem Header="下一首" 
+                              Icon="&#xe7a5;" 
+                              IsEnabled="{Binding Model.IsIsEnabledSongInfo}"
+                              Command="{Binding NextClickCommand}"/>
+                    
+                    <Separator Style="{DynamicResource SeparatorStyle}"/>
+
+                    <MenuItem Header="顺序播放" Icon="&#xe7fe;">
+                     
+                    </MenuItem>
+
+                    <MenuItem Header="完整模式">
+                        <MenuItem Header="完整模式" Width="150" Icon="xxx"/>
+                        <MenuItem Header="mini模式" Width="150" Icon="xxx"/>
+                        <MenuItem Header="最小化" Width="150" Icon="xxx"/>
+                    </MenuItem>
+                    <MenuItem Header="打开桌面歌曲" Icon="&#xe61d;"/>
+                    <MenuItem Header="锁定桌面歌词" Icon="&#xe669;"/>
+                    
+                    <Separator Style="{DynamicResource SeparatorStyle}"/>
+
+                    <MenuItem Header="设置" Icon="&#xe604;"/>
+                    
+                    <Separator Style="{DynamicResource SeparatorStyle}"/>
+
+                    <MenuItem Header="退出" Icon="&#xe72e;" Command="{Binding CloseClickCommand}"/>
+                </ContextMenu>
 
 
-            </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
 
-        </tb:TaskbarIcon.ContextMenu>
-    </tb:TaskbarIcon>
+
+        
+    </Grid>
 </UserControl>

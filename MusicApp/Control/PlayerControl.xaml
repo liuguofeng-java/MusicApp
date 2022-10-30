@@ -145,7 +145,7 @@
                     IsMoveToPointEnabled="True"
                     Value="{Binding Model.PlayProgress}"
                     Background="{DynamicResource MainLineBackColor}" 
-                    Cursor="Hand" ValueChanged="MusicProgress_ValueChanged">
+                    Cursor="Hand">
                 <behaviors:Interaction.Triggers>
                     <behaviors:EventTrigger EventName="ValueChanged">
                         <behaviors:InvokeCommandAction Command="{Binding MusicProgressChangedCommand}" CommandParameter="{Binding ElementName=MusicProgress,Path=Value}"/>

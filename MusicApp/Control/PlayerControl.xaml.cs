@@ -27,9 +27,5 @@ namespace MusicApp.Control
             DataContext = model;
         }
 
-        private void MusicProgress_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
-        }
     }
 }

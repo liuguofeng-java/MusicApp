@@ -28,7 +28,7 @@ namespace MusicApp.Common
         /// <summary>
         /// 时间戳转string
         /// </summary>
-        /// <param name="time"></param>
+        /// <param name="time">毫秒数</param>
         /// <returns></returns>
         public static string FormatTimeoutToString(int time)
         {
