@@ -7,25 +7,41 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.Windows.Documents;
 
 namespace MusicApp.ViewModels.PageView.ChildPage
 {
-    public class SongListOfDayViewModel
+    public class SongListOfDayViewPageModel
     {
-        public static SongListOfDayViewModel This { get; set; }
-        public SongListOfDayModel Model { get; set; }
+        public static SongListOfDayViewPageModel This { get; set; }
+        public SongListOfDayPageModel Model { get; set; }
 
         //全部播放
         public CommandBase PlayAllClickCommand { get; set; }
-        public SongListOfDayViewModel()
+
+        //播放选中的一个
+        public CommandBase PlaySongClickCommand { get; set; }
+        public SongListOfDayViewPageModel()
         {
             This = this;
-            Model = new SongListOfDayModel();
+            Model = new SongListOfDayPageModel();
 
             //全部播放
             PlayAllClickCommand = new CommandBase();
             PlayAllClickCommand.DoExecute = new Action<object>((o) => PlayAllClick());
             PlayAllClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
+
+            //播放选中的一个
+            PlaySongClickCommand = new CommandBase();
+            PlaySongClickCommand.DoExecute = new Action<object>((o) =>
+            {
+                SongPlayListViewModel.This.GetSongPlayList(new List<string>
+                {
+                    Model.ListSource[(int)o].id.ToString()
+                });
+            });
+            PlaySongClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
+
 
             GetRecommendSong();
         }

@@ -235,7 +235,7 @@ namespace MusicApp.Models.Vo
         public long mark { get; set; }
     }
 
-    public class PlaylistsItem
+    /*public class PlaylistsItem
     {
         /// <summary>
         /// 
@@ -305,7 +305,7 @@ namespace MusicApp.Models.Vo
         /// 
         /// </summary>
         public string highQuality { get; set; }
-    }
+    }*/
 
     public class Result
     {

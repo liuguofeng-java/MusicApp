@@ -17,7 +17,7 @@ namespace MusicApp.PageView
         public static RecentPlayPage recentPlayPage = new RecentPlayPage();
 
         //每日推荐
-        public static SongListOfDay songListOfDay= new SongListOfDay();
+        public static SongListOfDayPage songListOfDay= new SongListOfDayPage();
 
     }
 }

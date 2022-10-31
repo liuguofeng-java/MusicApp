@@ -18,12 +18,12 @@ namespace MusicApp.PageView.ChildPage
     /// <summary>
     /// SongOfDay.xaml 的交互逻辑
     /// </summary>
-    public partial class SongListOfDay : UserControl
+    public partial class SongListOfDayPage : UserControl
     {
-        public SongListOfDay()
+        public SongListOfDayPage()
         {
             InitializeComponent();
-            var model = new SongListOfDayViewModel();
+            var model = new SongListOfDayViewPageModel();
             DataContext = model;
         }
     }

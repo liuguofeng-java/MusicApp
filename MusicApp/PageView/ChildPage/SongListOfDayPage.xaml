@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="MusicApp.PageView.ChildPage.SongListOfDay"
+﻿<UserControl x:Class="MusicApp.PageView.ChildPage.SongListOfDayPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:app="clr-namespace:MusicApp.Component.AppCsStyle"
+             xmlns:app="clr-namespace:MusicApp.Component.AppCsStyle" xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <app:DefaultScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
@@ -17,7 +17,7 @@
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                 <Grid HorizontalAlignment="Left" Margin="20">
-                    <TextBlock Text="20" FontSize="25" Foreground="#ec4141" Margin="0 15 0 0" FontWeight="ExtraBlack"
+                    <TextBlock Text="{Binding Model.Calendar}" FontSize="25" Foreground="#ec4141" Margin="0 15 0 0" FontWeight="ExtraBlack"
                                             VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBlock Text="&#xe89e;" FontSize="70" FontFamily="{DynamicResource Iconfont}" Foreground="#ec4141"
                                             VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -80,7 +80,24 @@
                      AlternationCount="2"
                      HorizontalContentAlignment="Stretch"
                      ItemContainerStyle="{DynamicResource DefaultListBoxItem}"
+                     SelectedIndex="{Binding Model.SelectdIndex}"
                      ItemsSource="{Binding Model.ListSource}">
+                <behaviors:Interaction.Triggers>
+                    <!--双击播放音乐-->
+                    <behaviors:EventTrigger EventName="MouseDoubleClick">
+                        <behaviors:InvokeCommandAction Command="{Binding PlaySongClickCommand}" 
+                                                       CommandParameter="{Binding Model.SelectdIndex}"/>
+                    </behaviors:EventTrigger>
+                </behaviors:Interaction.Triggers>
+                <ListBox.ContextMenu>
+                    <ContextMenu Width="200">
+                        <MenuItem Header="播放" Icon="&#xea6e;" 
+                                          Command="{Binding PlaySongClickCommand}" 
+                                          CommandParameter="{Binding Model.SelectdIndex}"/>
+                        <MenuItem Header="上一首" Icon="&#xe78a;"/>
+                        <MenuItem Header="下一首" Icon="&#xe7a5;" />
+                    </ContextMenu>
+                </ListBox.ContextMenu>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Height="35">

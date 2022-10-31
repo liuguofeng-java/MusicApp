@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace MusicApp.Models.PageView.ChildPage
 {
-    public class SongListOfDayModel : NotifyBase
+    public class SongListOfDayPageModel : NotifyBase
     {
 
         /// <summary>
@@ -21,6 +21,40 @@ namespace MusicApp.Models.PageView.ChildPage
             set
             {
                 _listSource = value;
+                DoNotify();
+            }
+        }
+
+        /// <summary>
+        /// 列表选中的下标
+        /// </summary>
+        private int _selectdIndex;
+        public int SelectdIndex
+        {
+            get
+            { return this._selectdIndex; }
+            set
+            {
+                _selectdIndex = value;
+                DoNotify();
+            }
+        }
+
+        /// <summary>
+        /// 日历
+        /// </summary>
+        private string _calendar;
+        public string Calendar
+        {
+            get
+            {
+                var dt = DateTime.Now;
+                _calendar = DateTime.DaysInMonth(dt.Year, dt.Month).ToString();
+                return _calendar;
+            }
+            set
+            {
+                _calendar = value;
                 DoNotify();
             }
         }
