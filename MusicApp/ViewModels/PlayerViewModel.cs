@@ -112,15 +112,12 @@ namespace MusicApp.ViewModels
                     case PlayModel.ListLoop: //列表循环
                         SetPlayModelStat(PlayModel.SimpleLoop);
                         break;
-
                     case PlayModel.SimpleLoop: //单曲循环
                         SetPlayModelStat(PlayModel.RandomPlay);
                         break;
-
                     case PlayModel.RandomPlay: //随机循环
                         SetPlayModelStat(PlayModel.OrderPlay);
                         break;
-
                     case PlayModel.OrderPlay: //顺序循环
                         SetPlayModelStat(PlayModel.ListLoop);
                         break;
@@ -158,13 +155,16 @@ namespace MusicApp.ViewModels
                 return;
             }
 
-            //关闭进度条定时器
-            if (Model.Timer != null)
+            Application.Current.Dispatcher.Invoke(new Action(delegate
             {
-                Model.Timer.Stop();
-            }
-            //停止音乐
-            Model.MediaElement.Stop();
+                //关闭进度条定时器
+                if (Model.Timer != null)
+                {
+                    Model.Timer.Stop();
+                }
+                //停止音乐
+                Model.MediaElement.Stop();
+            }));
 
             //下载音乐可能会慢,卡ui线程
             new Thread(() =>
@@ -339,15 +339,16 @@ namespace MusicApp.ViewModels
                     }
                     catch
                     {
+                        //如果下载失败就播放下一首
+                        Thread.Sleep(2000);
                         SongPlayListViewModel.This.NextSongPlay(Model.SongPlayModel.SongId, false);
-
                     }
                 }
             }
             InitJsonData.WriteJsonFile();//手动更新缓存
 
             //如果保存失败
-            if (model.LocalSongUrl == null || !File.Exists(model.LocalSongUrl))
+            if (!File.Exists(model.LocalSongUrl))
             {
                 model.LocalSongUrl = null;
             }
@@ -355,7 +356,7 @@ namespace MusicApp.ViewModels
 
 
         /// <summary>
-        /// 赋值模式
+        /// 赋值播放模式
         /// </summary>
         /// <param name="playModel"></param>
         /// <returns></returns>

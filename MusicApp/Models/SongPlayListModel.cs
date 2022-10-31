@@ -55,5 +55,19 @@ namespace MusicApp.Models
                 DoNotify();
             }
         }
+
+        /// <summary>
+        /// 当前列表选中的数据
+        /// </summary>
+        private int _selectdIndex;
+        public int SelectdIndex
+        {
+            get { return this._selectdIndex; }
+            set
+            {
+                _selectdIndex = value;
+                DoNotify();
+            }
+        }
     }
 }

@@ -6,9 +6,11 @@ using MusicApp.Views;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows;
+using System.Windows.Media.Media3D;
 
 namespace MusicApp.ViewModels
 {
@@ -17,8 +19,11 @@ namespace MusicApp.ViewModels
         public static SongPlayListViewModel This { get; set; }
         public SongPlayListModel Model { get; set; }
 
-        //双击列表播放歌曲
-        public CommandBase PlayListMouseDoubleClickCommand { get; set; }
+        //播放歌曲
+        public CommandBase PlaySongClickCommand { get; set; }
+
+        //点击删除一个
+        public CommandBase DeleteSongClickCommand { get; set; }
 
         //清空列表
         public CommandBase ClosePlayListCommand { get; set; }
@@ -27,17 +32,25 @@ namespace MusicApp.ViewModels
             This = this;
             Model = new SongPlayListModel();
 
-            //双击列表播放歌曲
-            PlayListMouseDoubleClickCommand = new CommandBase();
-            PlayListMouseDoubleClickCommand.DoExecute = new Action<object>((o) => 
+            //播放歌曲
+            PlaySongClickCommand = new CommandBase();
+            PlaySongClickCommand.DoExecute = new Action<object>((o) => 
             {
-                int selectdindex = (int)o;
-                var item = Model.SongLists[selectdindex];
+                var item = Model.SongLists[(int)o];
                 if (item == null) return;
                 NextSongPlay(item.SongId, false, PlayModel.SimpleLoop);
             });
-            PlayListMouseDoubleClickCommand.DoCanExecute = new Func<object, bool>((o) => {return true; });
+            PlaySongClickCommand.DoCanExecute = new Func<object, bool>((o) => {return true; });
 
+            //点击删除一个
+            DeleteSongClickCommand = new CommandBase();
+            DeleteSongClickCommand.DoExecute = new Action<object>((o) =>
+            {
+                var list = new List<SongModel>(Model.SongLists);
+                list.RemoveAt((int)o);
+                Model.SongLists = list;
+            });
+            DeleteSongClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 
             //清空列表
             ClosePlayListCommand = new CommandBase();
@@ -68,8 +81,6 @@ namespace MusicApp.ViewModels
                 SetLisBoxColor(o);
             });
         }
-
-
 
         /// <summary>
         /// 播放下一首
@@ -214,8 +225,8 @@ namespace MusicApp.ViewModels
                 PlayerViewModel.This.InitPlay(list[0]);
 
             }).Start();
-
-
         }
+
+
     }
 }

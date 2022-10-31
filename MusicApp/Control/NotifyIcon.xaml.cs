@@ -22,9 +22,10 @@ namespace MusicApp.Control
     {
         public NotifyIcon()
         {
-            InitializeComponent();
 
+            InitializeComponent();
             var model = new NotifyIconModelView();
+
             DataContext = model;
 
         }

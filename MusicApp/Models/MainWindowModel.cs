@@ -77,7 +77,7 @@ namespace MusicApp.Models
         /// <summary>
         /// 主页面标题
         /// </summary>
-        private string _titleName;
+        private string _titleName = "";
         public string TitleName
         {
             get

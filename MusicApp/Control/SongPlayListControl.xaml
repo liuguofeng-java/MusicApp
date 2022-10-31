@@ -57,22 +57,32 @@
                 <Border Background="{DynamicResource PlayListAuxTextColor}" Height="1.2" Margin="20 10 20 5" Grid.Row="2" />
                 <!--列表-->
                 <app:DefaultScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="3">
-                    <ListBox x:Name="PlayListBox" ItemContainerStyle="{DynamicResource DefaultListBoxItem}" Background="Transparent" BorderThickness="0" AlternationCount="2" ItemsSource="{Binding Model.SongLists}">
+                    <ListBox x:Name="PlayListBox" 
+                             ItemContainerStyle="{DynamicResource DefaultListBoxItem}" 
+                             SelectedIndex="{Binding Model.SelectdIndex}"
+                             Background="Transparent" 
+                             BorderThickness="0" 
+                             AlternationCount="2" 
+                             ItemsSource="{Binding Model.SongLists}">
                         <behaviors:Interaction.Triggers>
+                            <!--双击播放音乐-->
                             <behaviors:EventTrigger EventName="MouseDoubleClick">
-                                <behaviors:InvokeCommandAction Command="{Binding PlayListMouseDoubleClickCommand}" CommandParameter="{Binding ElementName=PlayListBox,Path=SelectedIndex}"/>
+                                <behaviors:InvokeCommandAction Command="{Binding PlaySongClickCommand}" 
+                                                               CommandParameter="{Binding Model.SelectdIndex}"/>
                             </behaviors:EventTrigger>
                         </behaviors:Interaction.Triggers>
+                        <!--右击菜单-->
                         <ListBox.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="置顶"></MenuItem>
-                                <MenuItem Header="设为已读" />
-                                <MenuItem Header="开启新消息提醒" />
-                                <MenuItem Header="在独立窗口打开" />
-                                <MenuItem Header="不显聊天" >
-                                    <MenuItem Header="xxx"></MenuItem>
-                                </MenuItem>
-                                <MenuItem Header="删除聊天" />
+                            <ContextMenu Width="200">
+                                <MenuItem Header="播放" Icon="&#xea6e;" 
+                                          Command="{Binding PlaySongClickCommand}" 
+                                          CommandParameter="{Binding Model.SelectdIndex}"/>
+                                
+                                <Separator Style="{DynamicResource SeparatorStyle}"/>
+                                
+                                <MenuItem Header="从列表中删除" Icon="&#xe61b;"
+                                          Command="{Binding DeleteSongClickCommand}" 
+                                          CommandParameter="{Binding Model.SelectdIndex}"/>
                             </ContextMenu>
                         </ListBox.ContextMenu>
                         <ListBox.ItemTemplate>
