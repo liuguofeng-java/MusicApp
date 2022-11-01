@@ -96,9 +96,11 @@
        
     </UserControl.Resources>
         <Grid>
-            <local:OverwritePopup 
-                x:Name="PopupContrainer" 
-                IsOpen="False"
+        <!--皮肤-->
+        <Button Style="{DynamicResource WinButtonStyle}" Command="{Binding SkinClickCommand}"
+                            Height="30" Width="30" Margin="3 0" FontSize="17" Content="&#xe647;"/>
+        <local:OverwritePopup 
+                IsOpen="{Binding Model.IsOpen}"
                 StaysOpen="False" 
                 Placement="Bottom" 
                 Width="340" 

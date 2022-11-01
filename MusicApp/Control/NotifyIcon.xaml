@@ -19,7 +19,7 @@
         ToolTipText="{Binding Model.SongName}"
         LeftClickCommand="{Binding ClickCommand}"
         LeftClickCommandParameter="{Binding ElementName=notifyIcon}"
-        IconSource="pack://application:,,,/Assets/Images/Iocn/format.ico">
+        IconSource="{Binding Model.IconSource}">
             <tb:TaskbarIcon.ContextMenu>
 
                 <ContextMenu Width="200">
@@ -56,7 +56,6 @@
                         <MenuItem Header="顺序播放" Width="150" Icon="&#xe802;" 
                                   Command="{Binding CheckPlayModelClickCommand}" CommandParameter="OrderPlay"
                                   IsCheckable="{Binding Model.PlayModelStat.Name, Mode=TwoWay,Converter={StaticResource RadioButtonConvert},ConverterParameter=OrderPlay}"/>
-
                     </MenuItem>
 
                     <MenuItem Header="完整模式" Icon="&#xe64c;">

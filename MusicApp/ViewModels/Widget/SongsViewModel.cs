@@ -32,7 +32,7 @@ namespace MusicApp.ViewModels.Widget
             SongDetailsClickCommand = new CommandBase();
             SongDetailsClickCommand.DoExecute = new Action<object>((o) => 
             {
-                MainWindowViewModel.This.Model.MenusChecked = MenusChecked.SongListOfDay;
+                MainWindowViewModel.GetInstance().Model.MenusChecked = MenusChecked.SongListOfDayPage;
             });
             SongDetailsClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 

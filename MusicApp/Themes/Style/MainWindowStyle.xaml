@@ -12,7 +12,7 @@
                         <Border Background="White" CornerRadius="50" Width="25" Height="25">
                             <Border Width="15" Height="15" CornerRadius="50">
                                 <Border.Background>
-                                    <ImageBrush ImageSource="pack://application:,,,/Assets/Images/Iocn/format.ico"/>
+                                    <ImageBrush ImageSource="pack://application:,,,/Assets/music.ico"/>
                                 </Border.Background>
                             </Border>
                         </Border>

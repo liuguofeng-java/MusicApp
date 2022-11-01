@@ -46,7 +46,7 @@ namespace MusicApp.ViewModels
             TextClickSearchCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 
             //点击主窗体border,隐藏搜索列表控件
-            MainWindowViewModel.This.BaseBorderMouseDownDelegate += new Action<object>((o) => {
+            MainWindowViewModel.GetInstance().BaseBorderMouseDownDelegate += new Action<object>((o) => {
                 SearchListViewModel.This.Model.GridVisibility = Visibility.Collapsed;
             });
         }

@@ -63,7 +63,7 @@
                              Background="Transparent" 
                              BorderThickness="0" 
                              AlternationCount="2" 
-                             ItemsSource="{Binding Model.SongLists}">
+                             ItemsSource="{Binding Model.SongLists}" d:ItemsSource="{d:SampleData ItemCount=20}">
                         <behaviors:Interaction.Triggers>
                             <!--双击播放音乐-->
                             <behaviors:EventTrigger EventName="MouseDoubleClick">

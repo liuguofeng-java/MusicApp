@@ -11,7 +11,7 @@
         Height="690" Width="1043" MinHeight="690" MinWidth="1043" 
         WindowStartupLocation="CenterScreen"
         Background="{x:Null}"
-        Icon="pack://application:,,,/Assets/Images/Iocn/m_256.ico">
+        Icon="pack://application:,,,/Assets/music.png">
     <Window.Resources>
         <common:RadioButtonConvert x:Key="menusRadioButtonConvert"/>
     </Window.Resources>
@@ -26,9 +26,7 @@
     </WindowChrome.WindowChrome>
     <!--任务栏缩略图-->
     <Window.TaskbarItemInfo>
-        <TaskbarItemInfo x:Name="taskBarItemInfo1"
-                     Overlay="{Binding Model.OverlayImage}"
-                     Description="{Binding Model.TitleName}">
+        <TaskbarItemInfo Overlay="{Binding Model.OverlayImage}" Description="{Binding Model.TitleName}">
             <TaskbarItemInfo.ThumbButtonInfos>
                 <ThumbButtonInfoCollection>
                     <ThumbButtonInfo
@@ -90,11 +88,9 @@
                             <Button Style="{DynamicResource LoginStyle}"/>
                             <!--vip-->
                             <Button Style="{DynamicResource VipStyle}"/>
-                            <!--皮肤-->
-                            <Button Style="{DynamicResource WinButtonStyle}" x:Name="Skin"
-                            Height="30" Width="30" Margin="3 0" FontSize="17" Content="&#xe647;"/>
-                            <!--主题颜色弹窗-->
-                            <local:ThemeColorControl x:Name="themeColor"/>
+                            
+                            <!--皮肤按钮 和 主题颜色弹窗-->
+                            <local:ThemeColorControl />
 
                             <!--设置-->
                             <Button Style="{DynamicResource WinButtonStyle}" x:Name="Settings"
@@ -154,7 +150,6 @@
                     </Border>
                 </Grid>
 
-
                 <!--侧边-->
                 <Grid x:Name="sideNavBarWindow" DockPanel.Dock="Left" Width="200" >
                     <Grid.ColumnDefinitions>
@@ -187,6 +182,7 @@
                     <Border Background="{DynamicResource SideBorderColor}" Width="1" Grid.Column="1" />
                 </Grid>
 
+                <!--页面-->
                 <Border Background="White">
                     <Frame x:Name="FrmePage" Content="{Binding Model.Page}" NavigationUIVisibility="Hidden">
                         <behaviors:Interaction.Triggers>
@@ -200,16 +196,16 @@
         </Border>
 
         <!--系统托盘-->
-        <local:NotifyIcon x:Name="notifyIcon"/>
+        <local:NotifyIcon/>
         
         <!--歌曲信息部分-->
         <local:SongInfoControl/>
 
         <!--搜索列表,排行榜-->
-        <local:SearchListControl />
+        <local:SearchListControl/>
 
         <!--待播放的歌曲列表-->
-        <local:SongPlayListControl x:Name="songPlayListControl" />
+        <local:SongPlayListControl/>
 
 
         

@@ -63,7 +63,7 @@ namespace MusicApp.ViewModels
 
 
             //点击主窗体关闭正在播放列表
-            MainWindowViewModel.This.BaseBorderMouseDownDelegate += new Action<object>((o) =>
+            MainWindowViewModel.GetInstance().BaseBorderMouseDownDelegate += new Action<object>((o) =>
             {
                 Model.PlayListVisibility = Visibility.Collapsed;
             });

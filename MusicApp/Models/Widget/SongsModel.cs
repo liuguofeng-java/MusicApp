@@ -84,9 +84,9 @@ namespace MusicApp.Models.Widget
         /// </summary>
         public int PlayCount { get; set; }
         /// <summary>
-        /// 
+        /// 作者信息
         /// </summary>
-        //public Creator creator { get; set; }
+        public Creator creator { get; set; }
         /// <summary>
         /// 
         /// </summary>

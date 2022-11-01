@@ -16,7 +16,11 @@ namespace MusicApp.ViewModels
     {
         public ThemeColorModel Model { get; set; }
 
+        //选择主题
         public CommandBase SelectButCommand { get; set; }
+        
+        //点击打开按钮
+        public CommandBase SkinClickCommand { get; set; }
         public ThemeColorControlViewModel()
         {
             Model = new ThemeColorModel();
@@ -28,6 +32,14 @@ namespace MusicApp.ViewModels
                 GetDictionary(o.ToString());
             });
             SelectButCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
+            
+            //点击打开按钮
+            SkinClickCommand = new CommandBase();
+            SkinClickCommand.DoExecute = new Action<object>((o) =>
+            {
+                Model.IsOpen = true;
+            });
+            SkinClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 
             InitResource();
         }
@@ -45,10 +57,7 @@ namespace MusicApp.ViewModels
             }
             //获取缓存
             var themeColor = InitJsonData.jsonDataModel.ThemeColor;
-            if (themeColor == null)
-            {
-                themeColor = ThemeSelect.DefaultColor.ToString();
-            }
+            themeColor ??= ThemeSelect.DefaultColor.ToString();
             //初始化主题
             GetDictionary(themeColor);
             Model.ThemeSelect = (ThemeSelect)Enum.Parse(typeof(ThemeSelect), themeColor);
@@ -73,7 +82,10 @@ namespace MusicApp.ViewModels
             }
             InitJsonData.jsonDataModel.ThemeColor = themeColor;
             ResourceDictionary dictionary = Model.DictionaryList.FirstOrDefault(d => d.Source.OriginalString.Equals(val));
-            Application.Current.Resources.MergedDictionaries.Add(dictionary);
+            if (dictionary != null)
+            {
+                Application.Current.Resources.MergedDictionaries.Add(dictionary);
+            }
         }
     }
 }

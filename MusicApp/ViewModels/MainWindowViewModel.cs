@@ -18,9 +18,13 @@ namespace MusicApp.ViewModels
     /// </summary>
     public class MainWindowViewModel
     {
+        private static MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
+        public static MainWindowViewModel GetInstance()
+        {
+            return mainWindowViewModel;
+        }
         //事件委托
         public Action<object> BaseBorderMouseDownDelegate { get; set; }
-        public static MainWindowViewModel This { get; set; }
         public MainWindowModel Model { get; set; }
 
         //点击最底层border
@@ -35,9 +39,8 @@ namespace MusicApp.ViewModels
         public CommandBase LastClickCommand { get; set; }
         //下一首
         public CommandBase NextClickCommand { get; set; }
-        public MainWindowViewModel()
+        private MainWindowViewModel()
         {
-            This = this;
             Model = new MainWindowModel();
             //初始化第一页
             Model.MenusChecked = MenusChecked.FoundMusicPage;

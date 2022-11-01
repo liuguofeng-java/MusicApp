@@ -63,8 +63,8 @@ namespace MusicApp.Models
                     case MenusChecked.RecentPlayPage:
                         Page = PageManager.recentPlayPage;
                         break;
-                    case MenusChecked.SongListOfDay://每日推荐歌曲列表
-                        Page = PageManager.songListOfDay;
+                    case MenusChecked.SongListOfDayPage://每日推荐歌曲列表
+                        Page = PageManager.SongListOfDayPage;
                         break;
 
 
@@ -96,7 +96,9 @@ namespace MusicApp.Models
         public string PlayButImage
         {
             get
-            { return this._playButImage; }
+            {
+                if (_playButImage == null) _playButImage = "/Assets/Images/TaskbarItemInfo/stop.png";
+                return this._playButImage; }
             set
             {
                 _playButImage = value;
@@ -135,6 +137,6 @@ namespace MusicApp.Models
         LikeMusicPage,
         LocalAndDownloadPage,
         RecentPlayPage,
-        SongListOfDay
+        SongListOfDayPage
     }
 }

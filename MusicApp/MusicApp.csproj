@@ -22,8 +22,6 @@
     <None Remove="Assets\Fonts\iconfont.ttf" />
     <None Remove="Assets\Images\dim.png" />
     <None Remove="Assets\Images\head_portrait.png" />
-    <None Remove="Assets\Images\Iocn\format.ico" />
-    <None Remove="Assets\Images\Iocn\m_256.ico" />
     <None Remove="Assets\Images\TaskbarItemInfo\last.png" />
     <None Remove="Assets\Images\TaskbarItemInfo\next.png" />
     <None Remove="Assets\Images\TaskbarItemInfo\start.png" />
@@ -34,13 +32,13 @@
     <None Remove="Assets\Images\ThemeColor\4.png" />
     <None Remove="Assets\Images\ThemeColor\5.png" />
     <None Remove="Assets\Images\ThemeColor\6.png" />
+    <None Remove="Assets\music.ico" />
+    <None Remove="Assets\music.png" />
+    <None Remove="format.ico" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Assets\Images\dim.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Images\Iocn\format.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
@@ -56,9 +54,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Images\head_portrait.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Images\Iocn\m_256.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Images\TaskbarItemInfo\last.png">
@@ -89,6 +84,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Images\ThemeColor\6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\music.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\music.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="format.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

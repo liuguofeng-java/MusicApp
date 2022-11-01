@@ -18,10 +18,9 @@ namespace MusicApp.Views
     {
         public MainWindow()
         {
-            var model = new MainWindowViewModel();
 
             InitializeComponent();
-
+            var model = MainWindowViewModel.GetInstance();
             DataContext = model;
 
             //播放器事件,更新任务栏
@@ -69,12 +68,6 @@ namespace MusicApp.Views
             Logo.Click += (s, e) =>
             {
                 model.Model.MenusChecked = Models.MenusChecked.FoundMusicPage;
-            };
-
-            //点击皮肤显示
-            Skin.Click += (s, e) =>
-            {
-                themeColor.PopupContrainer.IsOpen = true;
             };
 
         }

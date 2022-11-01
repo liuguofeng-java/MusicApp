@@ -34,6 +34,19 @@ namespace MusicApp.Models
             }
         }
 
+        //是否打开选择主题框
+        private bool _isOpen;
+        public bool IsOpen
+        {
+            get
+            { return this._isOpen; }
+            set
+            {
+                _isOpen = value;
+                DoNotify();
+            }
+        }
+
     }
 
     public enum ThemeSelect

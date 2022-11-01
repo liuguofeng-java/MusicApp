@@ -1,8 +1,8 @@
-﻿using MusicApp.Models.PageView.ChildPage;
-using MusicApp.ViewModels.PageView.ChildPage;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,15 +16,13 @@ using System.Windows.Shapes;
 namespace MusicApp.PageView.ChildPage
 {
     /// <summary>
-    /// 今日推荐歌曲详情 的交互逻辑
+    /// 歌单详情 的交互逻辑
     /// </summary>
-    public partial class SongListOfDayPage : Page
+    public partial class SongListDetailsPage : Page
     {
-        public SongListOfDayPage()
+        public SongListDetailsPage()
         {
             InitializeComponent();
-            var model = new SongListOfDayViewPageModel();
-            DataContext = model;
         }
     }
 }

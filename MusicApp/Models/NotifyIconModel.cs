@@ -11,6 +11,24 @@ namespace MusicApp.Models
     public class NotifyIconModel : NotifyBase
     {
         /// <summary>
+        /// 托盘图标
+        /// </summary>
+        private string _iconSource;
+        public string IconSource
+        {
+            get 
+            {
+                _iconSource = "/Assets/music.ico";
+                return this._iconSource; 
+            }
+            set
+            {
+                _iconSource = value;
+                DoNotify();
+            }
+        }
+
+        /// <summary>
         /// 是否禁用歌曲信息
         /// </summary>
         private bool _isIsEnabledSongInfo = true;
