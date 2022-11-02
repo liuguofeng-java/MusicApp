@@ -43,9 +43,7 @@
                                 Background="{TemplateBinding Background}"
                                 VerticalAlignment="Center">
                         </Thumb>
-
                     </Track.Thumb>
-
                 </Track>
             </Border>
             <ControlTemplate.Triggers>

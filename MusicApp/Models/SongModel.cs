@@ -134,6 +134,20 @@ namespace MusicApp.Models
         }
 
         /// <summary>
+        /// 真实音乐时长
+        /// </summary>
+        private int _realSongTime;
+        public int RealSongTime
+        {
+            get { return this._realSongTime; }
+            set
+            {
+                _realSongTime = value;
+                DoNotify();
+            }
+        }
+
+        /// <summary>
         /// 格式化后音乐时长
         /// </summary>
         private string _formatSongTime;

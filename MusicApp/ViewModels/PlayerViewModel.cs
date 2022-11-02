@@ -203,6 +203,11 @@ namespace MusicApp.ViewModels
                     Model.PlayProgress = 0;//初始化进度
                     Model.PlayProgressLength = model.SongTime / 1000; ;//进度条数
                     Model.EndProgressTiem = model.FormatSongTime;//总时长
+                    //判断是否是限时歌曲,如果是就禁用
+                    if (Model.SongPlayModel.SongTime != Model.SongPlayModel.RealSongTime)
+                    {
+                        Model.DisabledPlayProgress = false;//进度条放开
+                    }
 
                     //计时器更新进度条
                     Model.Timer = new DispatcherTimer();
@@ -336,6 +341,7 @@ namespace MusicApp.ViewModels
                             throw new Exception("下载歌曲失败!");
                         };
                         model.LocalSongUrl = res;
+                        Model.SongPlayModel.RealSongTime = playerModel.data[0].time;
                     }
                     catch
                     {

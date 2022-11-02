@@ -68,8 +68,6 @@ namespace MusicApp.Models
             }
         }
 
-
-
         /// <summary>
         /// 歌曲进度条进度
         /// </summary>

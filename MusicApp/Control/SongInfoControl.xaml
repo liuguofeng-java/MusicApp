@@ -24,7 +24,13 @@
                                     <ImageBrush ImageSource="{Binding Model.SongModel.LocalPicUrl}"></ImageBrush>
                                 </Border.Background>
                             </Border>
-                            <Border Name="border" Background="#dfe4ea" BorderBrush="{x:Null}" BorderThickness="1" RenderTransformOrigin="0.5,0.5" Opacity="0.3">
+                            <Border Name="border" ClipToBounds="True" CornerRadius="5" Opacity="0.9">
+                                <Border.Effect>
+                                    <BlurEffect Radius="3"/>
+                                </Border.Effect>
+                                <Border.Background>
+                                    <ImageBrush ImageSource="{Binding Model.SongModel.LocalPicUrl}"></ImageBrush>
+                                </Border.Background>
                             </Border>
                             <TextBlock Name="text" 
                                        FontSize="20"
