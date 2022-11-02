@@ -2,14 +2,21 @@
 using MusicApp.Control;
 using MusicApp.Models;
 using MusicApp.Models.Vo;
+using MusicApp.Models.Widget;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Threading;
+using static MusicApp.Models.SongModel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace MusicApp.ViewModels
 {
@@ -28,10 +35,10 @@ namespace MusicApp.ViewModels
         }
 
         /// <summary>
-        /// 初始化歌词
+        /// 获取歌词
         /// </summary>
         /// <param name="songModel"></param>
-        public void InitLyrics(SongModel songModel)
+        public void GetLyrics(SongModel songModel)
         {
             new Thread(() =>
             {
@@ -48,98 +55,116 @@ namespace MusicApp.ViewModels
                     songModel.Lyric = lyrics;
                     InitJsonData.WriteJsonFile();//手动更新缓存
                 }
-
-                List<LyricItme> lyricItmes = new List<LyricItme>();
-                //把歌词分开
-                List<string> lists = new List<string>(songModel.Lyric.Split("\n"));
-                lists.RemoveAt(lists.Count - 1); //删除最后一个空数据
-
-                for (int i = 0; i < lists.Count; i++)
+                //初始化歌词
+                Application.Current.Dispatcher.InvokeAsync(new Action(delegate
                 {
-                    var item = lists[i];
-                    LyricItme l = new LyricItme();
-                    if (i == 0) //是否第一个
-                    {
-                        l.IsFirstOne = true;
-                        l.FirstOneMargin = "0 " + (ThisWindow.ListBoxContrainer.ActualHeight / 2) + " 0 0";
-                    }
-                    if (i == lists.Count - 1) //是否最后一个
-                    {
-                        l.LastOne = true;
-                        l.LastMargin = "0 0 0 " + (ThisWindow.ListBoxContrainer.ActualHeight / 2);
-                    }
-                    //计算歌词的时间
-                    int index = item.IndexOf("]");
-                    l.Value = item.Substring(index + 1);
-
-                    //找到时间才添加
-                    if (index != -1)
-                    {
-                        l.FormatTime = item.Substring(1, index - 1);
-                        
-                        //计算秒
-                        var dateStr = l.FormatTime.Split(":");
-                        if(dateStr.Length > 1)
-                        {
-                            l.Time = (Convert.ToInt32(dateStr[0]) * 60) + Convert.ToDouble(dateStr[1]);
-                            lyricItmes.Add(l);
-                        }
-                    }
-                }
-
-                //更新数据
-                Model.Author = songModel.Author;
-                Model.SongName = songModel.SongName;
-                Model.LyricList = lyricItmes;
-                //开启定时器
-                StartTimer();
+                    //更新数据
+                    Model.Author = songModel.Author;
+                    Model.SongName = songModel.SongName;
+                    Model.SongId = songModel.SongId;
+                    InitLyrics(songModel.Lyric);
+                }));
             }).Start();
-
         }
 
+        /// <summary>
+        /// 初始化歌词
+        /// </summary>
+        /// <param name="lyricStr"></param>
+        public void InitLyrics(string lyricStr)
+        {
+            List<LyricItme> lyricItmes = new List<LyricItme>();//歌词集合
+            Regex rx = new Regex(@"(?<=^\[)(\d+:\d+\.\d+).(.+)(?=$)", RegexOptions.Multiline);//正则
+            var list = rx.Matches(lyricStr);
+            for (int i = 0; i < list .Count; i++)
+            {
+                LyricItme l = new LyricItme();
+                var value = list[i].Value;
+                var split = value.IndexOf(":");
+                //秒
+                var second = int.Parse(value.Substring(0, split));
+                //毫秒
+                var millisecondStr = value.Substring(split + 1, value.IndexOf("]") - 1 - split);
+                var millisecond = double.Parse(millisecondStr);
+                //赋值
+                l.Time = (second * 60) + millisecond;
+                l.FormatTime = value.Substring(0, value.IndexOf("]"));
+                l.Value = value.Substring(value.IndexOf("]") + 1);
 
+                if (i == 0) //是否第一个
+                {
+                    l.IsFirstOne = true;
+                    l.FirstOneMargin = "0 " + (ThisWindow.ListBoxContrainer.ActualHeight / 2) + " 0 0";
+                }
+                if (i == list.Count - 1) //是否最后一个
+                {
+                    l.LastOne = true;
+                    l.LastMargin = "0 0 0 " + (ThisWindow.ListBoxContrainer.ActualHeight / 2);
+                }
+                lyricItmes.Add(l);
+            }
+
+            Model.LyricList = lyricItmes;
+            //开启定时器
+            StartTimer();
+        }
+
+       
         /// <summary>
         /// 开启歌词滚动
         /// </summary>
         private void StartTimer()
         {
+            var songId = Model.SongId;
+            List<LyricItme> lyricList = Model.LyricList;
             Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
-                if (timer != null) timer.Stop();
-                if (timer == null)
+                if (timer != null)
                 {
-                    timer = new DispatcherTimer();
-                    timer.Interval = TimeSpan.FromMilliseconds(500);
+                    timer.Stop();
+                    timer = null;
                 }
+                timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromMilliseconds(50);
                 timer.Tick += new EventHandler((s, e) =>
                 {
-                    List<LyricItme> lyricList = Model.LyricList;
-                    double totalSeconds = PlayerViewModel.This.Model.MediaElement.Position.TotalSeconds;
-                    for (int i = 0; i < lyricList.Count; i++)
-                    {
-                        //找到当前歌词
-                        if (totalSeconds <= lyricList[i].Time
-                            && lyricList[i].Time - totalSeconds < 1
-                            && !string.IsNullOrEmpty(lyricList[i].Value))
-                        {
-                            lyricList[i].IsFocus = true;//找到这点
+                    //当前播放器进度
+                    double position = PlayerViewModel.This.Model.MediaElement.Position.TotalSeconds;
+                    //找到歌词索引
+                    var list = lyricList.FindAll(t => t.Time < position);//找到大于当前进度的歌词
+                    if (list.Count == 0) return;//找不到歌词(到底了)
+                    double time = list.Max(t => t.Time);
+                    int index = lyricList.FindIndex(t => t.Time.Equals(time));
+                    //当前歌词是空白
+                    if (index == -1 || lyricList[index].Value.Equals("")) return;
+                    //如果当前歌词已经是焦点就返回
+                    if(lyricList[index].IsFocus.Equals(true)) return;
 
-                            var x = ThisWindow.LyricScrollViewer.ScrollableHeight / lyricList.Count;
-                            ThisWindow.LyricScrollViewer.ScrollToVerticalOffset(x * i);
-                            for (int j = 0; j < lyricList.Count; j++)//把之前设置false
-                            {
-                                if (lyricList[j].IsFocus == true && j != i)
-                                {
-                                    lyricList[j].IsFocus = false;
-                                }
-                            }
-                            break;
-                        }
-                    }
+                    PositionLyrics(index);
 
                 });
                 timer.Start();
             }));
+        }
+
+        /// <summary>
+        /// 定位歌词
+        /// </summary>
+        /// <param name="index"></param>
+        public void PositionLyrics(int index)
+        {
+            List<LyricItme> lyricList = Model.LyricList;
+
+            //把之前焦点设置false
+            lyricList.ForEach(item =>
+            {
+                if (item.IsFocus == true)
+                    item.IsFocus = false;
+            });
+            lyricList[index].IsFocus = true;//找到歌词焦点
+
+            var x = ThisWindow.LyricScrollViewer.ScrollableHeight / lyricList.Count;
+            ThisWindow.LyricScrollViewer.ScrollToVerticalOffset(x * index);
         }
     }
 }

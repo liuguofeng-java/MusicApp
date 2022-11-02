@@ -44,14 +44,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Storyboard x:Key="ScrollStoryboard">
-            <DoubleAnimation Storyboard.TargetName="ScrollViewer" Storyboard.TargetProperty="{Binding LyricScrollViewer}"
-                        From="0" To="500" Duration="0:0:0.6">
-                <DoubleAnimation.EasingFunction>
-                    <CircleEase EasingMode="EaseOut"/>
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
     </UserControl.Resources>
     <!--歌词-->
     <Grid HorizontalAlignment="Center" Margin="0 100 0 0">

@@ -11,6 +11,20 @@ namespace MusicApp.Models
     public class SongDetailModel : NotifyBase
     {
         /// <summary>
+        /// 歌曲id
+        /// </summary>
+        private string _songId;
+        public string SongId
+        {
+            get { return this._songId; }
+            set
+            {
+                _songId = value;
+                DoNotify();
+            }
+        }
+
+        /// <summary>
         /// 歌曲名称
         /// </summary>
         private string _songName;

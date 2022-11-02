@@ -36,8 +36,7 @@ namespace MusicApp
                     var datetime = DateTime.Now;
                     var iniPath = @"./error/"+ datetime.ToString("yyyy-MM-dd") + "error.txt";
 
-                    var errorStr = datetime.ToString("yyyy-MM-dd HH:mm:ss") +": "+ e.Exception.InnerException + "\n" 
-                                    + e.Exception.StackTrace;
+                    var errorStr = datetime.ToString("yyyy-MM-dd HH:mm:ss") + ": " + e.Exception + "\n";
                     
                     //不存在就创建
                     if (!Directory.Exists(Path.GetDirectoryName(iniPath)))

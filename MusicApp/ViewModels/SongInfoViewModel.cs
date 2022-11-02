@@ -72,7 +72,7 @@ namespace MusicApp.ViewModels
 
                 //赋值
                 Model.SongPicVisibility = Visibility.Visible;
-                SongDetailViewModel.This.InitLyrics(model);
+                SongDetailViewModel.This.GetLyrics(model);
             }).Start();
         }
     }
