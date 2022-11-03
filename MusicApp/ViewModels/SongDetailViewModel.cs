@@ -1,4 +1,5 @@
 ﻿using MusicApp.Common;
+using MusicApp.Component.AppCsStyle;
 using MusicApp.Control;
 using MusicApp.Models;
 using MusicApp.Models.Vo;
@@ -163,8 +164,11 @@ namespace MusicApp.ViewModels
             });
             lyricList[index].IsFocus = true;//找到歌词焦点
 
-            var x = ThisWindow.LyricScrollViewer.ScrollableHeight / lyricList.Count;
-            ThisWindow.LyricScrollViewer.ScrollToVerticalOffset(x * index);
+            ThisWindow.LyricList.ScrollToCenterOfView(ThisWindow.LyricList.Items[index]);
         }
+
+
+
+
     }
 }

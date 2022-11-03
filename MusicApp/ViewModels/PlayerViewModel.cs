@@ -341,7 +341,8 @@ namespace MusicApp.ViewModels
                             throw new Exception("下载歌曲失败!");
                         };
                         model.LocalSongUrl = res;
-                        Model.SongPlayModel.RealSongTime = playerModel.data[0].time;
+                        model.RealSongTime = playerModel.data[0].time;
+                        InitJsonData.WriteJsonFile();//手动更新缓存
                     }
                     catch
                     {
@@ -351,8 +352,6 @@ namespace MusicApp.ViewModels
                     }
                 }
             }
-            InitJsonData.WriteJsonFile();//手动更新缓存
-
             //如果保存失败
             if (!File.Exists(model.LocalSongUrl))
             {

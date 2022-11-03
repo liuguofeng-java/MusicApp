@@ -30,6 +30,7 @@ namespace MusicApp.Control
             InitializeComponent();
             var model = new SongDetailViewModel(this);
             DataContext = model;
+
         }
 
        

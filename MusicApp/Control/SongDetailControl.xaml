@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:app="clr-namespace:MusicApp.Component.AppCsStyle"
+             xmlns:app="clr-namespace:MusicApp.Component.AppCsStyle" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <!--歌曲详情,展示正在播放音乐的歌词等信息-->
@@ -44,6 +44,44 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="AnimateListStyle" TargetType="{x:Type ListBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="1" SnapsToDevicePixels="true">
+                            <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}">
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                    <ItemsPresenter.LayoutTransform>
+                                        <TransformGroup>
+                                            <TranslateTransform Y="-200"></TranslateTransform>
+                                        </TransformGroup>
+                                    </ItemsPresenter.LayoutTransform>
+                                    <i:Interaction.Behaviors>
+                                        <i:FluidMoveBehavior Duration="0:0:1">
+                                            <i:FluidMoveBehavior.EaseY>
+                                                <QuinticEase EasingMode="EaseOut"/>
+                                            </i:FluidMoveBehavior.EaseY>
+                                            <i:FluidMoveBehavior.EaseX>
+                                                <QuinticEase EasingMode="EaseOut"/>
+                                            </i:FluidMoveBehavior.EaseX>
+                                        </i:FluidMoveBehavior>
+                                    </i:Interaction.Behaviors>
+                                </ItemsPresenter>
+                            </ScrollViewer>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsGrouping" Value="true">
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <!--歌词-->
     <Grid HorizontalAlignment="Center" Margin="0 100 0 0">
@@ -66,41 +104,89 @@
 
         <Border Name="ListBoxContrainer" Grid.Row="3" Margin="0 20 0 100">
             <!--歌词列表-->
-            <app:DefaultScrollViewer x:Name="LyricScrollViewer" VerticalScrollBarVisibility="Auto">
-                <ListBox x:Name="LyricList" 
-                         ItemsSource="{Binding Model.LyricList}"
-                         Background="Transparent" 
-                         BorderThickness="0" 
-                         MaxWidth="900" MinWidth="300" 
-                         ScrollViewer.CanContentScroll="False">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Border x:Name="border" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock x:Name="text" 
-                                           Text="{Binding Value}" 
-                                           Margin="0 10" 
-                                           Foreground="{DynamicResource SongDetailTextColr}" 
-                                           HorizontalAlignment="Center" 
-                                           VerticalAlignment="Center" 
-                                           FontSize="16"/>
-                            </Border>
-                            <DataTemplate.Triggers>
-                                <DataTrigger Binding="{Binding IsFocus, Mode=Twoway}" Value="true">
-                                    <Setter Property="FontSize" TargetName="text" Value="20"/>
-                                    <Setter Property="Foreground" TargetName="text" Value="{DynamicResource SongDetailFocus}"/>
-                                    <Setter Property="FontWeight" TargetName="text" Value="Bold"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding IsFirstOne, Mode=Twoway}" Value="true">
-                                    <Setter Property="Margin" TargetName="border" Value="{Binding FirstOneMargin}"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding LastOne, Mode=Twoway}" Value="true">
-                                    <Setter Property="Margin" TargetName="border" Value="{Binding LastMargin}"/>
-                                </DataTrigger>
-                            </DataTemplate.Triggers>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </app:DefaultScrollViewer>
+            <ListBox x:Name="LyricList" Style="{DynamicResource AnimateListStyle}"
+                    ItemsSource="{Binding Model.LyricList}"
+                    Background="Transparent" 
+                    BorderThickness="0" 
+                    MaxWidth="900" MinWidth="300" 
+                    ScrollViewer.CanContentScroll="False">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border x:Name="border" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock x:Name="text" 
+                                        Text="{Binding Value}" 
+                                        Margin="0 10" 
+                                        Foreground="{DynamicResource SongDetailTextColr}" 
+                                        HorizontalAlignment="Center" 
+                                        VerticalAlignment="Center" 
+                                        FontWeight="Normal"
+                                        FontSize="16"/>
+                        </Border>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsFocus, Mode=Twoway}" Value="true">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard TargetName="text" >
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="FontSize">
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0.5" Value="16"/>
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0.6" Value="20"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).Color">
+                                                <LinearColorKeyFrame  KeyTime="0:0:0.5" Value="#676767"/>
+                                                <LinearColorKeyFrame  KeyTime="0:0:0.6" Value="#000000"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontWeight)">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <FontWeight>Normal</FontWeight>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.6">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <FontWeight>Bold</FontWeight>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard TargetName="text" >
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="FontSize">
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0.5" Value="20"/>
+                                                <LinearDoubleKeyFrame KeyTime="0:0:0.6" Value="16"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).Color">
+                                                <LinearColorKeyFrame  KeyTime="0:0:0.5" Value="#000000"/>
+                                                <LinearColorKeyFrame  KeyTime="0:0:0.6" Value="#676767"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontWeight)">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <FontWeight>Bold</FontWeight>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.6">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <FontWeight>Normal</FontWeight>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsFirstOne, Mode=Twoway}" Value="true">
+                                <Setter Property="Margin" TargetName="border" Value="{Binding FirstOneMargin}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding LastOne, Mode=Twoway}" Value="true">
+                                <Setter Property="Margin" TargetName="border" Value="{Binding LastMargin}"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Border>
     </Grid>
 </UserControl>
