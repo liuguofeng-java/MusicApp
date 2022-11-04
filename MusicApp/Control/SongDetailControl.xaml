@@ -82,56 +82,6 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <!--头部-->
-        <Border x:Name="headWindow" Height="60" Background="Transparent" VerticalAlignment="Top">
-            <Grid VerticalAlignment="Center">
-                <!--中心部分-->
-                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="230 0 0 0">
-                    <!--返回-->
-                    <Button x:Name="Back" 
-                                    Style="{DynamicResource NavButtonStyle}"
-                                    Height="25" 
-                                    Width="25" Margin="3 0" FontSize="10" 
-                                    Content="&#xe600;" 
-                                    Command="{x:Static NavigationCommands.BrowseBack}"
-                                    CommandTarget="{Binding ElementName=FrmePage}"/>
-                    <!--前进-->
-                    <Button x:Name="Next" 
-                                    Style="{DynamicResource NavButtonStyle}"
-                                    Height="25" Width="25" 
-                                    Margin="3 0" FontSize="10" Content="&#xe601;" 
-                                    Command="{x:Static NavigationCommands.BrowseForward}"
-                                    CommandTarget="{Binding ElementName=FrmePage}"/>
-                    <!--搜索框-->
-                    <local:SearchTextBoxControl />
-                </StackPanel>
-
-                <!--右侧部分-->
-                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal" Margin="0 0 15 0">
-
-                    <!--设置-->
-                    <Button Style="{DynamicResource DefaultButtonStyle}" x:Name="Settings" Background="Aqua"
-                            Height="30" Width="30" Margin="3 0" FontSize="22" Content="&#xe604;"/>
-                    <!--mini模式-->
-                    <Button Style="{DynamicResource DefaultButtonStyle}" x:Name="Mail"
-                            Height="30" Width="30" Margin="3 0" FontSize="17" Content="&#xe7b1;"/>
-                    <!--边框-->
-                    <Border BorderThickness="0.15" Height="15" BorderBrush="White" Margin="10 0"/>
-                    <!--mini模式-->
-                    <Button Style="{DynamicResource DefaultButtonStyle}" x:Name="Mini"
-                            Height="30" Width="30" Margin="3 0" FontSize="17" Content="&#xe64e;"/>
-                    <!--最小化-->
-                    <Button Style="{DynamicResource DefaultButtonStyle}" Command="{Binding ZoomOutWindowButCommand}"
-                            Height="30" Width="30" Margin="3 0" FontSize="17" Content="&#xe60e;"/>
-                    <!--最大化\还原-->
-                    <Button Style="{DynamicResource DefaultButtonStyle}" Command="{Binding ZoomWindowButCommand}"
-                            Height="30" Width="30" Margin="3 0" FontSize="15" Content="{Binding Model.ZoomWindowButContent}"/>
-                    <!--关闭-->
-                    <Button Style="{DynamicResource DefaultButtonStyle}" Command="{Binding CloseWindowButCommand}"
-                            Height="30" Width="30" Margin="3 0" FontSize="17" Content="&#xe723;"/>
-                </StackPanel>
-            </Grid>
-        </Border>
 
         <!--歌词-->
         <Grid HorizontalAlignment="Center" Margin="0 100 0 0">
@@ -183,7 +133,7 @@
                                         <BeginStoryboard>
                                             <Storyboard TargetName="text" >
                                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="FontSize">
-                                                    <LinearDoubleKeyFrame KeyTime="0:0:0.1" Value="20"/>
+                                                    <LinearDoubleKeyFrame KeyTime="0:0:0.4" Value="20"/>
                                                 </DoubleAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontWeight)">
                                                     <DiscreteObjectKeyFrame KeyTime="0:0:0.4">
