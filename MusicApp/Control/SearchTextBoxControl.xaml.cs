@@ -19,7 +19,7 @@ namespace MusicApp.Control
         {
             InitializeComponent();
 
-            var model = new SearchTextBoxViewModel();
+            var model = SearchTextBoxViewModel.GetInstance();
 
             DataContext = model;
         }

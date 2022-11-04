@@ -27,7 +27,11 @@ namespace MusicApp.ViewModels
         public SongDetailModel Model { get; set; }
         public SongDetailControl ThisWindow { get; set; }
 
+        //歌词循环
         private DispatcherTimer timer;
+
+        //歌词执行下一句延迟
+        private DispatcherTimer timeout;
         public SongDetailViewModel(SongDetailControl ThisWindow)
         {
             This = this;
@@ -140,9 +144,7 @@ namespace MusicApp.ViewModels
                     if (index == -1 || lyricList[index].Value.Equals("")) return;
                     //如果当前歌词已经是焦点就返回
                     if(lyricList[index].IsFocus.Equals(true)) return;
-
                     PositionLyrics(index);
-
                 });
                 timer.Start();
             }));
@@ -163,8 +165,22 @@ namespace MusicApp.ViewModels
                     item.IsFocus = false;
             });
             lyricList[index].IsFocus = true;//找到歌词焦点
-
             ThisWindow.LyricList.ScrollToCenterOfView(ThisWindow.LyricList.Items[index]);
+
+            /*//歌词延时效果
+            if (timeout == null) timeout = new DispatcherTimer();
+            timeout.Interval = TimeSpan.FromMilliseconds(400);
+            timeout.Tick += new EventHandler((s, e) =>
+            {
+                timeout.Stop();
+                try
+                {
+                    ThisWindow.LyricList.ScrollToCenterOfView(ThisWindow.LyricList.Items[index]);
+                }
+                catch { }
+            });
+            timeout.Start();*/
+
         }
 
 

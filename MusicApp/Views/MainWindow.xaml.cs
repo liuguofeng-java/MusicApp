@@ -16,9 +16,10 @@ namespace MusicApp.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static MainWindow mainWindow { get; private set; }
         public MainWindow()
         {
-
+            mainWindow = this;
             InitializeComponent();
             var model = MainWindowViewModel.GetInstance();
             DataContext = model;
@@ -50,26 +51,6 @@ namespace MusicApp.Views
             var attribute = DWMWINDOWATTRIBUTE.DWMWA_WINDOW_CORNER_PREFERENCE;
             var preference = DWM_WINDOW_CORNER_PREFERENCE.DWMWCP_DONOTROUND;
             DwmSetWindowAttribute(hWnd, attribute, ref preference, sizeof(uint));
-
-            //缩小
-            ZoomOutWindowBut.Click += (s, e) =>
-            {
-                WindowState = WindowState.Minimized;
-            };
-            //最大化
-            ZoomWindowBut.Click += (s, e) => ZoomWindow(s, e);
-            //关闭应用
-            CloseWindowBut.Click += (s, e) =>
-            {
-                Visibility = Visibility.Collapsed;
-            };
-
-            //点击图标时
-            Logo.Click += (s, e) =>
-            {
-                model.Model.MenusChecked = Models.MenusChecked.FoundMusicPage;
-            };
-
         }
 
         // The enum flag for DwmSetWindowAttribute's second parameter, which tells the function what attribute to set.
@@ -98,26 +79,6 @@ namespace MusicApp.Views
 
 
         /// <summary>
-        /// 最大化\还原
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public void ZoomWindow(object sender, RoutedEventArgs e)
-        {
-            //判断是否以及最大化，最大化就还原窗口，否则最大化
-            if (WindowState == WindowState.Maximized)
-            {
-                WindowState = WindowState.Normal;
-                ZoomWindowBut.Content = "\xe65d";
-            }
-            else
-            {
-                WindowState = WindowState.Maximized;
-                ZoomWindowBut.Content = "\xe653";
-            }
-        }
-
-        /// <summary>
         /// 移动\双击最大化
         /// </summary>
         /// <param name="sender"></param>
@@ -127,7 +88,7 @@ namespace MusicApp.Views
             //移动窗体事件
             if (e.ButtonState == MouseButtonState.Pressed)
             {
-                DragMove();
+                MainWindow.mainWindow.DragMove();
             }
             //双击事件放大缩小
             var element = (FrameworkElement)sender;
@@ -151,11 +112,9 @@ namespace MusicApp.Views
                 {
                     timer.Stop();
                     timer.Dispose();
-                    ZoomWindow(sender, e);
+                    MainWindowViewModel.GetInstance().ZoomWindow();
                 }
             }
         }
-
-
     }
 }

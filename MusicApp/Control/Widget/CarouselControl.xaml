@@ -59,11 +59,6 @@
             <DoubleAnimation FillBehavior="Stop" Duration="0:0:0:0.5" To="150" Storyboard.TargetName="CenterImage" Storyboard.TargetProperty="Height"></DoubleAnimation>
         </Storyboard>
     </UserControl.Resources>
-    <!--<UserControl.Triggers>
-        <EventTrigger RoutedEvent="Button.Click" SourceName="Forward">
-            <BeginStoryboard Storyboard="{DynamicResource CenterImageStoryboard}"/>
-        </EventTrigger>
-    </UserControl.Triggers>-->
     <StackPanel>
         <Grid x:Name="Contrainer" MaxWidth="1200" Margin="20" Height="200">
             <Border x:Name="LeftImage" Height="150" Width="600" CornerRadius="10" Background="{DynamicResource MainBackColor}" Panel.ZIndex="0"

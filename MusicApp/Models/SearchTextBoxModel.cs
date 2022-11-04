@@ -21,5 +21,21 @@ namespace MusicApp.Models
             set
             { _timer = value; }
         }
+
+        /// <summary>
+        /// 输入框延时器
+        /// </summary>
+        private string _value;
+
+        public string Value
+        {
+            get
+            { return this._value; }
+            set
+            {
+                _value = value;
+                DoNotify();
+            }
+        }
     }
 }

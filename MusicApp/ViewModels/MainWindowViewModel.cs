@@ -1,6 +1,7 @@
 ﻿using MusicApp.Common;
 using MusicApp.Models;
 using MusicApp.Models.Vo;
+using MusicApp.Views;
 using Newtonsoft.Json;
 using System;
 using System.Reflection;
@@ -25,12 +26,25 @@ namespace MusicApp.ViewModels
         }
         //事件委托
         public Action<object> BaseBorderMouseDownDelegate { get; set; }
+
         public MainWindowModel Model { get; set; }
 
+        public MainWindow MainWindow { get; set; }
+
+        //缩小
+        public CommandBase ZoomOutWindowButCommand { get; set; }
+        //最大化
+        public CommandBase ZoomWindowButCommand { get; set; }
+        //关闭
+        public CommandBase CloseWindowButCommand { get; set; }
+        //点击图标
+        public CommandBase LogoClickButCommand { get; set; }
         //点击最底层border
         public CommandBase BaseBorderMouseDownCommand { get; set; }
         //Frme内容改变
         public CommandBase FrmeContentRenderedCommand { get; set; }
+        //Frme加载
+        public CommandBase FrmePageLoadedCommand { get; set; }
         //点击带播放列表
         public CommandBase SongPlayListClickCommand { get; set; }
         //点击播放或暂停
@@ -41,9 +55,39 @@ namespace MusicApp.ViewModels
         public CommandBase NextClickCommand { get; set; }
         private MainWindowViewModel()
         {
+            MainWindow = MainWindow.mainWindow;
             Model = new MainWindowModel();
             //初始化第一页
             Model.MenusChecked = MenusChecked.FoundMusicPage;
+
+            //缩小
+            ZoomOutWindowButCommand = new CommandBase();
+            ZoomOutWindowButCommand.DoExecute = new Action<object>((o) =>
+            {
+                MainWindow.WindowState = WindowState.Minimized;
+            });
+            ZoomOutWindowButCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
+
+            //最大化
+            ZoomWindowButCommand = new CommandBase();
+            ZoomWindowButCommand.DoExecute = new Action<object>((o) => ZoomWindow());
+            ZoomWindowButCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
+
+            //关闭应用
+            CloseWindowButCommand = new CommandBase();
+            CloseWindowButCommand.DoExecute = new Action<object>((o) =>
+            {
+                MainWindow.Visibility = Visibility.Collapsed;
+            });
+            CloseWindowButCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
+
+            //点击图标时
+            LogoClickButCommand = new CommandBase();
+            LogoClickButCommand.DoExecute = new Action<object>((o) =>
+            {
+                MainWindowViewModel.GetInstance().Model.MenusChecked = MenusChecked.FoundMusicPage;
+            });
+            LogoClickButCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 
             //点击最底层border
             BaseBorderMouseDownCommand = new CommandBase();
@@ -97,6 +141,24 @@ namespace MusicApp.ViewModels
            
             //游客登录
             //Anonimous();
+        }
+
+        /// <summary>
+        /// 最大化\还原
+        /// </summary>
+        public void ZoomWindow()
+        {
+            //判断是否以及最大化，最大化就还原窗口，否则最大化
+            if (MainWindow.WindowState == WindowState.Maximized)
+            {
+                MainWindow.WindowState = WindowState.Normal;
+                Model.ZoomWindowButContent = "\xe65d";
+            }
+            else
+            {
+                MainWindow.WindowState = WindowState.Maximized;
+                Model.ZoomWindowButContent = "\xe653";
+            }
         }
 
         /// <summary>

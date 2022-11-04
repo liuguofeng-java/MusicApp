@@ -12,6 +12,21 @@ namespace MusicApp.Models
     public class MainWindowModel : NotifyBase
     {
         /// <summary>
+        /// 最大化图标
+        /// </summary>
+        private string _zoomWindowButContent = "\xe65d";
+        public string ZoomWindowButContent
+        {
+            get
+            { return this._zoomWindowButContent; }
+            set
+            {
+                _zoomWindowButContent = value;
+                DoNotify();
+            }
+        }
+
+        /// <summary>
         /// 当前页面
         /// </summary>
         private FrameworkElement _page;

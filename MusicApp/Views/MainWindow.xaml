@@ -88,7 +88,7 @@
                             <Button Style="{DynamicResource LoginStyle}"/>
                             <!--vip-->
                             <Button Style="{DynamicResource VipStyle}"/>
-                            
+
                             <!--皮肤按钮 和 主题颜色弹窗-->
                             <local:ThemeColorControl />
 
@@ -104,13 +104,13 @@
                             <Button Style="{DynamicResource WinButtonStyle}" x:Name="Mini"
                             Height="30" Width="30" Margin="3 0" FontSize="17" Content="&#xe64e;"/>
                             <!--最小化-->
-                            <Button Style="{DynamicResource WinButtonStyle}" x:Name="ZoomOutWindowBut"
+                            <Button Style="{DynamicResource WinButtonStyle}" Command="{Binding ZoomOutWindowButCommand}"
                             Height="30" Width="30" Margin="3 0" FontSize="17" Content="&#xe60e;"/>
                             <!--最大化\还原-->
-                            <Button Style="{DynamicResource WinButtonStyle}" x:Name="ZoomWindowBut"
-                            Height="30" Width="30" Margin="3 0" FontSize="15" Content="&#xe65d;"/>
+                            <Button Style="{DynamicResource WinButtonStyle}" Command="{Binding ZoomWindowButCommand}"
+                            Height="30" Width="30" Margin="3 0" FontSize="15" Content="{Binding Model.ZoomWindowButContent}"/>
                             <!--关闭-->
-                            <Button Style="{DynamicResource WinButtonStyle}" x:Name="CloseWindowBut"
+                            <Button Style="{DynamicResource WinButtonStyle}" Command="{Binding CloseWindowButCommand}"
                             Height="30" Width="30" Margin="3 0" FontSize="17" Content="&#xe723;"/>
                         </StackPanel>
                     </Grid>

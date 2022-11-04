@@ -15,7 +15,11 @@ namespace MusicApp.ViewModels
 {
     public class SearchTextBoxViewModel
     {
-
+        private static SearchTextBoxViewModel searchTextBoxViewModel = new SearchTextBoxViewModel();
+        public static SearchTextBoxViewModel GetInstance()
+        {
+            return searchTextBoxViewModel;
+        }
         public SearchTextBoxModel Model { get; set; }
 
         //输入框值改变
@@ -26,7 +30,7 @@ namespace MusicApp.ViewModels
 
         //点击搜索按钮时触发
         public CommandBase TextClickSearchCommand { get; set; }
-        public SearchTextBoxViewModel()
+        private SearchTextBoxViewModel()
         {
             Model = new SearchTextBoxModel();
 

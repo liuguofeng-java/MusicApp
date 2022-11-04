@@ -20,7 +20,6 @@
                                     <ColumnDefinition Width="40"/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <!--Click="SearchButton_Click"-->
                                 <Button Style="{DynamicResource WinButtonStyle}"
                                         Grid.Column="0"
                                         Cursor="Hand"  
@@ -77,6 +76,7 @@
                     x:Name="SearchBox" 
                     Height="25" 
                     Width="200" 
+                    Text="{Binding Model.Value}"
                     Foreground="{DynamicResource HeadForeColor}">
         <behaviors:Interaction.Triggers>
             <behaviors:EventTrigger EventName="TextChanged">

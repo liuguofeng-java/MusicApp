@@ -31,7 +31,7 @@ namespace MusicApp.Models.Widget
         {
             get {
                 var dt = DateTime.Now;
-                _calendar = DateTime.DaysInMonth(dt.Year, dt.Month).ToString();
+                _calendar = dt.ToString("dd");
                 return _calendar; }
             set
             {
