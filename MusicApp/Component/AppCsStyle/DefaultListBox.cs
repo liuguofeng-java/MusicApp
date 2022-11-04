@@ -14,6 +14,32 @@ namespace MusicApp.Component.AppCsStyle
 {
     public static class DefaultListBox
     {
+        public static T SearchVisualTree<T>(DependencyObject tarElem) where T : DependencyObject
+        {
+            if (tarElem != null)
+            {
+                var count = VisualTreeHelper.GetChildrenCount(tarElem);
+                if (count == 0)
+                    return null;
+                for (int i = 0; i < count; ++i)
+                {
+                    var child = VisualTreeHelper.GetChild(tarElem, i);
+                    if (child != null && child is T)
+                    {
+                        return (T)child;
+                    }
+                    else
+                    {
+                        var res = SearchVisualTree<T>(child);
+                        if (res != null)
+                        {
+                            return res;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
 
         public static void ScrollToCenterOfView(this ItemsControl itemsControl, object item)
         {

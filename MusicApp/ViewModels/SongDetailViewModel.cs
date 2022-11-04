@@ -8,16 +8,21 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Threading;
-using static MusicApp.Models.SongModel;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+
 
 namespace MusicApp.ViewModels
 {
@@ -29,9 +34,7 @@ namespace MusicApp.ViewModels
 
         //歌词循环
         private DispatcherTimer timer;
-
-        //歌词执行下一句延迟
-        private DispatcherTimer timeout;
+        
         public SongDetailViewModel(SongDetailControl ThisWindow)
         {
             This = this;
@@ -166,25 +169,11 @@ namespace MusicApp.ViewModels
             });
             lyricList[index].IsFocus = true;//找到歌词焦点
             ThisWindow.LyricList.ScrollToCenterOfView(ThisWindow.LyricList.Items[index]);
-
-            /*//歌词延时效果
-            if (timeout == null) timeout = new DispatcherTimer();
-            timeout.Interval = TimeSpan.FromMilliseconds(400);
-            timeout.Tick += new EventHandler((s, e) =>
-            {
-                timeout.Stop();
-                try
-                {
-                    ThisWindow.LyricList.ScrollToCenterOfView(ThisWindow.LyricList.Items[index]);
-                }
-                catch { }
-            });
-            timeout.Start();*/
-
         }
 
-
-
-
     }
+    
+
+
+
 }

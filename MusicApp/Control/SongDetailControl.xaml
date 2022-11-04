@@ -163,31 +163,30 @@
                     ScrollViewer.CanContentScroll="False">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Border x:Name="border" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock x:Name="text" 
-                                        Text="{Binding Value}" 
-                                        Margin="0 10" 
-                                        Foreground="{DynamicResource SongDetailTextColr}" 
-                                        HorizontalAlignment="Center" 
-                                        VerticalAlignment="Center" 
-                                        FontWeight="Normal"
-                                        FontSize="16"/>
+                            <Border x:Name="border">
+                                <!--正常文字-->
+                                <TextBlock x:Name="text"
+                                            Text="{Binding Value}" 
+                                            Margin="0 10" 
+                                            Foreground="{DynamicResource SongDetailTextColr}" 
+                                            HorizontalAlignment="Left" 
+                                            VerticalAlignment="Center" 
+                                            FontWeight="Normal"
+                                            FontSize="16"/>
                             </Border>
                             <DataTemplate.Triggers>
+                                <!--滚动时的过度-->
                                 <DataTrigger Binding="{Binding IsFocus, Mode=Twoway}" Value="true">
-                                    <Setter Property="FontSize" TargetName="text" Value="20"/>
                                     <Setter Property="Foreground" TargetName="text" Value="{DynamicResource SongDetailFocus}"/>
                                     <Setter Property="FontWeight" TargetName="text" Value="Bold"/>
                                     <DataTrigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard TargetName="text" >
                                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="FontSize">
-                                                    <LinearDoubleKeyFrame KeyTime="0:0:01" Value="20"/>
+                                                    <LinearDoubleKeyFrame KeyTime="0:0:0.1" Value="20"/>
                                                 </DoubleAnimationUsingKeyFrames>
-                                              
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontWeight)">
-                                                    
-                                                    <DiscreteObjectKeyFrame KeyTime="0:0:01">
+                                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.4">
                                                         <DiscreteObjectKeyFrame.Value>
                                                             <FontWeight>Bold</FontWeight>
                                                         </DiscreteObjectKeyFrame.Value>
@@ -198,11 +197,10 @@
                                     </DataTrigger.EnterActions>
                                     <DataTrigger.ExitActions>
                                         <BeginStoryboard>
-                                            <Storyboard TargetName="text" >
+                                            <Storyboard TargetName="text">
                                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="FontSize">
                                                     <LinearDoubleKeyFrame KeyTime="0:0:0.4" Value="16"/>
                                                 </DoubleAnimationUsingKeyFrames>
-
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontWeight)">
                                                     <DiscreteObjectKeyFrame KeyTime="0:0:0.4">
                                                         <DiscreteObjectKeyFrame.Value>
