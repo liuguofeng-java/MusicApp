@@ -120,6 +120,20 @@ namespace MusicApp.Models
         }
 
         /// <summary>
+        /// 作者
+        /// </summary>
+        private string _album;
+        public string Album
+        {
+            get { return this._album; }
+            set
+            {
+                _album = value;
+                DoNotify();
+            }
+        }
+
+        /// <summary>
         /// 音乐时长
         /// </summary>
         private int _songTime;

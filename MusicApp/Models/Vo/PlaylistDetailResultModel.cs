@@ -1,15 +1,63 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.Logging;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Policy;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MusicApp.Models.Vo
 {
-    public class ArItem
+    /// <summary>
+    /// 歌单详情
+    /// </summary>
+    public class PlaylistDetailResultModel
     {
         /// <summary>
         /// 
         /// </summary>
-        public int id { get; set; }
+        public int code { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string relatedVideos { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Playlist playlist { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string urls { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<PrivilegesItem> privileges { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string sharedPrivilege { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public object resEntrance { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string fromUsers { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int fromUserCount { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string songFromUsers { get; set; }
+    }
+
+   
+    public class TracksItem
+    {
         /// <summary>
         /// 
         /// </summary>
@@ -17,163 +65,15 @@ namespace MusicApp.Models.Vo
         /// <summary>
         /// 
         /// </summary>
-        public List<string> tns { get; set; }
+        public long id { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public List<string> @alias { get; set; }
-    }
-
-    public class Al
-    {
+        public long pst { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public int id { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string name { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string picUrl { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public List<string> tns { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string pic_str { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public long pic { get; set; }
-    }
-
-    public class H
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public int br { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int fid { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int size { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public long vd { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int sr { get; set; }
-    }
-
-    public class M
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public int br { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int fid { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int size { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public long vd { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int sr { get; set; }
-    }
-
-    public class L
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public int br { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int fid { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int size { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public long vd { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int sr { get; set; }
-    }
-
-    public class Sq
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public int br { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int fid { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int size { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int vd { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int sr { get; set; }
-    }
-
-    public class SongsItem
-    {
-
-        /// <summary>
-        /// 序号
-        /// </summary>
-        public string num { get; set; }
-        public string formatTime { get; set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string name { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int id { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int pst { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int t { get; set; }
+        public long t { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -185,11 +85,11 @@ namespace MusicApp.Models.Vo
         /// <summary>
         /// 
         /// </summary>
-        public int pop { get; set; }
+        public long pop { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public int st { get; set; }
+        public long st { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -197,11 +97,11 @@ namespace MusicApp.Models.Vo
         /// <summary>
         /// 
         /// </summary>
-        public int fee { get; set; }
+        public long fee { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public int v { get; set; }
+        public long v { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -221,7 +121,7 @@ namespace MusicApp.Models.Vo
         /// <summary>
         /// 
         /// </summary>
-        public H h { get; set; }
+        public object h { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -233,7 +133,11 @@ namespace MusicApp.Models.Vo
         /// <summary>
         /// 
         /// </summary>
-        public Sq sq { get; set; }
+        public object sq { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public object hr { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -261,7 +165,7 @@ namespace MusicApp.Models.Vo
         /// <summary>
         /// 
         /// </summary>
-        public int djId { get; set; }
+        public long djId { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -277,7 +181,7 @@ namespace MusicApp.Models.Vo
         /// <summary>
         /// 
         /// </summary>
-        public int originCoverType { get; set; }
+        public long originCoverType { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -305,27 +209,11 @@ namespace MusicApp.Models.Vo
         /// <summary>
         /// 
         /// </summary>
-        public string awardTags { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
         public int single { get; set; }
         /// <summary>
         /// 
         /// </summary>
         public object noCopyrightRcmd { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int mv { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int mst { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int cp { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -337,50 +225,22 @@ namespace MusicApp.Models.Vo
         /// <summary>
         /// 
         /// </summary>
+        public int mst { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int cp { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int mv { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public long publishTime { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public List<string> tns { get; set; }
     }
 
-    public class SongFreeTrialPrivilege
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public string resConsumable { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string userConsumable { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string listenType { get; set; }
-    }
-
-    public class ChargeInfoListItem
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public int rate { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string chargeUrl { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string chargeMessage { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int chargeType { get; set; }
-    }
-
-    public class PrivilegesItem
+    public class TrackIdsItem
     {
         /// <summary>
         /// 
@@ -389,119 +249,240 @@ namespace MusicApp.Models.Vo
         /// <summary>
         /// 
         /// </summary>
-        public int fee { get; set; }
+        public int v { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public int payed { get; set; }
+        public int t { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public int st { get; set; }
+        public long at { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public int pl { get; set; }
+        public string alg { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public int dl { get; set; }
+        public long uid { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public int sp { get; set; }
+        public string rcmdReason { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public int cp { get; set; }
+        public string sc { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public int subp { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string cs { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int maxbr { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int fl { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string toast { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int flag { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string preSell { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int playMaxbr { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int downloadMaxbr { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string maxBrLevel { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string playMaxBrLevel { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string downloadMaxBrLevel { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string plLevel { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string dlLevel { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string flLevel { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string rscl { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public SongFreeTrialPrivilege freeTrialPrivilege { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public List<ChargeInfoListItem> chargeInfoList { get; set; }
+        public string f { get; set; }
     }
 
-    public class SongDetailResultModel
+    public class Playlist
     {
         /// <summary>
         /// 
         /// </summary>
-        public List<SongsItem> songs { get; set; }
+        public long id { get; set; }
+        /// <summary>
+        /// 盘点曾风靡全球的经典歌曲
+        /// </summary>
+        public string name { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public List<PrivilegesItem> privileges { get; set; }
+        public long coverImgId { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public int code { get; set; }
+        public string coverImgUrl { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string coverImgId_str { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int adType { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long userId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long createTime { get; set; }
+        public string createDataTime { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int status { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string opRecommend { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string highQuality { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string newImported { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long updateTime { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int trackCount { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int specialType { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long privacy { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long trackUpdateTime { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string commentThreadId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int playCount { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long trackNumberUpdateTime { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int subscribedCount { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int cloudTrackCount { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ordered { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string description { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<string> tags { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string updateFrequency { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long backgroundCoverId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string backgroundCoverUrl { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long titleImage { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string titleImageUrl { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string englishTitle { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string officialPlaylistType { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string copied { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<SubscribersItem> subscribers { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string subscribed { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Creator creator { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<TracksItem> tracks { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string videoIds { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string videos { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<TrackIdsItem> trackIds { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string bannedTrackIds { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int shareCount { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int commentCount { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string remixVideo { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public object sharedUsers { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public object historySharedUsers { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string gradeStatus { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string score { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public object algTags { get; set; }
     }
+
+
+
+   
 
 }

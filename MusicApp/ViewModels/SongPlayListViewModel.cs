@@ -122,7 +122,7 @@ namespace MusicApp.ViewModels
                     break;
 
                 case PlayModel.RandomPlay:
-                    int random = new Random().Next(0,count + 1);
+                    int random = new Random().Next(0, count);
                     PlayerViewModel.This.InitPlay(Model.SongLists[random]);
                     break;
                 case PlayModel.OrderPlay:

@@ -140,7 +140,7 @@ namespace MusicApp.ViewModels
 
            
             //游客登录
-            //Anonimous();
+            Anonimous();
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace MusicApp.ViewModels
             {
 
                 InitJsonData.jsonDataModel.AnonCookie = anonRedultModel;
-            }
+             }
         }
 
 

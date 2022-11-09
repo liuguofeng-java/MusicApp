@@ -38,7 +38,7 @@
                                     <Border Background="Transparent">
                                         <behaviors:Interaction.Triggers>
                                             <behaviors:EventTrigger EventName="MouseLeftButtonDown">
-                                                <behaviors:InvokeCommandAction Command="{Binding DataContext.SongDetailsClickCommand,ElementName=songsControl}"/>
+                                                <behaviors:InvokeCommandAction Command="{Binding DataContext.SongDetailsClickCommand,ElementName=songsControl}" CommandParameter="#"/>
                                             </behaviors:EventTrigger>
                                         </behaviors:Interaction.Triggers>
                                         <Grid>
@@ -52,8 +52,8 @@
                                                     <ControlTemplate>
                                                         <Border Background="White" Opacity="0.9" CornerRadius="50">
                                                             <TextBlock Text="&#xe87c;"  FontFamily="{DynamicResource Iconfont}"
-                                                           HorizontalAlignment="Center" VerticalAlignment="Center"
-                                                           Foreground="red" FontSize="15" />
+                                                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                               Foreground="red" FontSize="15" />
                                                         </Border>
                                                         <ControlTemplate.Triggers>
                                                             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Border}},Path=IsMouseOver}" Value="True">
@@ -82,7 +82,12 @@
                                 <Button>
                                     <Button.Template>
                                         <ControlTemplate>
-                                            <Border CornerRadius="5" >
+                                            <Border CornerRadius="5">
+                                                <behaviors:Interaction.Triggers>
+                                                    <behaviors:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <behaviors:InvokeCommandAction Command="{Binding DataContext.SongDetailsClickCommand,ElementName=songsControl}" CommandParameter="{Binding Id}"/>
+                                                    </behaviors:EventTrigger>
+                                                </behaviors:Interaction.Triggers>
                                                 <Border.Background>
                                                     <ImageBrush ImageSource="{Binding CoverImgUrl}" Stretch="Fill"/>
                                                 </Border.Background>
@@ -94,6 +99,7 @@
                                                     </StackPanel>
                                                     <Button x:Name="but" Width="30" Height="30"  Cursor="Hand"
                                                         HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                                                        Command="{Binding DataContext.PlayAllClickCommand,ElementName=songsControl}" CommandParameter="{Binding Id}"
                                                         Margin="10" Visibility="Collapsed">
                                                         <Button.Template>
                                                             <ControlTemplate>

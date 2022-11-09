@@ -81,11 +81,25 @@ namespace MusicApp.Models
                     case MenusChecked.SongListOfDayPage://每日推荐歌曲列表
                         Page = PageManager.SongListOfDayPage;
                         break;
-
-
                 }
                 DoNotify();
             }
+        }
+
+        /// <summary>
+        /// 带参数跳转
+        /// </summary>
+        /// <param name="menusChecked"></param>
+        /// <param name="param"></param>
+        public void SetMenusChecked(MenusChecked menusChecked,object param)
+        {
+            switch (menusChecked)
+            {
+                case MenusChecked.SongListDetailsPage://歌单
+                    Page = PageManager.SongListDetailsPage((string)param);
+                    break;
+            }
+            DoNotify("MenusChecked");
         }
 
 
@@ -152,6 +166,7 @@ namespace MusicApp.Models
         LikeMusicPage,
         LocalAndDownloadPage,
         RecentPlayPage,
-        SongListOfDayPage
+        SongListOfDayPage,
+        SongListDetailsPage
     }
 }

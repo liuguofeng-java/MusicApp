@@ -20,6 +20,7 @@ namespace MusicApp.Common
         /// <param name="timeout">超时时间</param>
         public static string HttpDownload(String url, String path, String fileName, int timeout = 10000)
         {
+            if(url == null) return null;
             try
             {
                 HttpWebRequest request = null;
@@ -123,7 +124,7 @@ namespace MusicApp.Common
         /// <param name="data"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        public static String HttpRequset(String url, CookieContainer cookieContainer = null, String data = null, String method = "GET", int timeout = 3000)
+        public static String HttpRequset(String url, CookieContainer cookieContainer = null, String data = null, String method = "GET", int timeout = 5000)
         {
             try
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MusicApp.ViewModels.PageView.ChildPage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace MusicApp.PageView.ChildPage
     /// </summary>
     public partial class SongListDetailsPage : Page
     {
-        public SongListDetailsPage()
+        public SongListDetailsPage(string songsId)
         {
             InitializeComponent();
+            var model = new SongListDetailsViewModel(songsId);
+
+            DataContext = model;
         }
     }
 }

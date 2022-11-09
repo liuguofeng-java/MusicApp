@@ -32,7 +32,15 @@ namespace MusicApp.ViewModels.Widget
             SongDetailsClickCommand = new CommandBase();
             SongDetailsClickCommand.DoExecute = new Action<object>((o) => 
             {
-                MainWindowViewModel.GetInstance().Model.MenusChecked = MenusChecked.SongListOfDayPage;
+                var flag = o.ToString();
+                if (flag.Equals("#"))
+                {
+                    MainWindowViewModel.GetInstance().Model.MenusChecked = MenusChecked.SongListOfDayPage;
+                }
+                else
+                {
+                    MainWindowViewModel.GetInstance().Model.SetMenusChecked(MenusChecked.SongListDetailsPage,flag);
+                }
             });
             SongDetailsClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 
@@ -40,7 +48,15 @@ namespace MusicApp.ViewModels.Widget
             PlayAllClickCommand = new CommandBase();
             PlayAllClickCommand.DoExecute = new Action<object>((o) =>
             {
-                SongListOfDayViewPageModel.This.GetRecommendSong(true);
+                if (o == null)
+                {
+                    SongListOfDayViewPageModel.This.GetRecommendSong(true);
+                }
+                else
+                {
+                    var songListDetails = new SongListDetailsViewModel(o.ToString());
+                    songListDetails.PlayAllClick();
+                }
             });
             PlayAllClickCommand.DoCanExecute = new Func<object, bool>((o) => { return true; });
 

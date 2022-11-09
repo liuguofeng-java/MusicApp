@@ -35,11 +35,11 @@ namespace MusicApp.Models.Vo
         /// <summary>
         /// 
         /// </summary>
-        public int userType { get; set; }
+        //public int userType { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public int identityLevel { get; set; }
+        //public int identityLevel { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -155,7 +155,7 @@ namespace MusicApp.Models.Vo
         /// <summary>
         /// 
         /// </summary>
-        public AvatarDetail avatarDetail { get; set; }
+        public object avatarDetail { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -283,7 +283,7 @@ namespace MusicApp.Models.Vo
         /// <summary>
         /// 
         /// </summary>
-        public string avatarDetail { get; set; }
+        public object avatarDetail { get; set; }
         /// <summary>
         /// 
         /// </summary>

@@ -19,5 +19,11 @@ namespace MusicApp.PageView
         //每日推荐
         public static SongListOfDayPage SongListOfDayPage = new SongListOfDayPage();
 
+        //歌单
+        public static SongListDetailsPage SongListDetailsPage(string songsId)
+        {
+             return new SongListDetailsPage(songsId);
+        }
+
     }
 }

@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="MusicApp.Control.Widget.LoadingControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MusicApp.Control.Widget"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="200" x:Name="loading">
+    <UserControl.Resources>
+        <!--旋转动画-->
+        <Storyboard x:Key="loadingStoryboard">
+            <DoubleAnimation Duration="0:0:1" To="0" From="360" RepeatBehavior="Forever"
+                             Storyboard.TargetName="BorderRotateTransform" Storyboard.TargetProperty="Angle"/>
+        </Storyboard>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <!--控件加载启动动画-->
+        <EventTrigger RoutedEvent="UserControl.Loaded" SourceName="loading">
+            <BeginStoryboard Storyboard="{DynamicResource loadingStoryboard}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Grid Background="White" 
+          Margin="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:LoadingControl}},Path=ContrainerMargin}"
+          Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:LoadingControl}},Path=IsVisibility}">
+        <StackPanel Orientation="Horizontal" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" 
+                    Margin="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:LoadingControl}},Path=LoadMargin}"
+                    Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:LoadingControl}},Path=IsLoadVisibility}">
+            <Border x:Name="xxx" Width="20" Height="20">
+                <Border.RenderTransform>
+                    <RotateTransform x:Name="BorderRotateTransform" CenterX="10" CenterY="10" Angle="0"></RotateTransform>
+                </Border.RenderTransform>
+                <TextBlock Text="&#xe6de;" FontSize="15" FontFamily="{DynamicResource Iconfont}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <TextBlock Text="加载中...." FontSize="12" VerticalAlignment="Center" Margin="10 0 0 0" />
+        </StackPanel>
+
+        <TextBlock Text="网络不给力哦,请检查你的网络设置~" FontSize="15"
+                   Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:LoadingControl}},Path=IsErrorVisibility}"
+                   HorizontalAlignment="Center" Margin="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:LoadingControl}},Path=ErrorMargin}"/>
+    </Grid>
+</UserControl>

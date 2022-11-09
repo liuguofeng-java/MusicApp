@@ -4,11 +4,308 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MusicApp.PageView.ChildPage"
+      xmlns:app="clr-namespace:MusicApp.Component.AppCsStyle"
+      xmlns:widget="clr-namespace:MusicApp.Control.Widget" xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SongListDetailsPage">
     <!--歌单详情-->
-    <Grid>
-        
-    </Grid>
+    <app:DefaultScrollViewer>
+        <StackPanel>
+            <Grid>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20">
+                        <Border CornerRadius="5" Height="160" Width="160" VerticalAlignment="Top">
+                            <Border.Background>
+                                <ImageBrush ImageSource="{Binding Model.Playlist.coverImgUrl}" Stretch="Fill"/>
+                            </Border.Background>
+                        </Border>
+                        <StackPanel Margin="20 0">
+                            <StackPanel Orientation="Horizontal">
+                                <Button>
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Border BorderBrush="red" BorderThickness="0.5" CornerRadius="3" Margin="0 5 5 5">
+                                                <TextBlock Text="歌单" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                               Foreground="red" Margin="5 0 5 0"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                                <TextBlock Text="{Binding Model.Playlist.name}" FontSize="23" FontWeight="Black"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0 5">
+                                <Border Height="25" Width="25" CornerRadius="50">
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="{Binding Model.Playlist.creator.avatarUrl}" Stretch="Fill"/>
+                                    </Border.Background>
+                                </Border>
+                                <Button Style="{DynamicResource DefaultButtonStyle}" Content="{Binding Model.Playlist.creator.nickname}" Margin="10 0 10 0" FontSize="12" Foreground="#517eaf"/>
+                                <Label Content="{Binding Model.Playlist.createDataTime}" FontSize="12" Foreground="#666666" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0 5">
+                                <Button  Command="{Binding PlayAllClickCommand}">
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Border Background="#ec4141" Width="100" Height="30" CornerRadius="15 0 0 15" Cursor="Hand">
+                                                <TextBlock Text="&#xe87c; 全部播放" FontFamily="{DynamicResource Iconfont}" FontSize="14"
+                                                    HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+
+                                <Button>
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Border Background="#ec4141" Width="35" Height="30" CornerRadius="0 15 15 0" Cursor="Hand" Margin="0.3 0 0 0">
+                                                <TextBlock Text="&#xe6ea;" FontFamily="{DynamicResource Iconfont}" FontSize="14"
+                                                    HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                                <Button>
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Border Width="100" Height="30" CornerRadius="15" BorderThickness="0.5" BorderBrush="#d9d9d9" Cursor="Hand" Margin="20 0 0 0">
+                                                <TextBlock Text="&#xe6ea; 收藏全部" FontFamily="{DynamicResource Iconfont}" FontSize="14"
+                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                                <Label Content="标签:" FontSize="12" Foreground="#5a5a5a" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <ItemsControl ItemsSource="{Binding Model.Playlist.tags}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Style="{DynamicResource DefaultButtonStyle}"  Content="{Binding}" Margin="0 2 0 2" FontSize="12" Foreground="#517eaf"/>
+                                                <Label Content="/" FontSize="12" Foreground="#5a5a5a"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="歌曲:" FontSize="12" Foreground="#5a5a5a" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <Label Content="{Binding Model.Playlist.trackCount}" FontSize="12" Foreground="#afafaf" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <Label Content="播放:" FontSize="12" Foreground="#5a5a5a" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <Label Content="{Binding Model.Playlist.playCount}" FontSize="12" Foreground="#afafaf" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="简介:" FontSize="12" Foreground="#5a5a5a" VerticalAlignment="Top" />
+                                <TextBlock TextWrapping="WrapWithOverflow" MaxWidth="550" VerticalAlignment="Top" Padding="0 5 0 0" Height="{Binding Model.NoteTextHeight}"
+                                    Text="{Binding Model.Playlist.description}"/>
+                                <Button Style="{DynamicResource DefaultButtonStyle}" Content="{Binding Model.NoteButText}" 
+                                    FontSize="20" VerticalAlignment="Top" Margin="10 0 0 0" Command="{Binding NoteButClickCommand}"/>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <widget:LoadingControl ContrainerMargin="0 0 0 0"  LoadMargin="0 100 0 0"  ErrorMargin="0 100 0 0" 
+                                               IsErrorVisibility="{Binding Model.BaseErrorVisibility}" IsVisibility="{Binding Model.BaseLoadVisibility}"/>
+            </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="操作" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="65 0 0 0"/>
+
+                    <Grid Grid.Column="1" Cursor="Hand">
+                        <behaviors:Interaction.Triggers>
+                            <behaviors:EventTrigger EventName="MouseDown">
+                                <behaviors:InvokeCommandAction Command="{Binding SortClickCommand}" CommandParameter="1"/>
+                            </behaviors:EventTrigger>
+                        </behaviors:Interaction.Triggers>
+                        <Border Background="#f1f2f3" x:Name="order1" Opacity="0">
+                            <TextBlock Text="{Binding Model.HeadInfos[0]}" FontFamily="{DynamicResource Iconfont}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="35 0 0 0"/>
+                        </Border>
+                        <TextBlock Text="标题" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+                        <Grid.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard TargetName="order1"  TargetProperty="Opacity">
+                                        <DoubleAnimation Duration="0:0:0.1" To="1" From="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard TargetName="order1" TargetProperty="Opacity">
+                                        <DoubleAnimation Duration="0:0:0.1" To="0" From="1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Grid.Triggers>
+                    </Grid>
+                    
+                    <Grid Grid.Column="2" Cursor="Hand">
+                        <behaviors:Interaction.Triggers>
+                            <behaviors:EventTrigger EventName="MouseDown">
+                                <behaviors:InvokeCommandAction Command="{Binding SortClickCommand}" CommandParameter="2"/>
+                            </behaviors:EventTrigger>
+                        </behaviors:Interaction.Triggers>
+                        <Border Background="#f1f2f3" x:Name="order2" Opacity="0">
+                            <TextBlock Text="{Binding Model.HeadInfos[1]}" FontFamily="{DynamicResource Iconfont}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="35 0 0 0"/>
+                        </Border>
+                        <TextBlock Text="歌手" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+                        <Grid.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard TargetName="order2"  TargetProperty="Opacity">
+                                        <DoubleAnimation Duration="0:0:0.1" To="1" From="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard TargetName="order2" TargetProperty="Opacity">
+                                        <DoubleAnimation Duration="0:0:0.1" To="0" From="1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Grid.Triggers>
+                    </Grid>
+                    <Grid Grid.Column="3" Cursor="Hand">
+                        <behaviors:Interaction.Triggers>
+                            <behaviors:EventTrigger EventName="MouseDown">
+                                <behaviors:InvokeCommandAction Command="{Binding SortClickCommand}" CommandParameter="3"/>
+                            </behaviors:EventTrigger>
+                        </behaviors:Interaction.Triggers>
+                        <Border Background="#f1f2f3" x:Name="order3" Opacity="0">
+                            <TextBlock Text="{Binding Model.HeadInfos[2]}" FontFamily="{DynamicResource Iconfont}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="35 0 0 0"/>
+                        </Border>
+                        <TextBlock Text="专辑" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+                        <Grid.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard TargetName="order3"  TargetProperty="Opacity">
+                                        <DoubleAnimation Duration="0:0:0.1" To="1" From="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard TargetName="order3" TargetProperty="Opacity">
+                                        <DoubleAnimation Duration="0:0:0.1" To="0" From="1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Grid.Triggers>
+                    </Grid>
+
+                    <Grid Grid.Column="4" Cursor="Hand">
+                        <behaviors:Interaction.Triggers>
+                            <behaviors:EventTrigger EventName="MouseDown">
+                                <behaviors:InvokeCommandAction Command="{Binding SortClickCommand}" CommandParameter="4"/>
+                            </behaviors:EventTrigger>
+                        </behaviors:Interaction.Triggers>
+                        <Border Background="#f1f2f3" x:Name="order4" Opacity="0">
+                            <TextBlock Text="{Binding Model.HeadInfos[3]}" FontFamily="{DynamicResource Iconfont}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="35 0 0 0"/>
+                        </Border>
+                        <TextBlock Text="时间" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"/>
+                        <Grid.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard TargetName="order4"  TargetProperty="Opacity">
+                                        <DoubleAnimation Duration="0:0:0.1" To="1" From="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard TargetName="order4" TargetProperty="Opacity">
+                                        <DoubleAnimation Duration="0:0:0.1" To="0" From="1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Grid.Triggers>
+                    </Grid>
+                </Grid>
+                
+
+                <ListBox x:Name="SongList" Grid.Row="1"  Margin="0 0 0 30"
+                     Background="Transparent" BorderThickness="0" 
+                     AlternationCount="2"
+                     HorizontalContentAlignment="Stretch"
+                     ItemContainerStyle="{DynamicResource DefaultListBoxItem}"
+                     SelectedIndex="{Binding Model.SelectdIndex}"
+                     ItemsSource="{Binding Model.SongList}">
+                    <behaviors:Interaction.Triggers>
+                        <!--双击播放音乐-->
+                        <behaviors:EventTrigger EventName="MouseDoubleClick">
+                            <behaviors:InvokeCommandAction Command="{Binding PlaySongClickCommand}" 
+                                                       CommandParameter="{Binding Model.SelectdIndex}"/>
+                        </behaviors:EventTrigger>
+                    </behaviors:Interaction.Triggers>
+                    <ListBox.ContextMenu>
+                        <ContextMenu Width="200">
+                            <MenuItem Header="播放" Icon="&#xea6e;" 
+                                          Command="{Binding PlaySongClickCommand}" 
+                                          CommandParameter="{Binding Model.SelectdIndex}"/>
+                            <MenuItem Header="上一首" Icon="&#xe78a;"/>
+                            <MenuItem Header="下一首" Icon="&#xe7a5;" />
+                        </ContextMenu>
+                    </ListBox.ContextMenu>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Height="35">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120" />
+                                    <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition Width="1.5*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding num}" VerticalAlignment="Center"  Padding="30 0 10 0" />
+                                        <TextBlock Text="&#xe665;" VerticalAlignment="Center" Padding="10" FontFamily="{DynamicResource Iconfont}"/>
+                                        <TextBlock Text="&#xe608;" VerticalAlignment="Center" Padding="10" FontFamily="{DynamicResource Iconfont}"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <Border Grid.Column="1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding name}" VerticalAlignment="Center"
+                                               TextTrimming="CharacterEllipsis" ToolTip="{Binding name}" MaxWidth="200" Margin="5"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <TextBlock Text="{Binding ar[0].name}" VerticalAlignment="Center" Grid.Column="2" 
+                                       TextTrimming="CharacterEllipsis" ToolTip="{Binding ar[0].name}" MaxWidth="150" Margin="5"/>
+                                
+                                <TextBlock Text="{Binding al.name}" VerticalAlignment="Center" Grid.Column="3" 
+                                       TextTrimming="CharacterEllipsis" ToolTip="{Binding al.name}" MaxWidth="180" Margin="5"/>
+                                <TextBlock Text="{Binding formatTime}" VerticalAlignment="Center" Grid.Column="4" 
+                                       TextTrimming="CharacterEllipsis" ToolTip="{Binding formatTime}" MaxWidth="100" Margin="5"/>
+                            </Grid>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <widget:LoadingControl ContrainerMargin="0 90 0 0"  LoadMargin="0 20 0 0"  ErrorMargin="0 100 0 0"  Grid.Row="1"
+                                               IsErrorVisibility="{Binding Model.TableErrorVisibility}" IsVisibility="{Binding Model.TableLoadVisibility}"/>
+            </Grid>
+        </StackPanel>
+    </app:DefaultScrollViewer>
 </Page>
