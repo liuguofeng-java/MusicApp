@@ -155,96 +155,95 @@ namespace MusicApp.ViewModels.PageView.ChildPage
         /// <param name="number">第几个</param>
         public void SortClick(int number)
         {
-
-            var list = new List<SongsItem>(Model.SongList);
-
-            var headInfos = new List<string>(Model.HeadInfos);
-            if (Model.TemSongList == null)
+            new Thread(() =>
             {
-                Model.TemSongList = new List<SongsItem>(Model.SongList);
-            }
+                var list = new List<SongsItem>(Model.SongList);
+                var headInfos = new List<string>(Model.HeadInfos);
+                if (Model.TemSongList == null)
+                {
+                    Model.TemSongList = new List<SongsItem>(Model.SongList);
+                }
+                switch (number)
+                {
+                    case 1:
+                        if (headInfos[number - 1].Equals("\xe632默认排序"))
+                        {
+                            list = list.OrderBy(t => t.name).ToList();
+                            headInfos[number - 1] = "\xe660正排序";
+                        }
+                        else if (headInfos[number - 1].Equals("\xe660正排序"))
+                        {
+                            list = list.OrderByDescending(t => t.name).ToList();
+                            headInfos[number - 1] = "\xe65f倒排序";
+                        }
+                        else
+                        {
+                            list = new List<SongsItem>(Model.TemSongList);
+                            headInfos[number - 1] = "\xe632默认排序";
+                        }
+                        break;
+                    case 2:
+                        if (headInfos[number - 1].Equals("\xe632默认排序"))
+                        {
+                            list = list.OrderBy(t => t.ar[0].name).ToList();
+                            headInfos[number - 1] = "\xe660正排序";
+                        }
+                        else if (headInfos[number - 1].Equals("\xe660正排序"))
+                        {
+                            list = list.OrderByDescending(t => t.ar[0].name).ToList();
+                            headInfos[number - 1] = "\xe65f倒排序";
+                        }
+                        else
+                        {
+                            list = new List<SongsItem>(Model.TemSongList);
+                            headInfos[number - 1] = "\xe632默认排序";
+                        }
+                        break;
+                    case 3:
+                        if (headInfos[number - 1].Equals("\xe632默认排序"))
+                        {
+                            list = list.OrderBy(t => t.al.name).ToList();
+                            headInfos[number - 1] = "\xe660正排序";
+                        }
+                        else if (headInfos[number - 1].Equals("\xe660正排序"))
+                        {
+                            list = list.OrderByDescending(t => t.al.name).ToList();
+                            headInfos[number - 1] = "\xe65f倒排序";
+                        }
+                        else
+                        {
+                            list = new List<SongsItem>(Model.TemSongList);
+                            headInfos[number - 1] = "\xe632默认排序";
+                        }
+                        break;
+                    case 4:
+                        if (headInfos[number - 1].Equals("\xe632"))
+                        {
+                            list = list.OrderBy(t => t.formatTime).ToList();
+                            headInfos[number - 1] = "\xe660";
+                        }
+                        else if (headInfos[number - 1].Equals("\xe660"))
+                        {
+                            list = list.OrderByDescending(t => t.formatTime).ToList();
+                            headInfos[number - 1] = "\xe65f";
+                        }
+                        else
+                        {
+                            list = new List<SongsItem>(Model.TemSongList);
+                            headInfos[number - 1] = "\xe632";
+                        }
+                        break;
+                }
 
-            switch (number)
-            {
-                case 1:
-                    if (headInfos[number - 1].Equals("\xe632默认排序"))
-                    {
-                        list = list.OrderBy(t => t.name).ToList();
-                        headInfos[number - 1] = "\xe660正排序";
-                    }
-                    else if (headInfos[number - 1].Equals("\xe660正排序"))
-                    {
-                        list = list.OrderByDescending(t => t.name).ToList();
-                        headInfos[number - 1] = "\xe65f倒排序";
-                    }
-                    else
-                    {
-                        list = new List<SongsItem>(Model.TemSongList);
-                        headInfos[number - 1] = "\xe632默认排序";
-                    }
-                    break;
-                case 2:
-                    if (headInfos[number - 1].Equals("\xe632默认排序"))
-                    {
-                        list = list.OrderBy(t => t.ar[0].name).ToList();
-                        headInfos[number - 1] = "\xe660正排序";
-                    }
-                    else if (headInfos[number - 1].Equals("\xe660正排序"))
-                    {
-                        list = list.OrderByDescending(t => t.ar[0].name).ToList();
-                        headInfos[number - 1] = "\xe65f倒排序";
-                    }
-                    else
-                    {
-                        list = new List<SongsItem>(Model.TemSongList);
-                        headInfos[number - 1] = "\xe632默认排序";
-                    }
-                    break;
-                case 3:
-                    if (headInfos[number - 1].Equals("\xe632默认排序"))
-                    {
-                        list = list.OrderBy(t => t.al.name).ToList();
-                        headInfos[number - 1] = "\xe660正排序";
-                    }
-                    else if (headInfos[number - 1].Equals("\xe660正排序"))
-                    {
-                        list = list.OrderByDescending(t => t.al.name).ToList();
-                        headInfos[number - 1] = "\xe65f倒排序";
-                    }
-                    else
-                    {
-                        list = new List<SongsItem>(Model.TemSongList);
-                        headInfos[number - 1] = "\xe632默认排序";
-                    }
-                    break;
-                case 4:
-                    if (headInfos[number - 1].Equals("\xe632"))
-                    {
-                        list = list.OrderBy(t => t.formatTime).ToList();
-                        headInfos[number - 1] = "\xe660";
-                    }
-                    else if (headInfos[number - 1].Equals("\xe660"))
-                    {
-                        list = list.OrderByDescending(t => t.formatTime).ToList();
-                        headInfos[number - 1] = "\xe65f";
-                    }
-                    else
-                    {
-                        list = new List<SongsItem>(Model.TemSongList);
-                        headInfos[number - 1] = "\xe632";
-                    }
-                    break;
-            }
+                for (int i = 0; i < list.Count; i++)
+                {
+                    var num = (i + 1).ToString();
+                    list[i].num = num.Length == 1 ? "0" + num : num;
+                }
 
-            for (int i = 0; i < list.Count; i++)
-            {
-                var num = (i + 1).ToString();
-                list[i].num = num.Length == 1 ? "0" + num : num;
-            }
-
-            Model.SongList = list;
-            Model.HeadInfos = headInfos;
-
+                Model.SongList = list;
+                Model.HeadInfos = headInfos;
+            }).Start();
 
         }
 
