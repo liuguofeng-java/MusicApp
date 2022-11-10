@@ -1,38 +1,44 @@
 # MusicApp
 
-**留了一版纯前端的，没有数据库，没有接口，在这里** https://gitee.com/shi2015/st-wpf-ui/tree/v1.0
-
 #### 介绍
 
-wpf 仿造网易云pc端
+使用开源`网易云音乐 API`接口 [NeteaseCloudMusicApi]( https://github.com/Binaryify/NeteaseCloudMusicApi) 
 
-#### 软件架构
+本人wpf 新手,也是边写边学习中,感觉写的很乱，功能虽已实现,但是会不断优化代码
 
-软件架构说明 :
+也欢迎有兴趣的小伙伴加入
 
-Visual Studio 2021 .NET Core
+码农不易，欢迎 **star** 
 
-#### 安装教程
+####  项目页面功能完成列表
 
-1. 初始化NuGet包
-2. 运行MusicApp
+- [x] 首页(待完善)
+- [x] 每日推荐音乐
+- [x] 歌单详情
+- [x] 带播放列表
+- [x] 歌词页(待完善)
+- [x] 换肤功能(待完善)
+- [x] 系统托盘
+- [ ] .......
 
 #### 预览
 
+<img src="https://gitee.com/liu_guo_feng/music-app/raw/mvvm/images/img1.png" style="zoom:50%;" />
+
+<img src="https://gitee.com/liu_guo_feng/music-app/raw/mvvm/images/img6.png" style="zoom:50%;" />
+
+<img src="https://gitee.com/liu_guo_feng/music-app/raw/mvvm/images/img2.png" style="zoom:50%;" />
+
+<img src="https://gitee.com/liu_guo_feng/music-app/raw/mvvm/images/img3.png" style="zoom:50%;" />
+
+<img src="https://gitee.com/liu_guo_feng/music-app/raw/mvvm/images/img4.png" style="zoom:50%;" />
+
+<img src="https://gitee.com/liu_guo_feng/music-app/raw/mvvm/images/img7.png" style="zoom: 50%;" />
+
+<img src="https://gitee.com/liu_guo_feng/music-app/raw/mvvm/images/img8.png" style="zoom: 50%;" />
+
+<img src="https://gitee.com/liu_guo_feng/music-app/raw/mvvm/images/img5.png" style="zoom: 50%;" />
 
 
-#### 参与贡献
 
-1. Fork 本仓库
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
-
-#### 码云特技
-
-1. 使用 Readme_XXX.md 来支持不同的语言，例如 Readme_en.md, Readme_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com/)
-3. 你可以 https://gitee.com/explore 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 https://gitee.com/help
-6. 码云封面人物是一档用来展示码云会员风采的栏目 https://gitee.com/gitee-stars/
+#### 仅供学习使用 不作任何商业用途
